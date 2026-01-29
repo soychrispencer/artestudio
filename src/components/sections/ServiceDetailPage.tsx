@@ -351,7 +351,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     </motion.h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Administración')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} idx={idx} />
+                        <PlanCard key={idx} plan={plan} service={service} />
                       ))}
                     </div>
                   </div>
@@ -368,7 +368,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     </motion.h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Diseños') && !p.name.includes('Combo')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} idx={idx} />
+                        <PlanCard key={idx} plan={plan} service={service} />
                       ))}
                     </div>
                   </div>
@@ -390,7 +390,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     </motion.div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Combo')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} idx={idx} isCombo={true} />
+                        <PlanCard key={idx} plan={plan} service={service} isCombo />
                       ))}
                     </div>
                   </div>
@@ -401,7 +401,7 @@ export function ServicePage({ service }: ServicePageProps) {
               {service.id !== 1 && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {service.plans.map((plan, idx) => (
-                    <PlanCard key={idx} plan={plan} service={service} idx={idx} />
+                    <PlanCard key={idx} plan={plan} service={service} />
                   ))}
                 </div>
               )}

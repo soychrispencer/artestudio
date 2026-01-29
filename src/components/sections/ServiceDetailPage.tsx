@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ChevronRight, Check, MessageCircle } from 'tabler-icons-react'
 import Link from 'next/link'
-import { ServiceDetail, SERVICES_DETAILS } from '@/lib/services'
+import { ServiceDetail } from '@/lib/services'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
 

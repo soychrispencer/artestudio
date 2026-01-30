@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ROUTES } from '@/lib/constants'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
 import { Menu2, X } from 'tabler-icons-react'
 import { MessageCircle } from 'tabler-icons-react'
 import { openWhatsApp } from '@/lib/utils'
@@ -13,6 +14,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -43,10 +45,10 @@ export function Header() {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center h-12">
+          {/* Logo: en hero (no scrolled) siempre claro; al hacer scroll según tema para que se vea en móvil */}
+          <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
             {mounted && (
-              <div className="h-6 sm:h-8 w-auto flex items-center justify-center">
+              <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
                 {!scrolled ? (
                   <Image
                     src="/logos/Logo-Light.png"
@@ -58,7 +60,7 @@ export function Header() {
                   />
                 ) : (
                   <Image
-                    src="/logos/logo-dark.png"
+                    src={resolvedTheme === 'dark' ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
                     alt="artestudio"
                     height={32}
                     width={120}

@@ -21,9 +21,9 @@ function BrandLogo() {
   return (
     <div className="flex items-center gap-3 mb-4">
       {theme === 'dark' ? (
-        <Image src="/logos/Logo-Dark.png" alt="artestudio" width={140} height={36} className="w-auto h-9 object-contain" />
-      ) : (
         <Image src="/logos/Logo-Light.png" alt="artestudio" width={140} height={36} className="w-auto h-9 object-contain" />
+      ) : (
+        <Image src="/logos/Logo-Dark.png" alt="artestudio" width={140} height={36} className="w-auto h-9 object-contain" />
       )}
     </div>
   )

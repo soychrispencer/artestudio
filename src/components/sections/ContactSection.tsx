@@ -2,9 +2,46 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useState } from 'react'
 import { BrandWhatsapp, BrandInstagram, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
+import { FORM_LIMITS } from '@/lib/constants'
 
 export function ContactSection() {
+  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [formError, setFormError] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const message = formData.get('message') as string
+
+    setFormError('')
+    setFormState('loading')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        setFormError(data.error || 'Error al enviar')
+        setFormState('error')
+        return
+      }
+      setFormState('success')
+      form.reset()
+    } catch {
+      setFormError('Error de conexión. Intenta de nuevo.')
+      setFormState('error')
+    }
+  }
+
   const socialLinks = [
     {
       icon: BrandWhatsapp,
@@ -13,19 +50,19 @@ export function ContactSection() {
       color: 'hover:text-green-500',
     },
     {
-      icon: BrandInstagram,
+      icon: BrandWhatsapp,
       href: 'https://instagram.com/artestudio.cl',
       label: 'Instagram',
       color: 'hover:text-pink-500',
     },
     {
-      icon: BrandTiktok,
+      icon: BrandWhatsapp,
       href: 'https://tiktok.com/@artestudio.cl',
       label: 'TikTok',
       color: 'hover:text-black dark:hover:text-white',
     },
     {
-      icon: BrandFacebook,
+      icon: BrandWhatsapp,
       href: 'https://facebook.com/artestudio.cl',
       label: 'Facebook',
       color: 'hover:text-blue-500',
@@ -96,13 +133,85 @@ export function ContactSection() {
             </div>
           </div>
 
+          {/* Contact Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="mt-12 p-6 glass dark:glass-dark rounded-xl border border-gray-200 dark:border-white/10 space-y-4 text-left max-w-lg mx-auto"
+          >
+            <h3 className="font-semibold text-gray-900 dark:text-dark-text mb-4">
+              Envíanos un mensaje
+            </h3>
+            <div>
+              <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 dark:text-dark-text-secondary mb-1">
+                Nombre
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                required
+                maxLength={FORM_LIMITS.maxNameLength}
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Tu nombre"
+                disabled={formState === 'loading'}
+              />
+            </div>
+            <div>
+              <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 dark:text-dark-text-secondary mb-1">
+                Email
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                required
+                maxLength={FORM_LIMITS.maxEmailLength}
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="tu@email.com"
+                disabled={formState === 'loading'}
+              />
+            </div>
+            <div>
+              <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 dark:text-dark-text-secondary mb-1">
+                Mensaje
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                rows={4}
+                maxLength={FORM_LIMITS.maxMessageLength}
+                className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text focus:ring-2 focus:ring-primary focus:border-transparent resize-y"
+                placeholder="¿En qué podemos ayudarte?"
+                disabled={formState === 'loading'}
+              />
+            </div>
+            {formState === 'success' && (
+              <p className="text-sm text-green-600 dark:text-green-400" role="status">
+                Mensaje enviado. Te contactaremos pronto.
+              </p>
+            )}
+            {formState === 'error' && formError && (
+              <p className="text-sm text-red-600 dark:text-red-400" role="alert">
+                {formError}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={formState === 'loading'}
+              className="w-full px-4 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark disabled:opacity-60 transition-smooth"
+            >
+              {formState === 'loading' ? 'Enviando…' : 'Enviar mensaje'}
+            </button>
+          </form>
+
           {/* Contact Info */}
-          <div className="mt-12 p-6 glass dark:glass-dark rounded-xl border border-gray-200 dark:border-white/10">
+          <div className="mt-8 p-6 glass dark:glass-dark rounded-xl border border-gray-200 dark:border-white/10 max-w-lg mx-auto">
             <h3 className="font-semibold text-gray-900 dark:text-dark-text mb-2">
               ¿Tienes dudas?
             </h3>
             <p className="text-gray-600 dark:text-dark-text-secondary">
-              +56 9 3874 4230 • info@artestudio.cl
+              +56 9 3874 4230 • hola@artestudio.cl
             </p>
           </div>
         </motion.div>

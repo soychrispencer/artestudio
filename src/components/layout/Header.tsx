@@ -38,10 +38,10 @@ export function Header() {
   ]
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
       scrolled 
-        ? 'backdrop-blur-md bg-white/95 dark:bg-dark-bg-secondary/95 border-b border-gray-100 dark:border-dark-bg-tertiary shadow-soft' 
-        : 'bg-transparent'
+        ? 'backdrop-blur-md bg-white/95 dark:bg-dark-bg-secondary/95 border-gray-100 dark:border-dark-bg-tertiary shadow-soft' 
+        : 'bg-white/0 dark:bg-dark-bg-secondary/0 border-transparent shadow-none'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="flex items-center justify-between h-16 gap-4">
@@ -49,25 +49,14 @@ export function Header() {
           <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
             {mounted && (
               <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
-                {!scrolled ? (
-                  <Image
-                    src="/logos/Logo-Light.png"
+                <Image
+                    src={!scrolled || resolvedTheme === 'dark' ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
                     alt="artestudio"
                     height={32}
                     width={120}
-                    className="h-6 sm:h-8 w-auto object-contain"
+                    className="h-6 sm:h-8 w-auto object-contain transition-all duration-300"
                     priority
                   />
-                ) : (
-                  <Image
-                    src={resolvedTheme === 'dark' ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
-                    alt="artestudio"
-                    height={32}
-                    width={120}
-                    className="h-6 sm:h-8 w-auto object-contain"
-                    priority
-                  />
-                )}
               </div>
             )}
           </Link>
@@ -119,12 +108,16 @@ export function Header() {
             </button>
             {/* Mobile Menu Button */}
             <button
+              type="button"
               className={`md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg transition-colors ${
                 scrolled
                   ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary'
                   : 'bg-white/20 hover:bg-white/30 border border-white/30'
               }`}
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
             >
               {menuOpen ? (
                 <X className="w-5 h-5" />
@@ -137,7 +130,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {menuOpen && (
-          <nav className={`md:hidden pb-4 space-y-2 ${
+          <nav id="mobile-nav" className={`md:hidden pb-4 space-y-2 ${
             scrolled 
               ? 'bg-white dark:bg-dark-bg' 
               : 'bg-white/10 backdrop-blur-md'

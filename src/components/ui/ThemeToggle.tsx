@@ -25,9 +25,19 @@ export function ThemeToggle({ isScrolled = false }: { isScrolled?: boolean }) {
       aria-label="Toggle theme"
     >
       {theme === 'dark' ? (
-        <Sun className={`w-5 h-5 ${isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'}`} />
+        <Sun
+          key="sun"
+          className={`w-5 h-5 animate-rotate-in ${
+            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'
+          }`}
+        />
       ) : (
-        <Moon className={`w-5 h-5 ${isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'}`} />
+        <Moon
+          key="moon"
+          className={`w-5 h-5 animate-rotate-in ${
+            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'
+          }`}
+        />
       )}
     </button>
   )

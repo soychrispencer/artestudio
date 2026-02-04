@@ -53,7 +53,7 @@ export function ServiceCard({ service }: { service: Service }) {
       transition={{ duration: 0.6 }}
       className="group relative"
     >
-      <div className="glass dark:glass-dark p-6 rounded-xl h-full flex flex-col hover:shadow-xl transition-smooth border border-gray-200 dark:border-white/10">
+      <div className="glass dark:glass-dark p-6 rounded-xl h-full flex flex-col transition-smooth border border-gray-200 dark:border-white/10 hover-glow">
         {/* Badge */}
         {service.badge && (
           <div className="absolute -top-3 -right-3 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold">

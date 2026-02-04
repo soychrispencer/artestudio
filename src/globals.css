@@ -260,3 +260,28 @@ body {
 .animate-subtle-float {
   animation: subtle-float 3s ease-in-out infinite;
 }
+
+/* Theme Toggle Animation */
+@keyframes rotate-in {
+  from {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-rotate-in {
+  animation: rotate-in 0.3s ease-in-out;
+}
+
+/* Card Glow Effect */
+.hover-glow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 25px -5px rgba(131, 37, 253, 0.4);
+}

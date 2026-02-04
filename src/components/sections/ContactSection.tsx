@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-import { BrandWhatsapp, BrandInstagram, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
+import { BrandWhatsapp } from 'tabler-icons-react'
 import { FORM_LIMITS } from '@/lib/constants'
 
 export function ContactSection() {

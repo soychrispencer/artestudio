@@ -307,8 +307,8 @@ colors: {
 ## 📞 Soporte
 
 Para ayuda o preguntas sobre la configuración, contacta a:
-- WhatsApp: +56 9 3874 4230
-- Email: info@artestudio.cl
+- WhatsApp: +569 3873 3230
+- Email: hola@artestudio.cl
 
 ---
 

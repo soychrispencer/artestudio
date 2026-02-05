@@ -6,7 +6,7 @@
 export const CONTACT_INFO = {
   whatsapp: '+56938733230',
   email: 'hola@artestudio.cl',
-  phone: '+56 9 3874 4230',
+  phone: '+569 3873 3230',
   address: 'Chile',
 } as const
 
@@ -16,6 +16,7 @@ export const SOCIAL_LINKS = {
   tiktok: 'https://tiktok.com/@artestudio.cl',
   facebook: 'https://facebook.com/artestudio.cl',
   linkedin: 'https://linkedin.com/company/artestudio-cl',
+  behance: 'https://www.behance.net/artestudio',
 } as const
 
 // Colores de la marca
@@ -98,7 +99,7 @@ export const SITE_CONFIG = {
   name: 'artestudio.cl',
   title: 'artestudio.cl - Transformación Digital y Creativa',
   description:
-    'Servicios de diseño gráfico, web, branding, redes sociales y audio profesional. Transformamos tu marca con soluciones creativas de clase mundial.',
+    'Agencia digital en Chile potenciada por IA. Expertos en diseño web, desarrollo de software, branding y marketing digital. Transformamos tu negocio con tecnología de vanguardia.',
   url: 'https://artestudio.cl',
   ogImage: 'https://artestudio.cl/og-image.png',
   twitterHandle: '@artestudio_cl',
@@ -107,16 +108,19 @@ export const SITE_CONFIG = {
 
 // Palabras clave SEO
 export const SEO_KEYWORDS = [
-  'diseño web',
-  'diseño gráfico',
-  'branding',
-  'redes sociales',
-  'audio profesional',
-  'diseño digital',
-  'agencia de diseño',
+  'agencia digital chile',
+  'diseño web con inteligencia artificial',
+  'desarrollo de software a medida',
+  'branding corporativo',
+  'gestión de redes sociales',
   'marketing digital',
-  'Chile',
-  'servicios creativos',
+  'edición de audio profesional',
+  'mastering de audio',
+  'diseño ux ui',
+  'tiendas online shopify',
+  'diseño web wordpress',
+  'posicionamiento seo',
+  'artestudio',
 ] as const
 
 // Duración de las notificaciones (toast, alerts, etc)

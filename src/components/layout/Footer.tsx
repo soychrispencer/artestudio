@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { BrandInstagram, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
+import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
 
 function BrandLogo() {
   const { theme } = useTheme()
@@ -31,9 +32,9 @@ function BrandLogo() {
 
 export function Footer() {
   const socialLinks = [
-    { icon: BrandInstagram, href: 'https://instagram.com/artestudio.cl', label: 'Instagram' },
-    { icon: BrandTiktok, href: 'https://tiktok.com/@artestudio.cl', label: 'TikTok' },
-    { icon: BrandFacebook, href: 'https://facebook.com/artestudio.cl', label: 'Facebook' },
+    { icon: BrandInstagram, href: SOCIAL_LINKS.instagram, label: 'Instagram' },
+    { icon: BrandTiktok, href: SOCIAL_LINKS.tiktok, label: 'TikTok' },
+    { icon: BrandFacebook, href: SOCIAL_LINKS.facebook, label: 'Facebook' },
   ]
 
   return (
@@ -87,11 +88,23 @@ export function Footer() {
             <div className="space-y-4">
               <div>
                 <p className="text-xs text-gray-500 dark:text-dark-text-secondary uppercase tracking-wide mb-1">Teléfono</p>
-                <p className="text-sm text-gray-700 dark:text-dark-text font-semibold">+56 9 3874 4230</p>
+                <a
+                  href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-700 dark:text-dark-text font-semibold hover:text-primary transition-colors"
+                >
+                  {CONTACT_INFO.phone}
+                </a>
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-dark-text-secondary uppercase tracking-wide mb-1">Email</p>
-                <p className="text-sm text-gray-700 dark:text-dark-text font-semibold">hola@artestudio.cl</p>
+                <a
+                  href={`mailto:${CONTACT_INFO.email}`}
+                  className="text-sm text-gray-700 dark:text-dark-text font-semibold hover:text-primary transition-colors"
+                >
+                  {CONTACT_INFO.email}
+                </a>
               </div>
             </div>
             <div className="flex gap-3">

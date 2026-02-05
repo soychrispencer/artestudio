@@ -28,6 +28,7 @@ export interface ServiceDetail {
   whyChooseUs: string[]
   portfolio: string[]
   cta: string
+  whatsappMessage?: string
   faq: {
     question: string
     answer: string
@@ -226,6 +227,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1611162616433-5f6f3be9b66c?w=500&h=500&fit=crop',
     ],
     cta: 'Activar Redes Sociales',
+    whatsappMessage: "Hola Artestudio, me interesa potenciar mis redes sociales con sus planes de administración y diseño. ¿Podrían asesorarme?",
     faq: [
       {
         question: '¿Cuál es la diferencia entre los planes?',
@@ -303,6 +305,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
     ],
     cta: 'Crear mi Identidad Visual',
+    whatsappMessage: "Hola Artestudio, estoy buscando crear una identidad visual única para mi marca. Me interesa el servicio de Branding.",
     faq: [
       {
         question: '¿Incluye renovación de logo existente?',
@@ -373,6 +376,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
     ],
     cta: 'Diseñar mis Gráficos',
+    whatsappMessage: "Hola Artestudio, necesito ayuda con piezas gráficas y diseño profesional. ¿Me cuentan más sobre su servicio de Diseño Gráfico?",
     faq: [
       {
         question: '¿Puedo solicitar cambios después de recibir el diseño?',
@@ -394,7 +398,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     shortDescription:
       'Sitios modernos, rápidos y optimizados para SEO. Convierte visitantes en clientes.',
     longDescription:
-      'Tu sitio web es tu canal principal de ventas. Ofrecemos diseño y desarrollo en plataformas líderes: WordPress (optimizado), WooCommerce (ecommerce), Shopify (tiendas globales) y Jumpseller (tiendas locales). Adaptamos la tecnología al negocio del cliente y no al revés: soluciones escalables y medibles.',
+      'Tu sitio web es tu canal principal de ventas. Diseñamos en plataformas líderes según tu necesidad: WordPress/WooCommerce para control total, o Shopify/Jumpseller para comercio ágil en la nube. Importante: En plataformas SaaS (Shopify, Jumpseller), el cliente cubre el costo de la suscripción mensual. *Nota: El servicio de diseño web no incluye creación de logotipo ni identidad corporativa.*',
     icon: 'Brush',
     color: '#8B5CF6',
     price: 149990,
@@ -508,6 +512,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
     ],
     cta: 'Crear mi Sitio Web',
+    whatsappMessage: "Hola Artestudio, quiero un sitio web profesional que venda. Me interesa cotizar su servicio de Diseño Web.",
     faq: [
       {
         question: '¿Puedo actualizar el contenido yo mismo después?',
@@ -524,6 +529,14 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         answer:
           'El sitio base no incluye e-commerce, pero podemos agregarlo por un costo adicional.',
       },
+      {
+        question: '¿Debo pagar mensualidades a la plataforma?',
+        answer: 'Si eliges Shopify o Jumpseller, sí (se paga directo a ellos). En WordPress no hay mensualidad de plataforma, solo hosting anual.',
+      },
+      {
+        question: '¿Incluye el diseño de mi logo?',
+        answer: 'No, el diseño web se enfoca en la estructura y funcionalidad. La identidad visual (logo, branding) es un servicio independiente.',
+      },
     ],
   },
     {
@@ -534,7 +547,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       shortDescription:
         'Desarrollo profesional de aplicaciones web, móviles y sistemas empresariales escalables.',
       longDescription:
-        'Creamos soluciones tecnológicas robustas y seguras: aplicaciones web, APIs, plataformas SaaS y apps móviles. Trabajamos con buenas prácticas, testing y despliegue profesional. Ofrecemos integraciones con IA, pasarelas de pago, sistemas de inventario y más. Nuestra aproximación es consultiva: diseñamos la solución técnica que mejor resuelva el problema de negocio del cliente.',
+        'Desarrollo de código inteligente asistido por Inteligencia Artificial para máxima eficiencia y robustez. Creamos aplicaciones web, APIs y plataformas SaaS escalables. Integramos modelos de IA, pasarelas de pago y sistemas complejos. Nuestra metodología combina la velocidad de la IA con la arquitectura de software profesional.',
       icon: 'Code',
       color: '#2563EB',
       price: 1200000,
@@ -567,13 +580,14 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         },
       ],
       whyChooseUs: [
-        'Equipo full-stack con experiencia en soluciones empresariales',
+        'Desarrollo acelerado y optimizado con IA',
         'Buenas prácticas de seguridad y rendimiento',
         'Integración con herramientas y servicios externos',
         'Soporte y evolución del producto',
       ],
       portfolio: [],
       cta: 'Desarrollar mi Plataforma',
+      whatsappMessage: "Hola Artestudio, tengo un proyecto de plataforma/app y busco desarrollo a medida. Me gustaría conversar sobre ello.",
       faq: [
         {
           question: '¿Qué tecnologías usan?',
@@ -634,6 +648,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       ],
       portfolio: [],
       cta: 'Activar Presencia Digital Completa',
+      whatsappMessage: "Hola Artestudio, soy emprendedor y necesito el pack de Presencia Digital Completa para lanzar mi negocio. ¿Cómo empezamos?",
       faq: [
         {
           question: '¿A quién está dirigido?',
@@ -701,6 +716,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     portfolio: [],
     cta: 'Editar mi Audio',
+    whatsappMessage: "Hola Artestudio, tengo grabaciones que necesitan edición y mezcla profesional. Me interesa su servicio de Audio.",
     faq: [
       {
         question: '¿Cuánto tiempo tarda la edición?',
@@ -766,6 +782,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     portfolio: [],
     cta: 'Masterizar mi Audio',
+    whatsappMessage: "Hola Artestudio, busco el toque final profesional para mis tracks. Me interesa el servicio de Mastering.",
     faq: [
       {
         question: '¿Necesito una mezcla perfecta para masterizar?',

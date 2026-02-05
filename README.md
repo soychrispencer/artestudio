@@ -127,8 +127,8 @@ Actualiza en `src/lib/constants.ts`:
 ```typescript
 export const CONTACT_INFO = {
   whatsapp: '+56938733230',
-  email: 'info@artestudio.cl',
-  phone: '+56 9 3874 4230',
+  email: 'hola@artestudio.cl',
+  phone: '+569 3873 3230',
 }
 ```
 
@@ -299,4 +299,3 @@ Todos los derechos reservados © 2026 artestudio.cl
 **¡El sitio está listo para lanzarse en producción! 🚀**
 
 Última actualización: 29 de enero de 2026
-

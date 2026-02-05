@@ -183,8 +183,8 @@ Estructura Completa Incluida:
 
 Para soporte durante la instalación o desarrollo:
 
-- **WhatsApp**: +56 9 3874 4230
-- **Email**: info@artestudio.cl
+- **WhatsApp**: +569 3873 3230
+- **Email**: hola@artestudio.cl
 
 ---
 

@@ -41,7 +41,7 @@ export function ServiceCard({ service }: { service: Service }) {
       const message = encodeURIComponent(
         `Hola, me interesa el servicio: ${service.title}. Valor: ${formatPrice(service.price as any)}`
       )
-      window.open(`https://wa.me/56938744230?text=${message}`, '_blank')
+      window.open(`https://wa.me/56938733230?text=${message}`, '_blank')
     })()
   }
 

@@ -87,7 +87,7 @@ export default function SuccessPage() {
         >
           ¿Preguntas? Contáctanos por{' '}
           <Link
-            href="https://wa.me/56938744230"
+            href="https://wa.me/56938733230"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"

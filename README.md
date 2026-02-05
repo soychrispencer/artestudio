@@ -126,7 +126,7 @@ import { Inter, Poppins, Montserrat } from 'next/font/google'
 Actualiza en `src/lib/constants.ts`:
 ```typescript
 export const CONTACT_INFO = {
-  whatsapp: '+56938744230',
+  whatsapp: '+56938733230',
   email: 'info@artestudio.cl',
   phone: '+56 9 3874 4230',
 }
@@ -156,7 +156,7 @@ Ya está integrado. Los links están en:
 - `src/components/sections/ContactSection.tsx` (Sección contacto)
 - `src/components/ui/ServiceCard.tsx` (Tarjetas de servicio)
 
-Reemplaza el número `+56938744230` con el tuyo.
+Reemplaza el número `+56938733230` con el tuyo.
 
 ### 3. Redes Sociales
 
@@ -240,7 +240,7 @@ NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY=
 NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN=
 EMAIL_USER=
 EMAIL_PASSWORD=
-NEXT_PUBLIC_WHATSAPP_NUMBER=+56938744230
+NEXT_PUBLIC_WHATSAPP_NUMBER=+56938733230
 NEXT_PUBLIC_EMAIL=info@artestudio.cl
 ```
 

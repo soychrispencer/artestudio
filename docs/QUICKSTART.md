@@ -17,7 +17,7 @@ Abre en el navegador: **http://localhost:3000**
 ```typescript
 // Actualiza estos valores
 export const CONTACT_INFO = {
-  whatsapp: '+56938744230',      // Tu número de WhatsApp
+  whatsapp: '+56938733230',      // Tu número de WhatsApp
   email: 'info@artestudio.cl',   // Tu email
   phone: '+56 9 3874 4230',      // Tu teléfono
 }

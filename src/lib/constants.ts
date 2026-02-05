@@ -4,7 +4,7 @@
 
 // Información de contacto
 export const CONTACT_INFO = {
-  whatsapp: '+56938744230',
+  whatsapp: '+56938733230',
   email: 'hola@artestudio.cl',
   phone: '+56 9 3874 4230',
   address: 'Chile',

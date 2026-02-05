@@ -54,7 +54,7 @@ export default function PendingPage() {
             Volver al Inicio
           </Link>
           <a
-            href="https://wa.me/56938744230?text=Hola%2C%20tengo%20una%20consulta%20sobre%20un%20pago%20pendiente"
+            href="https://wa.me/56938733230?text=Hola%2C%20tengo%20una%20consulta%20sobre%20un%20pago%20pendiente"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-dark-bg-secondary text-gray-900 dark:text-dark-text rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary transition-smooth flex-1"

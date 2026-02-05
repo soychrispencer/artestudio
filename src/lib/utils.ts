@@ -18,7 +18,7 @@ export function formatPrice(price: string | number): string {
  * Abre WhatsApp con un mensaje pre-escrito
  */
 export function openWhatsApp(
-  phoneNumber: string = '+56938744230',
+  phoneNumber: string = '+56938733230',
   message?: string
 ): void {
   const encodedMessage = message

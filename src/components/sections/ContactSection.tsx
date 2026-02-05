@@ -45,7 +45,7 @@ export function ContactSection() {
   const socialLinks = [
     {
       icon: BrandWhatsapp,
-      href: 'https://wa.me/56938744230?text=Hola%20artestudio%21%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios',
+      href: 'https://wa.me/56938733230?text=Hola%20artestudio%21%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios',
       label: 'WhatsApp',
       color: 'hover:text-green-500',
     },
@@ -91,7 +91,7 @@ export function ContactSection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
-              href="https://wa.me/56938744230?text=Hola%20artestudio%21%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios"
+              href="https://wa.me/56938733230?text=Hola%20artestudio%21%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark hover:shadow-lg transition-all duration-300 group"

@@ -56,7 +56,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link
-              href="https://wa.me/56938744230?text=Hola,%20me%20interesa%20cotizar%20un%20proyecto%20de%20dise%C3%B1o"
+              href="https://wa.me/56938733230?text=Hola,%20me%20interesa%20cotizar%20un%20proyecto%20de%20dise%C3%B1o"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark hover:shadow-lg transition-all duration-300 group"

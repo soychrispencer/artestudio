@@ -19,7 +19,7 @@ Este documento contiene los pasos necesarios para completar la configuración y 
 ### 1. **Personalización de Información**
 
 #### En `src/components/sections/ContactSection.tsx`:
-- Reemplaza el número de WhatsApp `+56938744230` con tu número real
+- Reemplaza el número de WhatsApp `+56938733230` con tu número real
 - Actualiza el email `info@artestudio.cl` con tu email
 
 #### En `src/components/layout/Footer.tsx`:

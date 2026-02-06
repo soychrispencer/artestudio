@@ -16,6 +16,11 @@ import Link from 'next/link'
 import { SERVICES_DETAILS } from '@/lib/services'
 
 export function ServicesSection() {
+  const getDiscountPercent = (price?: number, oldPrice?: number) => {
+    if (!price || !oldPrice || oldPrice <= price) return 0
+    return Math.round((1 - price / oldPrice) * 100)
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -74,13 +79,25 @@ export function ServicesSection() {
             >
               <Link href={`/servicio/${service.slug}`}>
                 <div className="relative h-full p-8 rounded-3xl bg-white dark:bg-dark-bg border border-gray-200/80 dark:border-dark-bg-tertiary hover:border-primary/40 dark:hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  {(service.oldPrice ||
-                    service.plans?.some((plan) => plan.oldPrice) ||
-                    service.addons?.some((addon) => addon.oldPrice)) && (
-                    <span className="absolute top-6 right-6 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                      Promo
-                    </span>
-                  )}
+                  {(() => {
+                    const discounts = [
+                      getDiscountPercent(service.price, service.oldPrice),
+                      ...(service.plans ?? []).map((plan) =>
+                        getDiscountPercent(plan.price, plan.oldPrice)
+                      ),
+                      ...(service.addons ?? []).map((addon) =>
+                        getDiscountPercent(addon.price, addon.oldPrice)
+                      ),
+                    ]
+                    const maxDiscount = Math.max(0, ...discounts)
+                    if (maxDiscount <= 0) return null
+                    const label = maxDiscount >= 50 ? 'Promo 50%' : 'Promo'
+                    return (
+                      <span className="absolute top-6 right-6 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                        {label}
+                      </span>
+                    )
+                  })()}
                   {/* Icon - neutro, primary solo en hover/destacado */}
                   <div className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center text-gray-700 dark:text-dark-text bg-gray-100 dark:bg-dark-bg-tertiary flex-shrink-0 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {service.id === 1 && <BrandInstagram size={28} />}

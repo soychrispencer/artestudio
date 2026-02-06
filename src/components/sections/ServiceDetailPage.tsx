@@ -24,6 +24,15 @@ interface ServicePageProps {
 function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
   const { addItem, openCart } = useCart()
   const isRecommended = plan.recommended === true
+  const discountPercent = plan.oldPrice
+    ? Math.round((1 - plan.price / plan.oldPrice) * 100)
+    : 0
+  const showPromo = discountPercent >= 50
+  const summaryCount = plan.features.length > 3 ? 3 : plan.features.length
+  const summaryItems = Array.isArray(plan.summary) && plan.summary.length > 0
+    ? plan.summary
+    : plan.features.slice(0, summaryCount)
+  const detailItems = plan.features.slice(summaryItems.length)
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -40,46 +49,79 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
           Recomendado
         </div>
       )}
+      {showPromo && (
+        <div className="absolute top-4 left-4 bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">
+          Promo 50%
+        </div>
+      )}
 
       <div className="relative flex flex-col h-full p-8">
         {/* Plan Header */}
-        <div className="mb-6">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            {plan.name}
-          </h3>
-          <div className="flex items-end gap-3 flex-wrap">
-            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
-              {formatPrice(plan.price)}
-            </span>
-            <span className="text-gray-600 dark:text-dark-text-secondary whitespace-nowrap">CLP</span>
-            {plan.billing === 'mensual' && (
-              <span className="text-sm text-gray-500 dark:text-dark-text-secondary whitespace-nowrap">
-                <span className="hidden sm:inline">/mensual</span>
-                <span className="sm:hidden">/mes</span>
-              </span>
+        <div className="mb-6 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary mb-2">
+              Plan
+            </p>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {plan.name}
+            </h3>
+            {plan.oldPrice && (
+              <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary">
+                <span className="line-through">{formatPrice(plan.oldPrice)}</span>
+                <span className="ml-2 text-primary font-semibold">
+                  Ahorra {formatPrice(plan.oldPrice - plan.price)}
+                </span>
+              </div>
             )}
           </div>
-          {plan.oldPrice && (
-            <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary hidden sm:block">
-              <span className="line-through">{formatPrice(plan.oldPrice)}</span>
-              <span className="ml-2 text-primary font-semibold">
-                Ahorra {formatPrice(plan.oldPrice - plan.price)}
-              </span>
+          <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-gray-50 dark:bg-dark-bg-secondary px-4 py-3 text-right min-w-[140px]">
+            <div className="text-2xl font-bold text-primary">{formatPrice(plan.price)}</div>
+            <div className="text-xs text-gray-500 dark:text-dark-text-secondary">
+              CLP
+              {plan.billing === 'mensual' && (
+                <span className="ml-1">
+                  <span className="hidden sm:inline">/mensual</span>
+                  <span className="sm:hidden">/mes</span>
+                </span>
+              )}
             </div>
-          )}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-gray-50/80 dark:bg-dark-bg-secondary/80 p-5 mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+            Resumen
+          </p>
+          <div className="mt-3 space-y-2">
+            {summaryItems.map((feature: string, featureIdx: number) => (
+              <div key={featureIdx} className="flex items-start gap-3">
+                <Check size={18} className="text-primary flex-shrink-0 mt-1" />
+                <p className="text-gray-700 dark:text-dark-text-secondary">
+                  {feature}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Features List */}
-        <div className="flex-grow mb-8 space-y-3">
-          {plan.features.map((feature: string, featureIdx: number) => (
-            <div key={featureIdx} className="flex items-start gap-3">
-              <Check size={20} className="text-primary flex-shrink-0 mt-1" />
-              <p className="text-gray-700 dark:text-dark-text-secondary">
-                {feature}
-              </p>
+        {detailItems.length > 0 && (
+          <div className="flex-grow mb-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary mb-4">
+              Incluye
+            </p>
+            <div className="space-y-3">
+              {detailItems.map((feature: string, featureIdx: number) => (
+                <div key={featureIdx} className="flex items-start gap-3">
+                  <Check size={20} className="text-primary flex-shrink-0 mt-1" />
+                  <p className="text-gray-700 dark:text-dark-text-secondary">
+                    {feature}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* CTA Button */}
         <button
@@ -105,12 +147,16 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
 
 function AddonCard({ addon }: { addon: any }) {
   const { addItem, openCart } = useCart()
+  const discountPercent = addon.oldPrice
+    ? Math.round((1 - addon.price / addon.oldPrice) * 100)
+    : 0
+  const badgeLabel = discountPercent >= 50 ? 'Promo 50%' : addon.badge
   return (
     <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6 flex flex-col gap-4">
       <div>
-        {addon.badge && (
+        {badgeLabel && (
           <span className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">
-            {addon.badge}
+            {badgeLabel}
           </span>
         )}
         <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-1">
@@ -191,6 +237,9 @@ function TextBadge({ label, letter }: { label: string; letter: string }) {
 
 export function ServicePage({ service }: ServicePageProps) {
   const { addItem, openCart } = useCart()
+  const serviceDiscountPercent = service.oldPrice
+    ? Math.round((1 - service.price / service.oldPrice) * 100)
+    : 0
   return (
     <main className="min-h-screen bg-white dark:bg-dark-bg">
       {/* Hero Section */}
@@ -570,6 +619,11 @@ export function ServicePage({ service }: ServicePageProps) {
 
                 {/* Price Card */}
                 <div className="mt-8 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-dark-bg dark:to-dark-bg-secondary border-2 border-purple-200 dark:border-purple-900">
+                  {serviceDiscountPercent >= 50 && (
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-semibold text-primary uppercase tracking-[0.2em]">
+                      Promo 50%
+                    </div>
+                  )}
                   {service.pricePrefix === 'desde' && (
                     <div className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
                       Desde

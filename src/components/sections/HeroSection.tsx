@@ -54,11 +54,11 @@ export function HeroSection() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
               {[
-                { label: 'Briefing estratégico', value: 'Dirección clara' },
-                { label: 'Iteraciones ágiles', value: 'Feedback guiado' },
-                { label: 'Entrega ordenada', value: 'Listo para usar' },
+                { label: 'Dirección creativa', value: 'Briefing + guía' },
+                { label: 'Iteraciones con foco', value: 'Feedback preciso' },
+                { label: 'Entrega profesional', value: 'Listo para lanzar' },
               ].map((item) => (
                 <div key={item.label} className="space-y-1">
                   <p className="text-gray-500 dark:text-dark-text-secondary">{item.label}</p>

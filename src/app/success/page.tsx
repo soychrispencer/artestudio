@@ -35,17 +35,20 @@ export default function SuccessPage() {
       const itemsLine = order.items
         ? order.items.map((item) => `• ${item.title} x${item.quantity}`).join('\n')
         : ''
+      const dateLabel = new Date().toLocaleString('es-CL')
 
       const message = [
-        'Hola! Se realizó una compra en artestudio.cl ✅',
+        'Estimado equipo Artestudio,',
+        'Se ha registrado una compra en artestudio.cl ✅',
         order.orderId ? `Pedido: ${order.orderId}` : '',
-        order.buyer?.name ? `Nombre: ${order.buyer.name}` : '',
+        `Fecha: ${dateLabel}`,
+        order.buyer?.name ? `Cliente: ${order.buyer.name}` : '',
         order.buyer?.email ? `Email: ${order.buyer.email}` : '',
         order.buyer?.phone ? `Teléfono: ${order.buyer.phone}` : '',
         order.buyer?.company ? `Empresa: ${order.buyer.company}` : '',
-        itemsLine ? `Items:\n${itemsLine}` : '',
+        itemsLine ? `Servicios:\n${itemsLine}` : '',
         order.total ? `Total: ${formatPrice(order.total)} CLP` : '',
-        paymentId ? `Pago: ${paymentId}` : '',
+        paymentId ? `ID de pago: ${paymentId}` : '',
         status ? `Estado: ${status}` : '',
       ]
         .filter(Boolean)

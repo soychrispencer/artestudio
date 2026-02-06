@@ -570,6 +570,11 @@ export function ServicePage({ service }: ServicePageProps) {
 
                 {/* Price Card */}
                 <div className="mt-8 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-dark-bg dark:to-dark-bg-secondary border-2 border-purple-200 dark:border-purple-900">
+                  {service.pricePrefix === 'desde' && (
+                    <div className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+                      Desde
+                    </div>
+                  )}
                   <div className="flex items-baseline justify-center gap-2 mb-6">
                     {service.oldPrice && (
                       <span className="text-2xl text-gray-500 line-through">

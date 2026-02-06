@@ -10,6 +10,7 @@ import {
 } from 'react'
 import { X, Trash } from 'tabler-icons-react'
 import { formatPrice } from '@/lib/utils'
+import { VALIDATION } from '@/lib/constants'
 
 export type CartItem = {
   id: string
@@ -133,6 +134,9 @@ function CartDrawer() {
   const [showForm, setShowForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [formStartedAt, setFormStartedAt] = useState<number | null>(null)
+  const [honeypot, setHoneypot] = useState('')
+  const [isHuman, setIsHuman] = useState(false)
   const [buyer, setBuyer] = useState({
     name: '',
     email: '',
@@ -236,6 +240,17 @@ function CartDrawer() {
                 </p>
               </div>
               <div className="grid gap-3">
+                <label className="sr-only" aria-hidden="true">
+                  No completar
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    className="sr-only"
+                  />
+                </label>
                 <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
                   Nombre y apellido
                   <input
@@ -278,6 +293,15 @@ function CartDrawer() {
                     placeholder="Nombre de la marca"
                   />
                 </label>
+                <label className="flex items-start gap-3 text-sm text-gray-600 dark:text-dark-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={isHuman}
+                    onChange={(e) => setIsHuman(e.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  Confirmo que soy una persona y no un bot.
+                </label>
               </div>
               {error && (
                 <p className="text-sm text-red-500">{error}</p>
@@ -290,7 +314,10 @@ function CartDrawer() {
           </div>
           {!showForm && (
             <button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                setShowForm(true)
+                setFormStartedAt(Date.now())
+              }}
               className="w-full btn-whatsapp px-6 py-3"
               disabled={items.length === 0}
             >
@@ -300,8 +327,34 @@ function CartDrawer() {
           {showForm && (
             <button
               onClick={async () => {
-                if (!buyer.name.trim() || !buyer.email.trim()) {
-                  setError('Completa nombre y email para continuar.')
+                if (honeypot.trim()) {
+                  setError('No pudimos validar tu solicitud.')
+                  return
+                }
+
+                if (!formStartedAt || Date.now() - formStartedAt < 2500) {
+                  setError('Verificación en curso. Intenta nuevamente en unos segundos.')
+                  return
+                }
+
+                if (!buyer.name.trim() || !buyer.email.trim() || !buyer.phone.trim()) {
+                  setError('Completa nombre, email y teléfono para continuar.')
+                  return
+                }
+
+                if (!VALIDATION.emailRegex.test(buyer.email.trim())) {
+                  setError('El email ingresado no es válido.')
+                  return
+                }
+
+                const phoneDigits = buyer.phone.replace(/\\D/g, '')
+                if (phoneDigits.length < 8) {
+                  setError('El teléfono debe tener al menos 8 dígitos.')
+                  return
+                }
+
+                if (!isHuman) {
+                  setError('Confirma que eres una persona para continuar.')
                   return
                 }
 

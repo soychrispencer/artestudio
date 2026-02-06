@@ -13,6 +13,7 @@ export interface ServiceDetail {
   color: string
   price: number
   oldPrice?: number
+  pricePrefix?: 'desde' | 'cotizar'
   plans?: {
     name: string
     price: number
@@ -380,20 +381,84 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Diseño Gráfico',
     subtitle: 'Diseños que Impactan y Comunican',
     shortDescription:
-      'Logos, papelería y activos digitales. Diseños claros, versátiles y listos para usar.',
+      'Piezas digitales e impresas desde $35.000. Packs y addons según necesidad.',
     longDescription:
-      'Desde logos contundentes hasta papelería completa, creamos diseños gráficos que transmiten profesionalismo y capturan la esencia de tu marca. Cada proyecto es una oportunidad de dejar una impresión duradera.',
+      'Creamos piezas gráficas digitales e impresas para cualquier tipo de negocio: redes, presentaciones, papelería, catálogos y más. Puedes contratar por pieza, packs o sumar complementos según tu etapa y necesidad.',
     icon: 'Brush',
     color: '#EC4899',
-    price: 100000,
+    price: 35000,
     supportImage: 'https://images.pexels.com/photos/7484736/pexels-photo-7484736.jpeg?w=800&q=80&auto=format&fit=crop',
+    plans: [
+      {
+        name: 'Pieza única',
+        price: 35000,
+        features: [
+          '1 pieza digital o impresa',
+          '1 formato final',
+          'Correcciones básicas de estilo',
+          '1 ronda de revisión',
+          'Entrega lista para publicar o imprimir',
+        ],
+      },
+      {
+        name: 'Pack 5 piezas',
+        price: 120000,
+        oldPrice: 140000,
+        features: [
+          '5 piezas gráficas',
+          'Hasta 2 formatos por pieza',
+          '2 rondas de revisión',
+          'Archivos listos para publicar/imprimir',
+          'Guía de uso breve',
+        ],
+      },
+      {
+        name: 'Pack 10 piezas',
+        price: 200000,
+        oldPrice: 260000,
+        features: [
+          '10 piezas gráficas',
+          'Hasta 2 formatos por pieza',
+          '2 rondas de revisión',
+          'Archivos editables incluidos',
+          'Optimización para redes o impresión',
+        ],
+      },
+      {
+        name: 'Papelería básica',
+        price: 160000,
+        features: [
+          'Tarjeta de presentación',
+          'Firma de correo',
+          'Hoja membretada',
+          '2 rondas de revisión',
+          'Archivos listos para imprenta',
+        ],
+      },
+    ],
+    addons: [
+      {
+        name: 'Diseño de menú o catálogo',
+        description: 'Hasta 4 páginas o secciones.',
+        price: 90000,
+      },
+      {
+        name: 'Preparación para imprenta',
+        description: 'Sangrado, perfil de color y archivos finales.',
+        price: 65000,
+      },
+      {
+        name: 'Ilustración personalizada',
+        description: 'Ilustración única para uso digital o impreso.',
+        price: 70000,
+      },
+    ],
     deliverables: [
-      'Logo o activo gráfico principal',
-      'Versiones alternas (color, blanco, negro)',
-      'Archivos en múltiples formatos (PNG, PDF, SVG)',
-      'Propuestas iniciales de concepto',
-      '2 rondas de revisión incluidas',
-      'Entrega de archivos fuente editable',
+      'Piezas digitales o impresas según plan',
+      'Formatos optimizados para cada canal',
+      'Archivos editables cuando aplica',
+      'Rondas de revisión definidas',
+      'Entrega lista para publicar o imprimir',
     ],
     process: [
       {
@@ -431,12 +496,12 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Puedo solicitar cambios después de recibir el diseño?',
         answer:
-          'Incluimos 2 rondas de revisión para asegurar un resultado sólido.',
+          'Incluimos rondas de revisión según el plan para asegurar un resultado sólido.',
       },
       {
-        question: '¿Necesito identidad completa?',
+        question: '¿Puedo combinar piezas y packs?',
         answer:
-          'Si aún no tienes branding, recomendamos partir por Identidad Visual para asegurar coherencia.',
+          'Sí. Puedes contratar packs y sumar complementos según tu necesidad.',
       },
       {
         question: '¿En qué programas se entregan los archivos?',
@@ -458,7 +523,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     icon: 'Video',
     color: '#6366F1',
     price: 35000,
-    supportImage: 'https://images.pexels.com/photos/4147815/pexels-photo-4147815.jpeg?w=800&q=80&auto=format&fit=crop',
+    supportImage: 'https://images.pexels.com/photos/2240772/pexels-photo-2240772.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
     plans: [
       {
         name: 'Shorts (Reels/TikTok/Shorts)',
@@ -775,13 +840,14 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       slug: 'desarrollo-y-plataformas',
       title: 'Desarrollo de Apps y Plataformas',
       subtitle: 'Sistemas, apps y plataformas a la medida',
-      shortDescription:
-        'Apps web, móviles y sistemas escalables a medida, desde MVP hasta productos completos.',
-      longDescription:
-        'Desarrollamos aplicaciones web, APIs y plataformas SaaS escalables con arquitectura sólida. Usamos automatización y herramientas inteligentes para acelerar sin perder calidad. Integramos pagos, analítica y servicios externos con buenas prácticas de seguridad y rendimiento.',
-      icon: 'Code',
-      color: '#2563EB',
-      price: 1200000,
+    shortDescription:
+      'Apps web, móviles y sistemas a medida desde $1.200.000 (según alcance).',
+    longDescription:
+      'Desarrollamos aplicaciones web, APIs y plataformas SaaS escalables con arquitectura sólida. Usamos automatización y herramientas inteligentes para acelerar sin perder calidad. Integramos pagos, analítica y servicios externos con buenas prácticas de seguridad y rendimiento.',
+    icon: 'Code',
+    color: '#2563EB',
+    price: 1200000,
+    pricePrefix: 'desde',
       supportImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80&auto=format&fit=crop',
       deliverables: [
         'Arquitectura técnica y planificación',
@@ -820,14 +886,18 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       cta: 'Desarrollar mi Plataforma',
       whatsappMessage: "Hola Artestudio, tengo un proyecto de plataforma/app y busco desarrollo a medida. Me gustaría conversar sobre ello.",
       faq: [
-        {
-          question: '¿Qué tecnologías usan?',
-          answer: 'Utilizamos tecnologías modernas (Node, Next.js, React, Python, etc.) según la necesidad del proyecto.',
-        },
-        {
-          question: '¿Ofrecen mantenimiento?',
-          answer: 'Sí, ofrecemos planes de soporte y mantenimiento a medida.',
-        },
+      {
+        question: '¿Qué tecnologías usan?',
+        answer: 'Utilizamos tecnologías modernas (Node, Next.js, React, Python, etc.) según la necesidad del proyecto.',
+      },
+      {
+        question: '¿Cómo se define el precio?',
+        answer: 'El valor final depende del alcance y complejidad. Partimos desde $1.200.000 y entregamos una propuesta detallada.',
+      },
+      {
+        question: '¿Ofrecen mantenimiento?',
+        answer: 'Sí, ofrecemos planes de soporte y mantenimiento a medida.',
+      },
       ],
       relatedServices: [5, 7],
     },
@@ -839,19 +909,72 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       shortDescription:
         'Servicio integral para emprendedores y negocios: identidad visual, sitio web, redes sociales y estrategia de lanzamiento.',
       longDescription:
-        'Servicio end-to-end para emprendedores y empresas que necesitan presencia digital profesional desde cero. Creamos tu identidad visual, construimos tu sitio web, configuramos y administramos redes sociales y definimos la estrategia de lanzamiento. Ideal para partir con todo alineado y ahorrar tiempo.',
+        'Servicio end-to-end para emprendedores y empresas que necesitan presencia digital profesional desde cero. Creamos tu identidad visual, construimos tu sitio web, configuramos y administramos redes sociales y definimos la estrategia de lanzamiento. El precio es desde y el pack se ajusta según el alcance.',
       icon: 'Sparkles',
       color: '#10B981',
-      price: 690000,
+      price: 890000,
       supportImage: 'https://images.pexels.com/photos/3194519/pexels-photo-3194519.jpeg?w=800&q=80&auto=format&fit=crop',
+      plans: [
+        {
+          name: 'Pack Inicio (desde)',
+          price: 890000,
+          features: [
+            'Identidad visual base (logo, paleta, tipografías)',
+            'Sitio web hasta 5 páginas',
+            'Configuración de redes sociales',
+            '1 mes de administración esencial',
+            'Pack inicial de piezas para redes',
+            'Asesoría de lanzamiento',
+          ],
+        },
+        {
+          name: 'Pack Lanzamiento',
+          price: 1490000,
+          recommended: true,
+          features: [
+            'Identidad visual completa + manual breve',
+            'Sitio web hasta 10 páginas',
+            'Configuración de redes + lineamientos de contenido',
+            '2 meses de administración',
+            'Pack de contenido extendido',
+            'Calendario de lanzamiento',
+          ],
+        },
+        {
+          name: 'Pack Growth',
+          price: 2490000,
+          features: [
+            'Identidad visual completa + aplicaciones',
+            'Sitio web hasta 15 páginas',
+            '3 meses de administración y optimización',
+            'Contenido premium y planificación avanzada',
+            'Soporte estratégico mensual',
+            'Prioridad en entregas',
+          ],
+        },
+      ],
+      addons: [
+        {
+          name: 'Mes adicional de redes sociales',
+          description: 'Extiende la administración mensual.',
+          price: 199990,
+          billing: 'mensual',
+          badge: 'Mensual',
+        },
+        {
+          name: 'Sesión estratégica extra',
+          description: 'Sesión 1:1 para planificación y objetivos.',
+          price: 75000,
+        },
+      ],
       deliverables: [
         'Consultoría de negocio y modelo de ingresos',
         'Identidad visual completa (logo, paleta, manual de marca)',
-        'Sitio web profesional (5-10 páginas)',
-        'Configuración y primer mes de administración de redes sociales',
-        'Pack inicial de diseños para redes (plantillas editables)',
+        'Sitio web profesional (según pack)',
+        'Configuración y administración de redes sociales',
+        'Pack de diseños para redes (plantillas editables)',
         'Estrategia de lanzamiento y contenido inicial',
-        'Capacitación y soporte durante primer mes',
+        'Capacitación y soporte según pack',
       ],
       process: [
         {

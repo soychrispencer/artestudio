@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Check, Home, Mail } from 'tabler-icons-react'
 import { CONTACT_INFO } from '@/lib/constants'
 import { useCart } from '@/components/cart/CartProvider'
 import { formatPrice } from '@/lib/utils'
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams()
   const openedRef = useRef(false)
   const { clear } = useCart()
@@ -64,7 +64,6 @@ export default function SuccessPage() {
   }, [searchParams, clear])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg px-4">
       <motion.div
         className="text-center max-w-md"
         initial={{ opacity: 0, scale: 0.9 }}
@@ -154,6 +153,15 @@ export default function SuccessPage() {
           </Link>
         </motion.p>
       </motion.div>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg px-4">
+      <Suspense fallback={<div>Cargando...</div>}>
+        <SuccessContent />
+      </Suspense>
     </div>
   )
 }

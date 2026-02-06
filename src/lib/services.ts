@@ -44,9 +44,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Administración y Diseños para Redes Sociales',
     subtitle: 'Gestión, Contenido Diseñado y Community Management',
     shortDescription:
-      'Servicio integral mensual. Elige administración, diseño de packs, o ambos combinados con descuento.',
+      'Servicio mensual integral para marcas que necesitan constancia. Elige administración, diseño de packs o ambos con descuento.',
     longDescription:
-      'Tu solución integral para redes sociales. Ofrecemos administración profesional mensual con creación de contenido diseñado, estrategia, programación, community management, reportes y más. Elige el plan que se adapte a ti: solo administración, solo diseño de packs, o ambos combinados con descuento del 15%. Nuestro equipo maneja todo para que tu marca crezca consistentemente.',
+      'Tu solución integral para redes sociales. Combinamos estrategia, creación de contenido, programación, community management y reportes claros. Elige el plan que se adapte a ti: solo administración, solo diseño de packs o ambos combinados con 15% de descuento. Nuestro equipo se encarga de la consistencia, el tono y la calidad de tu comunicación.',
     icon: 'BrandInstagram',
     color: '#E1306C',
     price: 199990,
@@ -59,7 +59,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Planificación y calendarización de contenido',
           'Programación y publicación en horarios óptimos',
           'Gestión de comunidad: respuestas a comentarios y mensajes',
-          'Monitoreo y métricas a través de Metricool (no incluye suscripciones a herramientas)',
+          'Monitoreo y métricas en Metricool (licencia no incluida)',
           'Reporte mensual y recomendaciones',
           'Estrategia inicial y optimización básica',
         ],
@@ -71,7 +71,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Planificación estratégica mensual',
           'Publicación y programación multicanal',
           'Gestión de comunidad y moderación avanzada',
-          'Monitoreo de rendimiento y métricas con Metricool (no considera costos de membresías)',
+          'Monitoreo de rendimiento y métricas en Metricool (licencia no incluida)',
           'Reporte quincenal con insights y acciones',
           'Copy y optimización de publicaciones',
           'Soporte en la gestión de campañas orgánicas',
@@ -84,7 +84,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Estrategia mensual avanzada y roadmap de crecimiento',
           'Publicación diaria y calendarización completa',
           'Gestión completa de comunidad y atención al cliente en redes',
-          'Monitoreo y dashboards con Metricool (métricas incluidas, membresías no incluidas)',
+          'Monitoreo y dashboards en Metricool (licencia no incluida)',
           'Reportes semanales con optimizaciones',
           'Soporte en campañas y coordinación con ads (costos de ads no incluidos)',
           'Análisis y optimización continua',
@@ -143,6 +143,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Programación y reporte mensual',
           'Community management básico',
           'Estrategia inicial de contenido',
+          '2 rondas de revisión',
           'Ahorro del 15% vs. contratar por separado',
         ],
       },
@@ -160,6 +161,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Reporte quincenal detallado',
           'Community management profesional',
           'Análisis de métricas avanzado',
+          '2 rondas de revisión',
           'Ahorro del 15% vs. contratar por separado',
         ],
       },
@@ -178,11 +180,12 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Reportes semanales personalizados',
           'Análisis y optimización continua',
           'Actualizaciones mensuales de plantillas',
+          '3 rondas de revisión',
           'Ahorro del 15% vs. contratar por separado',
         ],
       },
     ],
-    videoEditPrice: 49990,
+    videoEditPrice: 35000,
     deliverables: [
       'Estrategia de contenido mensual personalizada',
       'Creación de contenido según plan (posts, historias, reels, carruseles)',
@@ -190,9 +193,10 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Plantillas editables en Canva (reutilizables)',
       'Programación en horarios óptimos',
       'Community management profesional',
-      'Reportes detallados de ROI y métricas',
+      'Reportes de métricas y recomendaciones',
       'Optimización continua basada en datos',
-      'Acceso a herramientas premium',
+      'Buenas prácticas para fortalecer tu presencia',
+      'Add-on de edición de video para Reels/TikTok/Shorts desde $35.000',
     ],
     process: [
       {
@@ -218,8 +222,8 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Planes flexibles que se adaptan a tu presupuesto',
       'Ahorro del 15% al combinar administración + diseño',
       'Plantillas editables para máxima flexibilidad',
-      'Especialistas en contenido viral y algoritmos',
-      'Reportes detallados de ROI',
+      'Especialistas en contenido y crecimiento orgánico',
+      'Reportes claros de métricas y oportunidades',
     ],
     portfolio: [
       'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&h=500&fit=crop',
@@ -232,7 +236,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Cuál es la diferencia entre los planes?',
         answer:
-          'Administración: solo gestión y creación de contenido limitada. Diseños: pack de assets y plantillas editables. Combo: ambos con descuento del 15%.',
+          'Administración: gestión y contenidos según plan. Diseños: pack de assets y plantillas editables. Combo: ambos con 15% de descuento.',
       },
       {
         question: '¿Puedo cambiar de plan después?',
@@ -242,15 +246,25 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Cuánto tiempo tarda en verse resultados?',
         answer:
-          'Por lo general, en 3-4 semanas comienza a notarse aumento en engagement. Crecimiento consistente se ve después de 2-3 meses.',
+          'Se suelen ver señales iniciales en las primeras semanas y mejoras más consistentes con continuidad y ajustes.',
       },
       {
         question: '¿Qué redes incluye?',
         answer:
           'Incluimos Instagram, TikTok y Facebook. Si necesitas LinkedIn u otras, podemos ajustar según tus necesidades.',
       },
+      {
+        question: '¿Pueden editar mis videos para redes?',
+        answer:
+          'Sí. Ofrecemos un add-on de edición de video para Shorts/Reels/TikTok desde $35.000 por pieza.',
+      },
+      {
+        question: '¿Incluye pauta publicitaria?',
+        answer:
+          'La pauta pagada no está incluida. Podemos sumar campañas como servicio adicional si lo necesitas.',
+      },
     ],
-    relatedServices: [2, 3, 7],
+    relatedServices: [2, 3, 4, 7],
   },
   {
     id: 2,
@@ -258,9 +272,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Branding - Identidad Visual',
     subtitle: 'Crea tu ADN Visual Único',
     shortDescription:
-      'ADN de marca y manuales de estilo. Creamos tu identidad visual única y memorable.',
+      'Identidad visual estratégica y manual de marca. Diseños memorables con dirección creativa.',
     longDescription:
-      'Tu marca es mucho más que un logo. Es la promesa que haces a tus clientes. Creamos identidades visuales completas que transmiten tus valores, diferenciándote de la competencia y generando conexiones emocionales duraderas.',
+      'Tu marca es mucho más que un logo: es la promesa que haces a tus clientes. Creamos identidades visuales completas que transmiten tus valores, diferencian tu propuesta y generan conexiones duraderas.',
     icon: 'Palette',
     color: '#9333EA',
     price: 500000,
@@ -273,6 +287,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Aplicaciones de marca (tarjetas, sobre, etc)',
       'Guías de uso en digital y print',
       'Versiones del logo (color, blanco, negro)',
+      '2 rondas de revisión',
     ],
     process: [
       {
@@ -297,7 +312,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Estrategia detrás de cada línea y color',
       'Diseños atemporales y memorables',
       'Manual de marca completo incluido',
-      'Reajustes ilimitados hasta tu satisfacción',
+      'Rondas de ajuste claras para avanzar rápido',
       'Aplicaciones profesionales de la marca',
     ],
     portfolio: [
@@ -319,6 +334,11 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'El proyecto típicamente toma 2-3 semanas desde el primer descubrimiento hasta el manual final.',
       },
       {
+        question: '¿Incluye piezas para redes o packaging?',
+        answer:
+          'Podemos sumar un pack de piezas o complementar con Diseño Gráfico/Redes Sociales con precio preferente.',
+      },
+      {
         question: '¿Tengo derechos de autor del logo?',
         answer:
           'Por supuesto, todos los archivos y derechos de autor son completamente tuyos. Puedes usarlos sin restricciones.',
@@ -332,7 +352,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Diseño Gráfico',
     subtitle: 'Diseños que Impactan y Comunican',
     shortDescription:
-      'Logos, papelería y activos digitales. Diseños que comunican y generan impacto.',
+      'Logos, papelería y activos digitales. Diseños claros, versátiles y listos para usar.',
     longDescription:
       'Desde logos contundentes hasta papelería completa, creamos diseños gráficos que transmiten profesionalismo y capturan la esencia de tu marca. Cada proyecto es una oportunidad de dejar una impresión duradera.',
     icon: 'Brush',
@@ -344,7 +364,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Versiones alternas (color, blanco, negro)',
       'Archivos en múltiples formatos (PNG, PDF, SVG)',
       'Propuestas iniciales de concepto',
-      'Revisiones y ajustes incluidos',
+      '2 rondas de revisión incluidas',
       'Entrega de archivos fuente editable',
     ],
     process: [
@@ -383,7 +403,12 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Puedo solicitar cambios después de recibir el diseño?',
         answer:
-          'Incluimos revisiones ilimitadas hasta que estés completamente satisfecho con el resultado.',
+          'Incluimos 2 rondas de revisión para asegurar un resultado sólido.',
+      },
+      {
+        question: '¿Necesito identidad completa?',
+        answer:
+          'Si aún no tienes branding, recomendamos partir por Identidad Visual para asegurar coherencia.',
       },
       {
         question: '¿En qué programas se entregan los archivos?',
@@ -394,6 +419,156 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     relatedServices: [2, 1, 5],
   },
   {
+    id: 4,
+    slug: 'edicion-video',
+    title: 'Edición de Video',
+    subtitle: 'Podcasts, educativos, clips y redes sociales',
+    shortDescription:
+      'Edición profesional para Reels, TikTok, YouTube y podcasts. Precios desde $35.000.',
+    longDescription:
+      'Editamos tu material para que se vea dinámico y profesional. Trabajamos con podcasts, videos educativos, videoclips y contenido para redes sociales. Optimizamos ritmo, audio, color y formato según la plataforma. Servicio enfocado en edición (no incluye grabación).',
+    icon: 'Video',
+    color: '#6366F1',
+    price: 35000,
+    supportImage: 'https://images.pexels.com/photos/4147815/pexels-photo-4147815.jpeg?w=800&q=80&auto=format&fit=crop',
+    plans: [
+      {
+        name: 'Shorts (Reels/TikTok/Shorts)',
+        price: 35000,
+        features: [
+          'Hasta 60 segundos (9:16)',
+          'Corte y ritmo dinámico',
+          'Corrección de color básica',
+          'Limpieza y nivelación de audio',
+          'Música libre de derechos (si aplica)',
+          '1 ronda de revisión',
+          'Entrega en 1080x1920',
+        ],
+      },
+      {
+        name: 'Social Pro',
+        price: 69000,
+        features: [
+          'Hasta 90 segundos',
+          'Subtítulos animados',
+          'Títulos y motion graphics simples',
+          'Corrección de color y audio mejorada',
+          '1 formato adicional (1:1 o 16:9)',
+          '2 rondas de revisión',
+          'Entrega optimizada para plataforma',
+        ],
+      },
+      {
+        name: 'Podcast / Educativo',
+        price: 160000,
+        features: [
+          'Hasta 30 minutos finales',
+          'Edición multicámara (si aplica)',
+          'Limpieza de audio y mezcla básica',
+          'Intro/Outro + lower thirds',
+          '1 versión larga + 2 cortes cortos',
+          '2 rondas de revisión',
+          'Entrega en 16:9',
+        ],
+      },
+      {
+        name: 'Pack mensual 4 Shorts',
+        price: 125000,
+        oldPrice: 140000,
+        features: [
+          '4 videos mensuales (hasta 60s)',
+          'Formato 9:16 optimizado',
+          'Audio limpio + color básico',
+          '1 ronda de revisión por pieza',
+          'Entrega programada en el mes',
+        ],
+      },
+      {
+        name: 'Pack mensual 8 Shorts',
+        price: 235000,
+        oldPrice: 280000,
+        features: [
+          '8 videos mensuales (hasta 60s)',
+          'Formato 9:16 optimizado',
+          'Subtítulos simples incluidos',
+          '1 ronda de revisión por pieza',
+          'Entrega programada en el mes',
+        ],
+      },
+      {
+        name: 'Pack mensual 12 Shorts',
+        price: 330000,
+        oldPrice: 420000,
+        features: [
+          '12 videos mensuales (hasta 60s)',
+          'Formato 9:16 optimizado',
+          'Subtítulos + rótulos simples',
+          '2 rondas de revisión por pieza',
+          'Entrega programada en el mes',
+        ],
+      },
+    ],
+    deliverables: [
+      'Edición desde material entregado',
+      'Cortes, ritmo y continuidad',
+      'Ajuste básico de color',
+      'Mejora de audio y niveles',
+      'Exportación optimizada por plataforma',
+      'Rondas de revisión según plan',
+    ],
+    process: [
+      {
+        title: 'Briefing y Material',
+        description: 'Recibimos tus archivos, referencias y objetivos del video',
+      },
+      {
+        title: 'Edición y Ritmo',
+        description: 'Montamos, limpiamos audio y ajustamos color',
+      },
+      {
+        title: 'Revisión',
+        description: 'Iteramos según el plan con feedback claro y rápido',
+      },
+      {
+        title: 'Entrega Final',
+        description: 'Exportamos en el formato ideal para cada plataforma',
+      },
+    ],
+    whyChooseUs: [
+      'Narrativa clara para retener audiencia',
+      'Optimización por plataforma (9:16, 1:1, 16:9)',
+      'Audio y ritmo cuidados',
+      'Turnaround ágil',
+      'Packs mensuales con descuento',
+    ],
+    portfolio: [],
+    cta: 'Editar mi Video',
+    whatsappMessage: "Hola Artestudio, necesito edición de video para mi contenido. ¿Me pueden orientar?",
+    faq: [
+      {
+        question: '¿Incluye grabación?',
+        answer:
+          'No. El servicio es de edición sobre material entregado. Si necesitas grabación, lo cotizamos aparte.',
+      },
+      {
+        question: '¿Qué debo enviar?',
+        answer:
+          'Archivos de video, audio, logos, referencias y el objetivo del contenido.',
+      },
+      {
+        question: '¿Hay packs mensuales?',
+        answer:
+          'Sí, ofrecemos packs por volumen para Reels, TikTok y Shorts con precio preferente.',
+      },
+      {
+        question: '¿Incluye subtítulos?',
+        answer:
+          'Sí, en el plan Social Pro y en videos educativos cuando se requiera.',
+      },
+    ],
+    relatedServices: [1, 8, 5],
+  },
+  {
     id: 5,
     slug: 'diseno-web',
     title: 'Diseño Web',
@@ -401,7 +576,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     shortDescription:
       'Sitios modernos, rápidos y optimizados para SEO. Convierte visitantes en clientes.',
     longDescription:
-      'Tu sitio web es tu canal principal de ventas. Diseñamos en plataformas líderes según tu necesidad: WordPress/WooCommerce para control total, o Shopify/Jumpseller para comercio ágil en la nube. Importante: En plataformas SaaS (Shopify, Jumpseller), el cliente cubre el costo de la suscripción mensual. *Nota: El servicio de diseño web no incluye creación de logotipo ni identidad corporativa.*',
+      'Tu sitio web es un canal clave para captar y convertir. Diseñamos en plataformas líderes según tu necesidad: WordPress/WooCommerce para control total, o Shopify/Jumpseller para comercio ágil en la nube. Importante: en plataformas SaaS (Shopify, Jumpseller), el cliente cubre la suscripción mensual. *Nota: el servicio de diseño web no incluye creación de logotipo ni identidad corporativa.*',
     icon: 'Brush',
     color: '#8B5CF6',
     price: 149990,
@@ -464,14 +639,15 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
     ],
-      deliverables: [
+    deliverables: [
       'Diseño responsive profesional (mobile, tablet, desktop)',
       'Sitio web completamente funcional',
       'Optimización SEO en página',
       'Formularios y contacto integrado',
       'Integración con analítica (Google Analytics)',
       'Certificado SSL incluido',
-      'Hosting: 1 año gratis',
+      'Hosting y dominio por 1 año (WordPress/hosting tradicional)',
+      'Configuración en Shopify/Jumpseller (suscripción por cuenta del cliente, si aplica)',
       'Capacitación de uso y mantenimiento',
       '2 rondas de revisión incluidas',
     ],
@@ -507,7 +683,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'SEO friendly desde el inicio',
       'Responsive en todos los dispositivos',
       'Capacitación incluida',
-      '50% descuento este mes 🎉',
+      '50% descuento promocional 🎉',
     ],
     portfolio: [
       'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
@@ -530,11 +706,15 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Incluye tienda online?',
         answer:
-          'El sitio base no incluye e-commerce, pero podemos agregarlo por un costo adicional.',
+          'La tienda online está incluida en el plan Pro+ o se puede agregar como módulo adicional en otros planes.',
       },
       {
         question: '¿Debo pagar mensualidades a la plataforma?',
         answer: 'Si eliges Shopify o Jumpseller, sí (se paga directo a ellos). En WordPress no hay mensualidad de plataforma, solo hosting anual.',
+      },
+      {
+        question: '¿Los planes aplican igual para Shopify/Jumpseller?',
+        answer: 'Sí como referencia de alcance. En Shopify/Jumpseller el hosting/SSL ya está incluido en la suscripción, y ajustamos el plan a esa plataforma.',
       },
       {
         question: '¿Incluye el diseño de mi logo?',
@@ -549,9 +729,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       title: 'Desarrollo de Apps y Plataformas',
       subtitle: 'Sistemas, apps y plataformas a la medida',
       shortDescription:
-        'Desarrollo profesional de aplicaciones web, móviles y sistemas empresariales escalables.',
+        'Apps web, móviles y sistemas escalables a medida, desde MVP hasta productos completos.',
       longDescription:
-        'Desarrollo de código inteligente asistido por Inteligencia Artificial para máxima eficiencia y robustez. Creamos aplicaciones web, APIs y plataformas SaaS escalables. Integramos modelos de IA, pasarelas de pago y sistemas complejos. Nuestra metodología combina la velocidad de la IA con la arquitectura de software profesional.',
+        'Desarrollamos aplicaciones web, APIs y plataformas SaaS escalables con arquitectura sólida. Usamos automatización y herramientas inteligentes para acelerar sin perder calidad. Integramos pagos, analítica y servicios externos con buenas prácticas de seguridad y rendimiento.',
       icon: 'Code',
       color: '#2563EB',
       price: 1200000,
@@ -584,7 +764,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         },
       ],
       whyChooseUs: [
-        'Desarrollo acelerado y optimizado con IA',
+        'Desarrollo ágil con automatización y buenas prácticas',
         'Buenas prácticas de seguridad y rendimiento',
         'Integración con herramientas y servicios externos',
         'Soporte y evolución del producto',
@@ -612,10 +792,10 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       shortDescription:
         'Servicio integral para emprendedores y negocios: identidad visual, sitio web, redes sociales y estrategia de lanzamiento.',
       longDescription:
-        'Ofrecemos un servicio end-to-end integral para emprendedores y empresas que desean presencia digital profesional desde cero. Nos encargamos de crear tu identidad visual completa, construir tu sitio web, configurar y administrar tus redes sociales, y definir una estrategia de lanzamiento. Somos un partner estratégico que te acompaña en todas las etapas para maximizar tus posibilidades de éxito.',
+        'Servicio end-to-end para emprendedores y empresas que necesitan presencia digital profesional desde cero. Creamos tu identidad visual, construimos tu sitio web, configuramos y administramos redes sociales y definimos la estrategia de lanzamiento. Ideal para partir con todo alineado y ahorrar tiempo.',
       icon: 'Sparkles',
       color: '#10B981',
-      price: 450000,
+      price: 690000,
       supportImage: 'https://images.pexels.com/photos/3194519/pexels-photo-3194519.jpeg?w=800&q=80&auto=format&fit=crop',
       deliverables: [
         'Consultoría de negocio y modelo de ingresos',
@@ -646,6 +826,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       ],
       whyChooseUs: [
         'Solución integral: no necesitas múltiples proveedores',
+        'Ahorro vs contratar los servicios por separado',
         'Equipo multidisciplinario especializado (diseño, web, marketing)',
         'Partner estratégico que te acompaña en todas las etapas',
         'Enfoque en resultados medibles y crecimiento sostenible',
@@ -667,6 +848,10 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           question: '¿Incluye marketing o publicidad pagada?',
           answer: 'Incluimos estrategia y primer mes de administración orgánica. Marketing pagado es un servicio adicional opcional.',
         },
+        {
+          question: '¿Puedo partir con un servicio y sumar el pack después?',
+          answer: 'Sí, podemos iniciar con branding o web y luego completar el paquete cuando lo necesites.',
+        },
       ],
       relatedServices: [1, 2, 5],
     },
@@ -676,22 +861,22 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Edición & Mezcla de Audio',
     subtitle: 'Audio Profesional para Cualquier Proyecto',
     shortDescription:
-      'Sonido profesional para podcasts o spots. Audio que suena como estudio profesional.',
+      'Sonido profesional para podcasts, videos o música. Desde $99.000 por episodio.',
     longDescription:
       'El audio es fundamental para crear contenido profesional. Desde podcasts hasta videos, ofrecemos edición y mezcla de audio de calidad estudio. Tu contenido sonará tan bueno como se ve.',
     icon: 'Music',
     color: '#06B6D4',
-    price: 200000,
+    price: 99000,
     supportImage: 'https://images.pexels.com/photos/34228406/pexels-photo-34228406.jpeg?w=800&q=80&auto=format&fit=crop',
     deliverables: [
       'Edición profesional de audio',
       'Eliminar ruido de fondo',
       'Nivelación de volumen y dinámica',
-      'Corrección de color de audio',
+      'Corrección tonal y balance general',
       'Agregar efectos de transición',
       'Mezcla equilibrada de pistas',
       'Exportación en múltiples formatos',
-      'Revisiones ilimitadas',
+      '2 rondas de revisión',
     ],
     process: [
       {
@@ -718,7 +903,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Calidad de estudio en cada proyecto',
       'Rápido turnaround',
       'Múltiples formatos de salida',
-      'Revisiones sin límite de cambios',
+      'Rondas de revisión claras',
     ],
     portfolio: [],
     cta: 'Editar mi Audio',
@@ -730,9 +915,14 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Depende del largo del audio. Típicamente 3-5 días para proyectos de hasta 30 minutos.',
       },
       {
+        question: '¿El precio es por episodio o por proyecto?',
+        answer:
+          'Es un precio base por episodio de hasta 30 minutos. Si el proyecto es más largo o complejo, ajustamos la cotización.',
+      },
+      {
         question: '¿Puedo hacer cambios después de entregado?',
         answer:
-          'Claro, incluimos revisiones ilimitadas. Si necesitas ajustes, podemos hacerlos rápidamente.',
+          'Incluimos 2 rondas de revisión. Ajustes adicionales se cotizan según el alcance.',
       },
     ],
     relatedServices: [9, 1],
@@ -743,12 +933,12 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     title: 'Mastering de Audio',
     subtitle: 'El Toque Final Profesional',
     shortDescription:
-      'El toque final de calidad industrial para audio. Perfecciona tus proyectos de audio.',
+      'El toque final profesional para audio. Desde $45.000 por canción.',
     longDescription:
       'El mastering es el último paso crítico en la producción de audio. Nos aseguramos de que tu música suene excepcional en todos los dispositivos y plataformas. Es la diferencia entre un audio bueno y uno profesional.',
     icon: 'AdjustmentsHorizontal',
     color: '#10B981',
-    price: 300000,
+    price: 45000,
     supportImage: 'https://images.pexels.com/photos/8198631/pexels-photo-8198631.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
     deliverables: [
       'Análisis espectral profesional',

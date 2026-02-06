@@ -14,10 +14,10 @@ export function ThemeToggle({ isScrolled = false }: { isScrolled?: boolean }) {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`relative inline-flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 flex-shrink-0 ${
+      className={`relative inline-flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 flex-shrink-0 border ${
         isScrolled
-          ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary'
-          : 'bg-white/20 hover:bg-white/30 border border-white/30'
+          ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary border-gray-200 dark:border-white/10'
+          : 'bg-white/80 dark:bg-dark-bg-secondary/80 hover:bg-white dark:hover:bg-dark-bg-tertiary border-gray-200/60 dark:border-white/10'
       }`}
       aria-label="Toggle theme"
       suppressHydrationWarning
@@ -26,14 +26,14 @@ export function ThemeToggle({ isScrolled = false }: { isScrolled?: boolean }) {
         <Sun
           key="sun"
           className={`w-5 h-5 animate-rotate-in ${
-            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'
+            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-gray-700 dark:text-white'
           }`}
         />
       ) : (
         <Moon
           key="moon"
           className={`w-5 h-5 animate-rotate-in ${
-            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-white'
+            isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-gray-700 dark:text-white'
           }`}
         />
       )}

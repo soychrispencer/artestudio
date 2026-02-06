@@ -1,42 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Star } from 'tabler-icons-react'
+import { CircleCheck } from 'tabler-icons-react'
 
 export function TestimonialsSection() {
-  const testimonials = [
+  const principles = [
     {
       id: 1,
-      name: 'Carlos Pérez',
-      role: 'Fundador, TechStart',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-      text: 'artestudio transformó nuestra marca completamente. El diseño web es increíble y las redes sociales explotan con engagement. Altamente recomendado.',
-      rating: 5,
+      title: 'Briefing con dirección',
+      text: 'Definimos objetivos, tono y referencias para avanzar con claridad desde el día uno.',
     },
     {
       id: 2,
-      name: 'María García',
-      role: 'CEO, Creative Agency',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-      text: 'El equipo de artestudio entiende realmente lo que necesita una marca. Su trabajo es profesional, creativo y siempre supera las expectativas.',
-      rating: 5,
+      title: 'Iteraciones enfocadas',
+      text: 'Rondas de revisión definidas para cuidar la calidad sin perder velocidad.',
     },
     {
       id: 3,
-      name: 'Juan López',
-      role: 'Podcaster, Emprendedor Digital',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
-      text: 'La edición y mastering de mi podcast quedó profesional al 100%. El sonido es limpio y claro. Definitivamente seguiré trabajando con ellos.',
-      rating: 5,
+      title: 'Entrega usable',
+      text: 'Archivos editables, guías y formatos listos para que puedas operar sin fricción.',
     },
     {
       id: 4,
-      name: 'Laura Martínez',
-      role: 'Gerente Marketing, E-commerce',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-      text: 'Nuestras ventas aumentaron 40% después de implementar el nuevo diseño web y la estrategia de redes sociales. Excelentes resultados.',
-      rating: 5,
+      title: 'Estrategia aplicada',
+      text: 'Cada pieza responde a una meta concreta: posicionamiento, conversión o comunidad.',
     },
   ]
 
@@ -61,16 +48,18 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-gray-100 dark:bg-dark-bg-secondary text-gray-600 dark:text-dark-text-secondary font-medium text-sm mb-4 uppercase tracking-wide border border-gray-200 dark:border-dark-bg-tertiary">Testimonios</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Lo que dicen nuestros clientes
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-dark-bg-tertiary text-gray-600 dark:text-dark-text-secondary font-medium text-xs mb-4 uppercase tracking-[0.2em] border border-gray-200 dark:border-dark-bg-tertiary">
+            Confianza
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
+            Confianza basada en proceso
           </h2>
           <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Historias de éxito de marcas transformadas por nuestro trabajo
+            Un método claro, entregables profesionales y comunicación directa para que sepas qué esperar.
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
+        {/* Principles Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
           variants={containerVariants}
@@ -78,49 +67,26 @@ export function TestimonialsSection() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {testimonials.map((testimonial) => (
+          {principles.map((principle) => (
             <motion.div
-              key={testimonial.id}
+              key={principle.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="glass dark:glass-dark p-8 rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg shadow-sm hover:shadow-lg transition-shadow"
+              className="glass-card p-8 rounded-3xl border border-gray-200/80 dark:border-dark-bg-tertiary shadow-lg hover:shadow-xl transition-shadow"
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 fill-gray-400 text-gray-400 dark:fill-gray-500 dark:text-gray-500"
-                  />
-                ))}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                  <CircleCheck className="w-5 h-5" />
+                </span>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  {principle.title}
+                </h3>
               </div>
-
-              {/* Text */}
-              <p className="text-gray-700 dark:text-dark-text-secondary mb-6 leading-relaxed">
-                &ldquo;{testimonial.text}&rdquo;
+              <p className="text-gray-700 dark:text-dark-text-secondary leading-relaxed">
+                {principle.text}
               </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  width={48}
-                  height={48}
-                  sizes="48px"
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-dark-text">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-dark-text-secondary">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
             </motion.div>
           ))}
         </motion.div>

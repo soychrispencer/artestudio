@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { X, Home, MessageCircle } from 'tabler-icons-react'
+import { X, Home, BrandWhatsapp } from 'tabler-icons-react'
 
 export default function FailurePage() {
   return (
@@ -48,7 +48,7 @@ export default function FailurePage() {
         >
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth flex-1"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth flex-1"
           >
             <Home className="w-5 h-5" />
             Volver al Inicio
@@ -57,9 +57,9 @@ export default function FailurePage() {
             href="https://wa.me/56938733230?text=Hola%2C%20tuve%20un%20problema%20con%20un%20pago"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-dark-bg-secondary text-gray-900 dark:text-dark-text rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary transition-smooth flex-1"
+            className="btn-whatsapp px-6 py-3 flex-1"
           >
-            <MessageCircle className="w-5 h-5" />
+            <BrandWhatsapp className="w-5 h-5" />
             Contactar por WhatsApp
           </a>
         </motion.div>

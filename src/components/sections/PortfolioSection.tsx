@@ -1,72 +1,35 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useState } from 'react'
+import { BrandBehance, CircleCheck } from 'tabler-icons-react'
+import { SOCIAL_LINKS } from '@/lib/constants'
 
 export function PortfolioSection() {
-  const [activeCategory, setActiveCategory] = useState('all')
-
-  const projects = [
+  const principles = [
     {
       id: 1,
-      title: 'Identidad Visual Startup Tech',
-      category: 'branding',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
-      description: 'Sistema de branding completo para startup de tecnología',
+      title: 'Briefing con dirección',
+      text: 'Definimos objetivos, tono y referencias para avanzar con claridad desde el día uno.',
     },
     {
       id: 2,
-      title: 'Campaña Instagram Viral',
-      category: 'social',
-      image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=500&h=500&fit=crop',
-      description: 'Estrategia de contenido que generó 50K seguidores en 3 meses',
+      title: 'Iteraciones enfocadas',
+      text: 'Rondas de revisión definidas para cuidar la calidad sin perder velocidad.',
     },
     {
       id: 3,
-      title: 'Sitio Web Ecommerce',
-      category: 'web',
-      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop',
-      description: 'Plataforma ecommerce moderna con integración de pagos',
+      title: 'Entrega usable',
+      text: 'Archivos editables, guías y formatos listos para que puedas operar sin fricción.',
     },
     {
       id: 4,
-      title: 'Podcast Profesional',
-      category: 'audio',
-      image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1200&auto=format&fit=crop',
-      description: 'Edición, mezcla y mastering de podcast semanal',
-    },
-    {
-      id: 5,
-      title: 'Rediseño Corporativo',
-      category: 'graphic',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop',
-      description: 'Papelería corporativa completa y activos digitales',
-    },
-    {
-      id: 6,
-      title: 'Estrategia de Contenido TikTok',
-      category: 'social',
-      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&h=500&fit=crop',
-      description: 'Estrategia que llegó a 200K reproducciones en contenido',
+      title: 'Estrategia aplicada',
+      text: 'Cada pieza responde a una meta concreta: posicionamiento, conversión o comunidad.',
     },
   ]
-
-  const categories = [
-    { id: 'all', label: 'Todos' },
-    { id: 'branding', label: 'Branding' },
-    { id: 'web', label: 'Web' },
-    { id: 'social', label: 'Social Media' },
-    { id: 'graphic', label: 'Gráfico' },
-    { id: 'audio', label: 'Audio' },
-  ]
-
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === activeCategory)
 
   return (
-    <section id="portfolio" className="py-28 bg-white dark:bg-dark-bg">
+    <section id="confianza" className="py-28 bg-white dark:bg-dark-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -76,70 +39,60 @@ export function PortfolioSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-gray-100 dark:bg-dark-bg-secondary text-gray-600 dark:text-dark-text-secondary font-medium text-sm mb-4 uppercase tracking-wide border border-gray-200 dark:border-dark-bg-tertiary">Portafolio</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Nuestro trabajo
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-dark-bg-secondary text-gray-600 dark:text-dark-text-secondary font-medium text-xs mb-4 uppercase tracking-[0.2em] border border-gray-200 dark:border-dark-bg-tertiary">
+            Confianza creativa
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
+            Confianza y proceso
           </h2>
           <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Proyectos destacados que transformaron marcas y generaron resultados reales
+            Un método claro, entregables profesionales y comunicación directa para que sepas qué esperar.
           </p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-full font-semibold transition-smooth ${
-                activeCategory === category.id
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-100 dark:bg-dark-bg-secondary text-gray-700 dark:text-dark-text hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary'
-              }`}
-            >
-              {category.label}
-            </button>
-          ))}
-        </motion.div>
+        <div className="flex justify-center mb-10">
+          <a
+            href={SOCIAL_LINKS.behance}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline px-6 py-3"
+          >
+            <BrandBehance className="w-5 h-5" />
+            Ver trabajos en Behance
+          </a>
+        </div>
 
-        {/* Projects Grid */}
+        {/* Principles Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          {filteredProjects.map((project) => (
+          {principles.map((principle) => (
             <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              className="group relative rounded-2xl overflow-hidden h-72 cursor-pointer shadow-lg"
+              key={principle.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="glass-card p-8 rounded-3xl border border-gray-200/80 dark:border-dark-bg-tertiary shadow-lg hover:shadow-xl transition-shadow"
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                <p className="text-gray-200 text-sm leading-relaxed">{project.description}</p>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                  <CircleCheck className="w-5 h-5" />
+                </span>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  {principle.title}
+                </h3>
               </div>
+              <p className="text-gray-700 dark:text-dark-text-secondary leading-relaxed">
+                {principle.text}
+              </p>
             </motion.div>
           ))}
         </motion.div>
+
       </div>
     </section>
   )

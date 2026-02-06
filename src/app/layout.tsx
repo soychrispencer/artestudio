@@ -5,6 +5,7 @@ import { ThemeProviderWrapper } from '@/components/providers/ThemeProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
+import { ScrollToTop } from '@/components/ui/ScrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -68,6 +69,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <ScrollToTop />
         </ThemeProviderWrapper>
       </body>
     </html>

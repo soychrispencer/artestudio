@@ -56,7 +56,7 @@ export default async function ServiceDetailPage(
           </p>
           <Link
             href="/"
-            className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+            className="inline-block px-8 py-4 bg-primary text-white rounded-xl hover:bg-primary-dark transition-colors"
           >
             Volver al inicio
           </Link>

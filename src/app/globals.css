@@ -19,3 +19,64 @@ body {
 .dark body {
   @apply bg-dark-bg text-dark-text;
 }
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight;
+  }
+}
+
+.ai-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.dark .ai-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.dark .glass-card {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(120deg, #8325fd 0%, #a855ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-primary {
+  box-shadow:
+    0 0 0 1px rgba(131, 37, 253, 0.2),
+    0 20px 40px rgba(131, 37, 253, 0.18);
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-primary text-white shadow-medium hover:shadow-lg transition-all duration-300;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:border-primary/60 hover:text-primary transition-all duration-300;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(131, 37, 253, 0.4), transparent);
+}

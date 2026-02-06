@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronRight, Check, MessageCircle } from 'tabler-icons-react'
+import { ChevronRight, Check, BrandWhatsapp } from 'tabler-icons-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ServiceDetail } from '@/lib/services'
@@ -101,7 +101,7 @@ function PlanCard({ plan, service, isCombo = false }: { plan: any; service: Serv
               openWhatsApp(`Hola, me interesa el plan ${plan.name} de ${service.title}`)
             }
           }}
-          className={`w-full py-3 px-6 font-bold rounded-lg hover:shadow-lg hover:scale-105 transition-all ${
+          className={`w-full py-3 px-6 font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all ${
             isCombo
               ? 'bg-primary text-white hover:bg-primary-dark'
               : 'bg-primary text-white hover:bg-primary-dark'
@@ -118,20 +118,22 @@ export function ServicePage({ service }: ServicePageProps) {
   return (
     <main className="min-h-screen bg-white dark:bg-dark-bg">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 bg-neutral-900 dark:bg-dark-bg overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:64px_64px] -z-10" />
+      <section className="relative py-16 md:py-24 bg-white dark:bg-dark-bg overflow-hidden">
+        <div className="absolute inset-0 ai-grid opacity-35 dark:opacity-20 -z-10" />
+        <div className="absolute -top-24 right-10 h-60 w-60 rounded-full bg-primary/10 blur-[120px]" />
+        <div className="absolute bottom-[-160px] left-10 h-72 w-72 rounded-full bg-primary/10 blur-[140px]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <motion.div
-            className="flex items-center gap-2 mb-8 text-gray-400"
+            className="flex items-center gap-2 mb-8 text-gray-500 dark:text-gray-400"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <Link href="/" className="hover:text-white transition-colors">
+            <Link href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">
               Inicio
             </Link>
             <ChevronRight size={20} />
-            <span className="font-semibold text-white">{service.title}</span>
+            <span className="font-semibold text-gray-900 dark:text-white">{service.title}</span>
           </motion.div>
 
           <motion.div
@@ -139,23 +141,23 @@ export function ServicePage({ service }: ServicePageProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               {service.title}
             </h1>
-            <p className="text-xl text-gray-400 mb-8">{service.subtitle}</p>
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{service.subtitle}</p>
 
             {/* CTA Buttons - primary para acción principal */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => openWhatsApp(`Hola, me interesa el servicio de ${service.title}`)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition-colors"
+                className="btn-whatsapp px-8 py-4"
               >
-                <MessageCircle size={20} />
+                <BrandWhatsapp size={20} />
                 {service.cta}
               </button>
               <a
                 href="#pricing"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-bold rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+                className="btn-outline px-8 py-4"
               >
                 Ver Detalles
                 <ChevronRight size={20} />
@@ -473,7 +475,7 @@ export function ServicePage({ service }: ServicePageProps) {
                         openWhatsApp(`Hola, quiero contratar el servicio de ${service.title}`)
                       }
                     }}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-all text-lg"
+                    className="w-full py-4 px-6 bg-gradient-primary text-white font-bold rounded-xl hover:shadow-lg transition-all text-lg"
                   >
                     Contratar Ahora
                   </button>
@@ -528,34 +530,6 @@ export function ServicePage({ service }: ServicePageProps) {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-neutral-900 dark:bg-dark-bg-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              ¿Listo para transformar tu marca?
-            </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Contáctanos hoy y cuéntanos sobre tu proyecto
-            </p>
-            <button
-              onClick={() =>
-                openWhatsApp(
-                  `Hola artestudio, me interesa el servicio de ${service.title}. Quiero conocer más detalles.`
-                )
-              }
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              <MessageCircle size={20} />
-              Contactar Ahora
-            </button>
-          </motion.div>
-        </div>
-      </section>
     </main>
   )
 }

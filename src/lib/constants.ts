@@ -16,7 +16,7 @@ export const SOCIAL_LINKS = {
   tiktok: 'https://tiktok.com/@artestudio.cl',
   facebook: 'https://facebook.com/artestudio.cl',
   linkedin: 'https://linkedin.com/company/artestudio-cl',
-  behance: 'https://www.behance.net/artestudio',
+  behance: 'https://www.behance.net/soychrispencer',
 } as const
 
 // Colores de la marca
@@ -44,12 +44,13 @@ export const SERVICE_PRICES = {
   branding: 500000,
   graphic: 100000,
   socialDesign: 69990, // Actualizado según plan Esencial
+  videoEditing: 35000,
   webDesign: 149990, // Actualizado según plan Esencial
   webDesignPro: 199990,
   development: 1200000,
-  fullDigitalPresence: 450000,
-  audioEdition: 200000,
-  mastering: 300000,
+  fullDigitalPresence: 690000,
+  audioEdition: 99000,
+  mastering: 45000,
 } as const
 
 // Mensajes predefinidos de WhatsApp
@@ -89,8 +90,7 @@ export const BREAKPOINTS = {
 export const ROUTES = {
   home: '/',
   services: '/#services',
-  portfolio: '/#portfolio',
-  testimonials: '/#testimonials',
+  trust: '/#confianza',
   contact: '/#contact',
   admin: '/admin',
   notFound: '/404',
@@ -101,7 +101,7 @@ export const SITE_CONFIG = {
   name: 'artestudio.cl',
   title: 'artestudio.cl - Transformación Digital y Creativa',
   description:
-    'Agencia digital en Chile potenciada por IA. Expertos en diseño web, desarrollo de software, branding y marketing digital. Transformamos tu negocio con tecnología de vanguardia.',
+    'Agencia creativa y tecnológica en Chile. Expertos en diseño web, desarrollo de software, branding y marketing digital. Transformamos tu negocio con estrategia, diseño y tecnología.',
   url: 'https://artestudio.cl',
   ogImage: 'https://artestudio.cl/og-image.png',
   twitterHandle: '@artestudio_cl',
@@ -111,10 +111,13 @@ export const SITE_CONFIG = {
 // Palabras clave SEO
 export const SEO_KEYWORDS = [
   'agencia digital chile',
-  'diseño web con inteligencia artificial',
+  'agencia creativa chile',
+  'diseño web chile',
   'desarrollo de software a medida',
   'branding corporativo',
   'gestión de redes sociales',
+  'edición de video chile',
+  'edición de reels',
   'marketing digital',
   'edición de audio profesional',
   'mastering de audio',

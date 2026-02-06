@@ -92,7 +92,7 @@ export function ServiceCard({ service }: { service: Service }) {
         {/* CTA Button */}
         <button
           onClick={handleMercadoPagoClick}
-          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth group/btn"
+          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth group/btn"
         >
           <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
           {service.ctaText}

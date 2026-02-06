@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useMemo } from 'react'
 import { useTheme } from 'next-themes'
-import { BrandInstagram, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
+import { BrandInstagram, BrandTiktok, BrandFacebook, BrandWhatsapp } from 'tabler-icons-react'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
 
 function BrandLogo() {
@@ -33,20 +33,54 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-50 dark:bg-dark-bg-secondary border-t border-gray-200 dark:border-dark-bg-tertiary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer
+      id="contact"
+      className="relative overflow-hidden bg-gray-50 dark:bg-dark-bg-secondary border-t border-gray-200 dark:border-dark-bg-tertiary"
+    >
+      <div className="absolute inset-0 ai-grid opacity-20 dark:opacity-15" />
+      <div className="absolute -top-24 right-16 h-64 w-64 rounded-full bg-primary/10 blur-[120px]" />
+      <div className="absolute bottom-[-120px] left-10 h-72 w-72 rounded-full bg-primary/10 blur-[140px]" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-12">
+          <div className="glass-card rounded-3xl p-8 md:p-10 border border-gray-200/70 dark:border-white/10 shadow-lg">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-3 max-w-2xl">
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-500 dark:text-dark-text-secondary">
+                  Listos para crear
+                </p>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                  Elevemos tu marca con creatividad y tecnología
+                </h3>
+                <p className="text-gray-600 dark:text-dark-text-secondary">
+                  Trabajamos con artistas, emprendedores y negocios que buscan diferenciarse con una agencia moderna.
+                </p>
+              </div>
+              <a
+                href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g, '')}?text=Hola%20artestudio%2C%20quiero%20hablar%20sobre%20mi%20proyecto`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp px-6 py-3"
+              >
+                <BrandWhatsapp className="w-5 h-5" />
+                Hablar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
             <BrandLogo />
             <p className="text-sm text-gray-600 dark:text-dark-text-secondary leading-relaxed">
-              Transformación digital y creativa para impulsar tu marca en el mercado.
+              Agencia creativa y tecnológica para impulsar tu marca con estrategia y diseño.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-sm tracking-wide">Navegación</h3>
+            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Navegación</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
               <li>
                 <Link href="#home" className="hover:text-primary transition-smooth">
@@ -59,8 +93,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#portfolio" className="hover:text-primary transition-smooth">
-                  Portfolio
+                <Link href="#confianza" className="hover:text-primary transition-smooth">
+                  Confianza
                 </Link>
               </li>
             </ul>
@@ -68,7 +102,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-sm tracking-wide">Servicios</h3>
+            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Servicios</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
               <li><a href="#services" className="hover:text-primary transition-smooth">Redes Sociales</a></li>
               <li><a href="#services" className="hover:text-primary transition-smooth">Branding</a></li>
@@ -79,7 +113,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-sm tracking-wide">Contacto</h3>
+            <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Contacto</h3>
             <div className="space-y-4">
               <div>
                 <p className="text-xs text-gray-500 dark:text-dark-text-secondary uppercase tracking-wide mb-1">Teléfono</p>
@@ -111,7 +145,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-dark-bg-tertiary flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 shadow-sm"
+                    className="w-10 h-10 rounded-xl bg-gray-200 dark:bg-dark-bg-tertiary flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 shadow-sm"
                     aria-label={social.label}
                   >
                     <Icon className="w-5 h-5" />

@@ -250,6 +250,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Incluimos Instagram, TikTok y Facebook. Si necesitas LinkedIn u otras, podemos ajustar según tus necesidades.',
       },
     ],
+    relatedServices: [2, 3, 7],
   },
   {
     id: 2,
@@ -323,6 +324,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Por supuesto, todos los archivos y derechos de autor son completamente tuyos. Puedes usarlos sin restricciones.',
       },
     ],
+    relatedServices: [3, 5, 1],
   },
   {
     id: 3,
@@ -389,6 +391,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Los archivos se entregan en Illustrator editable, PNG, PDF y SVG. Compatible con cualquier programa.',
       },
     ],
+    relatedServices: [2, 1, 5],
   },
   {
     id: 5,
@@ -538,6 +541,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         answer: 'No, el diseño web se enfoca en la estructura y funcionalidad. La identidad visual (logo, branding) es un servicio independiente.',
       },
     ],
+    relatedServices: [2, 1, 7],
   },
     {
       id: 6,
@@ -598,6 +602,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           answer: 'Sí, ofrecemos planes de soporte y mantenimiento a medida.',
         },
       ],
+      relatedServices: [5, 7],
     },
     {
       id: 7,
@@ -663,6 +668,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           answer: 'Incluimos estrategia y primer mes de administración orgánica. Marketing pagado es un servicio adicional opcional.',
         },
       ],
+      relatedServices: [1, 2, 5],
     },
   {
     id: 8,
@@ -729,6 +735,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Claro, incluimos revisiones ilimitadas. Si necesitas ajustes, podemos hacerlos rápidamente.',
       },
     ],
+    relatedServices: [9, 1],
   },
   {
     id: 9,
@@ -799,5 +806,21 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         answer: 'El precio es por canción. Ofrecemos descuentos para álbumes completos.',
       },
     ],
+    relatedServices: [8, 1],
   },
 ]
+
+/**
+ * Obtiene un servicio por su slug
+ */
+export function getServiceBySlug(slug: string): ServiceDetail | undefined {
+  return SERVICES_DETAILS.find((s) => s.slug === slug)
+}
+
+/**
+ * Obtiene los servicios relacionados completos
+ */
+export function getRelatedServices(service: ServiceDetail): ServiceDetail[] {
+  if (!service.relatedServices) return []
+  return SERVICES_DETAILS.filter((s) => service.relatedServices?.includes(s.id))
+}

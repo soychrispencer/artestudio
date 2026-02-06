@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Star } from 'tabler-icons-react'
 
 export function TestimonialsSection() {
@@ -98,14 +99,17 @@ export function TestimonialsSection() {
 
               {/* Text */}
               <p className="text-gray-700 dark:text-dark-text-secondary mb-6 leading-relaxed">
-                "{testimonial.text}"
+                &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src={testimonial.image}
                   alt={testimonial.name}
+                  width={48}
+                  height={48}
+                  sizes="48px"
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>

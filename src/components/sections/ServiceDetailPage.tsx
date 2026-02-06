@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ChevronRight, Check, MessageCircle } from 'tabler-icons-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ServiceDetail } from '@/lib/services'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
@@ -178,12 +179,14 @@ export function ServicePage({ service }: ServicePageProps) {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="rounded-2xl overflow-hidden shadow-2xl"
+                className="relative rounded-2xl overflow-hidden shadow-2xl aspect-square"
               >
-                <img
+                <Image
                   src={service.supportImage}
                   alt={service.title}
-                  className="w-full h-auto object-cover aspect-square"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
                 />
               </motion.div>
             )}

@@ -2,26 +2,21 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { useTheme } from 'next-themes'
 import { BrandInstagram, BrandTiktok, BrandFacebook } from 'tabler-icons-react'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
 
 function BrandLogo() {
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return <div className="w-36 h-9" />
-  }
+  const { resolvedTheme, theme } = useTheme()
+  const isDark = useMemo(() => {
+    const activeTheme = resolvedTheme ?? theme
+    return activeTheme === 'dark'
+  }, [resolvedTheme, theme])
 
   return (
     <div className="flex items-center gap-3 mb-4">
-      {theme === 'dark' ? (
+      {isDark ? (
         <Image src="/logos/Logo-Light.png" alt="artestudio" width={140} height={36} className="w-auto h-9 object-contain" />
       ) : (
         <Image src="/logos/Logo-Dark.png" alt="artestudio" width={140} height={36} className="w-auto h-9 object-contain" />

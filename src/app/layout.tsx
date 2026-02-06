@@ -1,9 +1,10 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
-import '@/globals.css'
+import './globals.css'
 import { ThemeProviderWrapper } from '@/components/providers/ThemeProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import JsonLd from '@/components/seo/JsonLd'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     'Chile',
   ],
   authors: [{ name: 'artestudio.cl' }],
-  viewport: 'width=device-width, initial-scale=1',
+  metadataBase: new URL(siteUrl),
   robots: 'index, follow',
   icons: {
     icon: '/favicon.png',
@@ -46,6 +47,11 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -58,6 +64,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-white dark:bg-dark-bg`}>
         <ThemeProviderWrapper>
+          <JsonLd />
           <Header />
           <main>{children}</main>
           <Footer />

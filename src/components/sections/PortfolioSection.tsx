@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { useState } from 'react'
 
 export function PortfolioSection() {
@@ -124,10 +125,12 @@ export function PortfolioSection() {
               transition={{ duration: 0.3 }}
               className="group relative rounded-2xl overflow-hidden h-72 cursor-pointer shadow-lg"
             >
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">

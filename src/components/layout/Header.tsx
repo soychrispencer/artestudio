@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ROUTES } from '@/lib/constants'
+import { CONTACT_INFO, ROUTES } from '@/lib/constants'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
@@ -13,12 +13,9 @@ import Image from 'next/image'
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const { resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const themeForLogo = resolvedTheme ?? 'light'
+  const useLightLogo = !scrolled || themeForLogo === 'dark'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,18 +44,16 @@ export function Header() {
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo: en hero (no scrolled) siempre claro; al hacer scroll según tema para que se vea en móvil */}
           <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
-            {mounted && (
-              <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
-                <Image
-                    src={!scrolled || resolvedTheme === 'dark' ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
-                    alt="artestudio"
-                    height={32}
-                    width={120}
-                    className="h-6 sm:h-8 w-auto object-contain transition-all duration-300"
-                    priority
-                  />
-              </div>
-            )}
+            <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative" suppressHydrationWarning>
+              <Image
+                src={useLightLogo ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
+                alt="artestudio"
+                height={32}
+                width={120}
+                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -96,7 +91,12 @@ export function Header() {
           <div className="flex items-center gap-4 h-16">
             <ThemeToggle isScrolled={scrolled} />
             <button
-              onClick={() => openWhatsApp('Hola, quiero más información sobre sus servicios.')}
+              onClick={() =>
+                openWhatsApp(
+                  CONTACT_INFO.whatsapp,
+                  'Hola, quiero más información sobre sus servicios.'
+                )
+              }
               className={`hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-medium transition-all duration-200 h-10 ${
                 scrolled
                   ? 'bg-primary text-white hover:bg-primary-dark hover:shadow-lg'
@@ -165,7 +165,12 @@ export function Header() {
               )
             )}
             <button
-              onClick={() => openWhatsApp('Hola, quiero más información sobre sus servicios.')}
+              onClick={() =>
+                openWhatsApp(
+                  CONTACT_INFO.whatsapp,
+                  'Hola, quiero más información sobre sus servicios.'
+                )
+              }
               className={`w-full px-4 py-2 rounded-lg font-semibold transition-all ${
                 scrolled
                   ? 'bg-primary text-white'

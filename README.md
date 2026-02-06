@@ -1,6 +1,6 @@
 # artestudio.cl - Sitio Web Oficial
 
-Sitio web moderno y ultra-profesional para **artestudio.cl**, una agencia de diseño y marketing digital especializada en transformación creativa y digital de marcas.
+Sitio web moderno y ultraprofesional para **artestudio.cl**, una agencia de diseño y marketing digital especializada en transformación creativa y digital de marcas.
 
 ## 🎨 Características
 

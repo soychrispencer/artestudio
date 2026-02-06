@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { ServicePage } from '@/components/sections/ServiceDetailPage'
 import { SERVICES_DETAILS } from '@/lib/services'
 
@@ -53,12 +54,12 @@ export default async function ServiceDetailPage(
           <p className="text-lg text-gray-600 mb-8">
             Lo sentimos, este servicio no existe.
           </p>
-          <a
+          <Link
             href="/"
             className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
           >
             Volver al inicio
-          </a>
+          </Link>
         </div>
       </div>
     )

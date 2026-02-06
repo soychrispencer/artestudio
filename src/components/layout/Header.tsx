@@ -5,7 +5,6 @@ import { CONTACT_INFO, ROUTES } from '@/lib/constants'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect, type MouseEvent } from 'react'
 import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import { BrandWhatsapp, Menu2, X } from 'tabler-icons-react'
 import { openWhatsApp } from '@/lib/utils'
 import Image from 'next/image'
@@ -13,10 +12,7 @@ import Image from 'next/image'
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { resolvedTheme, theme } = useTheme()
   const pathname = usePathname()
-  const themeForLogo = resolvedTheme ?? (theme === 'dark' ? 'dark' : 'light')
-  const useLightLogo = themeForLogo === 'dark'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,15 +48,23 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* Logo: en hero (no scrolled) siempre claro; al hacer scroll según tema para que se vea en móvil */}
+          {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
-            <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative" suppressHydrationWarning>
+            <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
               <Image
-                src={useLightLogo ? '/logos/Logo-Light.png' : '/logos/Logo-Dark.png'}
+                src="/logos/Logo-Dark.png"
                 alt="artestudio"
                 height={32}
                 width={120}
-                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300"
+                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300 block dark:hidden"
+                priority
+              />
+              <Image
+                src="/logos/Logo-Light.png"
+                alt="artestudio"
+                height={32}
+                width={120}
+                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300 hidden dark:block"
                 priority
               />
             </div>

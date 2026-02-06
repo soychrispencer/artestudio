@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { CartProvider } from '@/components/cart/CartProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -65,11 +66,13 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-white dark:bg-dark-bg`}>
         <ThemeProviderWrapper>
-          <JsonLd />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <ScrollToTop />
+          <CartProvider>
+            <JsonLd />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <ScrollToTop />
+          </CartProvider>
         </ThemeProviderWrapper>
       </body>
     </html>

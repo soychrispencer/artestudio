@@ -13,6 +13,7 @@ export function ThemeToggle({ isScrolled = false }: { isScrolled?: boolean }) {
   }, [resolvedTheme, theme])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 

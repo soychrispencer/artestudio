@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ShoppingCart } from 'tabler-icons-react'
 import { formatPrice } from '@/lib/utils'
+import { useCart } from '@/components/cart/CartProvider'
 
 interface Service {
   id: number
@@ -17,32 +18,17 @@ interface Service {
 
 export function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon
+  const { addItem, openCart } = useCart()
 
   const handleMercadoPagoClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    // Aquí se puede configurar el link de MercadoPago
-    // Por ahora, redirigimos a WhatsApp para coordinar el pago
-    ;(async () => {
-      try {
-        const res = await fetch('/api/payment', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title: service.title, price: service.price, quantity: 1 }),
-        })
-        const data = await res.json()
-        if (data.init_point || data.sandbox_init_point) {
-          window.location.href = data.init_point ?? data.sandbox_init_point
-          return
-        }
-      } catch (err) {
-        console.error(err)
-      }
-
-      const message = encodeURIComponent(
-        `Hola, me interesa el servicio: ${service.title}. Valor: ${formatPrice(service.price as any)}`
-      )
-      window.open(`https://wa.me/56938733230?text=${message}`, '_blank')
-    })()
+    addItem({
+      id: `card-${service.title}`,
+      title: service.title,
+      price: Number(service.price),
+      quantity: 1,
+    })
+    openCart()
   }
 
   return (

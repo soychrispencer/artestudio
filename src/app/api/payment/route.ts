@@ -7,35 +7,39 @@ const MAX_TITLE_LENGTH = 200
 
 export async function POST(request: NextRequest) {
   try {
-    const { title, price, quantity } = await request.json()
+    const body = await request.json()
+    const itemsInput = Array.isArray(body.items) ? body.items : [{
+      title: body.title,
+      price: body.price,
+      quantity: body.quantity,
+    }]
 
-    if (!title || price === undefined || price === null || !quantity) {
+    if (!itemsInput.length) {
       return NextResponse.json({ error: 'Faltan datos requeridos' }, { status: 400 })
     }
 
-    const titleStr = String(title).trim()
-    if (titleStr.length === 0 || titleStr.length > MAX_TITLE_LENGTH) {
-      return NextResponse.json(
-        { error: `El título debe tener entre 1 y ${MAX_TITLE_LENGTH} caracteres` },
-        { status: 400 }
-      )
-    }
+    const items = itemsInput.map((item: any) => {
+      const titleStr = String(item.title ?? '').trim()
+      if (titleStr.length === 0 || titleStr.length > MAX_TITLE_LENGTH) {
+        throw new Error(`El título debe tener entre 1 y ${MAX_TITLE_LENGTH} caracteres`)
+      }
 
-    const priceNum = Number(price)
-    if (Number.isNaN(priceNum) || priceNum <= 0 || priceNum > MAX_PRICE) {
-      return NextResponse.json(
-        { error: 'Precio inválido' },
-        { status: 400 }
-      )
-    }
+      const priceNum = Number(item.price)
+      if (Number.isNaN(priceNum) || priceNum <= 0 || priceNum > MAX_PRICE) {
+        throw new Error('Precio inválido')
+      }
 
-    const quantityNum = Math.floor(Number(quantity))
-    if (Number.isNaN(quantityNum) || quantityNum < MIN_QUANTITY || quantityNum > MAX_QUANTITY) {
-      return NextResponse.json(
-        { error: `Cantidad debe estar entre ${MIN_QUANTITY} y ${MAX_QUANTITY}` },
-        { status: 400 }
-      )
-    }
+      const quantityNum = Math.floor(Number(item.quantity))
+      if (Number.isNaN(quantityNum) || quantityNum < MIN_QUANTITY || quantityNum > MAX_QUANTITY) {
+        throw new Error(`Cantidad debe estar entre ${MIN_QUANTITY} y ${MAX_QUANTITY}`)
+      }
+
+      return {
+        title: titleStr,
+        quantity: quantityNum,
+        unit_price: priceNum,
+      }
+    })
 
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN
     if (!accessToken) {
@@ -44,23 +48,17 @@ export async function POST(request: NextRequest) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
-    const body: Record<string, unknown> = {
-      items: [
-        {
-          title: titleStr,
-          quantity: quantityNum,
-          unit_price: priceNum,
-        },
-      ],
+    const preferenceBody: Record<string, unknown> = {
+      items,
     }
 
     if (siteUrl.startsWith('https://')) {
-      body.back_urls = {
+      preferenceBody.back_urls = {
         success: `${siteUrl}/success`,
         failure: `${siteUrl}/failure`,
         pending: `${siteUrl}/pending`,
       }
-      body.auto_return = 'approved'
+      preferenceBody.auto_return = 'approved'
     }
 
     const resp = await fetch('https://api.mercadopago.com/checkout/preferences', {
@@ -69,7 +67,7 @@ export async function POST(request: NextRequest) {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(preferenceBody),
     })
 
     if (!resp.ok) {
@@ -84,9 +82,10 @@ export async function POST(request: NextRequest) {
     const preference = await resp.json()
     return NextResponse.json(preference)
   } catch (error) {
+    const message = error instanceof Error ? error.message : 'Error al procesar el pago'
     console.error('Error en API de pagos:', error)
     return NextResponse.json(
-      { error: 'Error al procesar el pago' },
+      { error: message },
       { status: 500 }
     )
   }

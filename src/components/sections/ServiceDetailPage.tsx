@@ -1,12 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronRight, Check, BrandWhatsapp } from 'tabler-icons-react'
+import { ChevronRight, Check, BrandWhatsapp, ShoppingCart } from 'tabler-icons-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ServiceDetail } from '@/lib/services'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
+import { useCart } from '@/components/cart/CartProvider'
+import { siShopify, siWoocommerce, siWordpress } from 'simple-icons/icons'
 
 function openWhatsApp(message: string) {
   const phoneNumber = CONTACT_INFO.whatsapp.replace(/\D/g, '')
@@ -19,41 +21,33 @@ interface ServicePageProps {
   service: ServiceDetail
 }
 
-function PlanCard({ plan, service, isCombo = false }: { plan: any; service: ServiceDetail; isCombo?: boolean }) {
+function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
+  const { addItem, openCart } = useCart()
+  const isRecommended = plan.recommended === true
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative flex flex-col h-full rounded-2xl border-2 overflow-hidden hover:shadow-xl transition-shadow ${
-        isCombo
+      className={`relative flex flex-col h-full rounded-2xl border overflow-hidden hover:shadow-xl transition-shadow ${
+        isRecommended
           ? 'border-primary bg-primary/5 dark:bg-primary/10 ring-2 ring-primary/20'
           : 'border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg'
       }`}
     >
-      {isCombo && (
-        <div className="absolute top-4 right-4 bg-primary text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
-          Mejor Opción
+      {isRecommended && (
+        <div className="absolute top-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+          Recomendado
         </div>
       )}
 
       <div className="relative flex flex-col h-full p-8">
         {/* Plan Header */}
-        <div className="mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+        <div className="mb-6">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             {plan.name}
           </h3>
-          {plan.oldPrice ? (
-            <div className="flex items-center justify-start gap-4 mb-2">
-              <span className="text-lg text-gray-500 line-through">
-                {formatPrice(plan.oldPrice)}
-              </span>
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-sm dark:bg-primary/20 dark:text-primary">
-                ¡Ahorra {formatPrice(plan.oldPrice - plan.price)}!
-              </div>
-            </div>
-          ) : null}
-          <div className="flex items-baseline gap-3 flex-wrap">
+          <div className="flex items-end gap-3 flex-wrap">
             <span className="text-4xl md:text-5xl font-bold text-primary">
               {formatPrice(plan.price)}
             </span>
@@ -65,6 +59,14 @@ function PlanCard({ plan, service, isCombo = false }: { plan: any; service: Serv
               </span>
             )}
           </div>
+          {plan.oldPrice && (
+            <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary">
+              <span className="line-through">{formatPrice(plan.oldPrice)}</span>
+              <span className="ml-2 text-primary font-semibold">
+                Ahorra {formatPrice(plan.oldPrice - plan.price)}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Features List */}
@@ -81,46 +83,114 @@ function PlanCard({ plan, service, isCombo = false }: { plan: any; service: Serv
 
         {/* CTA Button */}
         <button
-          onClick={async () => {
-            try {
-              const res = await fetch('/api/payment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  title: `${service.title} - ${plan.name}`,
-                  price: plan.price,
-                  quantity: 1,
-                }),
-              })
-
-              const data = await res.json()
-              if (data.init_point || data.sandbox_init_point) {
-                const redirect = data.init_point ?? data.sandbox_init_point
-                window.location.href = redirect
-              } else if (data.id) {
-                window.location.href = `https://www.mercadopago.cl/checkout/v1/redirect?pref_id=${data.id}`
-              } else {
-                openWhatsApp(`Hola, me interesa el plan ${plan.name} de ${service.title}`)
-              }
-            } catch (err) {
-              console.error(err)
-              openWhatsApp(`Hola, me interesa el plan ${plan.name} de ${service.title}`)
-            }
+          onClick={() => {
+            addItem({
+              id: `${service.id}-${plan.name}`,
+              title: `${service.title} - ${plan.name}`,
+              price: plan.price,
+              quantity: 1,
+              billing: plan.billing,
+            })
+            openCart()
           }}
-          className={`w-full py-3 px-6 font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all ${
-            isCombo
-              ? 'bg-primary text-white hover:bg-primary-dark'
-              : 'bg-primary text-white hover:bg-primary-dark'
-          }`}
+          className="w-full py-3 px-6 font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all bg-primary text-white hover:bg-primary-dark inline-flex items-center justify-center gap-2"
         >
-          Contratar {plan.name}
+          <ShoppingCart size={18} />
+          Agregar al carrito
         </button>
       </div>
     </motion.div>
   )
 }
 
+function AddonCard({ addon }: { addon: any }) {
+  const { addItem, openCart } = useCart()
+  return (
+    <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6 flex flex-col gap-4">
+      <div>
+        {addon.badge && (
+          <span className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">
+            {addon.badge}
+          </span>
+        )}
+        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-1">
+          {addon.name}
+        </h4>
+        {addon.description && (
+          <p className="text-sm text-gray-600 dark:text-dark-text-secondary mt-2">
+            {addon.description}
+          </p>
+        )}
+      </div>
+      <div className="flex items-end gap-2 flex-wrap">
+        <span className="text-2xl font-bold text-primary">{formatPrice(addon.price)}</span>
+        <span className="text-sm text-gray-500 dark:text-dark-text-secondary">CLP</span>
+        {addon.billing === 'mensual' && (
+          <span className="text-xs text-gray-500 dark:text-dark-text-secondary">/mes</span>
+        )}
+        {addon.oldPrice && (
+          <span className="text-xs text-gray-500 line-through">
+            {formatPrice(addon.oldPrice)}
+          </span>
+        )}
+      </div>
+      <button
+        onClick={() => {
+          addItem({
+            id: `addon-${addon.name}`,
+            title: addon.name,
+            price: addon.price,
+            quantity: 1,
+            billing: addon.billing,
+          })
+          openCart()
+        }}
+        className="btn-outline px-4 py-2 w-full inline-flex items-center justify-center gap-2"
+      >
+        <ShoppingCart size={16} />
+        Agregar al carrito
+      </button>
+    </div>
+  )
+}
+
+function PlatformBadge({
+  label,
+  icon,
+}: {
+  label: string
+  icon: { path: string; hex: string }
+}) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-xl border border-gray-200 dark:border-dark-bg-tertiary px-3 py-2 bg-white/80 dark:bg-dark-bg-secondary/80">
+      <svg
+        role="img"
+        viewBox="0 0 24 24"
+        className="w-5 h-5"
+        fill="currentColor"
+        style={{ color: `#${icon.hex}` }}
+        aria-label={label}
+      >
+        <path d={icon.path} />
+      </svg>
+      <span className="text-sm font-medium text-gray-700 dark:text-dark-text-secondary">{label}</span>
+    </div>
+  )
+}
+
+function TextBadge({ label, letter }: { label: string; letter: string }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-xl border border-gray-200 dark:border-dark-bg-tertiary px-3 py-2 bg-white/80 dark:bg-dark-bg-secondary/80">
+      <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
+        {letter}
+      </span>
+      <span className="text-sm font-medium text-gray-700 dark:text-dark-text-secondary">{label}</span>
+    </div>
+  )
+}
+
 export function ServicePage({ service }: ServicePageProps) {
+  const { addItem, openCart } = useCart()
   return (
     <main className="min-h-screen bg-white dark:bg-dark-bg">
       {/* Hero Section */}
@@ -208,6 +278,14 @@ export function ServicePage({ service }: ServicePageProps) {
               <p className="text-lg text-gray-700 dark:text-dark-text-secondary mb-8 leading-relaxed">
                 {service.longDescription}
               </p>
+              {service.id === 5 && (
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <PlatformBadge label="WordPress" icon={siWordpress} />
+                  <PlatformBadge label="Shopify" icon={siShopify} />
+                  <PlatformBadge label="WooCommerce" icon={siWoocommerce} />
+                  <TextBadge label="Jumpseller" letter="J" />
+                </div>
+              )}
 
               {/* Why Choose Us Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -401,7 +479,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Combo')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} isCombo />
+                        <PlanCard key={idx} plan={plan} service={service} />
                       ))}
                     </div>
                   </div>
@@ -452,6 +530,29 @@ export function ServicePage({ service }: ServicePageProps) {
                   </div>
                 </>
               )}
+
+              {service.addons && service.addons.length > 0 && (
+                <div className="mt-16">
+                  <motion.div
+                    className="mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                  >
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      Complementos disponibles
+                    </h3>
+                    <p className="text-gray-600 dark:text-dark-text-secondary">
+                      Suma servicios adicionales a tu compra en una sola transacción.
+                    </p>
+                  </motion.div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {service.addons.map((addon, idx) => (
+                      <AddonCard key={idx} addon={addon} />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -491,35 +592,18 @@ export function ServicePage({ service }: ServicePageProps) {
                   )}
 
                   <button
-                    onClick={async () => {
-                      try {
-                        const res = await fetch('/api/payment', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({
-                            title: service.title,
-                            price: service.price,
-                            quantity: 1,
-                          }),
-                        })
-
-                        const data = await res.json()
-                        if (data.init_point || data.sandbox_init_point) {
-                          const redirect = data.init_point ?? data.sandbox_init_point
-                          window.location.href = redirect
-                        } else if (data.id) {
-                          window.location.href = `https://www.mercadopago.cl/checkout/v1/redirect?pref_id=${data.id}`
-                        } else {
-                          openWhatsApp(`Hola, quiero contratar el servicio de ${service.title}`)
-                        }
-                      } catch (err) {
-                        console.error(err)
-                        openWhatsApp(`Hola, quiero contratar el servicio de ${service.title}`)
-                      }
+                    onClick={() => {
+                      addItem({
+                        id: `${service.id}-${service.title}`,
+                        title: service.title,
+                        price: service.price,
+                        quantity: 1,
+                      })
+                      openCart()
                     }}
                     className="w-full py-4 px-6 bg-gradient-primary text-white font-bold rounded-xl hover:shadow-lg transition-all text-lg"
                   >
-                    Contratar Ahora
+                    Agregar al carrito
                   </button>
 
                   <p className="text-sm text-gray-600 dark:text-dark-text-secondary mt-4">

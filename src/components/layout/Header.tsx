@@ -5,14 +5,17 @@ import { CONTACT_INFO, ROUTES } from '@/lib/constants'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect, type MouseEvent } from 'react'
 import { usePathname } from 'next/navigation'
-import { BrandWhatsapp, Menu2, X } from 'tabler-icons-react'
+import { BrandWhatsapp, Menu2, ShoppingCart, X } from 'tabler-icons-react'
 import { openWhatsApp } from '@/lib/utils'
 import Image from 'next/image'
+import { useCart } from '@/components/cart/CartProvider'
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const { items, openCart } = useCart()
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,6 +109,22 @@ export function Header() {
           {/* Right Actions */}
           <div className="flex items-center gap-4 h-16">
             <ThemeToggle isScrolled={scrolled} />
+            <button
+              onClick={openCart}
+              className={`relative inline-flex items-center justify-center w-10 h-10 rounded-xl transition-colors border ${
+                scrolled
+                  ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary border-gray-200 dark:border-white/10'
+                  : 'bg-white/80 dark:bg-dark-bg-secondary/80 hover:bg-white dark:hover:bg-dark-bg-tertiary border-gray-200/60 dark:border-white/10'
+              }`}
+              aria-label="Abrir carrito"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-white text-[10px] font-semibold flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <button
               onClick={() =>
                 openWhatsApp(

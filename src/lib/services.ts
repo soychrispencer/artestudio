@@ -18,7 +18,16 @@ export interface ServiceDetail {
     price: number
     oldPrice?: number
     billing?: 'mensual'
+    recommended?: boolean
     features: string[]
+  }[]
+  addons?: {
+    name: string
+    description?: string
+    price: number
+    oldPrice?: number
+    billing?: 'mensual'
+    badge?: string
   }[]
   videoEditPrice?: number
   deliverables: string[]
@@ -160,6 +169,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         price: 289000,
         oldPrice: 339980,
         billing: 'mensual',
+        recommended: true,
         features: [
           '12 posts mensuales + 4 carruseles',
           '6 historias',
@@ -207,6 +217,13 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Optimización continua basada en datos',
       'Buenas prácticas para fortalecer tu presencia',
       'Add-on de edición de video para Reels/TikTok/Shorts desde $35.000',
+    ],
+    addons: [
+      {
+        name: 'Edición de video Short (Reels/TikTok)',
+        description: 'Hasta 60 segundos en formato 9:16, con ritmo dinámico.',
+        price: 35000,
+      },
     ],
     process: [
       {
@@ -589,7 +606,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     shortDescription:
       'Sitios modernos, rápidos y optimizados para SEO. Convierte visitantes en clientes.',
     longDescription:
-      'Tu sitio web es un canal clave para captar y convertir. Diseñamos en plataformas líderes según tu necesidad: WordPress/WooCommerce para control total, o Shopify/Jumpseller para comercio ágil en la nube. Importante: en plataformas SaaS (Shopify, Jumpseller), el cliente cubre la suscripción mensual. *Nota: el servicio de diseño web no incluye creación de logotipo ni identidad corporativa.*',
+      'Tu sitio web es un canal clave para captar y convertir. Trabajamos con WordPress/WooCommerce para control total y con Shopify/Jumpseller para comercio ágil en la nube. Utilizamos plantillas premium como base de optimización y luego las ajustamos a medida según tu marca y objetivos. Si el proyecto requiere desarrollo custom o funcionalidades avanzadas, lo evaluamos y lo trabajamos como desarrollo a medida dentro del servicio de Apps y Plataformas. *Nota: el servicio de diseño web no incluye creación de logotipo ni identidad corporativa.*',
     icon: 'Brush',
     color: '#8B5CF6',
     price: 149990,
@@ -663,6 +680,20 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Configuración en Shopify/Jumpseller (suscripción por cuenta del cliente, si aplica)',
       'Capacitación de uso y mantenimiento',
       '2 rondas de revisión incluidas',
+    ],
+    addons: [
+      {
+        name: 'Diseño de logo básico',
+        description: 'Logo profesional con 2 propuestas y 1 ronda de ajustes.',
+        price: 120000,
+      },
+      {
+        name: 'Mantenimiento web mensual',
+        description: 'Actualizaciones, backups y soporte técnico prioritario.',
+        price: 49990,
+        billing: 'mensual',
+        badge: 'Mensual',
+      },
     ],
     process: [
       {

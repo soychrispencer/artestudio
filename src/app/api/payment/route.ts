@@ -14,6 +14,9 @@ export async function POST(request: NextRequest) {
       quantity: body.quantity,
     }]
 
+    const customer = body.customer ?? {}
+    const orderId = typeof body.orderId === 'string' ? body.orderId.trim() : ''
+
     if (!itemsInput.length) {
       return NextResponse.json({ error: 'Faltan datos requeridos' }, { status: 400 })
     }
@@ -50,6 +53,37 @@ export async function POST(request: NextRequest) {
 
     const preferenceBody: Record<string, unknown> = {
       items,
+    }
+
+    if (orderId) {
+      preferenceBody.external_reference = orderId
+    }
+
+    const email = typeof customer.email === 'string' ? customer.email.trim() : ''
+    const name = typeof customer.name === 'string' ? customer.name.trim() : ''
+    const phone = typeof customer.phone === 'string' ? customer.phone.trim() : ''
+
+    if (email || name || phone) {
+      const [firstName, ...rest] = name.split(' ').filter(Boolean)
+      const surname = rest.join(' ')
+      preferenceBody.payer = {
+        email: email || undefined,
+        name: firstName || undefined,
+        surname: surname || undefined,
+        phone: phone
+          ? {
+              number: phone.replace(/[^0-9]/g, ''),
+            }
+          : undefined,
+      }
+      preferenceBody.metadata = {
+        customer: {
+          name,
+          email,
+          phone,
+          company: typeof customer.company === 'string' ? customer.company.trim() : '',
+        },
+      }
     }
 
     if (siteUrl.startsWith('https://')) {

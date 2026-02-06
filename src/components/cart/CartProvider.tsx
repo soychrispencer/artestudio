@@ -130,6 +130,15 @@ export function useCart() {
 
 function CartDrawer() {
   const { items, total, isOpen, closeCart, removeItem, updateQuantity, clear } = useCart()
+  const [showForm, setShowForm] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const [buyer, setBuyer] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+  })
 
   if (!isOpen) return null
 
@@ -219,35 +228,131 @@ function CartDrawer() {
         </div>
 
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
+          {showForm && (
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+                  Datos de contacto
+                </p>
+              </div>
+              <div className="grid gap-3">
+                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                  Nombre y apellido
+                  <input
+                    type="text"
+                    value={buyer.name}
+                    onChange={(e) => setBuyer((prev) => ({ ...prev, name: e.target.value }))}
+                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    placeholder="Ej: Valentina Soto"
+                    required
+                  />
+                </label>
+                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                  Email
+                  <input
+                    type="email"
+                    value={buyer.email}
+                    onChange={(e) => setBuyer((prev) => ({ ...prev, email: e.target.value }))}
+                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    placeholder="hola@tudominio.cl"
+                    required
+                  />
+                </label>
+                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                  WhatsApp / Teléfono
+                  <input
+                    type="tel"
+                    value={buyer.phone}
+                    onChange={(e) => setBuyer((prev) => ({ ...prev, phone: e.target.value }))}
+                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    placeholder="+56 9 1234 5678"
+                  />
+                </label>
+                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                  Empresa (opcional)
+                  <input
+                    type="text"
+                    value={buyer.company}
+                    onChange={(e) => setBuyer((prev) => ({ ...prev, company: e.target.value }))}
+                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    placeholder="Nombre de la marca"
+                  />
+                </label>
+              </div>
+              {error && (
+                <p className="text-sm text-red-500">{error}</p>
+              )}
+            </div>
+          )}
           <div className="flex items-center justify-between text-lg font-semibold text-gray-900 dark:text-white">
             <span>Total</span>
             <span>{formatPrice(total)}</span>
           </div>
-          <button
-            onClick={async () => {
-              try {
-                const res = await fetch('/api/payment', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ items }),
-                })
-
-                const data = await res.json()
-                if (data.init_point || data.sandbox_init_point) {
-                  const redirect = data.init_point ?? data.sandbox_init_point
-                  window.location.href = redirect
-                } else if (data.id) {
-                  window.location.href = `https://www.mercadopago.cl/checkout/v1/redirect?pref_id=${data.id}`
+          {!showForm && (
+            <button
+              onClick={() => setShowForm(true)}
+              className="w-full btn-whatsapp px-6 py-3"
+              disabled={items.length === 0}
+            >
+              Continuar contratación
+            </button>
+          )}
+          {showForm && (
+            <button
+              onClick={async () => {
+                if (!buyer.name.trim() || !buyer.email.trim()) {
+                  setError('Completa nombre y email para continuar.')
+                  return
                 }
-              } catch (err) {
-                console.error(err)
-              }
-            }}
-            className="w-full btn-whatsapp px-6 py-3"
-            disabled={items.length === 0}
-          >
-            Continuar contratación
-          </button>
+
+                setError('')
+                setIsSubmitting(true)
+                try {
+                  const orderId = typeof crypto !== 'undefined' && crypto.randomUUID
+                    ? `AS-${crypto.randomUUID()}`
+                    : `AS-${Date.now()}`
+                  window.localStorage.setItem(
+                    'last_order',
+                    JSON.stringify({
+                      orderId,
+                      buyer,
+                      items,
+                      total,
+                    })
+                  )
+
+                  const res = await fetch('/api/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      items,
+                      customer: buyer,
+                      orderId,
+                    }),
+                  })
+
+                  const data = await res.json()
+                  if (data.init_point || data.sandbox_init_point) {
+                    const redirect = data.init_point ?? data.sandbox_init_point
+                    window.location.href = redirect
+                  } else if (data.id) {
+                    window.location.href = `https://www.mercadopago.cl/checkout/v1/redirect?pref_id=${data.id}`
+                  } else if (data.error) {
+                    setError(data.error)
+                  }
+                } catch (err) {
+                  console.error(err)
+                  setError('No pudimos iniciar el pago. Intenta nuevamente.')
+                } finally {
+                  setIsSubmitting(false)
+                }
+              }}
+              className="w-full btn-whatsapp px-6 py-3"
+              disabled={items.length === 0 || isSubmitting}
+            >
+              {isSubmitting ? 'Procesando...' : 'Pagar con MercadoPago'}
+            </button>
+          )}
           {items.length > 0 && (
             <button
               onClick={clear}

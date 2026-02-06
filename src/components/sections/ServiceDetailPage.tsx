@@ -48,7 +48,7 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
             {plan.name}
           </h3>
           <div className="flex items-end gap-3 flex-wrap">
-            <span className="text-4xl md:text-5xl font-bold text-primary">
+            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
               {formatPrice(plan.price)}
             </span>
             <span className="text-gray-600 dark:text-dark-text-secondary whitespace-nowrap">CLP</span>
@@ -60,7 +60,7 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
             )}
           </div>
           {plan.oldPrice && (
-            <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary">
+            <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary hidden sm:block">
               <span className="line-through">{formatPrice(plan.oldPrice)}</span>
               <span className="ml-2 text-primary font-semibold">
                 Ahorra {formatPrice(plan.oldPrice - plan.price)}

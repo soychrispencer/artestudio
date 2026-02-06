@@ -2,9 +2,64 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useEffect, useRef } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Check, Home, Mail } from 'tabler-icons-react'
+import { CONTACT_INFO } from '@/lib/constants'
+import { useCart } from '@/components/cart/CartProvider'
+import { formatPrice } from '@/lib/utils'
 
 export default function SuccessPage() {
+  const searchParams = useSearchParams()
+  const openedRef = useRef(false)
+  const { clear } = useCart()
+
+  useEffect(() => {
+    if (openedRef.current) return
+    openedRef.current = true
+
+    const stored = window.localStorage.getItem('last_order')
+    if (!stored) return
+
+    try {
+      const order = JSON.parse(stored) as {
+        orderId?: string
+        buyer?: { name?: string; email?: string; phone?: string; company?: string }
+        items?: { title: string; quantity: number; price: number }[]
+        total?: number
+      }
+
+      const paymentId = searchParams.get('payment_id') || searchParams.get('collection_id')
+      const status = searchParams.get('collection_status') || searchParams.get('status')
+
+      const itemsLine = order.items
+        ? order.items.map((item) => `• ${item.title} x${item.quantity}`).join('\n')
+        : ''
+
+      const message = [
+        'Hola! Se realizó una compra en artestudio.cl ✅',
+        order.orderId ? `Pedido: ${order.orderId}` : '',
+        order.buyer?.name ? `Nombre: ${order.buyer.name}` : '',
+        order.buyer?.email ? `Email: ${order.buyer.email}` : '',
+        order.buyer?.phone ? `Teléfono: ${order.buyer.phone}` : '',
+        order.buyer?.company ? `Empresa: ${order.buyer.company}` : '',
+        itemsLine ? `Items:\n${itemsLine}` : '',
+        order.total ? `Total: ${formatPrice(order.total)} CLP` : '',
+        paymentId ? `Pago: ${paymentId}` : '',
+        status ? `Estado: ${status}` : '',
+      ]
+        .filter(Boolean)
+        .join('\n')
+
+      const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsapp.replace(/\\D/g, '')}?text=${encodeURIComponent(message)}`
+      window.open(whatsappUrl, '_blank')
+      window.localStorage.removeItem('last_order')
+      clear()
+    } catch (err) {
+      console.error(err)
+    }
+  }, [searchParams, clear])
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg px-4">
       <motion.div

@@ -304,7 +304,8 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'Tu marca es mucho más que un logo: es la promesa que haces a tus clientes. Creamos identidades visuales completas que transmiten tus valores, diferencian tu propuesta y generan conexiones duraderas.',
     icon: 'Palette',
     color: '#9333EA',
-    price: 500000,
+    price: 250000,
+    oldPrice: 500000,
     supportImage: 'https://images.pexels.com/photos/4480519/pexels-photo-4480519.jpeg?w=800&q=80&auto=format&fit=crop',
     deliverables: [
       'Diseño de logo profesional (3 conceptos)',
@@ -685,7 +686,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Diseño de logo básico',
         description: 'Logo profesional con 2 propuestas y 1 ronda de ajustes.',
-        price: 120000,
+        price: 60000,
+        oldPrice: 120000,
+        badge: '50% OFF',
       },
       {
         name: 'Mantenimiento web mensual',

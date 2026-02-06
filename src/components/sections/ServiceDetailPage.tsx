@@ -96,7 +96,7 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
           className="w-full py-3 px-6 font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all bg-primary text-white hover:bg-primary-dark inline-flex items-center justify-center gap-2"
         >
           <ShoppingCart size={18} />
-          Agregar al carrito
+          Contratar plan
         </button>
       </div>
     </motion.div>
@@ -148,7 +148,7 @@ function AddonCard({ addon }: { addon: any }) {
         className="btn-outline px-4 py-2 w-full inline-flex items-center justify-center gap-2"
       >
         <ShoppingCart size={16} />
-        Agregar al carrito
+        Contratar complemento
       </button>
     </div>
   )
@@ -603,7 +603,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     }}
                     className="w-full py-4 px-6 bg-gradient-primary text-white font-bold rounded-xl hover:shadow-lg transition-all text-lg"
                   >
-                    Agregar al carrito
+                    Contratar servicio
                   </button>
 
                   <p className="text-sm text-gray-600 dark:text-dark-text-secondary mt-4">

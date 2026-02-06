@@ -41,7 +41,7 @@ export const ANIMATION_DURATION = {
 // Precios de servicios (en pesos chilenos)
 export const SERVICE_PRICES = {
   socialMedia: 199990, // Actualizado según plan Pro
-  branding: 500000,
+  branding: 250000,
   graphic: 100000,
   socialDesign: 69990, // Actualizado según plan Esencial
   videoEditing: 35000,

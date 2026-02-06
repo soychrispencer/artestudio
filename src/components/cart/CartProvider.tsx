@@ -246,7 +246,7 @@ function CartDrawer() {
             className="w-full btn-whatsapp px-6 py-3"
             disabled={items.length === 0}
           >
-            Ir a pagar
+            Continuar contratación
           </button>
           {items.length > 0 && (
             <button

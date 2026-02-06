@@ -53,11 +53,17 @@ function PlanCard({ plan, service, isCombo = false }: { plan: any; service: Serv
               </div>
             </div>
           ) : null}
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-baseline gap-3 flex-wrap">
             <span className="text-4xl md:text-5xl font-bold text-primary">
               {formatPrice(plan.price)}
             </span>
             <span className="text-gray-600 dark:text-dark-text-secondary whitespace-nowrap">CLP</span>
+            {plan.billing === 'mensual' && (
+              <span className="text-sm text-gray-500 dark:text-dark-text-secondary whitespace-nowrap">
+                <span className="hidden sm:inline">/mensual</span>
+                <span className="sm:hidden">/mes</span>
+              </span>
+            )}
           </div>
         </div>
 
@@ -354,11 +360,11 @@ export function ServicePage({ service }: ServicePageProps) {
                     >
                       📋 Solo Administración
                     </motion.h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                      {service.plans.filter(p => p.name.includes('Administración')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} />
-                      ))}
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                    {service.plans.filter(p => p.name.includes('Administración')).map((plan, idx) => (
+                      <PlanCard key={idx} plan={plan} service={service} />
+                    ))}
+                  </div>
                   </div>
 
                   {/* Diseños Section */}
@@ -371,7 +377,7 @@ export function ServicePage({ service }: ServicePageProps) {
                     >
                       🎨 Solo Diseños
                     </motion.h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Diseños') && !p.name.includes('Combo')).map((plan, idx) => (
                         <PlanCard key={idx} plan={plan} service={service} />
                       ))}
@@ -393,7 +399,7 @@ export function ServicePage({ service }: ServicePageProps) {
                         La mejor opción: obtén administración y diseños con un descuento especial
                       </p>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                       {service.plans.filter(p => p.name.includes('Combo')).map((plan, idx) => (
                         <PlanCard key={idx} plan={plan} service={service} isCombo />
                       ))}
@@ -403,12 +409,48 @@ export function ServicePage({ service }: ServicePageProps) {
               )}
 
               {/* Other Services: Simple Plan Structure */}
-              {service.id !== 1 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {service.id !== 1 && service.id !== 4 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                   {service.plans.map((plan, idx) => (
                     <PlanCard key={idx} plan={plan} service={service} />
                   ))}
                 </div>
+              )}
+
+              {service.id === 4 && (
+                <>
+                  <div className="mb-14">
+                    <motion.h3
+                      className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                    >
+                      🎬 Edición por pieza
+                    </motion.h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                      {service.plans.filter(p => !p.name.includes('Pack mensual')).map((plan, idx) => (
+                        <PlanCard key={idx} plan={plan} service={service} />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <motion.h3
+                      className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                    >
+                      📦 Packs mensuales con descuento
+                    </motion.h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                      {service.plans.filter(p => p.name.includes('Pack mensual')).map((plan, idx) => (
+                        <PlanCard key={idx} plan={plan} service={service} />
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           )}

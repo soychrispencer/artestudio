@@ -17,6 +17,7 @@ export interface ServiceDetail {
     name: string
     price: number
     oldPrice?: number
+    billing?: 'mensual'
     features: string[]
   }[]
   videoEditPrice?: number
@@ -55,6 +56,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Esencial - Administración',
         price: 79990,
+        billing: 'mensual',
         features: [
           'Planificación y calendarización de contenido',
           'Programación y publicación en horarios óptimos',
@@ -67,6 +69,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Pro - Administración',
         price: 199990,
+        billing: 'mensual',
         features: [
           'Planificación estratégica mensual',
           'Publicación y programación multicanal',
@@ -80,6 +83,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Pro+ - Administración',
         price: 349990,
+        billing: 'mensual',
         features: [
           'Estrategia mensual avanzada y roadmap de crecimiento',
           'Publicación diaria y calendarización completa',
@@ -93,6 +97,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Esencial - Diseños',
         price: 69990,
+        billing: 'mensual',
         features: [
           'Pack de 10 diseños personalizados (posts, historias, carruseles) — creados en Illustrator/Photoshop o Canva según requerimiento',
           'Plantillas editables en Canva (3 plantillas)',
@@ -105,6 +110,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Pro - Diseños',
         price: 139990,
+        billing: 'mensual',
         features: [
           'Pack de 20 diseños personalizados (AI/PSD/Canva)',
           'Plantillas editables en Canva (5 plantillas)',
@@ -119,6 +125,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         name: 'Pro+ - Diseños',
         price: 219990,
+        billing: 'mensual',
         features: [
           'Pack de 30 diseños personalizados (AI/PSD/Canva) y assets para campañas',
           'Plantillas editables en Canva (8 plantillas)',
@@ -134,6 +141,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Esencial - Combo (Admin + Diseños)',
         price: 127500,
         oldPrice: 149980,
+        billing: 'mensual',
         features: [
           '8 posts mensuales estáticos',
           '3 historias',
@@ -151,6 +159,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Pro - Combo (Admin + Diseños)',
         price: 289000,
         oldPrice: 339980,
+        billing: 'mensual',
         features: [
           '12 posts mensuales + 4 carruseles',
           '6 historias',
@@ -169,6 +178,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Pro+ - Combo (Admin + Diseños)',
         price: 485000,
         oldPrice: 569980,
+        billing: 'mensual',
         features: [
           '20 posts mensuales, 8 carruseles',
           'Historias frecuentes (10/semana)',
@@ -475,6 +485,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Pack mensual 4 Shorts',
         price: 125000,
         oldPrice: 140000,
+        billing: 'mensual',
         features: [
           '4 videos mensuales (hasta 60s)',
           'Formato 9:16 optimizado',
@@ -487,6 +498,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Pack mensual 8 Shorts',
         price: 235000,
         oldPrice: 280000,
+        billing: 'mensual',
         features: [
           '8 videos mensuales (hasta 60s)',
           'Formato 9:16 optimizado',
@@ -499,6 +511,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         name: 'Pack mensual 12 Shorts',
         price: 330000,
         oldPrice: 420000,
+        billing: 'mensual',
         features: [
           '12 videos mensuales (hasta 60s)',
           'Formato 9:16 optimizado',

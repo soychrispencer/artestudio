@@ -158,7 +158,7 @@ export function Footer() {
 
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary pt-8 text-center">
           <p className="text-sm text-gray-600 dark:text-dark-text-secondary">
-            © 2026 <span className="font-semibold text-gray-900 dark:text-dark-text">artestudio.cl</span> - Todos los derechos reservados.
+            © 2026 <span className="font-semibold text-gray-900 dark:text-dark-text">Artestudio</span> - Todos los derechos reservados.
           </p>
         </div>
       </div>

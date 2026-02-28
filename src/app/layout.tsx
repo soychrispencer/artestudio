@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProviderWrapper } from '@/components/providers/ThemeProvider'
@@ -7,10 +8,12 @@ import { Footer } from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { CartProvider } from '@/components/cart/CartProvider'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
+const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   title: 'artestudio.cl - Transformación Digital y Creativa',
@@ -65,6 +68,24 @@ export default function RootLayout({
         <meta charSet="utf-8" />
       </head>
       <body className={`${inter.className} bg-white dark:bg-dark-bg`}>
+        {gaId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${gaId}', { send_page_view: false });
+              `}
+            </Script>
+          </>
+        ) : null}
+        <GoogleAnalytics gaId={gaId} />
         <ThemeProviderWrapper>
           <CartProvider>
             <JsonLd />

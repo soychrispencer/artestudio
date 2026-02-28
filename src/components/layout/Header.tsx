@@ -16,6 +16,7 @@ export function Header() {
   const pathname = usePathname()
   const { items, openCart } = useCart()
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0)
+  const isPersonalHub = pathname.startsWith('/soychrispencer')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +40,10 @@ export function Header() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     setMenuOpen(false)
+  }
+
+  if (isPersonalHub) {
+    return null
   }
 
   return (

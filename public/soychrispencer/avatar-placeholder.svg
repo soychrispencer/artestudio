@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none">
+  <rect width="640" height="640" rx="320" fill="#090415"/>
+  <circle cx="120" cy="112" r="180" fill="#8325FD" fill-opacity="0.42"/>
+  <circle cx="548" cy="104" r="168" fill="#A855FF" fill-opacity="0.28"/>
+  <circle cx="522" cy="556" r="200" fill="#8325FD" fill-opacity="0.23"/>
+  <circle cx="320" cy="320" r="250" stroke="white" stroke-opacity="0.2"/>
+  <text x="320" y="352" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="160" font-weight="700" fill="white" fill-opacity="0.95">CS</text>
+</svg>

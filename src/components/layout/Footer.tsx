@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BrandInstagram, BrandTiktok, BrandFacebook, BrandWhatsapp } from 'tabler-icons-react'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
+import { usePathname } from 'next/navigation'
 
 function BrandLogo() {
   return (
@@ -27,6 +28,12 @@ function BrandLogo() {
 }
 
 export function Footer() {
+  const pathname = usePathname()
+
+  if (pathname.startsWith('/soychrispencer')) {
+    return null
+  }
+
   const socialLinks = [
     { icon: BrandInstagram, href: SOCIAL_LINKS.instagram, label: 'Instagram' },
     { icon: BrandTiktok, href: SOCIAL_LINKS.tiktok, label: 'TikTok' },

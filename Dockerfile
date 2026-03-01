@@ -24,4 +24,8 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+# Verifica cada 30s si la página de inicio responde. Si falla 3 veces, marca el contenedor como 'unhealthy'.
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+
 CMD ["node", "server.js"]

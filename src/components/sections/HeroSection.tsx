@@ -1,7 +1,7 @@
 "use client"
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, BrandWhatsapp, Stars, Palette, BrandInstagram, Code, Music } from 'tabler-icons-react'
+import { ArrowRight, BrandWhatsapp, Stars, Palette, BrandInstagram, Code, Music, Calculator } from 'tabler-icons-react'
 
 export function HeroSection() {
   return (
@@ -25,7 +25,7 @@ export function HeroSection() {
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-gray-900 dark:text-white">
               Artestudio crea marcas{' '}
-              <span className="text-gradient-primary">más inteligentes y moderna</span>
+              <span className="text-gradient-primary">más inteligentes y modernas</span>
             </h1>
 
             <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-xl leading-relaxed">
@@ -52,6 +52,14 @@ export function HeroSection() {
                 <span>Explorar Servicios</span>
                 <ArrowRight className="w-5 h-5" />
               </a>
+
+              <Link
+                href="/cotizador"
+                className="btn-outline px-8 py-4"
+              >
+                <span>Cotizador Online</span>
+                <Calculator className="w-5 h-5" />
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
@@ -116,4 +124,3 @@ export function HeroSection() {
 }
 
 export default HeroSection
-

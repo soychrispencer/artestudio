@@ -6,6 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
+    { url: `${baseUrl}/cotizador`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/success`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/failure`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/pending`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },

@@ -40,17 +40,21 @@ export const ANIMATION_DURATION = {
 
 // Precios de servicios (en pesos chilenos)
 export const SERVICE_PRICES = {
-  socialMedia: 199990, // Actualizado según plan Pro
+  socialMedia: 127500, // Plan combo Esencial
   branding: 250000,
-  graphic: 100000,
-  socialDesign: 69990, // Actualizado según plan Esencial
+  graphic: 35000,
+  socialDesign: 29000, // Diseño unitario para redes
   videoEditing: 35000,
-  webDesign: 149990, // Actualizado según plan Esencial
-  webDesignPro: 199990,
-  development: 1200000,
-  fullDigitalPresence: 690000,
+  webDesign: 249990, // Landing Start
+  webDesignPro: 490000, // Sitio corporativo
+  webMaintenance: 49990,
+  development: 490000,
+  developmentPlatform: 1200000,
+  developmentEnterprise: 3500000,
+  fullDigitalPresence: 890000,
   audioEdition: 99000,
   mastering: 45000,
+  audioPack: 135000,
 } as const
 
 // Mensajes predefinidos de WhatsApp
@@ -90,6 +94,7 @@ export const BREAKPOINTS = {
 export const ROUTES = {
   home: '/',
   services: '/#services',
+  quoteBuilder: '/cotizador',
   trust: '/#confianza',
   contact: '/#contact',
   admin: '/admin',

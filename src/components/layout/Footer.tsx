@@ -101,6 +101,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/cotizador" className="hover:text-primary transition-smooth">
+                  Cotizador
+                </Link>
+              </li>
+              <li>
                 <Link href="#confianza" className="hover:text-primary transition-smooth">
                   Confianza
                 </Link>
@@ -113,9 +118,9 @@ export function Footer() {
             <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Servicios</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
               <li><a href="#services" className="hover:text-primary transition-smooth">Redes Sociales</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Branding</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Diseño Web</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Audio Profesional</a></li>
+              <li><a href="#services" className="hover:text-primary transition-smooth">Diseño & Branding</a></li>
+              <li><a href="#services" className="hover:text-primary transition-smooth">Producción Audiovisual</a></li>
+              <li><a href="#services" className="hover:text-primary transition-smooth">Web & Desarrollo</a></li>
             </ul>
           </div>
 

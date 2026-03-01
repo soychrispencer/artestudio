@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ChevronRight, Check, BrandWhatsapp, ShoppingCart } from 'tabler-icons-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ServiceDetail } from '@/lib/services'
+import { getRelatedServices, ServiceDetail } from '@/lib/services'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
 import { useCart } from '@/components/cart/CartProvider'
@@ -19,6 +19,13 @@ function openWhatsApp(message: string) {
 
 interface ServicePageProps {
   service: ServiceDetail
+}
+
+const BILLING_MODEL_LABEL: Record<ServiceDetail['billingModel'], string> = {
+  unitario: 'Servicio unitario',
+  mensual: 'Servicio mensual',
+  proyecto: 'Proyecto cerrado',
+  desde: 'Proyecto desde',
 }
 
 function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
@@ -235,11 +242,63 @@ function TextBadge({ label, letter }: { label: string; letter: string }) {
   )
 }
 
+const WEB_COMPARISON_ROWS = [
+  {
+    label: 'Objetivo',
+    express: 'Lanzar rápido y profesional',
+    growth: 'Escalar conversiones y rendimiento',
+  },
+  {
+    label: 'Alcance',
+    express: 'Landing o micrositio',
+    growth: 'Sitio corporativo o eCommerce completo',
+  },
+  {
+    label: 'Analítica',
+    express: 'Base de medición',
+    growth: 'Eventos y métricas de conversión',
+  },
+  {
+    label: 'Evolución',
+    express: 'Validar propuesta',
+    growth: 'Optimizar resultados mensualmente',
+  },
+]
+
+const WEB_INTEGRATIONS = [
+  'Webpay / Flow / Mercado Pago',
+  'Starken / Chilexpress',
+  'WhatsApp Business',
+  'Google Analytics + Tag Manager',
+  'Meta Pixel',
+  'Email marketing',
+]
+
+const WEB_SCOPE_INCLUDED = [
+  'Diseño responsive + implementación técnica',
+  'Estructura enfocada en conversión',
+  'Capacitación de autogestión',
+  'Soporte de lanzamiento según plan',
+]
+
+const WEB_SCOPE_NOT_INCLUDED = [
+  'Inversión de pauta publicitaria',
+  'Costos de hosting, dominio o apps de terceros',
+  'Carga masiva fuera del alcance contratado',
+]
+
 export function ServicePage({ service }: ServicePageProps) {
   const { addItem, openCart } = useCart()
   const serviceDiscountPercent = service.oldPrice
     ? Math.round((1 - service.price / service.oldPrice) * 100)
     : 0
+  const relatedServices = getRelatedServices(service).slice(0, 3)
+  const unitPlans = (service.plans ?? []).filter((p) => p.name.includes('Unitario'))
+  const comboPlans = (service.plans ?? []).filter((p) => p.name.includes('Combo'))
+  const adminPlans = (service.plans ?? []).filter((p) => p.name.includes('Administración'))
+  const designPlans = (service.plans ?? []).filter(
+    (p) => p.name.includes('Diseños') && !p.name.includes('Combo') && !p.name.includes('Unitario')
+  )
   return (
     <main className="min-h-screen bg-white dark:bg-dark-bg">
       {/* Hero Section */}
@@ -270,6 +329,14 @@ export function ServicePage({ service }: ServicePageProps) {
               {service.title}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">{service.subtitle}</p>
+            <div className="mb-8 flex flex-wrap gap-3">
+              <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                {service.family}
+              </span>
+              <span className="inline-flex items-center rounded-full border border-gray-200 dark:border-dark-bg-tertiary bg-white/80 dark:bg-dark-bg-secondary/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gray-700 dark:text-dark-text-secondary">
+                {BILLING_MODEL_LABEL[service.billingModel]}
+              </span>
+            </div>
 
             {/* CTA Buttons - primary para acción principal */}
             <div className="flex flex-col sm:flex-row gap-4">
@@ -327,6 +394,30 @@ export function ServicePage({ service }: ServicePageProps) {
               <p className="text-lg text-gray-700 dark:text-dark-text-secondary mb-8 leading-relaxed">
                 {service.longDescription}
               </p>
+              {(service.id === 3 || service.id === 10) && (
+                <div className="mb-8 rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-amber-50 dark:bg-amber-900/10 p-5">
+                  <p className="text-sm uppercase tracking-[0.2em] font-semibold text-amber-700 dark:text-amber-300 mb-2">
+                    Aclaración importante
+                  </p>
+                  {service.id === 3 ? (
+                    <p className="text-sm text-gray-700 dark:text-dark-text-secondary">
+                      Este servicio es para piezas editoriales/corporativas. Si buscas posts, animaciones o reels para Instagram/TikTok/Facebook, visita{' '}
+                      <Link href="/servicio/diseno-redes" className="font-semibold text-primary hover:underline">
+                        Diseños Unitarios para Redes
+                      </Link>
+                      .
+                    </p>
+                  ) : (
+                    <p className="text-sm text-gray-700 dark:text-dark-text-secondary">
+                      Este servicio es solo para contenido de redes sociales. Si necesitas flyers, catálogos o presentaciones, visita{' '}
+                      <Link href="/servicio/diseno-grafico" className="font-semibold text-primary hover:underline">
+                        Diseño Gráfico Editorial y Corporativo
+                      </Link>
+                      .
+                    </p>
+                  )}
+                </div>
+              )}
               {service.id === 5 && (
                 <div className="flex flex-wrap gap-3 mb-8">
                   <PlatformBadge label="WordPress" icon={siWordpress} />
@@ -468,70 +559,216 @@ export function ServicePage({ service }: ServicePageProps) {
                 </h2>
                 <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   {service.id === 1 
-                    ? 'Elige administración, diseños, o ambos con descuento'
+                    ? 'Comienza por un combo (Esencial, Pro o Full) y escala por etapas'
                     : 'Elige el plan que mejor se adapte a tus necesidades'
                   }
                 </p>
               </motion.div>
 
+              {service.id === 5 && (
+                <div className="mb-16 space-y-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                  >
+                    <article className="rounded-2xl border border-sky-200 dark:border-sky-900/40 bg-sky-50 dark:bg-sky-900/10 p-6">
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-sky-700 dark:text-sky-300 mb-3">
+                        Ruta 1
+                      </p>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Web Express
+                      </h3>
+                      <p className="text-gray-700 dark:text-dark-text-secondary">
+                        Para salir al mercado con velocidad, estructura profesional y autoadministración.
+                      </p>
+                    </article>
+                    <article className="rounded-2xl border border-primary/30 dark:border-primary/40 bg-primary/10 p-6">
+                      <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-3">
+                        Ruta 2
+                      </p>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        Web Growth
+                      </h3>
+                      <p className="text-gray-700 dark:text-dark-text-secondary">
+                        Para marcas que necesitan crecer con analítica, optimización y mejoras continuas.
+                      </p>
+                    </article>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary overflow-x-auto bg-white dark:bg-dark-bg"
+                  >
+                    <div className="min-w-[680px]">
+                      <div className="grid grid-cols-3 bg-gray-100 dark:bg-dark-bg-secondary text-xs uppercase tracking-[0.2em] font-semibold text-gray-600 dark:text-dark-text-secondary">
+                        <div className="px-4 py-3">Criterio</div>
+                        <div className="px-4 py-3">Web Express</div>
+                        <div className="px-4 py-3">Web Growth</div>
+                      </div>
+                      {WEB_COMPARISON_ROWS.map((row) => (
+                        <div
+                          key={row.label}
+                          className="grid grid-cols-3 border-t border-gray-100 dark:border-dark-bg-tertiary text-sm"
+                        >
+                          <div className="px-4 py-3 font-semibold text-gray-900 dark:text-white">{row.label}</div>
+                          <div className="px-4 py-3 text-gray-700 dark:text-dark-text-secondary">{row.express}</div>
+                          <div className="px-4 py-3 text-gray-700 dark:text-dark-text-secondary">{row.growth}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+                  >
+                    <article className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                        Integraciones Chile
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {WEB_INTEGRATIONS.map((item) => (
+                          <span
+                            key={item}
+                            className="inline-flex rounded-full border border-gray-200 dark:border-dark-bg-tertiary bg-gray-50 dark:bg-dark-bg-secondary px-3 py-1 text-xs font-semibold text-gray-700 dark:text-dark-text-secondary"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                    <article className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                        Incluye siempre
+                      </h4>
+                      <div className="space-y-2">
+                        {WEB_SCOPE_INCLUDED.map((item) => (
+                          <div key={item} className="flex items-start gap-2 text-sm text-gray-700 dark:text-dark-text-secondary">
+                            <Check size={16} className="text-primary flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                    <article className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                        No incluye
+                      </h4>
+                      <div className="space-y-2 mb-4">
+                        {WEB_SCOPE_NOT_INCLUDED.map((item) => (
+                          <div key={item} className="flex items-start gap-2 text-sm text-gray-700 dark:text-dark-text-secondary">
+                            <span className="mt-0.5 text-gray-500">-</span>
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {service.addons && service.addons.length > 0 && (
+                        <div className="rounded-xl border border-primary/20 bg-primary/5 p-3">
+                          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-2">
+                            Continuidad recomendada
+                          </p>
+                          <div className="space-y-1">
+                            {service.addons
+                              .filter((addon) => addon.billing === 'mensual')
+                              .slice(0, 3)
+                              .map((addon) => (
+                                <p key={addon.name} className="text-sm text-gray-700 dark:text-dark-text-secondary">
+                                  {addon.name}: <span className="font-semibold">{formatPrice(addon.price)}/mes</span>
+                                </p>
+                              ))}
+                          </div>
+                        </div>
+                      )}
+                    </article>
+                  </motion.div>
+                </div>
+              )}
+
               {/* Redes Sociales: Admin/Diseños/Combo Structure */}
               {service.id === 1 && (
                 <>
-                  {/* Administración Section */}
-                  <div className="mb-16">
-                    <motion.h3
-                      className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                    >
-                      📋 Solo Administración
-                    </motion.h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                    {service.plans.filter(p => p.name.includes('Administración')).map((plan, idx) => (
-                      <PlanCard key={idx} plan={plan} service={service} />
-                    ))}
-                  </div>
-                  </div>
-
-                  {/* Diseños Section */}
-                  <div className="mb-16">
-                    <motion.h3
-                      className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                    >
-                      🎨 Solo Diseños
-                    </motion.h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                      {service.plans.filter(p => p.name.includes('Diseños') && !p.name.includes('Combo')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} />
-                      ))}
+                  {comboPlans.length > 0 && (
+                    <div className="mb-16">
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-8 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
+                      >
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                          Planes combo recomendados
+                        </h3>
+                        <p className="text-gray-700 dark:text-dark-text-secondary">
+                          La forma más simple de elegir: Esencial, Pro o Full con gestión + diseño integrados.
+                        </p>
+                      </motion.div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                        {comboPlans.map((plan, idx) => (
+                          <PlanCard key={idx} plan={plan} service={service} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Combo Section */}
-                  <div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      className="mb-8 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
-                    >
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        ⭐ Combo: Admin + Diseños (Ahorra 15%)
-                      </h3>
-                      <p className="text-gray-700 dark:text-dark-text-secondary">
-                        La mejor opción: obtén administración y diseños con un descuento especial
-                      </p>
-                    </motion.div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                      {service.plans.filter(p => p.name.includes('Combo')).map((plan, idx) => (
-                        <PlanCard key={idx} plan={plan} service={service} />
-                      ))}
+                  {unitPlans.length > 0 && (
+                    <div className="mb-16">
+                      <motion.h3
+                        className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                      >
+                        Diseño y edición por pieza
+                      </motion.h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+                        {unitPlans.map((plan, idx) => (
+                          <PlanCard key={idx} plan={plan} service={service} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {adminPlans.length > 0 && (
+                    <div className="mb-16">
+                      <motion.h3
+                        className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                      >
+                        Solo administración mensual
+                      </motion.h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                        {adminPlans.map((plan, idx) => (
+                          <PlanCard key={idx} plan={plan} service={service} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {designPlans.length > 0 && (
+                    <div className="mb-16">
+                      <motion.h3
+                        className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                      >
+                        Packs de diseño mensual
+                      </motion.h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                        {designPlans.map((plan, idx) => (
+                          <PlanCard key={idx} plan={plan} service={service} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </>
               )}
 
@@ -641,7 +878,9 @@ export function ServicePage({ service }: ServicePageProps) {
                   </div>
 
                   <p className="text-gray-600 dark:text-dark-text-secondary mb-8">
-                    Inversión única. Sin cargos ocultos.
+                    {service.pricePrefix === 'desde' || service.billingModel === 'desde'
+                      ? 'Valor referencial de partida. La propuesta final se define según alcance.'
+                      : 'Inversión única. Sin cargos ocultos.'}
                   </p>
 
                   {service.oldPrice && (
@@ -652,6 +891,10 @@ export function ServicePage({ service }: ServicePageProps) {
 
                   <button
                     onClick={() => {
+                      if (service.pricePrefix === 'desde' || service.billingModel === 'desde') {
+                        openWhatsApp(service.whatsappMessage ?? `Hola, quiero cotizar el servicio ${service.title}`)
+                        return
+                      }
                       addItem({
                         id: `${service.id}-${service.title}`,
                         title: service.title,
@@ -662,7 +905,9 @@ export function ServicePage({ service }: ServicePageProps) {
                     }}
                     className="w-full py-4 px-6 bg-gradient-primary text-white font-bold rounded-xl hover:shadow-lg transition-all text-lg"
                   >
-                    Contratar servicio
+                    {service.pricePrefix === 'desde' || service.billingModel === 'desde'
+                      ? 'Solicitar propuesta'
+                      : 'Contratar servicio'}
                   </button>
 
                   <p className="text-sm text-gray-600 dark:text-dark-text-secondary mt-4">
@@ -674,6 +919,50 @@ export function ServicePage({ service }: ServicePageProps) {
           )}
         </div>
       </section>
+
+      {relatedServices.length > 0 && (
+        <section className="py-16 md:py-24 bg-gray-50 dark:bg-dark-bg-secondary">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-10"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white">
+                También te puede interesar
+              </h2>
+              <p className="text-gray-600 dark:text-dark-text-secondary">
+                Complementos recomendados para potenciar resultados con este servicio.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {relatedServices.map((related) => (
+                <Link
+                  key={related.id}
+                  href={`/servicio/${related.slug}`}
+                  className="group rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6 hover:shadow-lg transition-all"
+                >
+                  <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-2">
+                    {related.family}
+                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors mb-2">
+                    {related.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-dark-text-secondary mb-4">
+                    {related.shortDescription}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-primary font-semibold">
+                    Ver servicio
+                    <ChevronRight size={18} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section className="py-16 md:py-24">

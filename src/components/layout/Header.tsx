@@ -30,6 +30,7 @@ export function Header() {
   const navItems = [
     { label: 'Inicio', href: ROUTES.home },
     { label: 'Servicios', href: ROUTES.services },
+    { label: 'Cotizador', href: ROUTES.quoteBuilder },
     { label: 'Confianza', href: ROUTES.trust },
     { label: 'Contacto', href: ROUTES.contact },
   ]

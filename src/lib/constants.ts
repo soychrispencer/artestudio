@@ -42,7 +42,7 @@ export const ANIMATION_DURATION = {
 export const SERVICE_PRICES = {
   socialMedia: 127500, // Plan combo Esencial
   branding: 250000,
-  graphic: 35000,
+  graphic: 55000,
   socialDesign: 29000, // Diseño unitario para redes
   videoEditing: 35000,
   webDesign: 249990, // Landing Start
@@ -51,7 +51,7 @@ export const SERVICE_PRICES = {
   development: 490000,
   developmentPlatform: 1200000,
   developmentEnterprise: 3500000,
-  fullDigitalPresence: 890000,
+  fullDigitalPresence: 619000,
   audioEdition: 99000,
   mastering: 45000,
   audioPack: 135000,
@@ -93,9 +93,8 @@ export const BREAKPOINTS = {
 // Rutas de la aplicación
 export const ROUTES = {
   home: '/',
-  services: '/#services',
-  quoteBuilder: '/cotizador',
-  trust: '/#confianza',
+  services: '/#planes',
+  trust: '/#testimonials',
   contact: '/#contact',
   admin: '/admin',
   notFound: '/404',

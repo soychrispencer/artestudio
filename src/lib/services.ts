@@ -62,9 +62,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Redes Sociales',
     billingModel: 'mensual',
     title: 'Gestión de Redes Sociales',
-    subtitle: 'Planes combo claros para crecer con contenido, estrategia y comunidad',
+    subtitle: 'Planes Redes Esencial, Redes Pro y Redes Pro+ para crecer con contenido y estrategia',
     shortDescription:
-      'Estructura simplificada en 3 planes combo: Esencial, Pro y Full. También puedes contratar solo administración o solo diseño como opción secundaria.',
+      'Estructura simplificada en 3 planes combo: Redes Esencial, Redes Pro y Redes Pro+. También puedes contratar solo administración o solo diseño como opción secundaria.',
     longDescription:
       'Reestructuramos el servicio para facilitar la decisión: tres planes combo con foco en resultados y ahorro real. Cada plan integra gestión, contenido y community management. Si solo necesitas una parte del servicio, puedes optar por administración o diseño por separado en modalidad mensual.',
     icon: 'BrandInstagram',
@@ -73,7 +73,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     supportImage: 'https://images.pexels.com/photos/2055500/pexels-photo-2055500.jpeg?w=800&q=80&auto=format&fit=crop',
     plans: [
       {
-        name: 'Esencial - Combo',
+        name: 'Redes Esencial - Combo',
         price: 127500,
         billing: 'mensual',
         features: [
@@ -87,7 +87,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pro - Combo',
+        name: 'Redes Pro - Combo',
         price: 289000,
         oldPrice: 339980,
         billing: 'mensual',
@@ -102,7 +102,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Full - Combo',
+        name: 'Redes Pro+ - Combo',
         price: 485000,
         oldPrice: 569980,
         billing: 'mensual',
@@ -114,7 +114,6 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Acompañamiento estratégico mensual',
           'Mesa de crecimiento y priorización',
           'Gestión de ads orgánicos de apoyo',
-          'Community management intensivo',
         ],
       },
     ],
@@ -128,42 +127,42 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     addons: [
       {
-        name: 'Esencial - Solo Administración',
+        name: 'Redes Esencial - Solo Administración',
         description: 'Ideal si ya tienes diseñador interno y solo necesitas gestión.',
         price: 79990,
         billing: 'mensual',
         badge: 'Solo gestión',
       },
       {
-        name: 'Pro - Solo Administración',
+        name: 'Redes Pro - Solo Administración',
         description: 'Gestión estratégica con mayor frecuencia y análisis.',
         price: 199990,
         billing: 'mensual',
         badge: 'Solo gestión',
       },
       {
-        name: 'Full - Solo Administración',
+        name: 'Redes Pro+ - Solo Administración',
         description: 'Gestión intensiva para marcas con alto volumen.',
         price: 349990,
         billing: 'mensual',
         badge: 'Solo gestión',
       },
       {
-        name: 'Esencial - Solo Diseños',
+        name: 'Redes Esencial - Solo Diseños',
         description: 'Pack de piezas para redes sin gestión de comunidad.',
         price: 69990,
         billing: 'mensual',
         badge: 'Solo diseño',
       },
       {
-        name: 'Pro - Solo Diseños',
+        name: 'Redes Pro - Solo Diseños',
         description: 'Mayor volumen y variaciones por campaña.',
         price: 139990,
         billing: 'mensual',
         badge: 'Solo diseño',
       },
       {
-        name: 'Full - Solo Diseños',
+        name: 'Redes Pro+ - Solo Diseños',
         description: 'Diseño intensivo mensual para campañas continuas.',
         price: 219990,
         billing: 'mensual',
@@ -209,7 +208,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       'https://images.unsplash.com/photo-1611162616433-5f6f3be9b66c?w=500&h=500&fit=crop',
     ],
     cta: 'Activar Plan de Redes',
-    whatsappMessage: "Hola Artestudio, quiero contratar un plan combo de redes sociales. ¿Me ayudan a elegir entre Esencial, Pro y Full?",
+    whatsappMessage: "Hola Artestudio, quiero contratar un plan combo de redes sociales. ¿Me ayudan a elegir entre Redes Esencial, Redes Pro y Redes Pro+?",
     faq: [
       {
         question: '¿Cuál plan recomiendan para empezar?',
@@ -245,18 +244,18 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Diseño & Branding',
     billingModel: 'proyecto',
     title: 'Branding e Identidad Visual',
-    subtitle: 'Dos niveles claros: Esencial y Completa',
+    subtitle: 'Tres niveles claros: Branding Esencial, Branding Pro y Branding Pro+',
     shortDescription:
-      'Construimos tu identidad visual con estructura profesional. Elige nivel Esencial o Completa según etapa de negocio.',
+      'Construimos tu identidad visual con estructura profesional. Elige Branding Esencial, Branding Pro o Branding Pro+ según tu etapa.',
     longDescription:
-      'Tu marca debe ser reconocible, consistente y escalable. Por eso estructuramos branding en dos niveles: Esencial para emprendedores que parten con foco, y Completa para marcas que necesitan una identidad más robusta y aplicaciones avanzadas.',
+      'Tu marca debe ser reconocible, consistente y escalable. Por eso estructuramos branding en tres niveles: Branding Esencial para partir con foco, Branding Pro para consolidar la identidad y Branding Pro+ para marcas que necesitan una implementación avanzada y completa.',
     icon: 'Palette',
     color: '#9333EA',
     price: 250000,
     supportImage: 'https://images.pexels.com/photos/4480519/pexels-photo-4480519.jpeg?w=800&q=80&auto=format&fit=crop',
     plans: [
       {
-        name: 'Esencial',
+        name: 'Branding Esencial',
         price: 250000,
         recommended: true,
         features: [
@@ -268,7 +267,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Completa',
+        name: 'Branding Pro',
         price: 490000,
         features: [
           'Sistema visual completo y versátil',
@@ -277,6 +276,18 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Aplicaciones de marca (papelería y redes)',
           'Lineamientos de voz y tono visual',
           '3 rondas de revisión',
+        ],
+      },
+      {
+        name: 'Branding Pro+',
+        price: 790000,
+        features: [
+          'Sistema de marca integral para equipos y campañas',
+          'Logo principal + secundarios + adaptaciones avanzadas',
+          'Brandbook extendido (digital, print y uso comercial)',
+          'Aplicaciones clave para ventas y comunicación',
+          'Lineamientos de voz, tono y estilo de contenido',
+          '4 rondas de revisión',
         ],
       },
     ],
@@ -307,7 +318,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       },
     ],
     whyChooseUs: [
-      'Modelo de 2 niveles, sin confusión de compra',
+      'Modelo de 3 niveles, sin confusión de compra',
       'Estrategia visual aplicada al negocio',
       'Identidades memorables y funcionales',
       'Documentación clara para equipos y proveedores',
@@ -332,9 +343,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'El proyecto típicamente toma 2-3 semanas desde el primer descubrimiento hasta el manual final.',
       },
       {
-        question: '¿Cuál es la diferencia entre Esencial y Completa?',
+        question: '¿Cuál es la diferencia entre Branding Esencial, Branding Pro y Branding Pro+?',
         answer:
-          'Esencial entrega la base sólida de identidad; Completa incorpora sistema visual más amplio y aplicaciones avanzadas.',
+          'Branding Esencial entrega la base de identidad, Branding Pro amplía sistema y aplicaciones, y Branding Pro+ incorpora implementación avanzada para equipos y campañas.',
       },
       {
         question: '¿Tengo derechos de autor del logo?',
@@ -350,18 +361,18 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Diseño & Branding',
     billingModel: 'unitario',
     title: 'Diseño Gráfico Editorial y Corporativo',
-    subtitle: 'Presentaciones, impresos, catálogos y material de marca',
+    subtitle: 'Planes Gráfico Esencial, Gráfico Pro y Gráfico Pro+ para piezas editoriales y corporativas',
     shortDescription:
-      'Servicio enfocado en piezas editoriales, impresas y corporativas. No incluye posts/reels para redes sociales.',
+      'Servicio enfocado en piezas editoriales, impresas y corporativas con tramos Gráfico Esencial, Gráfico Pro y Gráfico Pro+. No incluye posts/reels para redes sociales.',
     longDescription:
-      'Este servicio cubre diseño gráfico fuera de redes sociales: presentaciones, catálogos, flyers, papelería y material comercial. Si necesitas contenido para Instagram, TikTok o Facebook (estático, animado o reels), el servicio correcto es Diseños Unitarios para Redes.',
+      'Este servicio cubre diseño gráfico fuera de redes sociales: presentaciones, catálogos, flyers, papelería y material comercial. Lo estructuramos en Gráfico Esencial, Gráfico Pro y Gráfico Pro+ para facilitar la decisión por nivel de alcance. Si necesitas contenido para Instagram, TikTok o Facebook (estático, animado o reels), el servicio correcto es Diseños Unitarios para Redes.',
     icon: 'Brush',
     color: '#EC4899',
     price: 55000,
     supportImage: 'https://images.pexels.com/photos/7484736/pexels-photo-7484736.jpeg?w=800&q=80&auto=format&fit=crop',
     plans: [
       {
-        name: 'Flyer / Afiche (impreso)',
+        name: 'Gráfico Esencial - Flyer / Afiche',
         price: 55000,
         features: [
           '1 pieza para impresión',
@@ -372,7 +383,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Presentación / Pitch Deck',
+        name: 'Gráfico Pro - Presentación / Pitch Deck',
         price: 90000,
         features: [
           'Hasta 10 láminas',
@@ -383,7 +394,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Menú o Carta Comercial',
+        name: 'Gráfico Pro - Menú o Carta Comercial',
         price: 90000,
         features: [
           'Hasta 4 páginas o secciones',
@@ -393,7 +404,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Papelería Corporativa',
+        name: 'Gráfico Pro+ - Papelería Corporativa',
         price: 160000,
         features: [
           'Tarjeta de presentación + hoja membretada + firma',
@@ -403,7 +414,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Catálogo / Brochure',
+        name: 'Gráfico Pro+ - Catálogo / Brochure',
         price: 180000,
         features: [
           'Hasta 8 páginas',
@@ -413,7 +424,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack Corporativo',
+        name: 'Gráfico Pro+ - Pack Corporativo',
         price: 290000,
         recommended: true,
         features: [
@@ -510,7 +521,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Producción Audiovisual',
     billingModel: 'unitario',
     title: 'Edición de Video',
-    subtitle: 'Podcasts, educativos, clips y redes sociales',
+    subtitle: 'Planes Video Esencial, Video Pro y Video Pro+ para contenido audiovisual',
     shortDescription:
       'Edición profesional para Reels, TikTok, YouTube y podcasts. Precios desde $35.000.',
     longDescription:
@@ -521,7 +532,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     supportImage: 'https://images.pexels.com/photos/2240772/pexels-photo-2240772.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
     plans: [
       {
-        name: 'Shorts (Reels/TikTok/Shorts)',
+        name: 'Video Esencial (Shorts)',
         price: 35000,
         features: [
           'Hasta 60 segundos (9:16)',
@@ -534,7 +545,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Social Pro',
+        name: 'Video Pro (Social)',
         price: 69000,
         features: [
           'Hasta 90 segundos',
@@ -547,7 +558,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Podcast / Educativo',
+        name: 'Video Pro+ (Podcast / Educativo)',
         price: 160000,
         features: [
           'Hasta 30 minutos finales',
@@ -560,7 +571,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack mensual 4 Shorts',
+        name: 'Video Esencial - Pack mensual',
         price: 125000,
         oldPrice: 140000,
         billing: 'mensual',
@@ -573,7 +584,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack mensual 8 Shorts',
+        name: 'Video Pro - Pack mensual',
         price: 235000,
         oldPrice: 280000,
         billing: 'mensual',
@@ -586,7 +597,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack mensual 12 Shorts',
+        name: 'Video Pro+ - Pack mensual',
         price: 330000,
         oldPrice: 420000,
         billing: 'mensual',
@@ -654,7 +665,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Incluye subtítulos?',
         answer:
-          'Sí, en el plan Social Pro y en videos educativos cuando se requiera.',
+          'Sí, en el plan Video Pro y en videos educativos cuando se requiera.',
       },
     ],
     relatedServices: [1, 8, 5],
@@ -665,18 +676,18 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Web & Desarrollo',
     billingModel: 'proyecto',
     title: 'Diseño Web y eCommerce',
-    subtitle: 'Dos rutas claras: Web Express o Web Growth con foco en conversión',
+    subtitle: 'Planes Web Esencial, Web Pro y Web Pro+ para escalar tu web con foco en conversión',
     shortDescription:
-      'Empieza con Web Express desde $249.990 o escala a Web Growth desde $490.000. Incluye mantención y administración mensual opcional.',
+      'Empieza con Web Esencial desde $249.990, escala a Web Pro desde $490.000 o activa Web Pro+ eCommerce. Incluye mantención y administración mensual opcional.',
     longDescription:
-      'No todas las webs requieren el mismo nivel de inversión. Por eso estructuramos este servicio en dos rutas: Web Express Autoadministrable para salir rápido con una base profesional, y Web Growth para negocios que necesitan convertir mejor, medir resultados y optimizar de forma continua. Trabajamos WordPress, WooCommerce, Shopify y Jumpseller según tu modelo de negocio, con continuidad técnica y de contenidos cuando la necesites.',
+      'No todas las webs requieren el mismo nivel de inversión. Por eso estructuramos este servicio en tres niveles: Web Esencial para salir rápido con base profesional, Web Pro para negocios que necesitan convertir mejor y medir resultados, y Web Pro+ para eCommerce con operación comercial más exigente. Trabajamos WordPress, WooCommerce, Shopify y Jumpseller según tu modelo de negocio, con continuidad técnica y de contenidos cuando la necesites.',
     icon: 'Brush',
     color: '#8B5CF6',
     price: 249990,
     supportImage: 'https://images.pexels.com/photos/16129700/pexels-photo-16129700.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
     plans: [
       {
-        name: 'Web Express Autoadministrable',
+        name: 'Web Esencial (Express)',
         price: 249990,
         features: [
           'Landing o micrositio de entrada (hasta 1 sección larga o 2 páginas)',
@@ -688,7 +699,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Web Growth de Conversión',
+        name: 'Web Pro (Growth)',
         price: 490000,
         recommended: true,
         features: [
@@ -701,7 +712,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'eCommerce Performance',
+        name: 'Web Pro+ (eCommerce)',
         price: 790000,
         features: [
           'Tienda online hasta 60 productos cargados',
@@ -724,28 +735,28 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     addons: [
       {
-        name: 'Mantención Técnica Esencial',
+        name: 'Web Esencial - Mantención Técnica',
         description: 'Actualizaciones, backups y monitoreo técnico mensual.',
         price: 59990,
         billing: 'mensual',
         badge: 'Mensual',
       },
       {
-        name: 'Mantención Técnica Pro',
+        name: 'Web Pro - Mantención Técnica',
         description: 'Mantenimiento técnico + soporte prioritario + hardening básico.',
         price: 99990,
         billing: 'mensual',
         badge: 'Mensual',
       },
       {
-        name: 'Administración de Contenidos',
+        name: 'Web Pro - Administración de Contenidos',
         description: 'Carga de contenido, ajustes visuales y publicación semanal.',
         price: 89990,
         billing: 'mensual',
         badge: 'Mensual',
       },
       {
-        name: 'Growth Web (SEO + CRO)',
+        name: 'Web Pro+ - Growth (SEO + CRO)',
         description: 'Mejoras continuas de conversión y posicionamiento mensual.',
         price: 169990,
         billing: 'mensual',
@@ -773,7 +784,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       },
     ],
     whyChooseUs: [
-      'Dos rutas claras para decidir sin fricción (Express vs Growth)',
+      'Estructura simple para decidir rápido (Web Esencial, Web Pro y Web Pro+)',
       'Enfoque en conversión y negocio, no solo estética',
       'Arquitectura web pensada para escalar por etapas',
       'Compatibilidad con WordPress, Shopify, WooCommerce y Jumpseller',
@@ -794,14 +805,14 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           'Absolutamente, te capacitamos para que puedas actualizar contenido fácilmente.',
       },
       {
-        question: '¿Cuál es la diferencia entre Web Express y Web Growth?',
+        question: '¿Cuál es la diferencia entre Web Esencial, Web Pro y Web Pro+?',
         answer:
-          'Web Express es para salir rápido con una base profesional autoadministrable. Web Growth incorpora estructura avanzada de conversión, analítica y escalabilidad para marcas en crecimiento.',
+          'Web Esencial te permite lanzar rápido con base profesional. Web Pro agrega arquitectura de conversión y analítica avanzada. Web Pro+ incorpora eCommerce y optimización comercial completa.',
       },
       {
-        question: '¿Puedo partir con Web Express y luego escalar?',
+        question: '¿Puedo partir con Web Esencial y luego escalar?',
         answer:
-          'Sí. Es una ruta recomendada para reducir riesgo: lanzas rápido, validas y luego evolucionas a una versión Growth.',
+          'Sí. Es una ruta recomendada para reducir riesgo: lanzas con Web Esencial, validas y luego evolucionas a Web Pro o Web Pro+ según resultados.',
       },
       {
         question: '¿Qué pasa después del lanzamiento?',
@@ -811,7 +822,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿Incluye tienda online?',
         answer:
-          'Sí, el plan eCommerce Performance contempla implementación de tienda online.',
+          'Sí, el plan Web Pro+ (eCommerce) contempla implementación de tienda online.',
       },
       {
         question: '¿Debo pagar mensualidades a la plataforma?',
@@ -834,9 +845,9 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       family: 'Web & Desarrollo',
       billingModel: 'desde',
       title: 'Desarrollo de Apps y Plataformas',
-      subtitle: 'Sistemas, apps y automatizaciones a la medida',
+      subtitle: 'Planes Desarrollo Esencial, Desarrollo Pro y Desarrollo Pro+ para sistemas a medida',
       shortDescription:
-        'Desarrollo a medida desde $490.000 para MVPs acotados. Escalamos según alcance e integraciones.',
+        'Desarrollo a medida desde $490.000 para MVPs acotados. Escala con Desarrollo Pro y Desarrollo Pro+ según alcance e integraciones.',
       longDescription:
         'Creamos productos digitales listos para operar: paneles internos, marketplaces, SaaS y automatizaciones de negocio. Partimos con un MVP acotado desde $490.000 y evolucionamos por etapas para reducir riesgo y validar más rápido.',
       icon: 'Code',
@@ -846,7 +857,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       supportImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80&auto=format&fit=crop',
       plans: [
         {
-          name: 'Starter',
+          name: 'Desarrollo Esencial',
           price: 490000,
           features: [
             'MVP funcional de plataforma (módulo clave de negocio)',
@@ -857,7 +868,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           ],
         },
         {
-          name: 'Plataforma',
+          name: 'Desarrollo Pro',
           price: 1200000,
           recommended: true,
           features: [
@@ -869,7 +880,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           ],
         },
         {
-          name: 'SaaS / Enterprise',
+          name: 'Desarrollo Pro+',
           price: 3500000,
           features: [
             'Plataforma SaaS escalable o arquitectura enterprise',
@@ -882,21 +893,21 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       ],
       addons: [
         {
-          name: 'Soporte Básico',
+          name: 'Soporte Desarrollo Esencial',
           description: 'Bugs, actualizaciones, backup mensual y soporte por ticket (48h).',
           price: 149990,
           billing: 'mensual',
           badge: 'Mensual',
         },
         {
-          name: 'Soporte Pro',
+          name: 'Soporte Desarrollo Pro',
           description: 'Incluye básico + nuevas funciones menores y monitoreo de uptime (24h).',
           price: 299990,
           billing: 'mensual',
           badge: 'Mensual',
         },
         {
-          name: 'Soporte Dedicado',
+          name: 'Soporte Desarrollo Pro+',
           description: '8-10 horas mensuales asignadas y gestión técnica continua.',
           price: 590000,
           billing: 'mensual',
@@ -952,7 +963,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       },
       {
         question: '¿Ofrecen mantenimiento?',
-        answer: 'Sí. Contamos con soporte Básico, Pro y Dedicado para continuidad técnica mensual.',
+        answer: 'Sí. Contamos con soporte Desarrollo Esencial, Desarrollo Pro y Desarrollo Pro+ para continuidad técnica mensual.',
       },
       ],
       relatedServices: [5, 11, 7],
@@ -963,30 +974,31 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       family: 'Packs Integrales',
       billingModel: 'proyecto',
       title: 'Presencia Digital Completa',
-      subtitle: 'Acompañamiento Integral para tu Negocio: Desde Identidad Hasta Lanzamiento',
+      subtitle: 'Planes Presencia Esencial, Presencia Pro y Presencia Pro+ para lanzar y escalar tu marca',
       shortDescription:
-        'Servicio integral para emprendedores y negocios: identidad visual, sitio web, redes sociales y estrategia de lanzamiento.',
+        'Servicio integral para emprendedores y negocios: identidad visual, sitio web, redes sociales y estrategia de lanzamiento. Presencia Esencial desde $619.000.',
       longDescription:
-        'Servicio end-to-end para emprendedores y empresas que necesitan presencia digital profesional desde cero. Creamos tu identidad visual, construimos tu sitio web, configuramos y administramos redes sociales y definimos la estrategia de lanzamiento. El precio es desde y el pack se ajusta según el alcance.',
+        'Servicio end-to-end para emprendedores y empresas que necesitan presencia digital profesional desde cero. Creamos tu identidad visual, construimos tu sitio web, configuramos y administramos redes sociales y definimos la estrategia de lanzamiento. Presencia Esencial parte desde $619.000 y combina producción + coordinación estratégica para acelerar el lanzamiento con una sola mesa de trabajo.',
       icon: 'Sparkles',
       color: '#10B981',
-      price: 890000,
+      price: 619000,
       supportImage: 'https://images.pexels.com/photos/3194519/pexels-photo-3194519.jpeg?w=800&q=80&auto=format&fit=crop',
       plans: [
         {
-          name: 'Pack Inicio (desde)',
-          price: 890000,
+          name: 'Presencia Esencial (desde)',
+          price: 619000,
           features: [
             'Identidad visual base (logo, paleta, tipografías)',
             'Sitio web hasta 5 páginas',
             'Configuración de redes sociales',
             '1 mes de administración esencial',
             'Pack inicial de piezas para redes',
+            'Dirección y coordinación integral del proyecto',
             'Asesoría de lanzamiento',
           ],
         },
         {
-          name: 'Pack Lanzamiento',
+          name: 'Presencia Pro',
           price: 1490000,
           recommended: true,
           features: [
@@ -999,7 +1011,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           ],
         },
         {
-          name: 'Pack Growth',
+          name: 'Presencia Pro+',
           price: 2490000,
           features: [
             'Identidad visual completa + aplicaciones',
@@ -1015,7 +1027,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         {
           name: 'Mes adicional de redes sociales',
           description: 'Extiende la administración mensual.',
-          price: 199990,
+          price: 169990,
           billing: 'mensual',
           badge: 'Mensual',
         },
@@ -1054,7 +1066,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       ],
       whyChooseUs: [
         'Solución integral: no necesitas múltiples proveedores',
-        'Ahorro vs contratar los servicios por separado',
+        'Presencia Esencial competitivo frente a contratación por separado',
         'Equipo multidisciplinario especializado (diseño, web, marketing)',
         'Partner estratégico que te acompaña en todas las etapas',
         'Enfoque en resultados medibles y crecimiento sostenible',
@@ -1080,6 +1092,10 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
           question: '¿Puedo partir con un servicio y sumar el pack después?',
           answer: 'Sí, podemos iniciar con branding o web y luego completar el paquete cuando lo necesites.',
         },
+        {
+          question: '¿Qué valor agrega el pack frente a contratar por separado?',
+          answer: 'Además de la producción, integras coordinación estratégica, priorización de entregables y un lanzamiento centralizado con una sola mesa de trabajo.',
+        },
       ],
       relatedServices: [1, 2, 5, 11],
     },
@@ -1089,15 +1105,51 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Producción Audiovisual',
     billingModel: 'unitario',
     title: 'Edición & Mezcla de Audio',
-    subtitle: 'Audio Profesional para Cualquier Proyecto',
+    subtitle: 'Planes Audio Esencial, Audio Pro y Audio Pro+ para edición y mezcla',
     shortDescription:
-      'Sonido profesional para podcasts, videos o música. Desde $99.000 por episodio, con Pack Audio Completo desde $135.000.',
+      'Sonido profesional para podcasts, videos o música. Audio Esencial desde $99.000, Audio Pro para episodios extendidos y Audio Pro+ para producciones complejas.',
     longDescription:
-      'El audio es fundamental para crear contenido profesional. Desde podcasts hasta videos, ofrecemos edición y mezcla de audio de calidad estudio. Tu contenido sonará tan bueno como se ve.',
+      'El audio es fundamental para crear contenido profesional. Desde podcasts hasta videos, ofrecemos edición y mezcla de calidad estudio en tres niveles: Audio Esencial, Audio Pro y Audio Pro+. Tu contenido sonará tan bien como se ve y con una ruta clara para escalar por complejidad.',
     icon: 'Music',
     color: '#06B6D4',
     price: 99000,
     supportImage: 'https://images.pexels.com/photos/34228406/pexels-photo-34228406.jpeg?w=800&q=80&auto=format&fit=crop',
+    plans: [
+      {
+        name: 'Audio Esencial',
+        price: 99000,
+        features: [
+          'Edición y limpieza de episodio hasta 30 minutos',
+          'Corrección de ruido, clics y respiraciones excesivas',
+          'Nivelación de volumen y ecualización base',
+          'Exportación en 1 formato final',
+          '2 rondas de revisión',
+        ],
+      },
+      {
+        name: 'Audio Pro',
+        price: 149000,
+        recommended: true,
+        features: [
+          'Edición y mezcla de episodio hasta 60 minutos',
+          'Trabajo multicapa (voz, música, efectos)',
+          'Compresión y tratamiento tonal más avanzado',
+          'Entrega en 2 formatos (streaming y archivo)',
+          '2 rondas de revisión',
+        ],
+      },
+      {
+        name: 'Audio Pro+',
+        price: 229000,
+        features: [
+          'Edición y mezcla avanzada para piezas largas o complejas',
+          'Tratamiento detallado por segmentos y escenas',
+          'Normalización por plataforma (podcast/video)',
+          'Entrega final + versión de respaldo',
+          '3 rondas de revisión',
+        ],
+      },
+    ],
     addons: [
       {
         name: 'Pack Audio Completo (Edición + Mastering)',
@@ -1138,6 +1190,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     whyChooseUs: [
       'Equipo profesional de audio',
+      'Tres niveles claros para elegir según complejidad',
       'Calidad de estudio en cada proyecto',
       'Rápido turnaround',
       'Múltiples formatos de salida',
@@ -1155,7 +1208,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       {
         question: '¿El precio es por episodio o por proyecto?',
         answer:
-          'Es un precio base por episodio de hasta 30 minutos. Si el proyecto es más largo o complejo, ajustamos la cotización.',
+          'Audio Esencial considera hasta 30 minutos. Para proyectos más largos o complejos recomendamos Audio Pro o Audio Pro+.',
       },
       {
         question: '¿Puedo hacer cambios después de entregado?',
@@ -1176,15 +1229,49 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Producción Audiovisual',
     billingModel: 'unitario',
     title: 'Mastering de Audio',
-    subtitle: 'El Toque Final Profesional',
+    subtitle: 'Planes Mastering Esencial, Mastering Pro y Mastering Pro+',
     shortDescription:
-      'El toque final profesional para audio. Desde $45.000 por canción o en Pack Audio Completo desde $135.000.',
+      'El toque final profesional para tus tracks. Mastering Esencial desde $45.000, Mastering Pro para EPs y Mastering Pro+ para álbumes.',
     longDescription:
-      'El mastering es el último paso crítico en la producción de audio. Nos aseguramos de que tu música suene excepcional en todos los dispositivos y plataformas. Es la diferencia entre un audio bueno y uno profesional.',
+      'El mastering es el último paso crítico en la producción de audio. Lo estructuramos en Mastering Esencial, Mastering Pro y Mastering Pro+ para adaptarnos a singles, EPs y lanzamientos completos con estándar profesional en todas las plataformas.',
     icon: 'AdjustmentsHorizontal',
     color: '#10B981',
     price: 45000,
     supportImage: 'https://images.pexels.com/photos/8198631/pexels-photo-8198631.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1',
+    plans: [
+      {
+        name: 'Mastering Esencial',
+        price: 45000,
+        features: [
+          'Mastering de 1 track',
+          'EQ, compresión y limitación profesional',
+          'Entrega en WAV y MP3',
+          '2 rondas de revisión',
+        ],
+      },
+      {
+        name: 'Mastering Pro',
+        price: 119000,
+        recommended: true,
+        features: [
+          'Mastering de EP hasta 3 tracks',
+          'Criterio de coherencia entre canciones',
+          'Entrega optimizada por plataforma',
+          '2 rondas de revisión por track',
+        ],
+      },
+      {
+        name: 'Mastering Pro+',
+        price: 279000,
+        features: [
+          'Mastering de álbum hasta 8 tracks',
+          'Nivelación integral de loudness y color sonoro',
+          'Preparación multi-formato para distribución',
+          'Metadatos base y checklist de publicación',
+          '2 rondas de revisión por track',
+        ],
+      },
+    ],
     addons: [
       {
         name: 'Pack Audio Completo (Edición + Mastering)',
@@ -1225,6 +1312,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     ],
     whyChooseUs: [
       'Ingenieros de mastering certificados',
+      'Tres niveles para singles, EPs y álbumes',
       'Sala de monitoreo calibrada profesionalmente',
       'Referencia en múltiples sistemas',
       'Conocimiento de estándares de plataforma',
@@ -1246,7 +1334,8 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       },
       {
         question: '¿Para cuántas canciones es?',
-        answer: 'El precio es por canción. Ofrecemos descuentos para álbumes completos.',
+        answer:
+          'Mastering Esencial cubre 1 track; Mastering Pro cubre EP hasta 3 tracks; Mastering Pro+ cubre álbum hasta 8 tracks.',
       },
       {
         question: '¿Puedo contratar edición + mastering juntos?',
@@ -1261,7 +1350,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Redes Sociales',
     billingModel: 'unitario',
     title: 'Diseños Unitarios para Redes',
-    subtitle: 'Solo contenido para Instagram, TikTok y Facebook',
+    subtitle: 'Planes Redes Esencial, Redes Pro y Redes Pro+ para contenido unitario',
     shortDescription:
       'Servicio específico de contenido para redes sociales: estático, animado y reel gráfico. No incluye impresos ni piezas editoriales.',
     longDescription:
@@ -1272,7 +1361,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     supportImage: 'https://images.pexels.com/photos/187041/pexels-photo-187041.jpeg?w=800&q=80&auto=format&fit=crop',
     plans: [
       {
-        name: 'Esencial - Estático',
+        name: 'Redes Esencial - Estático',
         price: 29000,
         features: [
           'Post, story o banner en 1 formato',
@@ -1282,7 +1371,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pro - Animado',
+        name: 'Redes Pro - Animado',
         price: 59000,
         features: [
           'Post o story animado hasta 15 segundos',
@@ -1292,7 +1381,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Full - Reel Gráfico',
+        name: 'Redes Pro+ - Reel Gráfico',
         price: 89000,
         features: [
           'Pieza de motion hasta 45 segundos',
@@ -1302,7 +1391,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack 3 Estáticos',
+        name: 'Redes Esencial - Pack 3 Estáticos',
         price: 79000,
         features: [
           '3 piezas coherentes por campaña',
@@ -1312,7 +1401,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack 3 Animados',
+        name: 'Redes Pro - Pack 3 Animados',
         price: 149000,
         features: [
           '3 piezas animadas de campaña',
@@ -1322,7 +1411,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pack Lanzamiento',
+        name: 'Redes Pro+ - Pack Lanzamiento',
         price: 219000,
         recommended: true,
         features: [
@@ -1394,7 +1483,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     family: 'Web & Desarrollo',
     billingModel: 'mensual',
     title: 'Mantención y Administración Web',
-    subtitle: 'Soporte técnico y gestión de contenidos para tu sitio',
+    subtitle: 'Planes Mantención Esencial, Mantención Pro y Mantención Pro+ para continuidad web',
     shortDescription:
       'Servicio recurrente para mantener tu web actualizada, segura y activa. Planes desde $49.990/mes.',
     longDescription:
@@ -1405,7 +1494,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
     supportImage: 'https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?w=800&q=80&auto=format&fit=crop',
     plans: [
       {
-        name: 'Esencial',
+        name: 'Mantención Esencial',
         price: 49990,
         billing: 'mensual',
         features: [
@@ -1416,7 +1505,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Pro',
+        name: 'Mantención Pro',
         price: 89990,
         billing: 'mensual',
         recommended: true,
@@ -1428,7 +1517,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         ],
       },
       {
-        name: 'Full',
+        name: 'Mantención Pro+',
         price: 149990,
         billing: 'mensual',
         features: [
@@ -1506,7 +1595,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
       },
       {
         question: '¿Incluye SEO?',
-        answer: 'El plan Full puede incorporar mejoras continuas de contenido y estructura con enfoque SEO.',
+        answer: 'El plan Mantención Pro+ puede incorporar mejoras continuas de contenido y estructura con enfoque SEO.',
       },
     ],
     relatedServices: [5, 6, 7],

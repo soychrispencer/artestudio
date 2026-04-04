@@ -42,7 +42,7 @@ export function Footer() {
 
   return (
     <footer
-      id="contact"
+      id="site-footer"
       className="relative overflow-hidden bg-gray-50 dark:bg-dark-bg-secondary border-t border-gray-200 dark:border-dark-bg-tertiary"
     >
       <div className="absolute inset-0 ai-grid opacity-20 dark:opacity-15" />
@@ -91,23 +91,24 @@ export function Footer() {
             <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Navegación</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
               <li>
-                <Link href="#home" className="hover:text-primary transition-smooth">
+                <Link href="/#home" className="hover:text-primary transition-smooth">
                   Inicio
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-primary transition-smooth">
+                <Link href="/#services" className="hover:text-primary transition-smooth">
                   Servicios
                 </Link>
               </li>
+
               <li>
-                <Link href="/cotizador" className="hover:text-primary transition-smooth">
-                  Cotizador
+                <Link href="/#confianza" className="hover:text-primary transition-smooth">
+                  Confianza
                 </Link>
               </li>
               <li>
-                <Link href="#confianza" className="hover:text-primary transition-smooth">
-                  Confianza
+                <Link href="/#contact" className="hover:text-primary transition-smooth">
+                  Contacto
                 </Link>
               </li>
             </ul>
@@ -117,10 +118,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Servicios</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
-              <li><a href="#services" className="hover:text-primary transition-smooth">Redes Sociales</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Diseño & Branding</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Producción Audiovisual</a></li>
-              <li><a href="#services" className="hover:text-primary transition-smooth">Web & Desarrollo</a></li>
+              <li><Link href="/#services" className="hover:text-primary transition-smooth">Redes Sociales</Link></li>
+              <li><Link href="/#services" className="hover:text-primary transition-smooth">Diseño & Branding</Link></li>
+              <li><Link href="/#services" className="hover:text-primary transition-smooth">Producción Audiovisual</Link></li>
+              <li><Link href="/#services" className="hover:text-primary transition-smooth">Web & Desarrollo</Link></li>
             </ul>
           </div>
 

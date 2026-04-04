@@ -17,6 +17,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SERVICES_DETAILS, type ServiceDetail } from '@/lib/services'
 import { formatPrice } from '@/lib/utils'
+import { trackEvent } from '@/lib/analytics'
 
 const FAMILY_ORDER: ServiceDetail['family'][] = [
   'Redes Sociales',
@@ -147,7 +148,11 @@ export function ServicesSection() {
                     }}
                     className="h-full"
                   >
-                    <Link href={`/servicio/${service.slug}`} className="group block h-full">
+                    <Link
+                      href={`/servicio/${service.slug}`}
+                      onClick={() => trackEvent('services_card_click', { service_slug: service.slug })}
+                      className="group block h-full"
+                    >
                       <article className="relative h-full overflow-hidden rounded-3xl border border-gray-200/80 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg transition-all duration-300 hover:shadow-xl hover:border-primary/40">
                         {service.supportImage && (
                           <div className="relative h-40 overflow-hidden">

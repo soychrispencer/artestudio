@@ -9,6 +9,7 @@ import { BrandWhatsapp, Menu2, ShoppingCart, X } from 'tabler-icons-react'
 import { openWhatsApp } from '@/lib/utils'
 import Image from 'next/image'
 import { useCart } from '@/components/cart/CartProvider'
+import { trackEvent } from '@/lib/analytics'
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -30,9 +31,7 @@ export function Header() {
   const navItems = [
     { label: 'Inicio', href: ROUTES.home },
     { label: 'Servicios', href: ROUTES.services },
-    { label: 'Cotizador', href: ROUTES.quoteBuilder },
     { label: 'Confianza', href: ROUTES.trust },
-    { label: 'Contacto', href: ROUTES.contact },
   ]
 
   const handleHomeClick = (event: MouseEvent) => {
@@ -78,9 +77,8 @@ export function Header() {
               />
             </div>
           </Link>
-
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 px-6 py-2 rounded-xl border border-gray-200/70 dark:border-white/10 bg-white/70 dark:bg-dark-bg-secondary/70 backdrop-blur-md">
+          <nav className="hidden md:flex items-center gap-5 px-5 py-2 rounded-xl border border-gray-200/70 dark:border-white/10 bg-white/70 dark:bg-dark-bg-secondary/70 backdrop-blur-md">
             {navItems.map((item) =>
               (item.href.startsWith('#') || item.href.startsWith('/#')) ? (
                 <a
@@ -116,7 +114,10 @@ export function Header() {
           <div className="flex items-center gap-4 h-16">
             <ThemeToggle isScrolled={scrolled} />
             <button
-              onClick={openCart}
+              onClick={() => {
+                trackEvent('header_cart_click')
+                openCart()
+              }}
               className={`relative inline-flex items-center justify-center w-10 h-10 rounded-xl transition-colors border ${
                 scrolled
                   ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary border-gray-200 dark:border-white/10'
@@ -132,12 +133,13 @@ export function Header() {
               )}
             </button>
             <button
-              onClick={() =>
+              onClick={() => {
+                trackEvent('header_cta_click', { target: 'whatsapp_desktop' })
                 openWhatsApp(
                   CONTACT_INFO.whatsapp,
                   'Hola, quiero más información sobre sus servicios.'
                 )
-              }
+              }}
               className="hidden sm:inline-flex btn-whatsapp px-6 py-2.5 h-10"
             >
               <BrandWhatsapp className="w-4 h-4" />
@@ -205,12 +207,13 @@ export function Header() {
               )
             )}
             <button
-              onClick={() =>
+              onClick={() => {
+                trackEvent('header_cta_click', { target: 'whatsapp_mobile' })
                 openWhatsApp(
                   CONTACT_INFO.whatsapp,
                   'Hola, quiero más información sobre sus servicios.'
                 )
-              }
+              }}
               className="btn-whatsapp w-full px-4 py-2"
             >
               <BrandWhatsapp className="w-4 h-4" />

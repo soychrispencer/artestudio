@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { BrandBehance, CircleCheck } from 'tabler-icons-react'
 import { SOCIAL_LINKS } from '@/lib/constants'
+import Link from 'next/link'
+import { trackEvent } from '@/lib/analytics'
 
 export function PortfolioSection() {
   const principles = [
@@ -51,15 +53,25 @@ export function PortfolioSection() {
         </motion.div>
 
         <div className="flex justify-center mb-10">
-          <a
-            href={SOCIAL_LINKS.behance}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline px-6 py-3"
-          >
-            <BrandBehance className="w-5 h-5" />
-            Ver trabajos en Behance
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={SOCIAL_LINKS.behance}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('trust_cta_click', { target: 'behance' })}
+              className="btn-outline px-6 py-3"
+            >
+              <BrandBehance className="w-5 h-5" />
+              Ver trabajos en Behance
+            </a>
+            <Link
+              href="/cotizador"
+              onClick={() => trackEvent('trust_cta_click', { target: 'cotizador' })}
+              className="btn-whatsapp px-6 py-3"
+            >
+              Construir propuesta
+            </Link>
+          </div>
         </div>
 
         {/* Principles Grid */}

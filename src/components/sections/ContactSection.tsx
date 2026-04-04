@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BrandWhatsapp } from 'tabler-icons-react'
 import { CONTACT_INFO } from '@/lib/constants'
+import { trackEvent } from '@/lib/analytics'
 
 export function ContactSection() {
   return (
@@ -36,6 +37,7 @@ export function ContactSection() {
               href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\D/g, '')}?text=Hola%20artestudio%21%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('contact_cta_click', { target: 'whatsapp' })}
               className="btn-whatsapp px-8 py-4 group"
             >
               <BrandWhatsapp className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

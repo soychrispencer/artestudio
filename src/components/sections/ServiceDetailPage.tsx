@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
 import { useCart } from '@/components/cart/CartProvider'
 import { siShopify, siWoocommerce, siWordpress } from 'simple-icons/icons'
+import { trackEvent } from '@/lib/analytics'
 
 function openWhatsApp(message: string) {
   const phoneNumber = CONTACT_INFO.whatsapp.replace(/\D/g, '')
@@ -133,6 +134,12 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
         {/* CTA Button */}
         <button
           onClick={() => {
+            trackEvent('service_plan_add_to_cart', {
+              service_slug: service.slug,
+              plan: plan.name,
+              value: plan.price,
+              billing: plan.billing ?? 'one_time',
+            })
             addItem({
               id: `${service.id}-${plan.name}`,
               title: `${service.title} - ${plan.name}`,
@@ -189,6 +196,11 @@ function AddonCard({ addon }: { addon: any }) {
       </div>
       <button
         onClick={() => {
+          trackEvent('service_addon_add_to_cart', {
+            addon: addon.name,
+            value: addon.price,
+            billing: addon.billing ?? 'one_time',
+          })
           addItem({
             id: `addon-${addon.name}`,
             title: addon.name,
@@ -246,12 +258,12 @@ const WEB_COMPARISON_ROWS = [
   {
     label: 'Objetivo',
     express: 'Lanzar rápido y profesional',
-    growth: 'Escalar conversiones y rendimiento',
+    growth: 'Escalar conversiones y rendimiento (Pro/Pro+)',
   },
   {
     label: 'Alcance',
     express: 'Landing o micrositio',
-    growth: 'Sitio corporativo o eCommerce completo',
+    growth: 'Sitio corporativo (Pro) o eCommerce completo (Pro+)',
   },
   {
     label: 'Analítica',
@@ -341,7 +353,10 @@ export function ServicePage({ service }: ServicePageProps) {
             {/* CTA Buttons - primary para acción principal */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => openWhatsApp(`Hola, me interesa el servicio de ${service.title}`)}
+                onClick={() => {
+                  trackEvent('service_primary_cta_click', { service_slug: service.slug, target: 'whatsapp' })
+                  openWhatsApp(`Hola, me interesa el servicio de ${service.title}`)
+                }}
                 className="btn-whatsapp px-8 py-4"
               >
                 <BrandWhatsapp size={20} />
@@ -559,7 +574,7 @@ export function ServicePage({ service }: ServicePageProps) {
                 </h2>
                 <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   {service.id === 1 
-                    ? 'Comienza por un combo (Esencial, Pro o Full) y escala por etapas'
+                    ? 'Comienza por un combo (Redes Esencial, Redes Pro o Redes Pro+) y escala por etapas'
                     : 'Elige el plan que mejor se adapte a tus necesidades'
                   }
                 </p>
@@ -575,10 +590,10 @@ export function ServicePage({ service }: ServicePageProps) {
                   >
                     <article className="rounded-2xl border border-sky-200 dark:border-sky-900/40 bg-sky-50 dark:bg-sky-900/10 p-6">
                       <p className="text-xs uppercase tracking-[0.2em] font-semibold text-sky-700 dark:text-sky-300 mb-3">
-                        Ruta 1
+                        Plan Esencial
                       </p>
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Web Express
+                        Web Esencial
                       </h3>
                       <p className="text-gray-700 dark:text-dark-text-secondary">
                         Para salir al mercado con velocidad, estructura profesional y autoadministración.
@@ -586,10 +601,10 @@ export function ServicePage({ service }: ServicePageProps) {
                     </article>
                     <article className="rounded-2xl border border-primary/30 dark:border-primary/40 bg-primary/10 p-6">
                       <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-3">
-                        Ruta 2
+                        Plan Pro
                       </p>
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        Web Growth
+                        Web Pro
                       </h3>
                       <p className="text-gray-700 dark:text-dark-text-secondary">
                         Para marcas que necesitan crecer con analítica, optimización y mejoras continuas.
@@ -606,8 +621,8 @@ export function ServicePage({ service }: ServicePageProps) {
                     <div className="min-w-[680px]">
                       <div className="grid grid-cols-3 bg-gray-100 dark:bg-dark-bg-secondary text-xs uppercase tracking-[0.2em] font-semibold text-gray-600 dark:text-dark-text-secondary">
                         <div className="px-4 py-3">Criterio</div>
-                        <div className="px-4 py-3">Web Express</div>
-                        <div className="px-4 py-3">Web Growth</div>
+                        <div className="px-4 py-3">Web Esencial</div>
+                        <div className="px-4 py-3">Web Pro / Web Pro+</div>
                       </div>
                       {WEB_COMPARISON_ROWS.map((row) => (
                         <div
@@ -683,6 +698,13 @@ export function ServicePage({ service }: ServicePageProps) {
                                 </p>
                               ))}
                           </div>
+                          <Link
+                            href="/servicio/mantencion-web"
+                            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                          >
+                            Ver planes completos de mantención
+                            <ChevronRight size={16} />
+                          </Link>
                         </div>
                       )}
                     </article>
@@ -705,7 +727,7 @@ export function ServicePage({ service }: ServicePageProps) {
                           Planes combo recomendados
                         </h3>
                         <p className="text-gray-700 dark:text-dark-text-secondary">
-                          La forma más simple de elegir: Esencial, Pro o Full con gestión + diseño integrados.
+                          La forma más simple de elegir: Redes Esencial, Redes Pro o Redes Pro+ con gestión + diseño integrados.
                         </p>
                       </motion.div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -892,9 +914,11 @@ export function ServicePage({ service }: ServicePageProps) {
                   <button
                     onClick={() => {
                       if (service.pricePrefix === 'desde' || service.billingModel === 'desde') {
+                        trackEvent('service_primary_cta_click', { service_slug: service.slug, target: 'proposal' })
                         openWhatsApp(service.whatsappMessage ?? `Hola, quiero cotizar el servicio ${service.title}`)
                         return
                       }
+                      trackEvent('service_primary_cta_click', { service_slug: service.slug, target: 'add_to_cart', value: service.price })
                       addItem({
                         id: `${service.id}-${service.title}`,
                         title: service.title,
@@ -942,6 +966,12 @@ export function ServicePage({ service }: ServicePageProps) {
                 <Link
                   key={related.id}
                   href={`/servicio/${related.slug}`}
+                  onClick={() =>
+                    trackEvent('service_related_click', {
+                      from_service_slug: service.slug,
+                      to_service_slug: related.slug,
+                    })
+                  }
                   className="group rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6 hover:shadow-lg transition-all"
                 >
                   <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-2">

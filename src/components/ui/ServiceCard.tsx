@@ -25,7 +25,8 @@ export function ServiceCard({ service }: { service: Service }) {
     addItem({
       id: `card-${service.title}`,
       title: service.title,
-      price: Number(service.price),
+      setup: Number(service.price),
+      monthly: 0,
       quantity: 1,
     })
     openCart()

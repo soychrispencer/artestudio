@@ -11,6 +11,7 @@ import {
 import { formatPrice } from '@/lib/utils'
 import { trackEvent } from '@/lib/analytics'
 import { CONTACT_INFO } from '@/lib/constants'
+import { useCart as useCartFromProvider } from '@/components/cart/CartProvider'
 
 // ── Helpers ──────────────────────────────────
 
@@ -21,7 +22,8 @@ function openWhatsApp(message: string) {
 
 // ── Plan Card ────────────────────────────────
 
-function PlanCard({ plan, vertical }: { plan: PricingPlan; vertical: ServiceVertical }) {
+function PlanCard({ plan, vertical, activeConfig }: { plan: PricingPlan; vertical: ServiceVertical; activeConfig: any }) {
+  const { addItem, openCart } = useCartFromProvider()
   const [expanded, setExpanded] = useState(false)
   const hasMonthly = plan.monthly > 0
 
@@ -139,18 +141,38 @@ function PlanCard({ plan, vertical }: { plan: PricingPlan; vertical: ServiceVert
           )}
         </AnimatePresence>
 
-        {/* CTA */}
-        <button
-          onClick={handleCta}
-          className={`w-full py-3.5 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
-            plan.recommended
-              ? 'bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]'
-              : 'border border-gray-200 dark:border-dark-bg-tertiary text-gray-900 dark:text-white hover:border-primary hover:text-primary'
-          }`}
-        >
-          <BrandWhatsapp className="w-4 h-4" />
-          {plan.cta}
-        </button>
+        {/* CTA Group */}
+        <div className="flex flex-col gap-2 mt-auto">
+          <button
+            onClick={() => {
+              addItem({
+                id: `${vertical}-${plan.tier}`,
+                title: `${vertical === 'pack' ? 'Pack' : ''} ${plan.name} (${activeConfig.label})`,
+                setup: plan.setup,
+                monthly: plan.monthly,
+                quantity: 1,
+              })
+              openCart()
+              trackEvent('pricing_cart_add', { tier: plan.tier, vertical })
+            }}
+            className={`w-full py-3.5 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
+              plan.recommended
+                ? 'bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]'
+                : 'border border-primary text-primary hover:bg-primary/5 dark:hover:bg-primary/10'
+            }`}
+          >
+            <span>Contratar en línea</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={handleCta}
+            className="w-full py-2.5 px-6 rounded-xl font-semibold text-xs flex items-center justify-center gap-2 text-gray-500 hover:text-primary transition-colors"
+          >
+            <BrandWhatsapp className="w-4 h-4" />
+            Hablar con experto
+          </button>
+        </div>
       </div>
     </motion.div>
   )
@@ -258,7 +280,7 @@ export function PricingSection() {
             transition={{ duration: 0.3 }}
           >
             {activeConfig.plans.map((plan) => (
-              <PlanCard key={plan.tier} plan={plan} vertical={activeVertical} />
+              <PlanCard key={plan.tier} plan={plan} vertical={activeVertical} activeConfig={activeConfig} />
             ))}
           </motion.div>
         </AnimatePresence>

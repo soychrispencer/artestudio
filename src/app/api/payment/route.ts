@@ -21,26 +21,41 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Faltan datos requeridos' }, { status: 400 })
     }
 
+    // Desglosar montos para decidir entre Pago Único o Suscripción
+    let totalSetup = 0
+    let totalMonthly = 0
+    const titles: string[] = []
+
     const items = itemsInput.map((item: any) => {
       const titleStr = String(item.title ?? '').trim()
       if (titleStr.length === 0 || titleStr.length > MAX_TITLE_LENGTH) {
         throw new Error(`El título debe tener entre 1 y ${MAX_TITLE_LENGTH} caracteres`)
       }
+      titles.push(titleStr)
 
-      const priceNum = Number(item.price)
-      if (Number.isNaN(priceNum) || priceNum <= 0 || priceNum > MAX_PRICE) {
-        throw new Error('Precio inválido')
+      const setupNum = Number(item.setup ?? item.price ?? 0)
+      const monthlyNum = Number(item.monthly ?? 0)
+      const quantityNum = Math.floor(Number(item.quantity ?? 1))
+
+      if (Number.isNaN(setupNum) || setupNum < 0 || setupNum > MAX_PRICE) {
+        throw new Error('Monto de setup inválido')
       }
-
-      const quantityNum = Math.floor(Number(item.quantity))
+      if (Number.isNaN(monthlyNum) || monthlyNum < 0 || monthlyNum > MAX_PRICE) {
+        throw new Error('Monto mensual inválido')
+      }
       if (Number.isNaN(quantityNum) || quantityNum < MIN_QUANTITY || quantityNum > MAX_QUANTITY) {
         throw new Error(`Cantidad debe estar entre ${MIN_QUANTITY} y ${MAX_QUANTITY}`)
       }
 
+      totalSetup += setupNum * quantityNum
+      totalMonthly += monthlyNum * quantityNum
+
       return {
         title: titleStr,
         quantity: quantityNum,
-        unit_price: priceNum,
+        unit_price: setupNum + monthlyNum, // Para reporte básico
+        setup: setupNum,
+        monthly: monthlyNum,
       }
     })
 
@@ -50,16 +65,61 @@ export async function POST(request: NextRequest) {
     }
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-
-    const preferenceBody: Record<string, unknown> = {
-      items,
-    }
-
-    if (orderId) {
-      preferenceBody.external_reference = orderId
-    }
-
     const email = typeof customer.email === 'string' ? customer.email.trim() : ''
+
+    // ─────────────────────────────────────────────
+    // CASO A: SUSCRIPCIÓN (Si hay cobro mensual)
+    // ─────────────────────────────────────────────
+    if (totalMonthly > 0) {
+      const preapprovalBody = {
+        reason: titles.join(' + ').substring(0, 100),
+        external_reference: orderId,
+        payer_email: email || 'test_user_123@testuser.com', // fallback sandbox
+        auto_recurring: {
+          frequency: 1,
+          frequency_type: 'months',
+          transaction_amount: totalMonthly,
+          currency_id: 'CLP',
+        },
+        back_url: siteUrl,
+        status: 'pending',
+        setup_fee: totalSetup > 0 ? totalSetup : undefined,
+      }
+
+      const resp = await fetch('https://api.mercadopago.com/preapproval', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(preapprovalBody),
+      })
+
+      if (!resp.ok) {
+        const errorData = await resp.json()
+        console.error('MercadoPago Preapproval Error:', errorData)
+        return NextResponse.json({ error: 'Error al crear la suscripción' }, { status: 502 })
+      }
+
+      const subscription = await resp.json()
+      return NextResponse.json({
+        init_point: subscription.init_point || subscription.sandbox_init_point,
+        id: subscription.id,
+      })
+    }
+
+    // ─────────────────────────────────────────────
+    // CASO B: PAGO ÚNICO (Sin mensualidad)
+    // ─────────────────────────────────────────────
+    const preferenceBody: Record<string, unknown> = {
+      items: items.map((i: any) => ({
+        title: i.title,
+        quantity: i.quantity,
+        unit_price: i.setup,
+      })),
+      external_reference: orderId,
+    }
+
     const name = typeof customer.name === 'string' ? customer.name.trim() : ''
     const phone = typeof customer.phone === 'string' ? customer.phone.trim() : ''
 
@@ -70,19 +130,7 @@ export async function POST(request: NextRequest) {
         email: email || undefined,
         name: firstName || undefined,
         surname: surname || undefined,
-        phone: phone
-          ? {
-              number: phone.replace(/[^0-9]/g, ''),
-            }
-          : undefined,
-      }
-      preferenceBody.metadata = {
-        customer: {
-          name,
-          email,
-          phone,
-          company: typeof customer.company === 'string' ? customer.company.trim() : '',
-        },
+        phone: phone ? { number: phone.replace(/[^0-9]/g, '') } : undefined,
       }
     }
 
@@ -106,11 +154,8 @@ export async function POST(request: NextRequest) {
 
     if (!resp.ok) {
       const errorBody = await resp.text()
-      console.error('MercadoPago error:', errorBody)
-      return NextResponse.json(
-        { error: 'Error al procesar el pago' },
-        { status: 502 }
-      )
+      console.error('MercadoPago Preference error:', errorBody)
+      return NextResponse.json({ error: 'Error al crear preferencia de pago' }, { status: 502 })
     }
 
     const preference = await resp.json()

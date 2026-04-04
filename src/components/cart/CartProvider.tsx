@@ -15,14 +15,15 @@ import { VALIDATION } from '@/lib/constants'
 export type CartItem = {
   id: string
   title: string
-  price: number
+  setup: number    // Pago inicial
+  monthly: number  // Pago recurrente
   quantity: number
-  billing?: 'mensual'
 }
 
 type CartContextValue = {
   items: CartItem[]
   total: number
+  monthlyTotal: number
   isOpen: boolean
   addItem: (item: CartItem) => void
   removeItem: (id: string) => void
@@ -67,7 +68,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, mounted])
 
   const total = useMemo(
-    () => items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+    () => items.reduce((acc, item) => acc + item.setup * item.quantity, 0),
+    [items]
+  )
+
+  const monthlyTotal = useMemo(
+    () => items.reduce((acc, item) => acc + item.monthly * item.quantity, 0),
     [items]
   )
 
@@ -104,6 +110,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const value: CartContextValue = {
     items,
     total,
+    monthlyTotal,
     isOpen,
     addItem,
     removeItem,
@@ -130,7 +137,7 @@ export function useCart() {
 }
 
 function CartDrawer() {
-  const { items, total, isOpen, closeCart, removeItem, updateQuantity, clear } = useCart()
+  const { items, total, monthlyTotal, isOpen, closeCart, removeItem, updateQuantity, clear } = useCart()
   const [step, setStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
@@ -298,9 +305,9 @@ function CartDrawer() {
                         {item.title}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-dark-text-secondary">
-                        {formatPrice(item.price)} CLP
-                        {item.billing === 'mensual' && (
-                          <span className="ml-1">/mes</span>
+                        {formatPrice(item.setup)} CLP
+                        {item.monthly > 0 && (
+                          <span className="ml-1">+ {formatPrice(item.monthly)}/mes</span>
                         )}
                       </p>
                     </div>
@@ -332,7 +339,7 @@ function CartDrawer() {
                       </button>
                     </div>
                     <span className="font-semibold text-gray-900 dark:text-white">
-                      {formatPrice(item.price * item.quantity)}
+                      {formatPrice(item.setup * item.quantity)}
                     </span>
                   </div>
                 </div>
@@ -459,7 +466,7 @@ function CartDrawer() {
                         {item.title} x{item.quantity}
                       </span>
                       <span className="font-semibold text-gray-900 dark:text-white">
-                        {formatPrice(item.price * item.quantity)}
+                        {formatPrice((item.setup + item.monthly) * item.quantity)}
                       </span>
                     </div>
                   ))}
@@ -474,9 +481,15 @@ function CartDrawer() {
         </div>
 
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
-          <div className="flex items-center justify-between text-lg font-semibold text-gray-900 dark:text-white">
-            <span>Total</span>
-            <span>{formatPrice(total)}</span>
+          <div className="flex flex-col text-right">
+            <span className="text-lg font-bold text-gray-900 dark:text-white">
+              Total hoy: {formatPrice(total)}
+            </span>
+            {monthlyTotal > 0 && (
+              <span className="text-sm text-primary font-semibold">
+                + Suscripción: {formatPrice(monthlyTotal)}/mes
+              </span>
+            )}
           </div>
           {error && step !== 1 && (
             <p className="text-sm text-red-500">{error}</p>

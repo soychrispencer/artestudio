@@ -143,9 +143,9 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
             addItem({
               id: `${service.id}-${plan.name}`,
               title: `${service.title} - ${plan.name}`,
-              price: plan.price,
+              setup: plan.billing === 'mensual' ? 0 : plan.price,
+              monthly: plan.billing === 'mensual' ? plan.price : 0,
               quantity: 1,
-              billing: plan.billing,
             })
             openCart()
           }}
@@ -204,9 +204,9 @@ function AddonCard({ addon }: { addon: any }) {
           addItem({
             id: `addon-${addon.name}`,
             title: addon.name,
-            price: addon.price,
+            setup: addon.billing === 'mensual' ? 0 : addon.price,
+            monthly: addon.billing === 'mensual' ? addon.price : 0,
             quantity: 1,
-            billing: addon.billing,
           })
           openCart()
         }}
@@ -922,7 +922,8 @@ export function ServicePage({ service }: ServicePageProps) {
                       addItem({
                         id: `${service.id}-${service.title}`,
                         title: service.title,
-                        price: service.price,
+                        setup: service.billingModel === 'mensual' ? 0 : service.price,
+                        monthly: service.billingModel === 'mensual' ? service.price : 0,
                         quantity: 1,
                       })
                       openCart()

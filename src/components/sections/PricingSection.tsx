@@ -68,6 +68,16 @@ function PlanCard({ plan, vertical }: { plan: PricingPlan; vertical: ServiceVert
 
         {/* Price block */}
         <div className="mb-6 space-y-1">
+          {plan.originalSetup && (
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-sm font-semibold line-through text-gray-400 dark:text-gray-600">
+                {formatPrice(plan.originalSetup)}
+              </span>
+              <span className="text-[10px] uppercase font-bold tracking-wider text-green-600 bg-green-100 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded-full">
+                50% OFF
+              </span>
+            </div>
+          )}
           <div className="flex items-end gap-2">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               {formatPrice(plan.setup)}

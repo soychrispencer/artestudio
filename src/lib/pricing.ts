@@ -24,6 +24,8 @@ export interface PricingPlan {
   badge?: string
   recommended?: boolean
   /** Pago inicial / único */
+  /** Pago inicial / único antiguo (para mostrar tachado) */
+  originalSetup?: number
   setup: number
   /** Mensual recurrente (0 = no aplica) */
   monthly: number
@@ -60,7 +62,8 @@ const webPlans: PricingPlan[] = [
   {
     tier: 'esencial',
     name: 'Esencial',
-    setup: 149990,
+    originalSetup: 149990,
+    setup: 74990,
     monthly: 14990,
     shortDesc: 'Landing o tienda básica lista en días. Soporte mensual incluido.',
     highlights: [
@@ -80,14 +83,15 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Empezar con Esencial',
     whatsappMessage:
-      'Hola Artestudio, me interesa el plan Esencial Web ($149.990 setup + $14.990/mes). ¿Podemos hablar?',
+      'Hola Artestudio, me interesa el plan Esencial Web ($74.990 setup promocional + $14.990/mes). ¿Podemos hablar?',
   },
   {
     tier: 'pro',
     name: 'Pro',
     badge: 'Más popular',
     recommended: true,
-    setup: 249990,
+    originalSetup: 249990,
+    setup: 124990,
     monthly: 24990,
     shortDesc: 'Sitio profesional con analítica y optimización. Soporte prioritario.',
     highlights: [
@@ -110,12 +114,13 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Quiero el plan Pro',
     whatsappMessage:
-      'Hola Artestudio, me interesa el plan Pro Web ($249.990 setup + $24.990/mes). ¿Cuándo podemos hablar?',
+      'Hola Artestudio, me interesa el plan Pro Web ($124.990 setup promocional + $24.990/mes). ¿Cuándo podemos hablar?',
   },
   {
     tier: 'proplus',
     name: 'Pro+',
-    setup: 349990,
+    originalSetup: 349990,
+    setup: 174990,
     monthly: 34990,
     shortDesc: 'Web o eCommerce avanzado con automatizaciones y CRO mensual.',
     highlights: [
@@ -138,7 +143,7 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Activar Pro+',
     whatsappMessage:
-      'Hola Artestudio, me interesa el plan Pro+ Web ($349.990 setup + $34.990/mes).',
+      'Hola Artestudio, me interesa el plan Pro+ Web ($174.990 setup promocional + $34.990/mes).',
   },
 ]
 

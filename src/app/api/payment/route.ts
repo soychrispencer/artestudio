@@ -86,22 +86,27 @@ export async function POST(request: NextRequest) {
         setup_fee: totalSetup > 0 ? totalSetup : undefined,
       }
 
+      const payload = JSON.stringify(preapprovalBody, null, 2)
+      console.log('--- MERCADO PAGO REQUEST (Preapproval) ---')
+      console.log(payload)
+
       const resp = await fetch('https://api.mercadopago.com/preapproval', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(preapprovalBody),
+        body: payload,
       })
 
+      const subscription = await resp.json()
+      console.log('--- MERCADO PAGO RESPONSE (Preapproval) ---')
+      console.log(JSON.stringify(subscription, null, 2))
+
       if (!resp.ok) {
-        const errorData = await resp.json()
-        console.error('MercadoPago Preapproval Error:', errorData)
+        console.error('MercadoPago Preapproval Error Logic:', subscription)
         return NextResponse.json({ error: 'Error al crear la suscripción' }, { status: 502 })
       }
-
-      const subscription = await resp.json()
       return NextResponse.json({
         init_point: subscription.init_point || subscription.sandbox_init_point,
         id: subscription.id,

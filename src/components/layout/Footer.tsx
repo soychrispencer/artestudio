@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BrandInstagram, BrandTiktok, BrandFacebook, BrandWhatsapp } from 'tabler-icons-react'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
+import { FOOTER_NAV, FOOTER_SERVICES, isHashLink } from '@/lib/navigation'
 import { usePathname } from 'next/navigation'
 
 function BrandLogo() {
@@ -90,41 +91,19 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Navegación</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
-              <li>
-                <Link href="/#home" className="hover:text-primary transition-smooth">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href="/landing-express" className="hover:text-primary transition-smooth">
-                  Landing Express
-                </Link>
-              </li>
-              <li>
-                <Link href="/#ofertas" className="hover:text-primary transition-smooth">
-                  Ofertas principales
-                </Link>
-              </li>
-              <li>
-                <Link href="/#planes" className="hover:text-primary transition-smooth">
-                  Planes y precios
-                </Link>
-              </li>
-              <li>
-                <Link href="/servicios" className="hover:text-primary transition-smooth">
-                  Catálogo de servicios
-                </Link>
-              </li>
-              <li>
-                <Link href="/#testimonials" className="hover:text-primary transition-smooth">
-                  Confianza
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="hover:text-primary transition-smooth">
-                  Contacto
-                </Link>
-              </li>
+              {FOOTER_NAV.map((item) => (
+                <li key={item.href}>
+                  {isHashLink(item.href) ? (
+                    <a href={item.href} className="hover:text-primary transition-smooth">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className="hover:text-primary transition-smooth">
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -132,10 +111,13 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-6 text-gray-900 dark:text-dark-text uppercase text-xs tracking-[0.2em]">Servicios</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-dark-text-secondary">
-              <li><Link href="/servicio/diseno-web" className="hover:text-primary transition-smooth">Diseño Web</Link></li>
-              <li><Link href="/servicio/redes-sociales" className="hover:text-primary transition-smooth">Redes Sociales</Link></li>
-              <li><Link href="/servicio/branding" className="hover:text-primary transition-smooth">Branding</Link></li>
-              <li><Link href="/servicio/edicion-video" className="hover:text-primary transition-smooth">Video y Audio</Link></li>
+              {FOOTER_SERVICES.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-primary transition-smooth">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

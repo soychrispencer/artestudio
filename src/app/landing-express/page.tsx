@@ -53,6 +53,17 @@ export default function LandingExpressPage() {
         <div className="absolute inset-0 ai-grid opacity-40 dark:opacity-15" />
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-primary/15 blur-[120px]" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm text-left mb-6 max-w-xl mx-auto">
+            <Link href="/" className="text-primary font-semibold hover:underline">
+              Inicio
+            </Link>
+            <span className="text-gray-400 mx-2">/</span>
+            <Link href="/#ofertas" className="text-primary font-semibold hover:underline">
+              Ofertas
+            </Link>
+            <span className="text-gray-400 mx-2">/</span>
+            <span className="text-gray-600 dark:text-dark-text-secondary">Landing Express</span>
+          </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
             <Clock className="w-4 h-4" />
             Entrega en 24–48 horas hábiles

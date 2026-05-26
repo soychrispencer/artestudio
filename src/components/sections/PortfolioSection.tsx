@@ -31,7 +31,7 @@ export function PortfolioSection() {
   ]
 
   return (
-    <section id="confianza" className="py-28 bg-white dark:bg-dark-bg">
+    <section id="nosotros" className="py-28 bg-white dark:bg-dark-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -42,10 +42,10 @@ export function PortfolioSection() {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-dark-bg-secondary text-gray-600 dark:text-dark-text-secondary font-medium text-xs mb-4 uppercase tracking-[0.2em] border border-gray-200 dark:border-dark-bg-tertiary">
-            Confianza creativa
+            Cómo trabajamos
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
-            Confianza y proceso
+            Proceso claro, entrega profesional
           </h2>
           <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto leading-relaxed">
             Un método claro, entregables profesionales y comunicación directa para que sepas qué esperar.
@@ -65,11 +65,11 @@ export function PortfolioSection() {
               Ver trabajos en Behance
             </a>
             <Link
-              href="/cotizador"
-              onClick={() => trackEvent('trust_cta_click', { target: 'cotizador' })}
+              href="/#contacto"
+              onClick={() => trackEvent('trust_cta_click', { target: 'contacto' })}
               className="btn-whatsapp px-6 py-3"
             >
-              Construir propuesta
+              Pedir propuesta
             </Link>
           </div>
         </div>

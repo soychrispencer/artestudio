@@ -8,9 +8,9 @@ import {
 } from '@/lib/service-navigation'
 
 export const metadata: Metadata = {
-  title: 'Todos los servicios | artestudio.cl',
+  title: 'Servicios | artestudio.cl',
   description:
-    'Catálogo de servicios: landing express, web, branding, redes sociales, diseño gráfico, video, audio y más.',
+    'Web, branding, redes sociales, diseño gráfico, video, audio y desarrollo. Elige un servicio y ve precios en su página.',
 }
 
 export default function ServiciosPage() {
@@ -18,25 +18,26 @@ export default function ServiciosPage() {
     <div className="min-h-screen bg-white dark:bg-dark-bg pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-14">
-          <Link
-            href="/"
-            className="text-sm text-primary font-semibold hover:underline mb-4 inline-block"
-          >
-            ← Volver al inicio
+          <Link href="/" className="text-sm text-primary font-semibold hover:underline">
+            ← Inicio
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Todos los servicios
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 mt-2">
+            Servicios
           </h1>
           <p className="text-lg text-gray-600 dark:text-dark-text-secondary">
-            Si no sabes por dónde empezar, usa la{' '}
+            Cada servicio tiene su página con planes y detalle. Si recién empiezas, mira primero las{' '}
+            <Link href="/#ofertas" className="text-primary font-semibold hover:underline">
+              ofertas web del inicio
+            </Link>{' '}
+            o la{' '}
             <Link href="/landing-express" className="text-primary font-semibold hover:underline">
               Landing Express
-            </Link>{' '}
-            o las{' '}
-            <Link href="/#ofertas" className="text-primary font-semibold hover:underline">
-              tres ofertas principales
-            </Link>{' '}
-            del home.
+            </Link>
+            . Para comparar todos los niveles:{' '}
+            <Link href="/precios" className="text-primary font-semibold hover:underline">
+              tabla de precios
+            </Link>
+            .
           </p>
         </div>
 
@@ -66,7 +67,7 @@ export default function ServiciosPage() {
                           <p className="text-sm font-bold text-primary mb-3">{item.from}</p>
                         )}
                         <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 dark:text-dark-text-secondary group-hover:text-primary">
-                          Ver detalle
+                          Ver página del servicio
                           <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </Link>

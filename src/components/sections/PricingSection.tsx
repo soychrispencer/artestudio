@@ -180,13 +180,18 @@ function PlanCard({ plan, vertical, activeConfig }: { plan: PricingPlan; vertica
 
 // ── Main Section ─────────────────────────────
 
-export function PricingSection() {
+export function PricingSection({ embedded = false }: { embedded?: boolean }) {
   const [activeVertical, setActiveVertical] = useState<ServiceVertical>('web')
 
   const activeConfig = SERVICE_VERTICALS.find((v) => v.id === activeVertical)!
 
   return (
-    <section id="planes" className="relative py-24 md:py-32 bg-gray-50 dark:bg-dark-bg-secondary overflow-hidden">
+    <section
+      id={embedded ? undefined : 'planes'}
+      className={`relative overflow-hidden bg-gray-50 dark:bg-dark-bg-secondary ${
+        embedded ? 'py-12 md:py-16' : 'py-24 md:py-32'
+      }`}
+    >
       {/* Background */}
       <div className="absolute inset-0 ai-grid opacity-10 dark:opacity-5" />
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/10 blur-[120px]" />
@@ -194,34 +199,27 @@ export function PricingSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-5">
-            <Stars className="w-4 h-4" />
-            Servicios y Planes
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-5">
-            Planes detallados{' '}
-            <span className="text-gradient-primary">por servicio</span>
-          </h2>
-          <p className="text-lg text-gray-500 dark:text-dark-text-secondary max-w-2xl mx-auto">
-            Si ya sabes qué necesitas, compara niveles. Para empezar rápido:{' '}
-            <a href="/landing-express" className="text-primary font-semibold hover:underline">
-              Landing Express
-            </a>
-            .{' '}
-            <a href="/servicios" className="text-primary font-semibold hover:underline">
-              Ver todos los servicios
-            </a>
-            .
-          </p>
-        </motion.div>
+        {!embedded && (
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-5">
+              <Stars className="w-4 h-4" />
+              Comparador
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-5">
+              Planes por{' '}
+              <span className="text-gradient-primary">tipo de servicio</span>
+            </h2>
+            <p className="text-lg text-gray-500 dark:text-dark-text-secondary max-w-2xl mx-auto">
+              Elige una categoría y compara Starter, Growth y Scale.
+            </p>
+          </motion.div>
+        )}
 
         {/* Service Tabs */}
         <motion.div

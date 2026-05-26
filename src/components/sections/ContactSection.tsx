@@ -8,7 +8,7 @@ import { trackEvent } from '@/lib/analytics'
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-28 bg-white dark:bg-dark-bg relative overflow-hidden">
+    <section id="contacto" className="py-28 bg-white dark:bg-dark-bg relative overflow-hidden">
       <div className="absolute inset-0 ai-grid opacity-30 dark:opacity-20" />
       <div className="absolute -top-20 right-10 h-60 w-60 rounded-full bg-primary/15 blur-[120px]" />
       <div className="absolute bottom-[-120px] left-10 h-72 w-72 rounded-full bg-primary/10 blur-[140px]" />

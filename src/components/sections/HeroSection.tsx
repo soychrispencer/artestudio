@@ -74,7 +74,10 @@ export function HeroSection() {
           </div>
 
           <p className="mt-6 text-sm text-gray-500 dark:text-dark-text-secondary">
-            ¿Prefieres ir directo?{' '}
+            <Link href="/#ofertas" className="text-primary font-semibold hover:underline">
+              Comparar las 3 ofertas
+            </Link>
+            {' · '}
             <Link
               href={whatsappExpress}
               target="_blank"
@@ -82,7 +85,7 @@ export function HeroSection() {
               className="text-primary font-semibold hover:underline"
               onClick={() => trackEvent('hero_whatsapp_inline')}
             >
-              Escríbenos por WhatsApp
+              WhatsApp
             </Link>
           </p>
         </motion.div>

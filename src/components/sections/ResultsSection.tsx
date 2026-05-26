@@ -102,20 +102,20 @@ export function ResultsSection() {
               Siguiente paso
             </p>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Elige tu plan y arrancamos esta semana
+              Elige una oferta y arrancamos esta semana
             </h3>
             <p className="text-gray-500 dark:text-dark-text-secondary text-sm mt-1">
-              Sin reuniones largas. Sin propuestas interminables. Un plan, un precio, un equipo.
+              Tres puntos de entrada claros. Si necesitas más detalle, compara precios por servicio.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
             <Link
-              href="#planes"
-              onClick={() => trackEvent('results_cta_click', { target: 'planes' })}
+              href="/#ofertas"
+              onClick={() => trackEvent('results_cta_click', { target: 'ofertas' })}
               className="btn-whatsapp px-6 py-3"
             >
               <ArrowRight className="w-5 h-5" />
-              Ver planes
+              Ver ofertas
             </Link>
             <Link
               href={whatsapp}

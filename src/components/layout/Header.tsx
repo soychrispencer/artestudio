@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { CONTACT_INFO, ROUTES } from '@/lib/constants'
+import { CONTACT_INFO } from '@/lib/constants'
+import { MAIN_NAV, isHashLink } from '@/lib/navigation'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect, type MouseEvent } from 'react'
 import { usePathname } from 'next/navigation'
@@ -28,14 +29,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
-    { label: 'Inicio', href: ROUTES.home },
-    { label: 'Landing Express', href: ROUTES.landingExpress },
-    { label: 'Servicios', href: ROUTES.catalog },
-    { label: 'Planes', href: ROUTES.services },
-    { label: 'Confianza', href: ROUTES.trust },
-  ]
-
   const handleHomeClick = (event: MouseEvent) => {
     if (pathname === '/') {
       event.preventDefault()
@@ -48,6 +41,37 @@ export function Header() {
     return null
   }
 
+  const linkClass = scrolled
+    ? 'text-gray-700 dark:text-dark-text-secondary hover:text-primary dark:hover:text-primary'
+    : 'text-gray-700 dark:text-dark-text-secondary hover:text-primary'
+
+  const renderNavItem = (item: (typeof MAIN_NAV)[number], mobile = false) => {
+    const className = mobile
+      ? `block px-4 py-2 rounded-xl transition-smooth text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary`
+      : `text-sm font-medium transition-colors duration-200 ${linkClass}`
+
+    const onClick =
+      item.label === 'Inicio'
+        ? handleHomeClick
+        : mobile
+          ? () => setMenuOpen(false)
+          : undefined
+
+    if (isHashLink(item.href)) {
+      return (
+        <a key={item.href} href={item.href} className={className} onClick={onClick}>
+          {item.label}
+        </a>
+      )
+    }
+
+    return (
+      <Link key={item.href} href={item.href} className={className} onClick={onClick}>
+        {item.label}
+      </Link>
+    )
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -58,7 +82,6 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
             <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
               <Image
@@ -79,40 +102,11 @@ export function Header() {
               />
             </div>
           </Link>
-          {/* Desktop Navigation */}
+
           <nav className="hidden md:flex items-center gap-5 px-5 py-2 rounded-xl border border-gray-200/70 dark:border-white/10 bg-white/70 dark:bg-dark-bg-secondary/70 backdrop-blur-md">
-            {navItems.map((item) =>
-              (item.href.startsWith('#') || item.href.startsWith('/#')) ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={item.label === 'Inicio' ? handleHomeClick : undefined}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    scrolled
-                      ? 'text-gray-700 dark:text-dark-text-secondary hover:text-primary dark:hover:text-primary'
-                      : 'text-gray-700 dark:text-dark-text-secondary hover:text-primary'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={item.label === 'Inicio' ? handleHomeClick : undefined}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    scrolled
-                      ? 'text-gray-700 dark:text-dark-text-secondary hover:text-primary dark:hover:text-primary'
-                      : 'text-gray-700 dark:text-dark-text-secondary hover:text-primary'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+            {MAIN_NAV.map((item) => renderNavItem(item))}
           </nav>
 
-          {/* Right Actions */}
           <div className="flex items-center gap-4 h-16">
             <ThemeToggle isScrolled={scrolled} />
             <button
@@ -145,9 +139,8 @@ export function Header() {
               className="hidden sm:inline-flex btn-whatsapp px-6 py-2.5 h-10"
             >
               <BrandWhatsapp className="w-4 h-4" />
-              Contacto
+              WhatsApp
             </button>
-            {/* Mobile Menu Button */}
             <button
               type="button"
               className={`md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
@@ -160,54 +153,19 @@ export function Header() {
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
             >
-              {menuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu2 className="w-5 h-5" />
-              )}
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu2 className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {menuOpen && (
           <nav
             id="mobile-nav"
             className={`md:hidden pb-4 space-y-2 ${
-              scrolled
-                ? 'bg-white dark:bg-dark-bg'
-                : 'bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md'
+              scrolled ? 'bg-white dark:bg-dark-bg' : 'bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md'
             }`}
           >
-            {navItems.map((item) =>
-              (item.href.startsWith('#') || item.href.startsWith('/#')) ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`block px-4 py-2 rounded-xl transition-smooth ${
-                    scrolled
-                      ? 'text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary'
-                      : 'text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary'
-                  }`}
-                  onClick={item.label === 'Inicio' ? handleHomeClick : () => setMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`block px-4 py-2 rounded-xl transition-smooth ${
-                    scrolled
-                      ? 'text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary'
-                      : 'text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary'
-                  }`}
-                  onClick={item.label === 'Inicio' ? handleHomeClick : () => setMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+            {MAIN_NAV.map((item) => renderNavItem(item, true))}
             <button
               onClick={() => {
                 trackEvent('header_cta_click', { target: 'whatsapp_mobile' })
@@ -219,7 +177,7 @@ export function Header() {
               className="btn-whatsapp w-full px-4 py-2"
             >
               <BrandWhatsapp className="w-4 h-4" />
-              Contacto
+              WhatsApp
             </button>
           </nav>
         )}

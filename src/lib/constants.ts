@@ -59,6 +59,8 @@ export const SERVICE_PRICES = {
 
 // Mensajes predefinidos de WhatsApp
 export const WHATSAPP_MESSAGES = {
+  landingExpress: 'Hola Artestudio, quiero la Landing Express IA ($74.990 setup + $14.990/mes). ¿Podemos hablar?',
+  webCompleta: 'Hola Artestudio, necesito una web más completa (pago único o plan personalizado). ¿Me orientan?',
   quote: 'Hola artestudio, me interesa cotizar un proyecto de diseño 🎨',
   service: (service: string) =>
     `Hola artestudio, me interesa el servicio de ${service} 🎯`,
@@ -93,6 +95,9 @@ export const BREAKPOINTS = {
 // Rutas de la aplicación
 export const ROUTES = {
   home: '/',
+  landingExpress: '/landing-express',
+  catalog: '/servicios',
+  offers: '/#ofertas',
   services: '/#planes',
   trust: '/#testimonials',
   contact: '/#contact',

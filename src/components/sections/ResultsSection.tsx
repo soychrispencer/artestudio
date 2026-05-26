@@ -8,28 +8,28 @@ import { trackEvent } from '@/lib/analytics'
 
 const METRICS = [
   {
-    icon: TrendingUp,
-    label: 'Clientes con presencia activa',
-    value: '20+',
-    note: 'Negocios que ya trabajan con nosotros',
+    icon: Calendar,
+    label: 'Experiencia',
+    value: '2019',
+    note: 'Proyectos creativos y digitales desde 2019',
   },
   {
-    icon: Calendar,
-    label: 'Años en el mercado',
-    value: '6+',
-    note: 'Desde 2019 construyendo marcas digitales',
+    icon: TrendingUp,
+    label: 'Enfoque',
+    value: 'Web',
+    note: 'Landings, sitios y tiendas para negocios reales',
   },
   {
     icon: Shield,
-    label: 'Soporte incluido en todos los planes',
-    value: '100%',
-    note: 'No pagas extra por soporte técnico',
+    label: 'Soporte',
+    value: 'Incluido',
+    note: 'Continuidad técnica en planes con mensualidad',
   },
   {
     icon: Headset,
-    label: 'Tiempo de respuesta',
-    value: '≤48h',
-    note: 'SLA garantizado en planes Pro y Pro+',
+    label: 'Respuesta',
+    value: 'Rápida',
+    note: 'WhatsApp directo, sin formularios eternos',
   },
 ]
 
@@ -56,11 +56,11 @@ export function ResultsSection() {
             Por qué Artestudio
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            No solo te hacemos la web.
-            <span className="text-gradient-primary"> Te acompañamos.</span>
+            Web que vende.
+            <span className="text-gradient-primary"> Soporte cuando lo necesitas.</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto">
-            La diferencia está en el después: soporte, actualizaciones y mejoras continuas con un solo pago mensual fijo.
+            No solo entregamos una página: te dejamos operando con hosting, soporte y un alcance mensual claro para que no haya sorpresas.
           </p>
         </motion.div>
 

@@ -181,7 +181,7 @@ function PlanCard({ plan, vertical, activeConfig }: { plan: PricingPlan; vertica
 // ── Main Section ─────────────────────────────
 
 export function PricingSection() {
-  const [activeVertical, setActiveVertical] = useState<ServiceVertical>('pack')
+  const [activeVertical, setActiveVertical] = useState<ServiceVertical>('web')
 
   const activeConfig = SERVICE_VERTICALS.find((v) => v.id === activeVertical)!
 
@@ -207,11 +207,19 @@ export function PricingSection() {
             Servicios y Planes
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-5">
-            ¿Qué necesitas{' '}
-            <span className="text-gradient-primary">para crecer?</span>
+            Planes detallados{' '}
+            <span className="text-gradient-primary">por servicio</span>
           </h2>
           <p className="text-lg text-gray-500 dark:text-dark-text-secondary max-w-2xl mx-auto">
-            Elige tu servicio, compara 3 opciones claras y avanza con un equipo que te acompaña.
+            Si ya sabes qué necesitas, compara niveles. Para empezar rápido:{' '}
+            <a href="/landing-express" className="text-primary font-semibold hover:underline">
+              Landing Express
+            </a>
+            .{' '}
+            <a href="/servicios" className="text-primary font-semibold hover:underline">
+              Ver todos los servicios
+            </a>
+            .
           </p>
         </motion.div>
 

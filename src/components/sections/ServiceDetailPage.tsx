@@ -10,6 +10,7 @@ import { CONTACT_INFO } from '@/lib/constants'
 import { useCart } from '@/components/cart/CartProvider'
 import { siShopify, siWoocommerce, siWordpress } from 'simple-icons/icons'
 import { trackEvent } from '@/lib/analytics'
+import { LandingExpressBanner } from '@/components/sections/LandingExpressBanner'
 
 function openWhatsApp(message: string) {
   const phoneNumber = CONTACT_INFO.whatsapp.replace(/\D/g, '')
@@ -329,8 +330,14 @@ export function ServicePage({ service }: ServicePageProps) {
               Inicio
             </Link>
             <ChevronRight size={20} />
+            <Link href="/servicios" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+              Servicios
+            </Link>
+            <ChevronRight size={20} />
             <span className="font-semibold text-gray-900 dark:text-white">{service.title}</span>
           </motion.div>
+
+          {service.slug === 'diseno-web' && <LandingExpressBanner />}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

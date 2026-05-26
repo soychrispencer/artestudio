@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { MobileStickyBar } from '@/components/ui/MobileStickyBar'
 import { CartProvider } from '@/components/cart/CartProvider'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
@@ -90,8 +91,9 @@ export default function RootLayout({
           <CartProvider>
             <JsonLd />
             <Header />
-            <main>{children}</main>
+            <main className="pb-20 md:pb-0">{children}</main>
             <Footer />
+            <MobileStickyBar />
             <ScrollToTop />
           </CartProvider>
         </ThemeProviderWrapper>

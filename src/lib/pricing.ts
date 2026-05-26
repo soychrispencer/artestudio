@@ -65,7 +65,7 @@ const webPlans: PricingPlan[] = [
     originalSetup: 149990,
     setup: 74990,
     monthly: 14990,
-    shortDesc: 'Landing o tienda básica lista en días. Soporte mensual incluido.',
+    shortDesc: 'Landing Express: una página, WhatsApp y hosting. Setup + mensual (ver alcance en /landing-express).',
     highlights: [
       'Landing page o Shopify/Jumpseller básico',
       'Diseño responsive + CTA WhatsApp',
@@ -592,18 +592,10 @@ const packPlans: PricingPlan[] = [
 
 export const SERVICE_VERTICALS: ServiceVerticalConfig[] = [
   {
-    id: 'pack',
-    label: 'Pack Completo',
-    emoji: '⭐',
-    description: 'Marca + web + redes en un solo paquete con el mejor precio',
-    billingLabel: 'Setup + Mensual',
-    plans: packPlans,
-  },
-  {
     id: 'web',
     label: 'Web & Tienda',
     emoji: '🌐',
-    description: 'Landing, sitio corporativo o eCommerce con soporte mensual incluido',
+    description: 'Landing express (setup + mensual) o planes web pago único según alcance',
     billingLabel: 'Setup + Mensual',
     plans: webPlans,
     variants: [
@@ -613,6 +605,14 @@ export const SERVICE_VERTICALS: ServiceVerticalConfig[] = [
       { id: 'woocommerce', label: 'WooCommerce', description: 'Tienda en WordPress' },
       { id: 'custom', label: 'A medida', description: 'Desarrollo personalizado' },
     ],
+  },
+  {
+    id: 'pack',
+    label: 'Pack Completo',
+    emoji: '⭐',
+    description: 'Marca + web + redes en un solo paquete (upsell cuando ya tienes web)',
+    billingLabel: 'Setup + Mensual',
+    plans: packPlans,
   },
   {
     id: 'branding',

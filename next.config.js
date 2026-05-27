@@ -3,15 +3,20 @@ const nextConfig = {
   output: 'standalone',
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
-      },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'images.pexels.com' },
     ],
+  },
+  async redirects() {
+    return [
+      { source: '/precios', destination: '/#planes', permanent: false },
+      { source: '/servicios', destination: '/#servicios', permanent: false },
+      { source: '/landing-express', destination: '/#planes', permanent: false },
+      { source: '/servicio/edicion-audio', destination: '/', permanent: true },
+      { source: '/servicio/mastering', destination: '/', permanent: true },
+      { source: '/servicio/edicion-video', destination: '/#servicios', permanent: false },
+      { source: '/servicio/:slug', destination: '/', permanent: false },
+    ]
   },
 }
 

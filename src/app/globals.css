@@ -5,7 +5,20 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+  --bg: #05080f;
+  --surface: #0c1220;
+  --card: #111827;
+  --card-hover: #151f30;
+  --accent: #00d4a1;
+  --accent-dim: rgba(0, 212, 161, 0.12);
+  --accent-2: #7c6fff;
+  --accent-2-dim: rgba(124, 111, 255, 0.12);
+  --text: #eef2ff;
+  --muted: #6b7fa3;
+  --muted-light: #9aaac8;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(0, 212, 161, 0.3);
 }
 
 html {
@@ -13,70 +26,68 @@ html {
 }
 
 body {
-  @apply bg-white text-neutral-900 antialiased;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.dark body {
-  @apply bg-dark-bg text-dark-text;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply tracking-tight;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.ai-grid {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+  opacity: 0;
 }
 
-.dark .ai-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+.fade-up-d1 { animation-delay: 0.1s; }
+.fade-up-d2 { animation-delay: 0.2s; }
+.fade-up-d3 { animation-delay: 0.3s; }
+.fade-up-d4 { animation-delay: 0.4s; }
+.fade-up-d5 { animation-delay: 0.5s; }
+.fade-up-d6 { animation-delay: 0.6s; }
+
+.glow-accent {
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 0%,
+    rgba(0, 212, 161, 0.13) 0%,
+    transparent 70%
+  );
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(14px);
+.section-label {
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)] mb-3;
 }
 
-.dark .glass-card {
-  background: rgba(15, 15, 15, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.card-base {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
 }
 
-.text-gradient-primary {
-  background: linear-gradient(120deg, #8325fd 0%, #a855ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.card-base:hover {
+  background: var(--card-hover);
 }
 
-.glow-primary {
-  box-shadow:
-    0 0 0 1px rgba(131, 37, 253, 0.2),
-    0 20px 40px rgba(131, 37, 253, 0.18);
-}
-
-.btn-whatsapp {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-primary text-white shadow-medium hover:shadow-lg transition-all duration-300;
-}
-
-.btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white hover:border-primary/60 hover:text-primary transition-all duration-300;
-}
-
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(131, 37, 253, 0.4), transparent);
+.bg-accent-dim {
+  background-color: var(--accent-dim);
 }

@@ -1,22 +1,23 @@
-import { HeroSection } from '@/components/sections/HeroSection'
-import { EntryOffersSection } from '@/components/sections/EntryOffersSection'
-import { PricingSection } from '@/components/sections/PricingSection'
-import { ServicesCatalogSection } from '@/components/sections/ServicesCatalogSection'
-import { PortfolioSection } from '@/components/sections/PortfolioSection'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { Hero } from '@/components/sections/Hero'
+import { Problema } from '@/components/sections/Problema'
+import { Servicios } from '@/components/sections/Servicios'
+import { Planes } from '@/components/sections/Planes'
+import { Proceso } from '@/components/sections/Proceso'
+import { Testimonios } from '@/components/sections/Testimonios'
+import { FAQ } from '@/components/sections/FAQ'
+import { CTAFinal } from '@/components/sections/CTAFinal'
 
-/**
- * One-page: inicio → ofertas → precios → servicios → proceso → contacto
- */
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <EntryOffersSection />
-      <PricingSection embedded />
-      <ServicesCatalogSection />
-      <PortfolioSection />
-      <ContactSection />
+      <Hero />
+      <Problema />
+      <Servicios />
+      <Planes />
+      <Proceso />
+      <Testimonios />
+      <FAQ />
+      <CTAFinal />
     </>
   )
 }

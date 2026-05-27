@@ -16,7 +16,7 @@ export function LandingExpressBanner() {
           </p>
         </div>
         <Link
-          href="/landing-express"
+          href="/#ofertas"
           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold whitespace-nowrap hover:bg-primary-dark transition-colors"
         >
           Ver Landing Express

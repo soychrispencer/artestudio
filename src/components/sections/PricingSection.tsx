@@ -12,6 +12,7 @@ import { formatPrice } from '@/lib/utils'
 import { trackEvent } from '@/lib/analytics'
 import { CONTACT_INFO } from '@/lib/constants'
 import { useCart as useCartFromProvider } from '@/components/cart/CartProvider'
+import { SECTION_IDS } from '@/lib/navigation'
 
 // ── Helpers ──────────────────────────────────
 
@@ -187,39 +188,33 @@ export function PricingSection({ embedded = false }: { embedded?: boolean }) {
 
   return (
     <section
-      id={embedded ? undefined : 'planes'}
-      className={`relative overflow-hidden bg-gray-50 dark:bg-dark-bg-secondary ${
-        embedded ? 'py-12 md:py-16' : 'py-24 md:py-32'
+      id={embedded ? SECTION_IDS.precios : 'planes'}
+      className={`scroll-mt-20 relative border-t border-gray-100 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg ${
+        embedded ? 'py-20 md:py-28' : 'py-24 md:py-32 bg-gray-50 dark:bg-dark-bg-secondary'
       }`}
     >
-      {/* Background */}
-      <div className="absolute inset-0 ai-grid opacity-10 dark:opacity-5" />
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/10 blur-[120px]" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-[150px]" />
+      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${embedded ? 'max-w-6xl' : 'max-w-7xl'}`}>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {!embedded && (
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-xs font-bold uppercase tracking-[0.2em] text-primary mb-5">
-              <Stars className="w-4 h-4" />
-              Comparador
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-5">
-              Planes por{' '}
-              <span className="text-gradient-primary">tipo de servicio</span>
-            </h2>
-            <p className="text-lg text-gray-500 dark:text-dark-text-secondary max-w-2xl mx-auto">
-              Elige una categoría y compara Starter, Growth y Scale.
-            </p>
-          </motion.div>
-        )}
+        <motion.header
+          className="mb-10 md:mb-12 max-w-2xl"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          {embedded && (
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">Paso 2</p>
+          )}
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+            {embedded ? 'Compara precios por servicio' : (
+              <>
+                Planes por <span className="text-gradient-primary">tipo de servicio</span>
+              </>
+            )}
+          </h2>
+          <p className="mt-3 text-gray-600 dark:text-dark-text-secondary">
+            Elige categoría y nivel. Todo en esta misma página.
+          </p>
+        </motion.header>
 
         {/* Service Tabs */}
         <motion.div

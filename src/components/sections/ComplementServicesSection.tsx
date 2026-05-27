@@ -29,7 +29,7 @@ export function ComplementServicesSection() {
 
         <div className="text-center mb-8">
           <Link
-            href="/servicios"
+            href="/#servicios"
             className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
           >
             Ver catálogo completo de servicios

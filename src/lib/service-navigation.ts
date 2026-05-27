@@ -129,6 +129,6 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
 ]
 
 export function getServiceHref(item: ServiceNavItem): string {
-  if (item.slug === '_landing-express') return '/landing-express'
+  if (item.slug === '_landing-express') return '/#ofertas'
   return `/servicio/${item.slug}`
 }

@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { MobileStickyBar } from '@/components/ui/MobileStickyBar'
+import { HashScrollOnLoad } from '@/components/layout/HashScrollOnLoad'
 import { CartProvider } from '@/components/cart/CartProvider'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
@@ -90,6 +91,7 @@ export default function RootLayout({
         <ThemeProviderWrapper>
           <CartProvider>
             <JsonLd />
+            <HashScrollOnLoad />
             <Header />
             <main className="pb-20 md:pb-0">{children}</main>
             <Footer />

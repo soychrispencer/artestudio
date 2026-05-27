@@ -1,21 +1,20 @@
 import { HeroSection } from '@/components/sections/HeroSection'
 import { EntryOffersSection } from '@/components/sections/EntryOffersSection'
-import { ResultsSection } from '@/components/sections/ResultsSection'
-import { HomePlansTeaser } from '@/components/sections/HomePlansTeaser'
+import { PricingSection } from '@/components/sections/PricingSection'
+import { ServicesCatalogSection } from '@/components/sections/ServicesCatalogSection'
 import { PortfolioSection } from '@/components/sections/PortfolioSection'
 import { ContactSection } from '@/components/sections/ContactSection'
 
 /**
- * Inicio = embudo comercial simple:
- * Hero → 3 ofertas → por qué → enlace a precios/servicios → proceso → contacto
+ * One-page: inicio → ofertas → precios → servicios → proceso → contacto
  */
 export default function Home() {
   return (
     <>
       <HeroSection />
       <EntryOffersSection />
-      <ResultsSection />
-      <HomePlansTeaser />
+      <PricingSection embedded />
+      <ServicesCatalogSection />
       <PortfolioSection />
       <ContactSection />
     </>

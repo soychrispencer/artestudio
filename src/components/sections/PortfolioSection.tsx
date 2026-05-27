@@ -3,109 +3,85 @@
 import { motion } from 'framer-motion'
 import { BrandBehance, CircleCheck } from 'tabler-icons-react'
 import { SOCIAL_LINKS } from '@/lib/constants'
-import Link from 'next/link'
+import { PageSection } from '@/components/ui/PageSection'
+import { SECTION_IDS } from '@/lib/navigation'
 import { trackEvent } from '@/lib/analytics'
 
+const STEPS = [
+  {
+    title: 'Briefing',
+    text: 'Objetivos, tono y referencias desde el día uno.',
+  },
+  {
+    title: 'Diseño y revisiones',
+    text: 'Rondas claras, sin reuniones eternas.',
+  },
+  {
+    title: 'Entrega',
+    text: 'Archivos listos para usar y publicar.',
+  },
+  {
+    title: 'Soporte',
+    text: 'Continuidad técnica en planes con mensualidad.',
+  },
+]
+
 export function PortfolioSection() {
-  const principles = [
-    {
-      id: 1,
-      title: 'Briefing con dirección',
-      text: 'Definimos objetivos, tono y referencias para avanzar con claridad desde el día uno.',
-    },
-    {
-      id: 2,
-      title: 'Iteraciones enfocadas',
-      text: 'Rondas de revisión definidas para cuidar la calidad sin perder velocidad.',
-    },
-    {
-      id: 3,
-      title: 'Entrega usable',
-      text: 'Archivos editables, guías y formatos listos para que puedas operar sin fricción.',
-    },
-    {
-      id: 4,
-      title: 'Estrategia aplicada',
-      text: 'Cada pieza responde a una meta concreta: posicionamiento, conversión o comunidad.',
-    },
-  ]
+  const scrollToContact = () => {
+    document.getElementById(SECTION_IDS.contacto)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section id="nosotros" className="py-28 bg-white dark:bg-dark-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-dark-bg-secondary text-gray-600 dark:text-dark-text-secondary font-medium text-xs mb-4 uppercase tracking-[0.2em] border border-gray-200 dark:border-dark-bg-tertiary">
-            Cómo trabajamos
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
-            Proceso claro, entrega profesional
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Un método claro, entregables profesionales y comunicación directa para que sepas qué esperar.
-          </p>
-        </motion.div>
-
-        <div className="flex justify-center mb-10">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href={SOCIAL_LINKS.behance}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent('trust_cta_click', { target: 'behance' })}
-              className="btn-outline px-6 py-3"
-            >
-              <BrandBehance className="w-5 h-5" />
-              Ver trabajos en Behance
-            </a>
-            <Link
-              href="/#contacto"
-              onClick={() => trackEvent('trust_cta_click', { target: 'contacto' })}
-              className="btn-whatsapp px-6 py-3"
-            >
-              Pedir propuesta
-            </Link>
-          </div>
-        </div>
-
-        {/* Principles Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          {principles.map((principle) => (
-            <motion.div
-              key={principle.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass-card p-8 rounded-3xl border border-gray-200/80 dark:border-dark-bg-tertiary shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                  <CircleCheck className="w-5 h-5" />
-                </span>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {principle.title}
-                </h3>
-              </div>
-              <p className="text-gray-700 dark:text-dark-text-secondary leading-relaxed">
-                {principle.text}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
+    <PageSection
+      id={SECTION_IDS.nosotros}
+      eyebrow="Paso 4"
+      title="Cómo trabajamos"
+      description="Proceso directo. Sabes qué esperar en cada etapa."
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+        {STEPS.map((step, idx) => (
+          <motion.div
+            key={step.title}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.05 }}
+            className="rounded-2xl border border-gray-200/80 dark:border-dark-bg-tertiary p-5"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">
+                {idx + 1}
+              </span>
+              <h3 className="font-semibold text-gray-900 dark:text-white">{step.title}</h3>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-dark-text-secondary">{step.text}</p>
+          </motion.div>
+        ))}
       </div>
-    </section>
+
+      <div className="flex flex-col sm:flex-row gap-3">
+        <a
+          href={SOCIAL_LINKS.behance}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackEvent('trust_cta_click', { target: 'behance' })}
+          className="btn-outline px-5 py-3 text-sm justify-center"
+        >
+          <BrandBehance className="w-5 h-5" />
+          Ver Behance
+        </a>
+        <button
+          type="button"
+          onClick={() => {
+            trackEvent('trust_cta_click', { target: 'contacto' })
+            scrollToContact()
+          }}
+          className="btn-whatsapp px-5 py-3 text-sm justify-center"
+        >
+          <CircleCheck className="w-5 h-5" />
+          Pedir propuesta
+        </button>
+      </div>
+    </PageSection>
   )
 }

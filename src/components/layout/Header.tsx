@@ -1,10 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { CONTACT_INFO } from '@/lib/constants'
-import { MAIN_NAV, isHashLink } from '@/lib/navigation'
+import { MAIN_NAV, SECTION_IDS, sectionHref } from '@/lib/navigation'
 import { ThemeToggle } from '../ui/ThemeToggle'
-import { useState, useEffect, type MouseEvent } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 import { BrandWhatsapp, Menu2, ShoppingCart, X } from 'tabler-icons-react'
 import { openWhatsApp } from '@/lib/utils'
@@ -15,143 +14,142 @@ import { trackEvent } from '@/lib/analytics'
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeId, setActiveId] = useState<string>(SECTION_IDS.inicio)
   const pathname = usePathname()
   const { items, openCart } = useCart()
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0)
   const isPersonalHub = pathname.startsWith('/soychrispencer')
+  const isHome = pathname === '/'
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleHomeClick = (event: MouseEvent) => {
-    if (pathname === '/') {
-      event.preventDefault()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    setMenuOpen(false)
-  }
+  useEffect(() => {
+    if (!isHome) return
 
-  if (isPersonalHub) {
-    return null
-  }
-
-  const linkClass = scrolled
-    ? 'text-gray-700 dark:text-dark-text-secondary hover:text-primary dark:hover:text-primary'
-    : 'text-gray-700 dark:text-dark-text-secondary hover:text-primary'
-
-  const renderNavItem = (item: (typeof MAIN_NAV)[number], mobile = false) => {
-    const className = mobile
-      ? `block px-4 py-2 rounded-xl transition-smooth text-gray-700 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary`
-      : `text-sm font-medium transition-colors duration-200 ${linkClass}`
-
-    const onClick =
-      item.label === 'Inicio'
-        ? handleHomeClick
-        : mobile
-          ? () => setMenuOpen(false)
-          : undefined
-
-    if (isHashLink(item.href)) {
-      return (
-        <a key={item.href} href={item.href} className={className} onClick={onClick}>
-          {item.label}
-        </a>
-      )
-    }
-
-    return (
-      <Link key={item.href} href={item.href} className={className} onClick={onClick}>
-        {item.label}
-      </Link>
+    const ids = [SECTION_IDS.inicio, ...MAIN_NAV.map((n) => n.id)]
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible[0]?.target.id) setActiveId(visible[0].target.id)
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.25, 0.5] }
     )
-  }
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [isHome])
+
+  const goToSection = useCallback(
+    (sectionId: string) => {
+      setMenuOpen(false)
+      if (isHome) {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.location.href = sectionHref(sectionId)
+      }
+    },
+    [isHome]
+  )
+
+  if (isPersonalHub) return null
+
+  const navLinkClass = (id: string) =>
+    `text-sm font-medium transition-colors ${
+      isHome && activeId === id
+        ? 'text-primary'
+        : 'text-gray-600 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-white'
+    }`
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'backdrop-blur-xl bg-white/80 dark:bg-dark-bg/80 border-b border-gray-200/60 dark:border-white/10 shadow-soft'
-          : 'bg-transparent border-b border-transparent'
+          ? 'bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-200/80 dark:border-white/10'
+          : 'bg-white/70 dark:bg-dark-bg/70 backdrop-blur-sm border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="flex items-center justify-between h-16 gap-4">
-          <Link href="/" className="flex-shrink-0 flex items-center h-12 min-w-[100px]">
-            <div className="h-6 sm:h-8 w-auto flex items-center justify-center relative">
-              <Image
-                src="/logos/Logo-Dark.png"
-                alt="artestudio"
-                height={32}
-                width={120}
-                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300 block dark:hidden"
-                priority
-              />
-              <Image
-                src="/logos/Logo-Light.png"
-                alt="artestudio"
-                height={32}
-                width={120}
-                className="h-6 sm:h-8 w-auto object-contain transition-all duration-300 hidden dark:block"
-                priority
-              />
-            </div>
-          </Link>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 md:h-16">
+          <button
+            type="button"
+            onClick={() => goToSection(SECTION_IDS.inicio)}
+            className="flex-shrink-0 flex items-center h-10"
+            aria-label="Ir al inicio"
+          >
+            <Image
+              src="/logos/Logo-Dark.png"
+              alt="artestudio"
+              height={28}
+              width={110}
+              className="h-7 w-auto object-contain block dark:hidden"
+              priority
+            />
+            <Image
+              src="/logos/Logo-Light.png"
+              alt="artestudio"
+              height={28}
+              width={110}
+              className="h-7 w-auto object-contain hidden dark:block"
+              priority
+            />
+          </button>
 
-          <nav className="hidden md:flex items-center gap-5 px-5 py-2 rounded-xl border border-gray-200/70 dark:border-white/10 bg-white/70 dark:bg-dark-bg-secondary/70 backdrop-blur-md">
-            {MAIN_NAV.map((item) => renderNavItem(item))}
+          <nav className="hidden md:flex items-center gap-8">
+            {MAIN_NAV.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goToSection(item.id)}
+                className={navLinkClass(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-4 h-16">
+          <div className="flex items-center gap-2">
             <ThemeToggle isScrolled={scrolled} />
             <button
+              type="button"
               onClick={() => {
                 trackEvent('header_cart_click')
                 openCart()
               }}
-              className={`relative inline-flex items-center justify-center w-10 h-10 rounded-xl transition-colors border ${
-                scrolled
-                  ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary border-gray-200 dark:border-white/10'
-                  : 'bg-white/80 dark:bg-dark-bg-secondary/80 hover:bg-white dark:hover:bg-dark-bg-tertiary border-gray-200/60 dark:border-white/10'
-              }`}
-              aria-label="Abrir carrito"
+              className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-white/10 text-gray-700 dark:text-dark-text-secondary hover:border-primary/40 transition-colors"
+              aria-label="Carrito"
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-white text-[10px] font-semibold flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-primary text-white text-[10px] font-semibold flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </button>
             <button
+              type="button"
               onClick={() => {
-                trackEvent('header_cta_click', { target: 'whatsapp_desktop' })
-                openWhatsApp(
-                  CONTACT_INFO.whatsapp,
-                  'Hola, quiero más información sobre sus servicios.'
-                )
+                trackEvent('header_cta_click', { target: 'whatsapp' })
+                openWhatsApp(CONTACT_INFO.whatsapp, 'Hola, quiero información sobre sus servicios.')
               }}
-              className="hidden sm:inline-flex btn-whatsapp px-6 py-2.5 h-10"
+              className="hidden sm:inline-flex btn-whatsapp px-4 py-2 text-sm h-9"
             >
               <BrandWhatsapp className="w-4 h-4" />
               WhatsApp
             </button>
             <button
               type="button"
-              className={`md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
-                scrolled
-                  ? 'bg-gray-100 dark:bg-dark-bg-secondary hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary'
-                  : 'bg-white/80 dark:bg-dark-bg-secondary/80 hover:bg-white dark:hover:bg-dark-bg-tertiary border border-gray-200/60 dark:border-white/10'
-              }`}
+              className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-white/10"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={menuOpen ? 'Cerrar menú' : 'Menú'}
               aria-expanded={menuOpen}
-              aria-controls="mobile-nav"
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu2 className="w-5 h-5" />}
             </button>
@@ -159,22 +157,28 @@ export function Header() {
         </div>
 
         {menuOpen && (
-          <nav
-            id="mobile-nav"
-            className={`md:hidden pb-4 space-y-2 ${
-              scrolled ? 'bg-white dark:bg-dark-bg' : 'bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md'
-            }`}
-          >
-            {MAIN_NAV.map((item) => renderNavItem(item, true))}
+          <nav className="md:hidden pb-4 pt-1 flex flex-col gap-1 border-t border-gray-100 dark:border-dark-bg-tertiary mt-1">
+            {MAIN_NAV.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goToSection(item.id)}
+                className={`text-left px-3 py-2.5 rounded-lg text-sm font-medium ${
+                  isHome && activeId === item.id
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-gray-700 dark:text-dark-text-secondary'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
             <button
+              type="button"
               onClick={() => {
-                trackEvent('header_cta_click', { target: 'whatsapp_mobile' })
-                openWhatsApp(
-                  CONTACT_INFO.whatsapp,
-                  'Hola, quiero más información sobre sus servicios.'
-                )
+                setMenuOpen(false)
+                openWhatsApp(CONTACT_INFO.whatsapp, 'Hola, quiero información.')
               }}
-              className="btn-whatsapp w-full px-4 py-2"
+              className="btn-whatsapp mt-2 w-full py-2.5 text-sm"
             >
               <BrandWhatsapp className="w-4 h-4" />
               WhatsApp

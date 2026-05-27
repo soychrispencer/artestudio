@@ -92,13 +92,13 @@ export const BREAKPOINTS = {
   '2xl': 1536,
 } as const
 
-// Rutas de la aplicación (ver también src/lib/navigation.ts para menús)
+// Anclas one-page (ver src/lib/navigation.ts)
 export const ROUTES = {
   home: '/',
-  landingExpress: '/landing-express',
+  inicio: '/#inicio',
   offers: '/#ofertas',
-  pricing: '/precios',
-  catalog: '/servicios',
+  pricing: '/#precios',
+  catalog: '/#servicios',
   about: '/#nosotros',
   contact: '/#contacto',
   admin: '/admin',

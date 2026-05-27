@@ -26,7 +26,7 @@ export default function NotFound() {
             Volver al Inicio
           </Link>
           <Link
-            href="/servicios"
+            href="/#servicios"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-dark-bg-secondary text-gray-900 dark:text-dark-text rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary transition-smooth"
           >
             Ver Servicios

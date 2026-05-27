@@ -330,7 +330,7 @@ export function ServicePage({ service }: ServicePageProps) {
               Inicio
             </Link>
             <ChevronRight size={20} />
-            <Link href="/servicios" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+            <Link href="/#servicios" className="hover:text-gray-900 dark:hover:text-white transition-colors">
               Servicios
             </Link>
             <ChevronRight size={20} />

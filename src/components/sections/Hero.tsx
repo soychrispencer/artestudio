@@ -4,16 +4,17 @@ import { WA_LINKS } from '@/lib/site'
 export function Hero() {
   return (
     <section id="inicio" className="relative scroll-mt-20 min-h-[92vh] flex items-center glow-accent overflow-hidden">
-      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
+      <div className="absolute inset-0 ai-grid opacity-30 pointer-events-none" />
+      <div className="relative max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
         <div className="max-w-3xl">
-          <div className="fade-up fade-up-d1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border-accent)] bg-accent-dim text-xs font-medium text-accent mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <div className="fade-up fade-up-d1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border-primary)] bg-accent-dim text-xs font-medium text-primary mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Tu equipo digital de mensualidad fija · Chile
           </div>
 
-          <h1 className="fade-up fade-up-d2 font-syne text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-[var(--text)] mb-6">
+          <h1 className="fade-up fade-up-d2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-[var(--text)] mb-6">
             Web, redes y apps con IA que{' '}
-            <span className="text-accent">generan clientes</span> todos los meses
+            <span className="text-gradient-primary">generan clientes</span> todos los meses
           </h1>
 
           <p className="fade-up fade-up-d3 text-lg text-muted-light leading-relaxed mb-8 max-w-2xl">
@@ -45,7 +46,7 @@ export function Hero() {
               { value: 'Sin', label: 'Contratos largos' },
             ].map((m) => (
               <div key={m.label}>
-                <p className="font-syne text-2xl font-bold text-[var(--text)]">{m.value}</p>
+                <p className="text-2xl font-bold text-[var(--text)]">{m.value}</p>
                 <p className="text-xs text-muted">{m.label}</p>
               </div>
             ))}

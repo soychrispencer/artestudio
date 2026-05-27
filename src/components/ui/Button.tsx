@@ -11,11 +11,9 @@ type ButtonProps = {
 }
 
 const variants = {
-  primary:
-    'bg-accent text-[#05080F] hover:brightness-110 shadow-[0_0_32px_rgba(0,212,161,0.25)]',
-  outline:
-    'border border-accent/40 text-accent hover:bg-accent/10',
-  ghost: 'text-muted-light hover:text-[var(--text)]',
+  primary: 'btn-whatsapp rounded-full !shadow-[0_0_32px_rgba(131,37,253,0.25)]',
+  outline: 'btn-outline rounded-full',
+  ghost: 'text-muted-light hover:text-white',
 }
 
 export function Button({
@@ -26,7 +24,7 @@ export function Button({
   className = '',
   onClick,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 ${variants[variant]} ${className}`
+  const cls = `inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-all duration-200 ${variants[variant]} ${className}`
 
   if (external) {
     return (

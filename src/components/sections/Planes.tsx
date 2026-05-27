@@ -6,7 +6,7 @@ export function Planes() {
     <section id="planes" className="scroll-mt-20 py-16 md:py-24 bg-surface border-y border-[var(--border)]">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <p className="section-label">Precios claros</p>
-        <h2 className="font-syne text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">
           Planes mensuales
         </h2>
         <p className="text-muted-light max-w-xl mb-12">
@@ -28,7 +28,7 @@ export function Planes() {
             href={WA_LINKS.puntual}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent font-semibold hover:underline"
+            className="text-primary font-semibold hover:underline"
           >
             Cotiza aquí →
           </a>

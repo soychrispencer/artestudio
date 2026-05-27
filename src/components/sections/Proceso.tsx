@@ -6,7 +6,7 @@ export function Proceso() {
     <section id="proceso" className="scroll-mt-20 py-16 md:py-24">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <p className="section-label">Cómo funciona</p>
-        <h2 className="font-syne text-3xl md:text-4xl font-bold text-[var(--text)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-12">
           De la conversación al crecimiento
         </h2>
 
@@ -14,10 +14,10 @@ export function Proceso() {
           {PROCESO.map((step, idx) => (
             <div key={step.step} className="flex md:flex-col items-start md:items-stretch gap-4">
               <article className="flex-1 rounded-2xl card-base p-5">
-                <span className="inline-flex w-8 h-8 rounded-lg bg-accent-dim text-accent font-syne font-bold text-sm items-center justify-center mb-3">
+                <span className="inline-flex w-8 h-8 rounded-lg bg-accent-dim text-primary font-bold text-sm items-center justify-center mb-3">
                   {step.step}
                 </span>
-                <h3 className="font-syne font-semibold text-[var(--text)] mb-2">{step.title}</h3>
+                <h3 className="font-semibold text-[var(--text)] mb-2">{step.title}</h3>
                 <p className="text-sm text-muted-light leading-relaxed">{step.description}</p>
               </article>
               {idx < PROCESO.length - 1 && (

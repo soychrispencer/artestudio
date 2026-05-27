@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Syne, DM_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
@@ -9,17 +9,7 @@ import { HashScrollOnLoad } from '@/components/layout/HashScrollOnLoad'
 import JsonLd from '@/components/seo/JsonLd'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
-const syne = Syne({
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  variable: '--font-syne',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-dm',
-})
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
@@ -59,13 +49,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#05080F',
+  themeColor: '#0f0f0f',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className="font-dm bg-bg text-[var(--text)] antialiased">
+    <html lang="es" className={inter.variable}>
+      <body className="font-sans bg-bg text-[var(--text)] antialiased">
         {gaId ? (
           <>
             <Script

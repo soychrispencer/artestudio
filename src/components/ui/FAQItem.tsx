@@ -14,9 +14,9 @@ export function FAQItem({ q, a }: { q: string; a: string }) {
         className="w-full flex items-center justify-between gap-4 py-5 text-left"
         aria-expanded={open}
       >
-        <span className="font-syne font-semibold text-[var(--text)] pr-4">{q}</span>
+        <span className="font-semibold text-[var(--text)] pr-4">{q}</span>
         <ChevronDown
-          className={`w-5 h-5 text-accent flex-shrink-0 transition-transform duration-200 ${
+          className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-200 ${
             open ? 'rotate-180' : ''
           }`}
         />

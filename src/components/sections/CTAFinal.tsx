@@ -8,12 +8,12 @@ export function CTAFinal() {
       className="scroll-mt-20 py-20 md:py-28 relative overflow-hidden"
       style={{
         background:
-          'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0,212,161,0.07) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(124,111,255,0.07) 0%, transparent 50%)',
+          'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(131,37,253,0.08) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(168,85,255,0.06) 0%, transparent 50%)',
       }}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-syne text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--text)] mb-4">
-          <span className="text-accent">Empieza hoy.</span>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] mb-4">
+          <span className="text-gradient-primary">Empieza hoy.</span>
           <br />
           Tu equipo digital te espera.
         </h2>

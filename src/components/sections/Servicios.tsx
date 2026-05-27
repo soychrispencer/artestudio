@@ -6,7 +6,7 @@ export function Servicios() {
     <section id="servicios" className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)]">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <p className="section-label">Qué hacemos</p>
-        <h2 className="font-syne text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">
           Tres pilares, un solo equipo
         </h2>
         <p className="text-muted-light max-w-xl mb-10">

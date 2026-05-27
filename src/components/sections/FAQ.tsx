@@ -7,7 +7,7 @@ export function FAQ() {
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto">
           <p className="section-label text-center">FAQ</p>
-          <h2 className="font-syne text-3xl md:text-4xl font-bold text-[var(--text)] mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-8 text-center">
             Preguntas frecuentes
           </h2>
           <div className="rounded-2xl border border-[var(--border)] bg-card px-5 md:px-7">

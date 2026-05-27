@@ -6,19 +6,19 @@
 
 :root {
   color-scheme: dark;
-  --bg: #05080f;
-  --surface: #0c1220;
-  --card: #111827;
-  --card-hover: #151f30;
-  --accent: #00d4a1;
-  --accent-dim: rgba(0, 212, 161, 0.12);
-  --accent-2: #7c6fff;
-  --accent-2-dim: rgba(124, 111, 255, 0.12);
-  --text: #eef2ff;
-  --muted: #6b7fa3;
-  --muted-light: #9aaac8;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-accent: rgba(0, 212, 161, 0.3);
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --card: #1a1a1a;
+  --card-hover: #222222;
+  --accent: #8325fd;
+  --accent-dim: rgba(131, 37, 253, 0.12);
+  --accent-2: #a855ff;
+  --accent-2-dim: rgba(168, 85, 255, 0.12);
+  --text: #ffffff;
+  --muted: #b0b0b0;
+  --muted-light: #d0d0d0;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(131, 37, 253, 0.35);
 }
 
 html {
@@ -28,7 +28,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-dm), system-ui, sans-serif;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,7 +38,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-syne), system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -68,13 +67,27 @@ h6 {
 .glow-accent {
   background: radial-gradient(
     ellipse 60% 50% at 50% 0%,
-    rgba(0, 212, 161, 0.13) 0%,
+    rgba(131, 37, 253, 0.15) 0%,
     transparent 70%
   );
 }
 
+.ai-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(120deg, #8325fd 0%, #a855ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .section-label {
-  @apply text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)] mb-3;
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3;
 }
 
 .card-base {
@@ -90,4 +103,12 @@ h6 {
 
 .bg-accent-dim {
   background-color: var(--accent-dim);
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-primary text-white shadow-medium hover:shadow-lg transition-all duration-300;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-white/15 text-white hover:border-primary/60 hover:text-primary transition-all duration-300;
 }

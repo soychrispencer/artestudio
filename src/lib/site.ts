@@ -8,7 +8,7 @@ export const WA_NUMBER = '56938733230'
 
 export const CONTACT = {
   whatsapp: '+569 3873 3230',
-  email: 'hola@artestudio.cl',
+  email: 'contacto@artestudio.cl',
   instagram: 'https://instagram.com/artestudio.cl',
   behance: 'https://www.behance.net/soychrispencer',
 } as const

@@ -12,12 +12,15 @@ export function CTAFinal() {
       }}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-[var(--text)] mb-8">
-          ¿Listo para empezar?
-        </h2>
-        <Button href={WA_LINKS.general} external className="text-base px-10 py-4">
-          Hablar por WhatsApp
-        </Button>
+        <h2 className="text-3xl md:text-5xl font-bold text-[var(--text)] mb-8">¿Listo para empezar?</h2>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <Button href={`#${SECTION_IDS.planes}`} className="text-base px-10 py-4">
+            Contratar plan en línea
+          </Button>
+          <Button href={WA_LINKS.general} external variant="outline" className="text-base px-8 py-4">
+            Dudas por WhatsApp
+          </Button>
+        </div>
         <p className="text-sm text-muted mt-6">
           Respondemos en menos de 2 horas hábiles · Lunes a viernes 9–19h
         </p>

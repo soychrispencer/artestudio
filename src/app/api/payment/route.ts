@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
       const successUrl = `${siteUrl}/pago-exito?orderId=${orderId}`
       preferenceBody.back_urls = {
         success: successUrl,
-        failure: `${siteUrl}/checkout/error`,
-        pending: `${siteUrl}/checkout/pending`,
+        failure: `${siteUrl}/failure`,
+        pending: `${siteUrl}/pending`,
       }
       preferenceBody.auto_return = 'approved'
 

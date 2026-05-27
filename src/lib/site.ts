@@ -1,7 +1,8 @@
 /**
- * Contenido y enlaces — estrategia comercial Artestudio
- * Identidad visual: no modificar aquí (morado + Inter en CSS)
+ * Copy y navegación — estrategia: suscripción mensual + checkout en sitio
  */
+
+import { MIN_COMMITMENT_MONTHS } from './subscriptions'
 
 export const WA_NUMBER = '56938733230'
 
@@ -17,22 +18,15 @@ function waLink(text: string) {
 }
 
 export const WA_LINKS = {
-  landing: waLink(
-    'Hola Artestudio, quiero la Landing Express. Tengo un negocio de '
-  ),
-  crecimiento: waLink(
-    'Hola Artestudio, me interesa el Plan Crecimiento. Tengo un negocio de '
-  ),
-  ia: waLink('Hola Artestudio, me interesa el agente IA para mi negocio.'),
-  general: waLink('Hola Artestudio, quiero hablar de mi proyecto.'),
+  general: waLink('Hola Artestudio, tengo una consulta antes de contratar un plan.'),
+  asesoria: waLink('Hola Artestudio, necesito asesoría para elegir el plan correcto.'),
 } as const
 
 export const SECTION_IDS = {
   inicio: 'inicio',
-  caminos: 'caminos',
-  landingExpress: 'landing-express',
-  planCrecimiento: 'plan-crecimiento',
-  tresMeses: 'tres-meses',
+  planes: 'planes',
+  propiedad: 'propiedad',
+  addons: 'addons',
   proceso: 'proceso',
   prueba: 'prueba',
   faq: 'faq',
@@ -40,119 +34,79 @@ export const SECTION_IDS = {
 } as const
 
 export const NAV_LINKS = [
-  { label: 'Cómo empezar', href: `#${SECTION_IDS.caminos}` },
-  { label: 'Landing Express', href: `#${SECTION_IDS.landingExpress}` },
-  { label: 'Plan Crecimiento', href: `#${SECTION_IDS.planCrecimiento}` },
+  { label: 'Planes', href: `#${SECTION_IDS.planes}` },
+  { label: 'Tu propiedad', href: `#${SECTION_IDS.propiedad}` },
+  { label: 'Proceso', href: `#${SECTION_IDS.proceso}` },
   { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
 ] as const
 
-export const HERO_TRUST = [
-  '+40 proyectos en Chile',
-  'Respuesta en menos de 2 horas',
-  '3 meses mínimo o te devolvemos el setup',
-] as const
-
-export const CAMINOS = [
-  {
-    id: 'rapido',
-    anchor: SECTION_IDS.landingExpress,
-    icon: '🚀',
-    title: 'Quiero estar en internet esta semana',
-    description:
-      'Una landing page lista en 48 horas. Con tu info, fotos y botón de contacto. Sin complicaciones.',
-    cta: 'Esto es lo que necesito →',
-  },
-  {
-    id: 'serio',
-    anchor: SECTION_IDS.planCrecimiento,
-    icon: '📈',
-    title: 'Quiero una presencia digital que genere clientes',
-    description:
-      'Web completa + redes sociales activas + estrategia. Un equipo que trabaja tu negocio todos los meses.',
-    cta: 'Esto es lo que necesito →',
-  },
-] as const
-
-export const LANDING_EXPRESS = {
-  setupToday: '$74.990',
-  setupLabel: 'hoy para empezar',
-  monthly: '$19.990',
-  includes: [
-    'Landing de una página diseñada a medida',
-    'Textos asistidos con IA (tú revisas y apruebas)',
-    'Hosting + dominio el primer año',
-    'Botón de WhatsApp o formulario de contacto',
-    '1 ajuste mensual incluido',
+export const HERO = {
+  title: 'Un plan mensual. Web, redes e IA trabajando por tu negocio.',
+  highlight: 'Paga en línea. Sin ir y venir por cobros.',
+  subtitle:
+    'Activas con un pago inicial, después un monto fijo cada mes. Nosotros diseñamos, publicamos y mejoramos tu presencia digital.',
+  cta: 'Ver planes y contratar',
+  trust: [
+    'Pago seguro con MercadoPago',
+    `${MIN_COMMITMENT_MONTHS} meses mínimo · después el sitio es tuyo`,
+    'Mensualidad automática, sin facturas manuales',
   ],
-  guarantee:
-    'Si en 3 meses no estás conforme con los resultados, te devolvemos el setup. Sin preguntas.',
-  permanencia: 'Permanencia mínima de 3 meses. Después cancelas con 30 días de aviso.',
-  cta: 'Quiero mi landing express',
 } as const
 
-export const PLAN_CRECIMIENTO = {
-  framing:
-    'No contratas un sitio web. Contratas un equipo que piensa en tu negocio todos los meses: estrategia, contenido, optimización y resultados.',
-  setup: '$199.990',
-  setupLabel: 'de activación',
-  monthly: 'desde $89.990',
-  monthlyNote: '/mes (mínimo 3 meses)',
-  includes: [
-    'Sitio web hasta 6 páginas (diseñado para convertir)',
-    'Google Analytics + Meta Pixel instalados',
-    'Gestión de Instagram y/o Facebook (12 publicaciones/mes)',
-    'Diseño de piezas gráficas mensuales',
-    'Informe de resultados cada mes',
-    'Soporte prioritario por WhatsApp',
-  ],
-  addon: {
-    title: 'Agente IA para tu negocio',
-    price: 'desde $49.990/mes adicional',
-    description:
-      'Chatbot que atiende clientes, responde consultas y genera leads en WhatsApp o tu web.',
-  },
-  cta: 'Quiero hablar de esto',
+export const PLANES_INTRO = {
+  title: 'Elige tu plan mensual',
+  subtitle:
+    'El primer pago incluye activación + tu primer mes. La mensualidad se cobra automático en MercadoPago.',
+  note: `Permanencia mínima ${MIN_COMMITMENT_MONTHS} meses. Luego puedes cancelar el plan mensual con 30 días de aviso y quedarte con todo lo entregado.`,
 } as const
 
-export const TRES_MESES_COPY = {
-  title: '¿Por qué hay permanencia de 3 meses?',
+export const PROPIEDAD = {
+  title: `Después de ${MIN_COMMITMENT_MONTHS} meses, tu web y diseños son tuyos`,
   paragraphs: [
-    'Porque los resultados digitales no aparecen de un día para otro.',
-    'Una landing necesita tráfico para convertir. Las redes necesitan constancia para crecer. Google necesita tiempo para posicionar.',
-    '3 meses es el mínimo real para ver si algo funciona.',
-    'Si al tercer mes no estás conforme, te devolvemos el setup y te ayudamos a migrar todo. Sin dramas.',
+    `Los primeros ${MIN_COMMITMENT_MONTHS} meses son el tiempo mínimo para construir, publicar y medir resultados. En ese período trabajamos juntos con el plan activo.`,
+    'Al cumplir los 3 meses, te entregamos los archivos, accesos y propiedad de lo creado (sitio, piezas de diseño y contenido según tu plan). El dominio y hosting quedan a tu nombre.',
+    'Si quieres seguir, mantienes el plan mensual con el mismo equipo. Si prefieres irte, te llevas tu proyecto. Sin devoluciones del setup: es trabajo real ya ejecutado.',
+  ],
+  bullets: [
+    'No es alquiler eterno de tu web',
+    'Entrega documentada al cumplir el período',
+    'Puedes migrar a otro proveedor con todo lo tuyo',
   ],
 } as const
 
 export const PROCESO = [
-  'Conversas con nosotros — 30 min por WhatsApp o videollamada',
-  'Activas tu plan — pagas el setup y empezamos en 24h',
-  'Revisas y apruebas — tú tienes la última palabra',
-  'Creces cada mes — reportes, mejoras y estrategia continua',
+  'Eliges plan y pagas en línea (MercadoPago)',
+  'En 24–48h arrancamos con brief por WhatsApp',
+  'Revisas y apruebas cada entrega',
+  'Cada mes: contenido, mejoras y reporte según tu plan',
 ] as const
 
 export const PRUEBA_SOCIAL = {
   honest:
-    'Somos una agencia joven y honesta. Preferimos mostrarte trabajo real que inventar reseñas.',
-  behanceLabel: 'Ver portafolio en Behance',
-  instagramLabel: 'Ver proyectos en Instagram',
+    'Trabajo real, sin reseñas inventadas. Mira proyectos y conversa con nosotros antes de pagar.',
+  behanceLabel: 'Portafolio en Behance',
+  instagramLabel: 'Proyectos en Instagram',
 } as const
 
 export const FAQ_ITEMS = [
   {
-    q: '¿Qué pasa si cancelo antes de los 3 meses?',
-    a: 'Pierdes el setup, pero te entregamos todos los archivos y accesos. No te dejamos colgado.',
+    q: '¿Cómo funciona el pago?',
+    a: 'Contratas en esta web con MercadoPago. El primer cobro es activación + primer mes. Los meses siguientes se debitan automáticamente según tu plan.',
   },
   {
-    q: '¿Puedo empezar con la landing y después subir al plan Crecimiento?',
-    a: 'Sí. El setup de landing se descuenta del setup del plan Crecimiento si subes dentro de los primeros 6 meses.',
+    q: `¿Qué pasa después de los ${MIN_COMMITMENT_MONTHS} meses?`,
+    a: 'Te entregamos tu sitio y diseños: eres dueño de lo creado. Puedes seguir con nosotros pagando el plan mensual, o cancelar con 30 días de aviso y llevarte todo.',
   },
   {
-    q: '¿Qué es el "agente IA" que mencionan?',
-    a: 'Un chatbot entrenado con la info de tu negocio que responde preguntas, cotiza y capta leads en WhatsApp o tu web, solo.',
+    q: '¿Puedo cancelar antes de los 3 meses?',
+    a: 'La permanencia mínima es de 3 meses por el trabajo de activación. Si necesitas salir antes, conversamos tu caso; no prometemos devolución del setup porque el trabajo ya está en marcha.',
   },
   {
-    q: '¿Trabajan fuera de Santiago?',
-    a: 'Sí. Trabajamos 100% remoto con clientes en todo Chile.',
+    q: '¿Puedo sumar el agente IA después?',
+    a: 'Sí. Puedes agregar el complemento de Agente IA Pro desde esta misma página o al subir de plan.',
+  },
+  {
+    q: '¿Trabajan en todo Chile?',
+    a: 'Sí, 100% remoto. Brief, revisiones y soporte por WhatsApp y videollamada.',
   },
 ] as const

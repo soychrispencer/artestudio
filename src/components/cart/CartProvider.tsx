@@ -228,8 +228,8 @@ function CartDrawer() {
         onClick={closeCart}
         aria-hidden
       />
-      <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-dark-bg border-l border-gray-200 dark:border-dark-bg-tertiary shadow-xl flex flex-col">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-dark-bg-tertiary">
+      <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-[var(--surface)] border-l border-[var(--border)] shadow-xl flex flex-col text-[var(--text)]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
           <div className="flex items-center gap-3">
             <button
               onClick={() => {
@@ -473,8 +473,9 @@ function CartDrawer() {
                 </div>
               </div>
 
-              <p className="text-xs text-gray-500 dark:text-dark-text-secondary">
-                Al continuar serás redirigido a MercadoPago para completar el pago.
+              <p className="text-xs text-muted">
+                Al continuar irás a MercadoPago. Primer cobro: activación + mes 1. Permanencia mínima 3 meses.
+                Al cumplirla, tu proyecto es tuyo; la mensualidad puedes cancelarla con 30 días de aviso.
               </p>
             </div>
           )}
@@ -482,12 +483,12 @@ function CartDrawer() {
 
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
           <div className="flex flex-col text-right">
-            <span className="text-lg font-bold text-gray-900 dark:text-white">
-              Total hoy: {formatPrice(total)}
+            <span className="text-lg font-bold text-[var(--text)]">
+              Total hoy: {formatPrice(total + monthlyTotal)}
             </span>
             {monthlyTotal > 0 && (
               <span className="text-sm text-primary font-semibold">
-                + Suscripción: {formatPrice(monthlyTotal)}/mes
+                Luego {formatPrice(monthlyTotal)}/mes (MercadoPago automático)
               </span>
             )}
           </div>

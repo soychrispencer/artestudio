@@ -8,6 +8,7 @@ import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat'
 import { HashScrollOnLoad } from '@/components/layout/HashScrollOnLoad'
 import JsonLd from '@/components/seo/JsonLd'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+import { CartProvider } from '@/components/cart/CartProvider'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -15,9 +16,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  title: 'Artestudio — Tu equipo digital mensual en Chile',
+  title: 'Artestudio — Planes mensuales web, redes e IA | Chile',
   description:
-    'Web, redes sociales y apps con IA por mensualidad fija. Para emprendedores y pymes en Chile que quieren conseguir clientes.',
+    'Contrata en línea con MercadoPago. Planes mensuales con web, redes sociales e IA. Después de 3 meses, tu proyecto es tuyo.',
   keywords: [
     'diseño web Chile',
     'agencia digital Chile',
@@ -75,11 +76,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ) : null}
         <GoogleAnalytics gaId={gaId} />
         <JsonLd />
-        <HashScrollOnLoad />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <CartProvider>
+          <HashScrollOnLoad />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <WhatsAppFloat />
+        </CartProvider>
       </body>
     </html>
   )

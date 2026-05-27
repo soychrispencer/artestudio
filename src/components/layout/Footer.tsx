@@ -15,7 +15,7 @@ export function Footer() {
           <div>
             <p className="text-lg font-bold text-[var(--text)] mb-2">Artestudio</p>
             <p className="text-sm text-muted-light leading-relaxed">
-              Tu equipo digital mensual: web, redes y apps con IA para emprendedores y pymes en Chile.
+              Web, redes y apps con IA para que tu negocio consiga clientes. Chile, 100% remoto.
             </p>
           </div>
 

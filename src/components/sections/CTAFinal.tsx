@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/Button'
-import { CONTACT, WA_LINKS } from '@/lib/site'
+import { SECTION_IDS, WA_LINKS } from '@/lib/site'
 
 export function CTAFinal() {
   return (
     <section
-      id="contacto"
+      id={SECTION_IDS.contacto}
       className="scroll-mt-20 py-20 md:py-28 relative overflow-hidden"
       style={{
         background:
@@ -12,22 +12,15 @@ export function CTAFinal() {
       }}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] mb-4">
-          <span className="text-gradient-primary">Empieza hoy.</span>
-          <br />
-          Tu equipo digital te espera.
+        <h2 className="text-3xl md:text-5xl font-bold text-[var(--text)] mb-8">
+          ¿Listo para empezar?
         </h2>
-        <p className="text-muted-light max-w-lg mx-auto mb-8">
-          Atendemos todo Chile de forma remota · Respuesta en menos de 2 horas hábiles
+        <Button href={WA_LINKS.general} external className="text-base px-10 py-4">
+          Hablar por WhatsApp
+        </Button>
+        <p className="text-sm text-muted mt-6">
+          Respondemos en menos de 2 horas hábiles · Lunes a viernes 9–19h
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button href={WA_LINKS.general} external>
-            Hablar por WhatsApp
-          </Button>
-          <Button href={`mailto:${CONTACT.email}`} variant="outline">
-            {CONTACT.email}
-          </Button>
-        </div>
       </div>
     </section>
   )

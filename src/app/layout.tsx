@@ -17,13 +17,13 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID
 export const metadata: Metadata = {
   title: 'Artestudio — Tu equipo digital mensual en Chile',
   description:
-    'Web, redes sociales y apps con IA por mensualidad fija. Sin contratos largos. Para emprendedores y pymes en Chile.',
+    'Web, redes sociales y apps con IA por mensualidad fija. Para emprendedores y pymes en Chile que quieren conseguir clientes.',
   keywords: [
     'diseño web Chile',
     'agencia digital Chile',
     'redes sociales Chile',
+    'landing express Chile',
     'apps IA Chile',
-    'agencia mensual',
   ],
   authors: [{ name: 'Artestudio' }],
   metadataBase: new URL(siteUrl),
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.png' },
   openGraph: {
     title: 'Artestudio — Tu equipo digital mensual en Chile',
-    description: 'Web, redes y apps con IA que generan clientes todos los meses.',
+    description: 'Tu negocio merece clientes. Web, redes y apps con IA con mensualidad clara.',
     url: siteUrl,
     siteName: 'Artestudio',
     locale: 'es_CL',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Artestudio — Tu equipo digital mensual en Chile',
-    description: 'Web, redes y apps con IA que generan clientes todos los meses.',
+    description: 'Tu negocio merece clientes. Web, redes y apps con IA con mensualidad clara.',
     images: [`${siteUrl}/og-image.png`],
   },
 }

@@ -1,5 +1,6 @@
 /**
- * Configuración central del sitio — rediseño 2026
+ * Contenido y enlaces — estrategia comercial Artestudio
+ * Identidad visual: no modificar aquí (morado + Inter en CSS)
  */
 
 export const WA_NUMBER = '56938733230'
@@ -16,212 +17,142 @@ function waLink(text: string) {
 }
 
 export const WA_LINKS = {
-  inicio: waLink('Hola Artestudio, quiero el plan Inicio.'),
-  crecer: waLink('Hola Artestudio, quiero el plan Crecer.'),
-  pro: waLink('Hola Artestudio, quiero el plan Pro.'),
+  landing: waLink(
+    'Hola Artestudio, quiero la Landing Express. Tengo un negocio de '
+  ),
+  crecimiento: waLink(
+    'Hola Artestudio, me interesa el Plan Crecimiento. Tengo un negocio de '
+  ),
+  ia: waLink('Hola Artestudio, me interesa el agente IA para mi negocio.'),
   general: waLink('Hola Artestudio, quiero hablar de mi proyecto.'),
-  puntual: waLink('Hola Artestudio, tengo un proyecto puntual y quiero cotizar.'),
+} as const
+
+export const SECTION_IDS = {
+  inicio: 'inicio',
+  caminos: 'caminos',
+  landingExpress: 'landing-express',
+  planCrecimiento: 'plan-crecimiento',
+  tresMeses: 'tres-meses',
+  proceso: 'proceso',
+  prueba: 'prueba',
+  faq: 'faq',
+  contacto: 'contacto',
 } as const
 
 export const NAV_LINKS = [
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Planes', href: '#planes' },
-  { label: 'Cómo funciona', href: '#proceso' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Cómo empezar', href: `#${SECTION_IDS.caminos}` },
+  { label: 'Landing Express', href: `#${SECTION_IDS.landingExpress}` },
+  { label: 'Plan Crecimiento', href: `#${SECTION_IDS.planCrecimiento}` },
+  { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
 ] as const
 
-export const PLANS = [
+export const HERO_TRUST = [
+  '+40 proyectos en Chile',
+  'Respuesta en menos de 2 horas',
+  '3 meses mínimo o te devolvemos el setup',
+] as const
+
+export const CAMINOS = [
   {
-    id: 'inicio',
-    name: 'Inicio',
-    setup: '$74.990',
-    setupNote: 'pago único',
-    monthly: '$14.990',
-    featured: false,
-    includes: [
-      'Landing de 1 página',
-      'Hosting incluido',
-      'Botón WhatsApp',
-      '1 revisión al mes',
-      'Soporte por WhatsApp',
-    ],
-    excludes: ['Redes sociales', 'Apps con IA'],
-    cta: 'Quiero plan Inicio',
-    wa: WA_LINKS.inicio,
-    variant: 'outline' as const,
+    id: 'rapido',
+    anchor: SECTION_IDS.landingExpress,
+    icon: '🚀',
+    title: 'Quiero estar en internet esta semana',
+    description:
+      'Una landing page lista en 48 horas. Con tu info, fotos y botón de contacto. Sin complicaciones.',
+    cta: 'Esto es lo que necesito →',
   },
   {
-    id: 'crecer',
-    name: 'Crecer',
-    setup: '$149.990',
-    setupNote: 'pago único',
-    monthly: '$89.990',
-    featured: true,
-    badge: 'Más popular',
-    includes: [
-      'Todo lo del plan Inicio',
-      'Sitio de hasta 5 páginas',
-      'Analytics básico',
-      '12 publicaciones/mes en redes',
-      'Diseño gráfico para redes',
-      'Copy para publicaciones',
-      'Informe mensual',
-    ],
-    excludes: [] as string[],
-    cta: 'Quiero plan Crecer',
-    wa: WA_LINKS.crecer,
-    variant: 'primary' as const,
-  },
-  {
-    id: 'pro',
-    name: 'Pro',
-    setup: '$249.990+',
-    setupNote: 'pago único',
-    monthly: '$149.990',
-    featured: false,
-    includes: [
-      'Todo lo del plan Crecer',
-      'eCommerce o tienda online',
-      'Chatbot / agente con IA',
-      'Automatizaciones',
-      'SEO mensual',
-      'Soporte prioritario 24h',
-    ],
-    excludes: [] as string[],
-    cta: 'Quiero plan Pro',
-    wa: WA_LINKS.pro,
-    variant: 'outline' as const,
+    id: 'serio',
+    anchor: SECTION_IDS.planCrecimiento,
+    icon: '📈',
+    title: 'Quiero una presencia digital que genere clientes',
+    description:
+      'Web completa + redes sociales activas + estrategia. Un equipo que trabaja tu negocio todos los meses.',
+    cta: 'Esto es lo que necesito →',
   },
 ] as const
 
-export const SERVICIOS = [
-  {
-    id: 'servicio-web',
-    num: '01',
-    icon: '🌐',
-    title: 'Diseño web que convierte',
-    description:
-      'Landings y sitios pensados para captar clientes, no solo para verse bonitos.',
-    features: [
-      'Diseño responsive',
-      'Optimizado para móvil',
-      'WhatsApp y formularios',
-      'Hosting y soporte incluido',
-    ],
-  },
-  {
-    id: 'servicio-redes',
-    num: '02',
-    icon: '📱',
-    title: 'Redes sociales con estrategia',
-    description:
-      'Contenido constante, diseño coherente y reportes que muestran avance real.',
-    features: [
-      'Calendario editorial',
-      'Diseño de publicaciones',
-      'Copy y hashtags',
-      'Informe mensual',
-    ],
-  },
-  {
-    id: 'servicio-ia',
-    num: '03',
-    icon: '🤖',
-    title: 'Apps y automatizaciones con IA',
-    description:
-      'Chatbots, flujos automáticos y herramientas que ahorran tiempo a tu negocio.',
-    features: [
-      'Agentes de atención',
-      'Integraciones con WhatsApp',
-      'Automatización de tareas',
-      'Dashboards simples',
-    ],
-  },
-] as const
+export const LANDING_EXPRESS = {
+  setupToday: '$74.990',
+  setupLabel: 'hoy para empezar',
+  monthly: '$19.990',
+  includes: [
+    'Landing de una página diseñada a medida',
+    'Textos asistidos con IA (tú revisas y apruebas)',
+    'Hosting + dominio el primer año',
+    'Botón de WhatsApp o formulario de contacto',
+    '1 ajuste mensual incluido',
+  ],
+  guarantee:
+    'Si en 3 meses no estás conforme con los resultados, te devolvemos el setup. Sin preguntas.',
+  permanencia: 'Permanencia mínima de 3 meses. Después cancelas con 30 días de aviso.',
+  cta: 'Quiero mi landing express',
+} as const
 
-export const PROBLEMAS = [
-  {
-    emoji: '😴',
-    title: 'Web que existe pero no vende',
+export const PLAN_CRECIMIENTO = {
+  framing:
+    'No contratas un sitio web. Contratas un equipo que piensa en tu negocio todos los meses: estrategia, contenido, optimización y resultados.',
+  setup: '$199.990',
+  setupLabel: 'de activación',
+  monthly: 'desde $89.990',
+  monthlyNote: '/mes (mínimo 3 meses)',
+  includes: [
+    'Sitio web hasta 6 páginas (diseñado para convertir)',
+    'Google Analytics + Meta Pixel instalados',
+    'Gestión de Instagram y/o Facebook (12 publicaciones/mes)',
+    'Diseño de piezas gráficas mensuales',
+    'Informe de resultados cada mes',
+    'Soporte prioritario por WhatsApp',
+  ],
+  addon: {
+    title: 'Agente IA para tu negocio',
+    price: 'desde $49.990/mes adicional',
     description:
-      'Tienes página, pero no genera consultas ni ventas. Falta enfoque en conversión.',
+      'Chatbot que atiende clientes, responde consultas y genera leads en WhatsApp o tu web.',
   },
-  {
-    emoji: '📉',
-    title: 'Redes sociales sin estrategia',
-    description:
-      'Publicas cuando puedes, sin calendario ni objetivos. Tu audiencia no crece.',
-  },
-  {
-    emoji: '🤖',
-    title: 'Perdiendo terreno frente a la IA',
-    description:
-      'Tu competencia automatiza atención y contenido. Tú sigues haciendo todo manual.',
-  },
-] as const
+  cta: 'Quiero hablar de esto',
+} as const
+
+export const TRES_MESES_COPY = {
+  title: '¿Por qué hay permanencia de 3 meses?',
+  paragraphs: [
+    'Porque los resultados digitales no aparecen de un día para otro.',
+    'Una landing necesita tráfico para convertir. Las redes necesitan constancia para crecer. Google necesita tiempo para posicionar.',
+    '3 meses es el mínimo real para ver si algo funciona.',
+    'Si al tercer mes no estás conforme, te devolvemos el setup y te ayudamos a migrar todo. Sin dramas.',
+  ],
+} as const
 
 export const PROCESO = [
-  {
-    step: 1,
-    title: 'Conversación inicial',
-    description: '30 min por WhatsApp para entender tu negocio y recomendar el plan ideal.',
-  },
-  {
-    step: 2,
-    title: 'Activación rápida',
-    description: 'Arrancamos en 24–48 horas hábiles con brief y acceso a lo necesario.',
-  },
-  {
-    step: 3,
-    title: 'Entrega y revisión',
-    description: 'Te mostramos avances. Tú apruebas antes de publicar.',
-  },
-  {
-    step: 4,
-    title: 'Crecimiento mensual',
-    description: 'Reportes, mejoras y soporte continuo mes a mes.',
-  },
+  'Conversas con nosotros — 30 min por WhatsApp o videollamada',
+  'Activas tu plan — pagas el setup y empezamos en 24h',
+  'Revisas y apruebas — tú tienes la última palabra',
+  'Creces cada mes — reportes, mejoras y estrategia continua',
 ] as const
 
-export const TESTIMONIOS = [
-  {
-    name: 'Camila R.',
-    company: 'Estudio de yoga',
-    initial: 'C',
-    text: 'En dos semanas tenía mi landing lista y empecé a recibir consultas por WhatsApp. El plan mensual me da tranquilidad.',
-    stars: 5,
-  },
-  {
-    name: 'Diego M.',
-    company: 'Taller mecánico',
-    initial: 'D',
-    text: 'Antes no teníamos presencia digital. Ahora tenemos web, redes activas y un chatbot que responde fuera de horario.',
-    stars: 5,
-  },
-  {
-    name: 'Valentina S.',
-    company: 'Consultora independiente',
-    initial: 'V',
-    text: 'Lo que más valoro es la claridad: un precio fijo al mes, sin sorpresas ni contratos eternos.',
-    stars: 5,
-  },
-] as const
+export const PRUEBA_SOCIAL = {
+  honest:
+    'Somos una agencia joven y honesta. Preferimos mostrarte trabajo real que inventar reseñas.',
+  behanceLabel: 'Ver portafolio en Behance',
+  instagramLabel: 'Ver proyectos en Instagram',
+} as const
 
 export const FAQ_ITEMS = [
   {
-    q: '¿Qué pasa si quiero cancelar el plan mensual?',
-    a: 'Puedes cancelar con 30 días de aviso. No hay multas ni permanencia mínima. Tu web y archivos te quedan según lo acordado en el plan.',
+    q: '¿Qué pasa si cancelo antes de los 3 meses?',
+    a: 'Pierdes el setup, pero te entregamos todos los archivos y accesos. No te dejamos colgado.',
   },
   {
-    q: '¿Puedo empezar solo con web y agregar redes después?',
-    a: 'Sí. Muchos clientes empiezan con el plan Inicio y suben a Crecer cuando quieren sumar redes y más contenido.',
+    q: '¿Puedo empezar con la landing y después subir al plan Crecimiento?',
+    a: 'Sí. El setup de landing se descuenta del setup del plan Crecimiento si subes dentro de los primeros 6 meses.',
   },
   {
-    q: '¿Qué es exactamente una "app con IA"?',
-    a: 'Puede ser un chatbot en tu web o WhatsApp, respuestas automáticas a preguntas frecuentes, o flujos que conectan formularios con tu email o CRM. Lo adaptamos a tu operación.',
+    q: '¿Qué es el "agente IA" que mencionan?',
+    a: 'Un chatbot entrenado con la info de tu negocio que responde preguntas, cotiza y capta leads en WhatsApp o tu web, solo.',
   },
   {
-    q: '¿Cuánto tiempo toma tener mi web lista?',
-    a: 'Una landing express suele estar lista en 24–48 horas hábiles. Sitios de 5 páginas o más dependen del contenido, pero el plan Crecer arranca en la primera semana.',
+    q: '¿Trabajan fuera de Santiago?',
+    a: 'Sí. Trabajamos 100% remoto con clientes en todo Chile.',
   },
 ] as const

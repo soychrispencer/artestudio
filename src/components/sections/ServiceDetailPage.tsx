@@ -33,10 +33,6 @@ const BILLING_MODEL_LABEL: Record<ServiceDetail['billingModel'], string> = {
 function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
   const { addItem, openCart } = useCart()
   const isRecommended = plan.recommended === true
-  const discountPercent = plan.oldPrice
-    ? Math.round((1 - plan.price / plan.oldPrice) * 100)
-    : 0
-  const showPromo = discountPercent >= 50
   const summaryCount = plan.features.length > 3 ? 3 : plan.features.length
   const summaryItems = Array.isArray(plan.summary) && plan.summary.length > 0
     ? plan.summary
@@ -58,12 +54,6 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
           Recomendado
         </div>
       )}
-      {showPromo && (
-        <div className="absolute top-4 left-4 bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">
-          Promo 50%
-        </div>
-      )}
-
       <div className="relative flex flex-col h-full p-8">
         {/* Plan Header */}
         <div className="mb-6 flex items-start justify-between gap-4">
@@ -74,14 +64,6 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
               {plan.name}
             </h3>
-            {plan.oldPrice && (
-              <div className="mt-3 text-sm text-gray-500 dark:text-dark-text-secondary">
-                <span className="line-through">{formatPrice(plan.oldPrice)}</span>
-                <span className="ml-2 text-primary font-semibold">
-                  Ahorra {formatPrice(plan.oldPrice - plan.price)}
-                </span>
-              </div>
-            )}
           </div>
           <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-gray-50 dark:bg-dark-bg-secondary px-4 py-3 text-right min-w-[140px]">
             <div className="text-2xl font-bold text-primary">{formatPrice(plan.price)}</div>
@@ -162,10 +144,7 @@ function PlanCard({ plan, service }: { plan: any; service: ServiceDetail }) {
 
 function AddonCard({ addon }: { addon: any }) {
   const { addItem, openCart } = useCart()
-  const discountPercent = addon.oldPrice
-    ? Math.round((1 - addon.price / addon.oldPrice) * 100)
-    : 0
-  const badgeLabel = discountPercent >= 50 ? 'Promo 50%' : addon.badge
+  const badgeLabel = addon.badge
   return (
     <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg p-6 flex flex-col gap-4">
       <div>
@@ -188,11 +167,6 @@ function AddonCard({ addon }: { addon: any }) {
         <span className="text-sm text-gray-500 dark:text-dark-text-secondary">CLP</span>
         {addon.billing === 'mensual' && (
           <span className="text-xs text-gray-500 dark:text-dark-text-secondary">/mes</span>
-        )}
-        {addon.oldPrice && (
-          <span className="text-xs text-gray-500 line-through">
-            {formatPrice(addon.oldPrice)}
-          </span>
         )}
       </div>
       <button
@@ -302,9 +276,6 @@ const WEB_SCOPE_NOT_INCLUDED = [
 
 export function ServicePage({ service }: ServicePageProps) {
   const { addItem, openCart } = useCart()
-  const serviceDiscountPercent = service.oldPrice
-    ? Math.round((1 - service.price / service.oldPrice) * 100)
-    : 0
   const relatedServices = getRelatedServices(service).slice(0, 3)
   const unitPlans = (service.plans ?? []).filter((p) => p.name.includes('Unitario'))
   const comboPlans = (service.plans ?? []).filter((p) => p.name.includes('Combo'))
@@ -885,22 +856,12 @@ export function ServicePage({ service }: ServicePageProps) {
 
                 {/* Price Card */}
                 <div className="mt-8 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-dark-bg dark:to-dark-bg-secondary border-2 border-purple-200 dark:border-purple-900">
-                  {serviceDiscountPercent >= 50 && (
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-semibold text-primary uppercase tracking-[0.2em]">
-                      Promo 50%
-                    </div>
-                  )}
                   {service.pricePrefix === 'desde' && (
                     <div className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
                       Desde
                     </div>
                   )}
                   <div className="flex items-baseline justify-center gap-2 mb-6">
-                    {service.oldPrice && (
-                      <span className="text-2xl text-gray-500 line-through">
-                        {formatPrice(service.oldPrice)}
-                      </span>
-                    )}
                     <span className="text-5xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text">
                       {formatPrice(service.price)}
                     </span>
@@ -911,12 +872,6 @@ export function ServicePage({ service }: ServicePageProps) {
                       ? 'Valor referencial de partida. La propuesta final se define según alcance.'
                       : 'Inversión única. Sin cargos ocultos.'}
                   </p>
-
-                  {service.oldPrice && (
-                    <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-bold mb-8 dark:bg-primary/20">
-                      ¡Ahorra {formatPrice((service.oldPrice ?? 0) - service.price)}!
-                    </div>
-                  )}
 
                   <button
                     onClick={() => {

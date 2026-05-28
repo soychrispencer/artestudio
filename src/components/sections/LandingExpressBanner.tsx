@@ -11,7 +11,7 @@ export function LandingExpressBanner() {
             ¿Buscas algo más rápido?
           </p>
           <p className="text-sm text-gray-700 dark:text-dark-text-secondary">
-            <strong className="text-gray-900 dark:text-white">Landing Express IA</strong> desde $74.990 setup + $14.990/mes.
+            <strong className="text-gray-900 dark:text-white">Landing Express</strong> desde $74.990 setup + $14.990/mes.
             Una página para WhatsApp o ventas, sin el alcance de un sitio completo.
           </p>
         </div>

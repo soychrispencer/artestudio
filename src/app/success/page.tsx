@@ -25,7 +25,9 @@ function SuccessContent() {
       const order = JSON.parse(stored) as {
         orderId?: string
         buyer?: { name?: string; email?: string; phone?: string; company?: string }
-        items?: { title: string; quantity: number; price: number }[]
+        items?: { title: string; quantity: number; setup?: number; setupWaived?: number; monthly?: number }[]
+        setupWaived?: number
+        monthlyTotal?: number
         total?: number
       }
 
@@ -33,13 +35,18 @@ function SuccessContent() {
       const status = searchParams.get('collection_status') || searchParams.get('status')
 
       const itemsLine = order.items
-        ? order.items.map((item) => `• ${item.title} x${item.quantity}`).join('\n')
+        ? order.items.map((item) => {
+            const monthly = item.monthly && item.monthly > 0 ? ` — ${formatPrice(item.monthly)}/mes` : ''
+            return `• ${item.title} x${item.quantity}${monthly}`
+          }).join('\n')
         : ''
       const dateLabel = new Date().toLocaleString('es-CL')
 
       const message = [
         'Estimado equipo Artestudio,',
-        'Se ha registrado una compra en artestudio.cl ✅',
+        order.monthlyTotal && order.monthlyTotal > 0
+          ? 'Se ha registrado una suscripción en artestudio.cl ✅'
+          : 'Se ha registrado una compra en artestudio.cl ✅',
         order.orderId ? `Pedido: ${order.orderId}` : '',
         `Fecha: ${dateLabel}`,
         order.buyer?.name ? `Cliente: ${order.buyer.name}` : '',
@@ -47,7 +54,9 @@ function SuccessContent() {
         order.buyer?.phone ? `Teléfono: ${order.buyer.phone}` : '',
         order.buyer?.company ? `Empresa: ${order.buyer.company}` : '',
         itemsLine ? `Servicios:\n${itemsLine}` : '',
-        order.total ? `Total: ${formatPrice(order.total)} CLP` : '',
+        order.monthlyTotal ? `Suscripción mensual: ${formatPrice(order.monthlyTotal)}/mes` : '',
+        order.setupWaived ? `Activación promocional incluida: ${formatPrice(order.setupWaived)} CLP` : '',
+        order.total && !order.monthlyTotal ? `Total: ${formatPrice(order.total)} CLP` : '',
         paymentId ? `ID de pago: ${paymentId}` : '',
         status ? `Estado: ${status}` : '',
       ]

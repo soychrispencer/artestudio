@@ -3,12 +3,17 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { ShoppingCart } from 'tabler-icons-react'
 import { NAV_LINKS, WA_LINKS } from '@/lib/site'
 import { Button } from '@/components/ui/Button'
+import { useCart } from '@/components/cart/CartProvider'
+import { trackEvent } from '@/lib/analytics'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const { items, openCart } = useCart()
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -52,9 +57,27 @@ export function Navbar() {
           ))}
         </nav>
 
-        <Button href={WA_LINKS.general} external variant="primary" className="!py-2.5 !px-5 !text-sm">
-          Hablar por WhatsApp
-        </Button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent('header_cart_click')
+              openCart()
+            }}
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-card text-[var(--text)] transition-colors hover:border-primary/60"
+            aria-label="Abrir carrito"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 min-w-[18px] h-[18px] rounded-full bg-primary px-1 text-[10px] font-bold text-white flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
+          <Button href={WA_LINKS.general} external variant="primary" className="!py-2.5 !px-5 !text-sm">
+            Quiero empezar
+          </Button>
+        </div>
       </div>
     </header>
   )

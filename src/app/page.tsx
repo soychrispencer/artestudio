@@ -1,7 +1,6 @@
 import { Hero } from '@/components/sections/Hero'
 import { PlanesSuscripcion } from '@/components/sections/PlanesSuscripcion'
-import { PropiedadSection } from '@/components/sections/PropiedadSection'
-import { AddonsSection } from '@/components/sections/AddonsSection'
+import { ServiciosIndividuales } from '@/components/sections/ServiciosIndividuales'
 import { Proceso } from '@/components/sections/Proceso'
 import { PruebaSocial } from '@/components/sections/PruebaSocial'
 import { FAQ } from '@/components/sections/FAQ'
@@ -12,8 +11,7 @@ export default function Home() {
     <>
       <Hero />
       <PlanesSuscripcion />
-      <PropiedadSection />
-      <AddonsSection />
+      <ServiciosIndividuales />
       <Proceso />
       <PruebaSocial />
       <FAQ />

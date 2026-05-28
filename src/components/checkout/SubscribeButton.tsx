@@ -10,6 +10,7 @@ type SubscribeButtonProps = {
   title: string
   setup: number
   monthly: number
+  regularMonthly?: number
   children: ReactNode
   variant?: 'primary' | 'outline'
   className?: string
@@ -20,19 +21,23 @@ export function SubscribeButton({
   title,
   setup,
   monthly,
+  regularMonthly,
   children,
   variant = 'primary',
   className = '',
 }: SubscribeButtonProps) {
-  const { addItem, openCart } = useCart()
+  const { addItem, clear, openCart } = useCart()
 
   const handleClick = () => {
     trackEvent('subscribe_click', { plan_id: planId, setup, monthly })
+    clear()
     addItem({
       id: planId,
       title,
-      setup,
+      setup: 0,
+      setupWaived: setup,
       monthly,
+      regularMonthly,
       quantity: 1,
     })
     openCart()

@@ -16,23 +16,23 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  title: 'Artestudio — Planes mensuales web, redes e IA | Chile',
+  title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes | Chile',
   description:
-    'Contrata en línea con MercadoPago. Planes mensuales con web, redes sociales e IA. Después de 3 meses, tu proyecto es tuyo.',
+    'Hacemos tu presencia digital para que te encuentren y te escriban. Planes claros para emprendedores y pymes en Chile.',
   keywords: [
     'diseño web Chile',
     'agencia digital Chile',
     'redes sociales Chile',
     'landing express Chile',
-    'apps IA Chile',
+    'soporte digital Chile',
   ],
   authors: [{ name: 'Artestudio' }],
   metadataBase: new URL(siteUrl),
   robots: 'index, follow',
   icons: { icon: '/favicon.png' },
   openGraph: {
-    title: 'Artestudio — Tu equipo digital mensual en Chile',
-    description: 'Tu negocio merece clientes. Web, redes y apps con IA con mensualidad clara.',
+    title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes',
+    description: 'Tu negocio merece clientes desde internet. Web, contenido y soporte digital.',
     url: siteUrl,
     siteName: 'Artestudio',
     locale: 'es_CL',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Artestudio — Tu equipo digital mensual en Chile',
-    description: 'Tu negocio merece clientes. Web, redes y apps con IA con mensualidad clara.',
+    title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes',
+    description: 'Tu negocio merece clientes desde internet. Web, contenido y soporte digital.',
     images: [`${siteUrl}/og-image.png`],
   },
 }

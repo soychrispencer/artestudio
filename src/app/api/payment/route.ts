@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
 
     const customer = body.customer ?? {}
     const orderId = typeof body.orderId === 'string' ? body.orderId.trim() : ''
+    const checkoutMode = body.checkoutMode === 'subscription' ? 'subscription' : 'standard'
 
     if (!itemsInput.length) {
       return NextResponse.json({ error: 'Faltan datos requeridos' }, { status: 400 })
@@ -33,9 +34,13 @@ export async function POST(request: NextRequest) {
       }
       titles.push(titleStr)
 
-      const setupNum = Number(item.setup ?? item.price ?? 0)
+      let setupNum = Number(item.setup ?? item.price ?? 0)
       const monthlyNum = Number(item.monthly ?? 0)
       const quantityNum = Math.floor(Number(item.quantity ?? 1))
+
+      if (checkoutMode === 'subscription' && monthlyNum > 0) {
+        setupNum = 0
+      }
 
       if (Number.isNaN(setupNum) || setupNum < 0 || setupNum > MAX_PRICE) {
         throw new Error('Monto de setup inválido')
@@ -68,7 +73,51 @@ export async function POST(request: NextRequest) {
     const email = typeof customer.email === 'string' ? customer.email.trim() : ''
 
     // ─────────────────────────────────────────────
-    // CASO A: PAGO INICIAL CON SETUP (Usamos Preferencia)
+    // CASO A: SUSCRIPCIÓN REAL (Checkout recurrente de MercadoPago)
+    // ─────────────────────────────────────────────
+    if (checkoutMode === 'subscription' && totalMonthly > 0) {
+      const startDate = typeof body.startDate === 'string' ? body.startDate : undefined
+      const preapprovalBody: any = {
+        reason: titles.join(' + ').substring(0, 100),
+        external_reference: orderId,
+        payer_email: email || 'test_user_123@testuser.com',
+        auto_recurring: {
+          frequency: 1,
+          frequency_type: 'months',
+          transaction_amount: totalMonthly,
+          currency_id: 'CLP',
+        },
+        back_url: `${siteUrl}/success`,
+        status: 'pending',
+      }
+
+      if (startDate) {
+        preapprovalBody.start_date = startDate
+      }
+
+      const resp = await fetch('https://api.mercadopago.com/preapproval', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(preapprovalBody),
+      })
+
+      const subscription = await resp.json()
+      if (!resp.ok) {
+        console.error('MercadoPago Preapproval error:', subscription)
+        return NextResponse.json({ error: 'Error al crear suscripción' }, { status: 502 })
+      }
+
+      return NextResponse.json({
+        init_point: subscription.init_point || subscription.sandbox_init_point,
+        id: subscription.id,
+      })
+    }
+
+    // ─────────────────────────────────────────────
+    // CASO B: PAGO INICIAL CON SETUP (Usamos Preferencia)
     // ─────────────────────────────────────────────
     if (totalSetup > 0) {
       const preferenceBody: Record<string, unknown> = {
@@ -132,7 +181,7 @@ export async function POST(request: NextRequest) {
     const startDate = typeof body.startDate === 'string' ? body.startDate : undefined
 
     // ─────────────────────────────────────────────
-    // CASO B: SUSCRIPCIÓN PURA (Sin setup)
+    // CASO C: SUSCRIPCIÓN PURA (Sin setup)
     // ─────────────────────────────────────────────
     if (totalMonthly > 0) {
       const preapprovalBody: any = {
@@ -175,7 +224,7 @@ export async function POST(request: NextRequest) {
     }
 
     // ─────────────────────────────────────────────
-    // CASO C: PAGO ÚNICO ESTÁNDAR (Sin mensualidad)
+    // CASO D: PAGO ÚNICO ESTÁNDAR (Sin mensualidad)
     // ─────────────────────────────────────────────
     const preferenceBody: Record<string, unknown> = {
       items: items.map((i: any) => ({

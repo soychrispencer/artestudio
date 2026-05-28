@@ -901,7 +901,7 @@ export const SERVICES_DETAILS: ServiceDetail[] = [
         },
         {
           name: 'Soporte Desarrollo Pro',
-          description: 'Incluye básico + nuevas funciones menores y monitoreo de uptime (24h).',
+          description: 'Incluye básico + nuevas funciones menores y monitoreo de uptime.',
           price: 299990,
           billing: 'mensual',
           badge: 'Mensual',

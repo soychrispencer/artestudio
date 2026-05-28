@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState, Suspense } from 'react'
+import Link from 'next/link'
 import { Check, CreditCard, Loader2, BrandWhatsapp } from 'tabler-icons-react'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
@@ -139,12 +140,12 @@ function PagoExitoContent() {
             <BrandWhatsapp size={20} />
             Notificar por WhatsApp
           </a>
-          <a
+          <Link
             href="/"
             className="px-6 py-3 border border-gray-200 dark:border-dark-bg-tertiary text-gray-700 dark:text-dark-text-secondary rounded-xl hover:bg-gray-50 dark:hover:bg-dark-bg-secondary transition-all"
           >
             Volver al Inicio
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>

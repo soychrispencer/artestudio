@@ -15,8 +15,10 @@ import { VALIDATION } from '@/lib/constants'
 export type CartItem = {
   id: string
   title: string
-  setup: number    // Pago inicial
+  setup: number    // Pago único
+  setupWaived?: number // Activación promocional incluida
   monthly: number  // Pago recurrente
+  regularMonthly?: number // Precio normal de referencia para promociones
   quantity: number
 }
 
@@ -144,7 +146,6 @@ function CartDrawer() {
   const [formStartedAt, setFormStartedAt] = useState<number | null>(null)
   const [honeypot, setHoneypot] = useState('')
   const [isHuman, setIsHuman] = useState(false)
-  const [captchaAnswer, setCaptchaAnswer] = useState('')
   const [buyer, setBuyer] = useState({
     name: '',
     email: '',
@@ -157,7 +158,8 @@ function CartDrawer() {
   const steps = ['Carrito', 'Datos', 'Verificar']
   const currentStep = steps[step] ?? steps[0]
   const isCartEmpty = items.length === 0
-  const captchaQuestion = '¿Cuánto es 3 + 4?'
+  const hasSubscription = monthlyTotal > 0
+  const checkoutTotal = hasSubscription ? monthlyTotal : total
 
   const goToStep = (nextStep: number) => {
     setError('')
@@ -212,10 +214,6 @@ function CartDrawer() {
 
     if (!isHuman) {
       return 'Confirma que eres una persona para continuar.'
-    }
-
-    if (captchaAnswer.trim() !== '7') {
-      return 'Completa la verificación anti-spam.'
     }
 
     return ''
@@ -305,9 +303,23 @@ function CartDrawer() {
                         {item.title}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-dark-text-secondary">
-                        {formatPrice(item.setup)} CLP
                         {item.monthly > 0 && (
-                          <span className="ml-1">+ {formatPrice(item.monthly)}/mes</span>
+                          <>
+                            <span className="font-semibold text-primary">{formatPrice(item.monthly)}/mes</span>
+                            {item.setupWaived && item.setupWaived > 0 && (
+                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
+                                Activación promocional incluida: antes {formatPrice(item.setupWaived)}.
+                              </span>
+                            )}
+                            {item.regularMonthly && item.regularMonthly > item.monthly && (
+                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
+                                Precio promocional de lanzamiento. Precio normal para nuevos clientes: {formatPrice(item.regularMonthly)}/mes.
+                              </span>
+                            )}
+                          </>
+                        )}
+                        {item.monthly === 0 && (
+                          <span>{formatPrice(item.setup)} CLP</span>
                         )}
                       </p>
                     </div>
@@ -339,7 +351,9 @@ function CartDrawer() {
                       </button>
                     </div>
                     <span className="font-semibold text-gray-900 dark:text-white">
-                      {formatPrice(item.setup * item.quantity)}
+                      {item.monthly > 0
+                        ? `${formatPrice(item.monthly * item.quantity)}/mes`
+                        : formatPrice(item.setup * item.quantity)}
                     </span>
                   </div>
                 </div>
@@ -376,7 +390,7 @@ function CartDrawer() {
                     value={buyer.name}
                     onChange={(e) => setBuyer((prev) => ({ ...prev, name: e.target.value }))}
                     className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
-                    placeholder="Ej: Valentina Soto"
+                    placeholder="Juan Pérez"
                     required
                   />
                 </label>
@@ -410,17 +424,6 @@ function CartDrawer() {
                     onChange={(e) => setBuyer((prev) => ({ ...prev, company: e.target.value }))}
                     className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
                     placeholder="Nombre de la marca"
-                  />
-                </label>
-                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
-                  {captchaQuestion} *
-                  <input
-                    type="text"
-                    value={captchaAnswer}
-                    onChange={(e) => setCaptchaAnswer(e.target.value)}
-                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
-                    placeholder="Respuesta"
-                    required
                   />
                 </label>
                 <label className="flex items-start gap-3 text-sm text-gray-600 dark:text-dark-text-secondary">
@@ -457,7 +460,7 @@ function CartDrawer() {
 
               <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
-                  Resumen de compra
+                  Resumen de pago
                 </p>
                 <div className="mt-3 space-y-3">
                   {items.map((item) => (
@@ -466,16 +469,30 @@ function CartDrawer() {
                         {item.title} x{item.quantity}
                       </span>
                       <span className="font-semibold text-gray-900 dark:text-white">
-                        {formatPrice((item.setup + item.monthly) * item.quantity)}
+                        {item.monthly > 0
+                          ? `${formatPrice(item.monthly * item.quantity)}/mes`
+                          : formatPrice(item.setup * item.quantity)}
                       </span>
                     </div>
                   ))}
                 </div>
+                {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
+                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-dark-bg-tertiary flex justify-between text-sm text-gray-700 dark:text-dark-text-secondary">
+                    <span>Activación promocional incluida</span>
+                    <span className="font-semibold text-primary">Sin cobro hoy</span>
+                  </div>
+                )}
+                {hasSubscription && items.some((item) => item.regularMonthly && item.regularMonthly > item.monthly) && (
+                  <p className="mt-3 text-xs text-gray-500 dark:text-dark-text-secondary">
+                    El monto que activarás hoy es el precio promocional mostrado. El precio normal se informa solo como referencia para nuevos clientes futuros.
+                  </p>
+                )}
               </div>
 
               <p className="text-xs text-muted">
-                Al continuar irás a MercadoPago. Primer cobro: activación + mes 1. Permanencia mínima 3 meses.
-                Al cumplirla, tu proyecto es tuyo; la mensualidad puedes cancelarla con 30 días de aviso.
+                {hasSubscription
+                  ? 'MercadoPago activará el cobro automático mensual. La activación está incluida de forma promocional al mantener el plan activo al menos 3 meses.'
+                  : 'Pago seguro en línea.'}
               </p>
             </div>
           )}
@@ -484,11 +501,12 @@ function CartDrawer() {
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
           <div className="flex flex-col text-right">
             <span className="text-lg font-bold text-[var(--text)]">
-              Total hoy: {formatPrice(total + monthlyTotal)}
+              {hasSubscription ? 'Suscripción mensual' : 'Total hoy'}: {formatPrice(checkoutTotal)}
+              {hasSubscription ? '/mes' : ''}
             </span>
-            {monthlyTotal > 0 && (
+            {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
               <span className="text-sm text-primary font-semibold">
-                Luego {formatPrice(monthlyTotal)}/mes (MercadoPago automático)
+                Activación promocional incluida
               </span>
             )}
           </div>
@@ -541,13 +559,19 @@ function CartDrawer() {
                   const orderId = typeof crypto !== 'undefined' && crypto.randomUUID
                     ? `AS-${crypto.randomUUID()}`
                     : `AS-${Date.now()}`
+                  const paymentItems = items.map((item) => ({ ...item, setup: 0 }))
                   window.localStorage.setItem(
                     'last_order',
                     JSON.stringify({
                       orderId,
                       buyer,
                       items,
-                      total,
+                      setupWaived: items.reduce(
+                        (acc, item) => acc + (item.setupWaived ?? 0) * item.quantity,
+                        0
+                      ),
+                      monthlyTotal,
+                      total: checkoutTotal,
                     })
                   )
 
@@ -555,9 +579,10 @@ function CartDrawer() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                      items,
+                      items: paymentItems,
                       customer: buyer,
                       orderId,
+                      checkoutMode: hasSubscription ? 'subscription' : 'standard',
                     }),
                   })
 
@@ -580,7 +605,11 @@ function CartDrawer() {
               className="w-full btn-whatsapp px-6 py-3"
               disabled={isCartEmpty || isSubmitting}
             >
-              {isSubmitting ? 'Procesando...' : 'Pagar con MercadoPago'}
+              {isSubmitting
+                ? 'Procesando...'
+                : hasSubscription
+                  ? 'Activar suscripción en MercadoPago'
+                  : 'Pagar con MercadoPago'}
             </button>
           )}
           {step === 0 && items.length > 0 && (

@@ -65,11 +65,6 @@ export function ServiceCard({ service }: { service: Service }) {
         <div className="mb-6">
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">{formatPrice(service.price)}</span>
-            {service.oldPrice && (
-              <span className="text-sm text-gray-500 dark:text-dark-text-secondary line-through">
-                {formatPrice(service.oldPrice as any)}
-              </span>
-            )}
           </div>
           <p className="text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
             precio en pesos chilenos

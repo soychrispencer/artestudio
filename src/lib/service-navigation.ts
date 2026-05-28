@@ -48,7 +48,7 @@ export const SERVICE_NAV_GROUPS: { id: ServiceNavGroup; label: string; descripti
 export const SERVICE_CATALOG: ServiceNavItem[] = [
   {
     slug: '_landing-express',
-    title: 'Landing Express IA',
+    title: 'Landing Express',
     shortDesc: 'Setup + mensual · 24–48 hrs',
     from: '$74.990 + $14.990/mes',
     group: 'entrada',

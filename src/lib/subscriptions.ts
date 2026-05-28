@@ -1,13 +1,17 @@
 /**
- * Catálogo de suscripciones — precios en CLP (números para checkout)
+ * Catálogo de planes — beneficios para el cliente
  */
 
 export type SubscriptionPlan = {
   id: string
   name: string
   tagline: string
+  idealFor: string
   setup: number
   monthly: number
+  regularMonthly?: number
+  priceNote?: string
+  delivery: string
   featured?: boolean
   badge?: string
   includes: readonly string[]
@@ -22,55 +26,79 @@ export type SubscriptionAddon = {
   monthly: number
 }
 
-/** Permanencia mínima en meses */
 export const MIN_COMMITMENT_MONTHS = 3
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
-    id: 'plan-presencia',
-    name: 'Presencia',
-    tagline: 'Landing + hosting para captar clientes',
+    id: 'plan-inicio',
+    name: 'Inicio',
+    tagline: 'Presencia básica y funcional rápido',
+    idealFor: 'Quien necesita presencia básica y funcional rápido.',
     setup: 74_990,
-    monthly: 19_990,
+    monthly: 14_990,
+    regularMonthly: 19_990,
+    priceNote: 'Precio promocional de lanzamiento. Luego sube a $19.990/mes para nuevos clientes.',
+    delivery: '48 horas hábiles desde que apruebas el briefing.',
     includes: [
-      'Landing de 1 página orientada a conversión',
-      'Textos con apoyo de IA (tú apruebas)',
-      'Hosting y dominio el primer año',
-      'Botón WhatsApp o formulario',
-      '1 ajuste menor al mes',
+      'Landing de una página diseñada a medida',
+      'Copy base asistido con herramientas digitales (tú revisas y apruebas)',
+      'Hosting, seguridad y soporte mientras el plan esté activo',
+      'Botón WhatsApp o formulario de contacto',
+      'Diseño responsive (se ve bien en celular)',
+      '1 ajuste por mes',
+      'Soporte por WhatsApp',
     ],
-    excludes: ['Redes sociales', 'eCommerce', 'Agente IA'],
+    excludes: [
+      'Gestión de redes sociales',
+      'Páginas adicionales',
+      'eCommerce',
+      'Automatizaciones avanzadas',
+      'Cambios ilimitados',
+    ],
   },
   {
-    id: 'plan-crecimiento',
-    name: 'Crecimiento',
-    tagline: 'Web + redes con equipo mensual',
-    setup: 149_990,
+    id: 'plan-crecer',
+    name: 'Crecer',
+    tagline: 'Presencia digital completa que trabaja sola',
+    idealFor: 'Quien quiere una presencia digital completa que trabaje sola.',
+    setup: 199_990,
     monthly: 89_990,
+    delivery: 'Web lista en 1 semana. Redes activas en 5 días hábiles.',
     featured: true,
-    badge: 'Más elegido',
+    badge: 'El más elegido',
     includes: [
-      'Sitio web hasta 6 páginas',
-      'Google Analytics + Meta Pixel',
-      '12 publicaciones/mes (IG y/o Facebook)',
-      'Diseño gráfico para redes',
-      'Informe mensual de resultados',
-      'Soporte prioritario WhatsApp',
+      'Sitio web de hasta 5 páginas',
+      'Google Analytics + Meta Pixel configurados',
+      'SEO on-page básico (títulos, descripciones, estructura)',
+      '8 contenidos mensuales reutilizables para redes',
+      '1 video o reel de hasta 60 segundos al mes',
+      '7 piezas estáticas mensuales',
+      'Diseño de piezas gráficas mensuales',
+      'Copy estratégico para cada publicación',
+      'Informe de resultados mensual',
+      'Soporte prioritario por WhatsApp',
+    ],
+    excludes: [
+      'eCommerce o tienda online',
+      'Automatizaciones avanzadas',
+      'Publicidad pagada (pauta)',
     ],
   },
   {
-    id: 'plan-escala',
-    name: 'Escala',
-    tagline: 'Presencia completa + IA y tienda',
-    setup: 249_990,
-    monthly: 139_990,
+    id: 'plan-pro-ia',
+    name: 'Pro',
+    tagline: 'Escala, plataforma avanzada y procesos digitales',
+    idealFor: 'Negocios que quieren escalar o tienen necesidades avanzadas.',
+    setup: 349_990,
+    monthly: 149_990,
+    delivery: 'Se define según alcance después del diagnóstico inicial.',
     includes: [
-      'Todo lo del plan Crecimiento',
-      'Tienda online o catálogo con checkout',
-      'Agente IA en WhatsApp o web (base)',
-      'Automatizaciones simples (formularios, alertas)',
-      'SEO on-page mensual',
-      'Soporte prioritario 24h hábiles',
+      'Todo el plan Crecer',
+      'eCommerce o plataforma avanzada (según proyecto)',
+      'Automatizaciones simples de ventas o atención al cliente',
+      'Estrategia digital mensual 1:1 (videollamada mensual)',
+      'Evaluación de soluciones con IA si el proyecto lo permite',
+      'Soporte premium por WhatsApp',
     ],
   },
 ]
@@ -78,22 +106,23 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
 export const SUBSCRIPTION_ADDONS: SubscriptionAddon[] = [
   {
     id: 'addon-ia-pro',
-    name: 'Agente IA Pro',
-    description: 'Chatbot entrenado con tu negocio: cotiza, responde y capta leads 24/7.',
+    name: 'Automatización bajo evaluación',
+    description: 'Revisamos si conviene automatizar respuestas, formularios o procesos simples.',
     setup: 29_990,
     monthly: 49_990,
   },
   {
     id: 'addon-redes-extra',
-    name: 'Pack redes extra',
-    description: '+8 publicaciones al mes y stories con diseño.',
-    setup: 0,
-    monthly: 29_990,
+    name: 'Más publicaciones en redes',
+    description:
+      '+8 publicaciones diseñadas al mes (feed y stories). Ideal si ya tienes plan y necesitas más volumen; para empezar con web + redes, Crecimiento suele convenir más.',
+    setup: 29_990,
+    monthly: 59_990,
   },
   {
     id: 'addon-web-extra',
-    name: 'Páginas extra',
-    description: 'Hasta 4 páginas adicionales en tu sitio.',
+    name: 'Más páginas en tu sitio',
+    description: 'Hasta 4 páginas extra (servicios, equipo, blog, etc.).',
     setup: 39_990,
     monthly: 9_990,
   },

@@ -137,46 +137,84 @@ export const INDIVIDUAL_SERVICES = [
     icon: '🌐',
     title: 'Diseño web / Landing',
     description: 'Web o landing a medida. Desde una página hasta un sitio completo.',
-    href: WA_LINKS.web,
+    image:
+      'https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=800',
+    price: 249_990,
+    priceFrom: 'Desde $249.990',
+    paymentLabel: 'Pago único',
   },
   {
     icon: '📱',
     title: 'Redes sociales',
     description:
-      'Gestión mensual de 8 contenidos reutilizables para redes: 1 video o reel de hasta 60 segundos y 7 piezas estáticas.',
-    href: WA_LINKS.redes,
+      'Gestión mensual de contenido, estrategia y comunidad para crecer en Instagram y Facebook.',
+    image:
+      'https://images.pexels.com/photos/2077990/pexels-photo-2077990.jpeg?auto=compress&cs=tinysrgb&w=800',
+    priceFrom: 'Desde $49.990/mes',
+    paymentLabel: 'Suscripción mensual',
     subscription: {
-      id: 'servicio-redes-esencial',
-      title: 'Redes Sociales Esencial — Artestudio',
+      id: 'plan-redes-suscripcion',
+      title: 'Redes sociales — Suscripción',
       setup: 0,
       monthly: 49_990,
       cta: 'Suscribirme a redes',
-      note: 'Ideal si ya tienes web o solo necesitas contenido mensual.',
+      note: 'Incluye 8 piezas mensuales y 1 reel.',
     },
   },
   {
     icon: '🎨',
     title: 'Diseño gráfico',
     description: 'Identidad visual, branding, piezas para redes o material comercial.',
-    href: WA_LINKS.diseno,
+    image:
+      'https://images.pexels.com/photos/5473957/pexels-photo-5473957.jpeg?auto=compress&cs=tinysrgb&w=800',
+    price: 59_990,
+    priceFrom: 'Desde $59.990',
+    paymentLabel: 'Pago único',
   },
   {
     icon: '🛠️',
     title: 'Mantención web',
     description: 'Actualizaciones, cambios, seguridad y soporte para tu sitio existente.',
-    href: WA_LINKS.mantencion,
+    image:
+      'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
+    price: 49_990,
+    priceFrom: 'Desde $49.990/mes',
+    paymentLabel: 'Suscripción mensual',
+    subscription: {
+      id: 'plan-mantencion-suscripcion',
+      title: 'Mantención web — Suscripción',
+      setup: 0,
+      monthly: 49_990,
+      cta: 'Contratar mantención',
+      note: 'Incluye actualizaciones y soporte mensual.',
+    },
   },
   {
     icon: '⚡',
     title: 'Automatizaciones',
-    description: 'Flujos simples para ordenar ventas, atención al cliente o procesos internos. Se evalúa caso a caso.',
-    href: WA_LINKS.automatizacion,
+    description: 'Flujos para ordenar ventas, atención al cliente o procesos internos.',
+    image:
+      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+    price: 89_990,
+    priceFrom: 'Desde $89.990',
+    paymentLabel: 'Pago único',
+    contactCta: {
+      label: 'Proyecto mayor',
+      href: WA_LINKS.automatizacion,
+    },
   },
   {
     icon: '🧩',
     title: 'IA aplicada',
     description: 'Exploramos soluciones con IA cuando el alcance es claro y conviene para tu negocio.',
-    href: WA_LINKS.automatizacionIa,
+    image:
+      'https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800',
+    priceFrom: 'Desde cotización',
+    paymentLabel: 'Proyecto a medida',
+    contactCta: {
+      label: 'Consultar proyecto',
+      href: WA_LINKS.automatizacionIa,
+    },
   },
 ] as const
 

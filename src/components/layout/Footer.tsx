@@ -63,7 +63,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
-          <p>© {new Date().getFullYear()} Artestudio · Chile</p>
+          <p>© 2019 - {new Date().getFullYear()} Artestudio · Chile</p>
           <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
             Behance
           </a>

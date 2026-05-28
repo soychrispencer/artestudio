@@ -7,6 +7,7 @@ export type SubscriptionPlan = {
   name: string
   tagline: string
   idealFor: string
+  category?: 'core' | 'social'
   setup: number
   monthly: number
   regularMonthly?: number
@@ -34,10 +35,11 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     name: 'Inicio',
     tagline: 'Presencia básica y funcional rápido',
     idealFor: 'Quien necesita presencia básica y funcional rápido.',
+    category: 'core',
     setup: 74_990,
     monthly: 14_990,
     regularMonthly: 19_990,
-    priceNote: 'Precio promocional de lanzamiento. Luego sube a $19.990/mes para nuevos clientes.',
+    priceNote: 'Promo: $14.990/mes — luego $19.990/mes',
     delivery: '48 horas hábiles desde que apruebas el briefing.',
     includes: [
       'Landing de una página diseñada a medida',

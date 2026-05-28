@@ -64,7 +64,7 @@ export function Navbar() {
               trackEvent('header_cart_click')
               openCart()
             }}
-            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-card text-[var(--text)] transition-colors hover:border-primary/60"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-card text-[var(--text)] transition-colors hover:border-primary/60"
             aria-label="Abrir carrito"
           >
             <ShoppingCart className="w-4 h-4" />

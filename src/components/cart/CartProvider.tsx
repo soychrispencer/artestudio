@@ -308,12 +308,13 @@ function CartDrawer() {
                             <span className="font-semibold text-primary">{formatPrice(item.monthly)}/mes</span>
                             {item.setupWaived && item.setupWaived > 0 && (
                               <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
-                                Activación promocional incluida: antes {formatPrice(item.setupWaived)}.
+                                <span className="line-through">Antes {formatPrice(item.setupWaived)}</span>{' '}
+                                • <span className="font-semibold text-primary">Activación incluida</span>
                               </span>
                             )}
                             {item.regularMonthly && item.regularMonthly > item.monthly && (
                               <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
-                                Precio promocional de lanzamiento. Precio normal para nuevos clientes: {formatPrice(item.regularMonthly)}/mes.
+                                Precio normal: {formatPrice(item.regularMonthly)}/mes
                               </span>
                             )}
                           </>
@@ -484,7 +485,7 @@ function CartDrawer() {
                 )}
                 {hasSubscription && items.some((item) => item.regularMonthly && item.regularMonthly > item.monthly) && (
                   <p className="mt-3 text-xs text-gray-500 dark:text-dark-text-secondary">
-                    El monto que activarás hoy es el precio promocional mostrado. El precio normal se informa solo como referencia para nuevos clientes futuros.
+                    Se cobrará el precio promocional mostrado; el precio normal figura como referencia.
                   </p>
                 )}
               </div>

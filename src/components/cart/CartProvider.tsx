@@ -560,7 +560,9 @@ function CartDrawer() {
                   const orderId = typeof crypto !== 'undefined' && crypto.randomUUID
                     ? `AS-${crypto.randomUUID()}`
                     : `AS-${Date.now()}`
-                  const paymentItems = items.map((item) => ({ ...item, setup: 0 }))
+                  const paymentItems = hasSubscription
+                    ? items.map((item) => ({ ...item, setup: 0 }))
+                    : items
                   window.localStorage.setItem(
                     'last_order',
                     JSON.stringify({

@@ -136,40 +136,57 @@ export const INDIVIDUAL_SERVICES = [
   {
     icon: '🌐',
     title: 'Diseño web / Landing',
-    description: 'Web o landing a medida. Desde una página hasta un sitio completo.',
+    description: 'Landing base para presentar tu negocio, explicar tu oferta y recibir contactos.',
     image:
       'https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=800',
     price: 249_990,
     priceFrom: 'Desde $249.990',
     paymentLabel: 'Pago único',
+    buyLabel: 'Pagar landing base',
+    priceNote: 'Para una landing simple de una página.',
+    contactCta: {
+      label: 'Cotizar sitio completo',
+      href: WA_LINKS.web,
+    },
   },
   {
     icon: '📱',
     title: 'Redes sociales',
     description:
-      'Gestión mensual de contenido, estrategia y comunidad para crecer en Instagram y Facebook.',
+      'Gestión mensual de 8 contenidos reutilizables: 1 video o reel de hasta 60 segundos y 7 piezas estáticas.',
     image:
       'https://images.pexels.com/photos/2077990/pexels-photo-2077990.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
+    priceNote: 'Para partir con contenido mensual sin contratar una web.',
     subscription: {
       id: 'plan-redes-suscripcion',
       title: 'Redes sociales — Suscripción',
       setup: 0,
       monthly: 49_990,
       cta: 'Suscribirme a redes',
-      note: 'Incluye 8 piezas mensuales y 1 reel.',
+      note: 'Incluye 8 contenidos mensuales.',
+    },
+    contactCta: {
+      label: 'Cotizar redes avanzadas',
+      href: WA_LINKS.redes,
     },
   },
   {
     icon: '🎨',
     title: 'Diseño gráfico',
-    description: 'Identidad visual, branding, piezas para redes o material comercial.',
+    description: 'Diseño puntual para marca, piezas comerciales o material visual que necesitas resolver rápido.',
     image:
       'https://images.pexels.com/photos/5473957/pexels-photo-5473957.jpeg?auto=compress&cs=tinysrgb&w=800',
     price: 59_990,
     priceFrom: 'Desde $59.990',
     paymentLabel: 'Pago único',
+    buyLabel: 'Pagar diseño base',
+    priceNote: 'Para una pieza o pack simple según alcance.',
+    contactCta: {
+      label: 'Cotizar branding',
+      href: WA_LINKS.diseno,
+    },
   },
   {
     icon: '🛠️',
@@ -177,9 +194,9 @@ export const INDIVIDUAL_SERVICES = [
     description: 'Actualizaciones, cambios, seguridad y soporte para tu sitio existente.',
     image:
       'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 49_990,
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
+    priceNote: 'Para sitios existentes con cambios y cuidado mensual.',
     subscription: {
       id: 'plan-mantencion-suscripcion',
       title: 'Mantención web — Suscripción',
@@ -188,31 +205,40 @@ export const INDIVIDUAL_SERVICES = [
       cta: 'Contratar mantención',
       note: 'Incluye actualizaciones y soporte mensual.',
     },
+    contactCta: {
+      label: 'Cotizar soporte avanzado',
+      href: WA_LINKS.mantencion,
+    },
   },
   {
     icon: '⚡',
     title: 'Automatizaciones',
-    description: 'Flujos para ordenar ventas, atención al cliente o procesos internos.',
+    description: 'Automatización simple para ordenar formularios, avisos, tareas o procesos repetitivos.',
     image:
       'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
     price: 89_990,
     priceFrom: 'Desde $89.990',
     paymentLabel: 'Pago único',
+    buyLabel: 'Pagar automatización simple',
+    priceNote: 'Para un flujo simple y bien definido.',
     contactCta: {
-      label: 'Proyecto mayor',
+      label: 'Cotizar proyecto mayor',
       href: WA_LINKS.automatizacion,
     },
   },
   {
     icon: '🧩',
     title: 'IA aplicada',
-    description: 'Exploramos soluciones con IA cuando el alcance es claro y conviene para tu negocio.',
+    description: 'Diagnóstico para evaluar si conviene usar IA en respuestas, procesos o atención al cliente.',
     image:
       'https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800',
-    priceFrom: 'Desde cotización',
-    paymentLabel: 'Proyecto a medida',
+    price: 49_990,
+    priceFrom: 'Diagnóstico desde $49.990',
+    paymentLabel: 'Pago único',
+    buyLabel: 'Pagar diagnóstico IA',
+    priceNote: 'No promete chatbot listo; define alcance y viabilidad.',
     contactCta: {
-      label: 'Consultar proyecto',
+      label: 'Cotizar implementación',
       href: WA_LINKS.automatizacionIa,
     },
   },

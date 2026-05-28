@@ -1,17 +1,22 @@
 'use client'
 
 import Image from 'next/image'
-import { BrandWhatsapp } from 'tabler-icons-react'
+import { BrandWhatsapp, ShoppingCart } from 'tabler-icons-react'
 import { SubscribeButton } from '@/components/checkout/SubscribeButton'
 import { useCart } from '@/components/cart/CartProvider'
 import { INDIVIDUAL_SERVICES, INDIVIDUAL_SERVICES_INTRO, SECTION_IDS } from '@/lib/site'
-import { formatCLP } from '@/lib/subscriptions'
 import { trackEvent } from '@/lib/analytics'
+
+type IndividualService = (typeof INDIVIDUAL_SERVICES)[number]
+type OneTimeService = IndividualService & {
+  price: number
+  buyLabel?: string
+}
 
 export function ServiciosIndividuales() {
   const { addItem, clear, openCart } = useCart()
 
-  const handleAddService = (service: any) => {
+  const handleAddService = (service: OneTimeService) => {
     trackEvent('service_add_to_cart', { service: service.title, price: service.price })
     clear()
     addItem({
@@ -50,49 +55,53 @@ export function ServiciosIndividuales() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {INDIVIDUAL_SERVICES.map((service) => (
-            <article key={service.title} className="card-base rounded-2xl overflow-hidden flex flex-col">
-              {service.image && (
-                <div className="relative h-44 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              )}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-start gap-3 mb-3">
-                  <span className="text-2xl leading-none" aria-hidden="true">
-                    {service.icon}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[var(--text)]">{service.title}</h3>
-                    {service.priceFrom && (
-                      <p className="text-sm text-muted-light mt-1">
-                        <span className="font-semibold text-primary">{service.priceFrom}</span>{' '}
-                        · {service.paymentLabel}
-                      </p>
-                    )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+          {INDIVIDUAL_SERVICES.map((service) => {
+            const hasSubscription = 'subscription' in service && Boolean(service.subscription)
+            const hasOneTimePrice = 'price' in service && typeof service.price === 'number'
+
+            return (
+              <article key={service.title} className="card-base rounded-2xl overflow-hidden flex h-full flex-col">
+                {service.image && (
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
+                    />
                   </div>
-                </div>
+                )}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-start gap-3 mb-4">
+                    <span className="text-2xl leading-none" aria-hidden="true">
+                      {service.icon}
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-semibold text-[var(--text)]">{service.title}</h3>
+                      <p className="text-xs uppercase tracking-wide text-muted mt-1">{service.paymentLabel}</p>
+                    </div>
+                  </div>
 
-                <p className="text-sm text-muted-light leading-relaxed flex-grow mb-5">{service.description}</p>
+                  <p className="text-sm text-muted-light leading-relaxed mb-5">{service.description}</p>
 
-                <div className="space-y-3">
-                  {'subscription' in service && service.subscription ? (
-                    <>
-                      <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4">
-                        <p className="text-xs uppercase tracking-wide text-muted mb-1">Suscripción mensual</p>
-                        <p className="text-2xl font-bold text-primary">
-                          {formatCLP(service.subscription.monthly)}
-                          <span className="text-sm font-normal text-muted">/mes</span>
-                        </p>
+                  <div className="mt-auto space-y-4">
+                    <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4">
+                      <p className="text-xs uppercase tracking-wide text-muted mb-1">Contratar desde</p>
+                      <p className="text-2xl font-bold text-primary">
+                        {service.priceFrom}
+                      </p>
+                      {'priceNote' in service && service.priceNote && (
+                        <p className="mt-1 text-xs text-muted-light">{service.priceNote}</p>
+                      )}
+                      {hasSubscription && service.subscription?.note && (
                         <p className="mt-1 text-xs text-muted-light">{service.subscription.note}</p>
-                      </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      {hasSubscription && service.subscription ? (
                       <SubscribeButton
                         planId={service.subscription.id}
                         title={service.subscription.title}
@@ -102,30 +111,34 @@ export function ServiciosIndividuales() {
                       >
                         {service.subscription.cta}
                       </SubscribeButton>
-                    </>
-                  ) : 'price' in service && service.price ? (
-                    <button
-                      onClick={() => handleAddService(service)}
-                      className="btn-whatsapp rounded-full px-5 py-2.5 text-sm w-full justify-center"
-                    >
-                      Contratar
-                    </button>
-                  ) : null}
-                  {'contactCta' in service && service.contactCta && (
-                    <a
-                      href={service.contactCta.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-outline rounded-full px-5 py-2.5 text-sm w-full justify-center"
-                    >
-                      <BrandWhatsapp className="w-4 h-4" />
-                      {service.contactCta.label}
-                    </a>
-                  )}
+                      ) : hasOneTimePrice ? (
+                        <button
+                          type="button"
+                          onClick={() => handleAddService(service)}
+                          className="btn-whatsapp rounded-full px-5 py-2.5 text-sm w-full justify-center"
+                        >
+                          <ShoppingCart className="w-4 h-4" />
+                          {'buyLabel' in service && service.buyLabel ? service.buyLabel : 'Pagar ahora'}
+                        </button>
+                      ) : null}
+
+                      {'contactCta' in service && service.contactCta && (
+                        <a
+                          href={service.contactCta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-outline rounded-full px-5 py-2.5 text-sm w-full justify-center"
+                        >
+                          <BrandWhatsapp className="w-4 h-4" />
+                          {service.contactCta.label}
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

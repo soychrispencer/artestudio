@@ -10,7 +10,6 @@ type SubscribeButtonProps = {
   title: string
   setup: number
   monthly: number
-  regularMonthly?: number
   children: ReactNode
   variant?: 'primary' | 'outline'
   className?: string
@@ -21,7 +20,6 @@ export function SubscribeButton({
   title,
   setup,
   monthly,
-  regularMonthly,
   children,
   variant = 'primary',
   className = '',
@@ -37,7 +35,6 @@ export function SubscribeButton({
       setup: 0,
       setupWaived: setup,
       monthly,
-      regularMonthly,
       quantity: 1,
     })
     openCart()

@@ -95,9 +95,6 @@ export function ServiciosIndividuales() {
                       {'priceNote' in service && service.priceNote && (
                         <p className="mt-1 text-xs text-muted-light">{service.priceNote}</p>
                       )}
-                      {hasSubscription && service.subscription?.note && (
-                        <p className="mt-1 text-xs text-muted-light">{service.subscription.note}</p>
-                      )}
                     </div>
 
                     <div className="space-y-3">

@@ -18,7 +18,6 @@ export type CartItem = {
   setup: number    // Pago único
   setupWaived?: number // Creación inicial incluida
   monthly: number  // Pago recurrente
-  regularMonthly?: number // Precio normal de referencia para promociones
   quantity: number
 }
 
@@ -312,11 +311,6 @@ function CartDrawer() {
                                 • <span className="font-semibold text-primary">Creación inicial incluida</span>
                               </span>
                             )}
-                            {item.regularMonthly && item.regularMonthly > item.monthly && (
-                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
-                                Precio normal: {formatPrice(item.regularMonthly)}/mes
-                              </span>
-                            )}
                           </>
                         )}
                         {item.monthly === 0 && (
@@ -482,11 +476,6 @@ function CartDrawer() {
                     <span>Creación inicial incluida</span>
                     <span className="font-semibold text-primary">Sin cobro hoy</span>
                   </div>
-                )}
-                {hasSubscription && items.some((item) => item.regularMonthly && item.regularMonthly > item.monthly) && (
-                  <p className="mt-3 text-xs text-gray-500 dark:text-dark-text-secondary">
-                    Se cobrará el precio promo mostrado. Lo mantienes mientras el plan siga activo; el precio normal figura como referencia.
-                  </p>
                 )}
               </div>
 

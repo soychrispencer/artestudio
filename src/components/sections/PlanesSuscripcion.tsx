@@ -28,7 +28,7 @@ export function PlanesSuscripcion() {
             <p className="section-label">{PLANES_INTRO.label}</p>
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">{PLANES_INTRO.title}</h2>
             <p className="text-muted-light max-w-2xl mb-2">{PLANES_INTRO.subtitle}</p>
-            <p className="text-sm text-muted max-w-2xl">{PLANES_INTRO.note}</p>
+            {PLANES_INTRO.note && <p className="text-sm text-muted max-w-2xl">{PLANES_INTRO.note}</p>}
           </div>
           <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--border)] bg-card">
             <Image
@@ -80,19 +80,6 @@ export function PlanesSuscripcion() {
                     {formatCLP(plan.monthly)}
                     <span className="text-sm font-normal text-muted">{PRICING_UI.monthlySuffix}</span>
                   </p>
-                  {plan.regularMonthly && plan.regularMonthly > plan.monthly && (
-                    <div className="text-xs text-muted-light mt-2 space-y-1">
-                      <p>
-                        <span className="font-semibold text-[var(--text)]">Mensual promo:</span>{' '}
-                        {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix}
-                      </p>
-                      <p>
-                        <span className="font-semibold text-[var(--text)]">Precio normal:</span>{' '}
-                        {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
-                      </p>
-                      <p>Mantienes la promo mientras el plan siga activo.</p>
-                    </div>
-                  )}
                   <p className="text-[11px] text-muted mt-2">{PRICING_UI.commitmentShort}</p>
                 </div>
 
@@ -151,7 +138,6 @@ export function PlanesSuscripcion() {
                     title={`Plan ${plan.name} — Artestudio`}
                     setup={plan.setup}
                     monthly={plan.monthly}
-                    regularMonthly={plan.regularMonthly}
                     className="rounded-full px-5 py-3 text-sm"
                   >
                     Suscribirme al plan
@@ -210,19 +196,6 @@ export function PlanesSuscripcion() {
                         {formatCLP(plan.monthly)}
                         <span className="text-sm font-normal text-muted">{PRICING_UI.monthlySuffix}</span>
                       </p>
-                      {plan.regularMonthly && plan.regularMonthly > plan.monthly && (
-                        <div className="text-xs text-muted-light mt-2 space-y-1">
-                          <p>
-                            <span className="font-semibold text-[var(--text)]">Mensual promo:</span>{' '}
-                            {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix}
-                          </p>
-                          <p>
-                            <span className="font-semibold text-[var(--text)]">Precio normal:</span>{' '}
-                            {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
-                          </p>
-                          <p>Mantienes la promo mientras el plan siga activo.</p>
-                        </div>
-                      )}
                       <p className="text-[11px] text-muted mt-2">{PRICING_UI.commitmentShort}</p>
                     </div>
 
@@ -281,7 +254,6 @@ export function PlanesSuscripcion() {
                         title={`Plan ${plan.name} — Artestudio`}
                         setup={plan.setup}
                         monthly={plan.monthly}
-                        regularMonthly={plan.regularMonthly}
                         className="rounded-full px-5 py-3 text-sm"
                       >
                         Suscribirme al plan

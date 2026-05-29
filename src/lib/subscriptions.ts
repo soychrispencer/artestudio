@@ -10,7 +10,6 @@ export type SubscriptionPlan = {
   category?: 'core' | 'social'
   setup: number
   monthly: number
-  regularMonthly?: number
   priceNote?: string
   delivery: string
   featured?: boolean
@@ -38,8 +37,6 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     category: 'core',
     setup: 74_990,
     monthly: 14_990,
-    regularMonthly: 19_990,
-    priceNote: 'Mensual promo: $14.990/mes. Precio normal: $19.990/mes.',
     delivery: '48 horas hábiles desde que apruebas el briefing.',
     includes: [
       'Landing de una página diseñada a medida',

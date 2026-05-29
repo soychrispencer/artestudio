@@ -55,7 +55,7 @@ function SuccessContent() {
         order.buyer?.company ? `Empresa: ${order.buyer.company}` : '',
         itemsLine ? `Servicios:\n${itemsLine}` : '',
         order.monthlyTotal ? `Suscripción mensual: ${formatPrice(order.monthlyTotal)}/mes` : '',
-        order.setupWaived ? `Activación promocional incluida: ${formatPrice(order.setupWaived)} CLP` : '',
+        order.setupWaived ? `Creación inicial incluida: ${formatPrice(order.setupWaived)} CLP` : '',
         order.total && !order.monthlyTotal ? `Total: ${formatPrice(order.total)} CLP` : '',
         paymentId ? `ID de pago: ${paymentId}` : '',
         status ? `Estado: ${status}` : '',

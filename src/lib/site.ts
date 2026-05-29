@@ -58,7 +58,7 @@ export const HERO = {
   ctaSecondary: 'Solo necesito un servicio',
   trust: [
     'Atención directa por WhatsApp',
-    `Activación promocional incluida · mínimo ${MIN_COMMITMENT_MONTHS} meses.`,
+    `Creación inicial incluida · permanencia mínima ${MIN_COMMITMENT_MONTHS} meses.`,
   ],
 } as const
 
@@ -90,19 +90,19 @@ export const PROBLEMAS = {
 export const PLANES_INTRO = {
   label: 'Planes principales',
   title: 'Elige tu plan según tu etapa',
-  subtitle: 'Tres caminos claros. Suscripción mensual con activación promocional incluida.',
+  subtitle: 'Tres caminos claros. Suscripción mensual con creación inicial incluida.',
   note: `Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses para cubrir la puesta en marcha inicial.`,
 } as const
 
 export const PRICING_UI = {
-  setupLabel: 'Activación promocional incluida',
+  setupLabel: 'Creación inicial incluida',
   monthlyLabel: 'Mensualidad',
   monthlySuffix: '/mes',
   commitmentShort: `Mínimo ${MIN_COMMITMENT_MONTHS} meses`,
   includesLabel: 'Incluye',
   excludesLabel: 'No incluye',
   deliveryLabel: 'Tiempo de entrega',
-  footnote: `Precios en CLP · Pago por tarjeta vía MercadoPago · Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses.`,
+  footnote: `Precios en CLP · Pago por tarjeta vía MercadoPago · Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses. El precio promo se mantiene mientras el plan siga activo.`,
 } as const
 
 export const PLAN_CTA_LABELS = {
@@ -143,7 +143,8 @@ export const INDIVIDUAL_SERVICES = [
     priceFrom: 'Desde $249.990',
     paymentLabel: 'Pago único',
     buyLabel: 'Pagar landing base',
-    priceNote: 'Para una landing simple de una página.',
+    priceNote:
+      'Pago único, sin mensualidad ni permanencia. Ideal si quieres que el sitio quede pagado desde el inicio.',
     contactCta: {
       label: 'Cotizar sitio completo',
       href: WA_LINKS.web,
@@ -254,7 +255,7 @@ export const PROCESO = {
     },
     {
       title: 'Activas tu plan o servicio',
-      description: 'Pagas la activación y al siguiente día hábil ya estamos trabajando.',
+      description: 'Pagas online o activas tu suscripción. Al siguiente día hábil ya estamos trabajando.',
     },
     {
       title: 'Revisas y apruebas',
@@ -279,7 +280,7 @@ export const PRUEBA_SOCIAL = {
 export const FAQ_ITEMS = [
   {
     q: `¿Qué significa la permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses?`,
-    a: `La activación está incluida de forma promocional, por eso pedimos mantener el plan activo al menos ${MIN_COMMITMENT_MONTHS} meses. Ese periodo cubre la puesta en marcha, ajustes iniciales y continuidad técnica. Después puedes cancelar con aviso previo.`,
+    a: `La creación inicial está incluida de forma promocional, por eso pedimos mantener el plan activo al menos ${MIN_COMMITMENT_MONTHS} meses. Si tomas el precio promo, lo mantienes mientras tu plan siga activo. Después de los ${MIN_COMMITMENT_MONTHS} meses puedes cancelar con aviso previo.`,
   },
   {
     q: '¿Puedo contratar solo redes sociales sin una web?',

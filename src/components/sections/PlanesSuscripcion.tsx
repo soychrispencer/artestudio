@@ -81,9 +81,17 @@ export function PlanesSuscripcion() {
                     <span className="text-sm font-normal text-muted">{PRICING_UI.monthlySuffix}</span>
                   </p>
                   {plan.regularMonthly && plan.regularMonthly > plan.monthly && (
-                    <p className="text-xs text-muted-light mt-2">
-                      Promo: {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix} → {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
-                    </p>
+                    <div className="text-xs text-muted-light mt-2 space-y-1">
+                      <p>
+                        <span className="font-semibold text-[var(--text)]">Mensual promo:</span>{' '}
+                        {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-[var(--text)]">Precio normal:</span>{' '}
+                        {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
+                      </p>
+                      <p>Mantienes la promo mientras el plan siga activo.</p>
+                    </div>
                   )}
                   <p className="text-[11px] text-muted mt-2">{PRICING_UI.commitmentShort}</p>
                 </div>
@@ -203,9 +211,17 @@ export function PlanesSuscripcion() {
                         <span className="text-sm font-normal text-muted">{PRICING_UI.monthlySuffix}</span>
                       </p>
                       {plan.regularMonthly && plan.regularMonthly > plan.monthly && (
-                        <p className="text-xs text-muted-light mt-2">
-                          Promo: {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix} → {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
-                        </p>
+                        <div className="text-xs text-muted-light mt-2 space-y-1">
+                          <p>
+                            <span className="font-semibold text-[var(--text)]">Mensual promo:</span>{' '}
+                            {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix}
+                          </p>
+                          <p>
+                            <span className="font-semibold text-[var(--text)]">Precio normal:</span>{' '}
+                            {formatCLP(plan.regularMonthly)}{PRICING_UI.monthlySuffix}
+                          </p>
+                          <p>Mantienes la promo mientras el plan siga activo.</p>
+                        </div>
                       )}
                       <p className="text-[11px] text-muted mt-2">{PRICING_UI.commitmentShort}</p>
                     </div>

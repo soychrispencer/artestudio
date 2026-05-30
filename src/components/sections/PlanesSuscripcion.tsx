@@ -65,14 +65,14 @@ export function PlanesSuscripcion() {
                   </span>
                 )}
 
-                <p className="text-sm font-semibold text-primary mb-1">{plan.name}</p>
-                <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
                 <div className="flex items-center gap-2 mb-1">
+                  <p className="text-sm font-semibold text-primary">{plan.name}</p>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-[#8325fd] to-[#a855ff] text-white shadow-sm">
                     Potenciado con IA
                     ✨
                   </span>
                 </div>
+                <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
                 <p className="text-xs text-muted mb-5">Para quién: {plan.idealFor}</p>
 
                 <div className="mb-5 rounded-2xl bg-[var(--bg)] border border-[var(--border)] p-4">

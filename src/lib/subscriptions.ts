@@ -98,7 +98,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     delivery: 'Se define según alcance después del diagnóstico inicial.',
     includes: [
       'Tienda online hasta 50 productos',
-      'Integración de pagos (Webpay, Flow, MercadoPago, Transbank, Kiphu, Multicaja)',
+      'Integración de pagos (Chile e Internacionales)',
       'Configuración de despacho (Starken, Chilexpress, Bluexpress)',
       'Google Analytics 4 + Tag Manager',
       'SEO técnico completo',

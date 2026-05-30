@@ -16,8 +16,9 @@ export type CartItem = {
   id: string
   title: string
   setup: number    // Pago único
-  setupWaived?: number // Creación inicial incluida
+  setupWaived?: number // Activación promocional incluida
   monthly: number  // Pago recurrente
+  regularMonthly?: number // Precio normal de referencia para promociones
   quantity: number
 }
 
@@ -308,7 +309,12 @@ function CartDrawer() {
                             {item.setupWaived && item.setupWaived > 0 && (
                               <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
                                 <span className="line-through">Antes {formatPrice(item.setupWaived)}</span>{' '}
-                                • <span className="font-semibold text-primary">Creación inicial incluida</span>
+                                • <span className="font-semibold text-primary">Activación incluida</span>
+                              </span>
+                            )}
+                            {item.regularMonthly && item.regularMonthly > item.monthly && (
+                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
+                                Precio normal: {formatPrice(item.regularMonthly)}/mes
                               </span>
                             )}
                           </>
@@ -473,15 +479,20 @@ function CartDrawer() {
                 </div>
                 {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
                   <div className="mt-4 pt-4 border-t border-gray-200 dark:border-dark-bg-tertiary flex justify-between text-sm text-gray-700 dark:text-dark-text-secondary">
-                    <span>Creación inicial incluida</span>
+                    <span>Activación promocional incluida</span>
                     <span className="font-semibold text-primary">Sin cobro hoy</span>
                   </div>
+                )}
+                {hasSubscription && items.some((item) => item.regularMonthly && item.regularMonthly > item.monthly) && (
+                  <p className="mt-3 text-xs text-gray-500 dark:text-dark-text-secondary">
+                    Se cobrará el precio promocional mostrado; el precio normal figura como referencia.
+                  </p>
                 )}
               </div>
 
               <p className="text-xs text-muted">
                 {hasSubscription
-                  ? 'MercadoPago activará el cobro automático mensual. La creación inicial está incluida al mantener el plan activo al menos 3 meses.'
+                  ? 'MercadoPago activará el cobro automático mensual. La activación está incluida de forma promocional al mantener el plan activo al menos 3 meses.'
                   : 'Pago seguro en línea.'}
               </p>
             </div>
@@ -496,7 +507,7 @@ function CartDrawer() {
             </span>
             {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
               <span className="text-sm text-primary font-semibold">
-                Creación inicial incluida
+                Activación promocional incluida
               </span>
             )}
           </div>

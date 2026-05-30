@@ -10,6 +10,7 @@ export type SubscriptionPlan = {
   category?: 'core' | 'social'
   setup: number
   monthly: number
+  regularMonthly?: number
   priceNote?: string
   delivery: string
   featured?: boolean
@@ -37,6 +38,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     category: 'core',
     setup: 74_990,
     monthly: 14_990,
+    regularMonthly: 19_990,
+    priceNote: 'Promo: $14.990/mes — luego $19.990/mes',
     delivery: '48 horas hábiles desde que apruebas el briefing.',
     includes: [
       'Landing de una página diseñada a medida',
@@ -58,8 +61,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'plan-crecer',
     name: 'Crecer',
-    tagline: 'Web + contenido mensual para mantener tu negocio activo',
-    idealFor: 'Quien quiere una presencia digital completa para vender mejor.',
+    tagline: 'Presencia digital completa que trabaja sola',
+    idealFor: 'Quien quiere una presencia digital completa que trabaje sola.',
     setup: 199_990,
     monthly: 89_990,
     delivery: 'Web lista en 1 semana. Redes activas en 5 días hábiles.',
@@ -93,16 +96,11 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     delivery: 'Se define según alcance después del diagnóstico inicial.',
     includes: [
       'Todo el plan Crecer',
-      'Implementación base de eCommerce o plataforma avanzada según alcance',
+      'eCommerce o plataforma avanzada (según proyecto)',
       'Automatizaciones simples de ventas o atención al cliente',
       'Estrategia digital mensual 1:1 (videollamada mensual)',
       'Evaluación de soluciones con IA si el proyecto lo permite',
       'Soporte premium por WhatsApp',
-    ],
-    excludes: [
-      'Catálogos grandes o carga masiva de productos',
-      'Migraciones masivas desde otras plataformas',
-      'Integraciones complejas o desarrollo a medida',
     ],
   },
 ]

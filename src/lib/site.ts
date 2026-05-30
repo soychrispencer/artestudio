@@ -58,6 +58,7 @@ export const HERO = {
   ctaSecondary: 'Solo necesito un servicio',
   trust: [
     'Atención directa por WhatsApp',
+    `Activación promocional incluida · mínimo ${MIN_COMMITMENT_MONTHS} meses.`,
   ],
 } as const
 
@@ -89,19 +90,19 @@ export const PROBLEMAS = {
 export const PLANES_INTRO = {
   label: 'Planes principales',
   title: 'Elige tu plan según tu etapa',
-  subtitle: 'Tres caminos claros para partir, crecer o escalar.',
-  note: '',
+  subtitle: 'Tres caminos claros. Suscripción mensual con activación promocional incluida.',
+  note: `Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses para cubrir la puesta en marcha inicial.`,
 } as const
 
 export const PRICING_UI = {
-  setupLabel: 'Creación inicial incluida',
+  setupLabel: 'Activación promocional incluida',
   monthlyLabel: 'Mensualidad',
   monthlySuffix: '/mes',
   commitmentShort: `Mínimo ${MIN_COMMITMENT_MONTHS} meses`,
   includesLabel: 'Incluye',
   excludesLabel: 'No incluye',
   deliveryLabel: 'Tiempo de entrega',
-  footnote: `Precios en CLP · Pago por tarjeta vía MercadoPago.`,
+  footnote: `Precios en CLP · Pago por tarjeta vía MercadoPago · Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses.`,
 } as const
 
 export const PLAN_CTA_LABELS = {
@@ -128,7 +129,7 @@ export const INDIVIDUAL_SERVICES_INTRO = {
   label: 'Servicios individuales',
   title: '¿Ya sabes lo que necesitas?',
   subtitle:
-    'Contrata un servicio puntual o cotiza algo más elaborado.',
+    'También trabajamos servicios individuales para clientes que necesitan algo puntual o quieren empezar por un área específica. Pueden combinarse con cualquier plan o contratarse solos.',
 } as const
 
 export const INDIVIDUAL_SERVICES = [
@@ -142,7 +143,7 @@ export const INDIVIDUAL_SERVICES = [
     priceFrom: 'Desde $249.990',
     paymentLabel: 'Pago único',
     buyLabel: 'Pagar landing base',
-    priceNote: 'Pago único, sin mensualidad ni permanencia.',
+    priceNote: 'Para una landing simple de una página.',
     contactCta: {
       label: 'Cotizar sitio completo',
       href: WA_LINKS.web,
@@ -157,12 +158,14 @@ export const INDIVIDUAL_SERVICES = [
       'https://images.pexels.com/photos/2077990/pexels-photo-2077990.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
+    priceNote: 'Para partir con contenido mensual sin contratar una web.',
     subscription: {
       id: 'plan-redes-suscripcion',
       title: 'Redes sociales — Suscripción',
       setup: 0,
       monthly: 49_990,
       cta: 'Suscribirme a redes',
+      note: 'Incluye 8 contenidos mensuales.',
     },
     contactCta: {
       label: 'Cotizar redes avanzadas',
@@ -179,6 +182,7 @@ export const INDIVIDUAL_SERVICES = [
     priceFrom: 'Desde $59.990',
     paymentLabel: 'Pago único',
     buyLabel: 'Pagar diseño base',
+    priceNote: 'Para una pieza o pack simple según alcance.',
     contactCta: {
       label: 'Cotizar branding',
       href: WA_LINKS.diseno,
@@ -192,12 +196,14 @@ export const INDIVIDUAL_SERVICES = [
       'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
+    priceNote: 'Para sitios existentes con cambios y cuidado mensual.',
     subscription: {
       id: 'plan-mantencion-suscripcion',
       title: 'Mantención web — Suscripción',
       setup: 0,
       monthly: 49_990,
       cta: 'Contratar mantención',
+      note: 'Incluye actualizaciones y soporte mensual.',
     },
     contactCta: {
       label: 'Cotizar soporte avanzado',
@@ -214,6 +220,7 @@ export const INDIVIDUAL_SERVICES = [
     priceFrom: 'Desde $89.990',
     paymentLabel: 'Pago único',
     buyLabel: 'Pagar automatización simple',
+    priceNote: 'Para un flujo simple y bien definido.',
     contactCta: {
       label: 'Cotizar proyecto mayor',
       href: WA_LINKS.automatizacion,
@@ -229,7 +236,7 @@ export const INDIVIDUAL_SERVICES = [
     priceFrom: 'Diagnóstico desde $49.990',
     paymentLabel: 'Pago único',
     buyLabel: 'Pagar diagnóstico IA',
-    priceNote: 'Define alcance y viabilidad.',
+    priceNote: 'No promete chatbot listo; define alcance y viabilidad.',
     contactCta: {
       label: 'Cotizar implementación',
       href: WA_LINKS.automatizacionIa,
@@ -243,19 +250,19 @@ export const PROCESO = {
   steps: [
     {
       title: 'Conversas con nosotros',
-      description: 'Entendemos tu negocio y elegimos el camino correcto.',
+      description: '30 minutos por WhatsApp o videollamada. Entendemos tu negocio y elegimos el camino correcto.',
     },
     {
       title: 'Activas tu plan o servicio',
-      description: 'Pagas online y empezamos al siguiente día hábil.',
+      description: 'Pagas la activación y al siguiente día hábil ya estamos trabajando.',
     },
     {
       title: 'Revisas y apruebas',
-      description: 'Tú apruebas antes de publicar.',
+      description: 'Tú tienes la última palabra en todo. Sin sorpresas.',
     },
     {
       title: 'Creces cada mes',
-      description: 'Mantenemos tu presencia digital activa.',
+      description: 'Reportes, mejoras y estrategia continua. Tu equipo siempre activo.',
     },
   ],
 } as const
@@ -272,19 +279,19 @@ export const PRUEBA_SOCIAL = {
 export const FAQ_ITEMS = [
   {
     q: `¿Qué significa la permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses?`,
-    a: `La creación inicial está incluida, por eso pedimos mantener el plan activo al menos ${MIN_COMMITMENT_MONTHS} meses. Después puedes cancelar con aviso previo.`,
+    a: `La activación está incluida de forma promocional, por eso pedimos mantener el plan activo al menos ${MIN_COMMITMENT_MONTHS} meses. Ese periodo cubre la puesta en marcha, ajustes iniciales y continuidad técnica. Después puedes cancelar con aviso previo.`,
   },
   {
     q: '¿Puedo contratar solo redes sociales sin una web?',
-    a: 'Sí. Puedes contratar redes por $49.990/mes y sumar web después si lo necesitas.',
+    a: 'Sí. Puedes contratar Redes Sociales Esencial por $49.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar web después dentro de un plan completo si lo necesitas.',
   },
   {
     q: '¿Puedo empezar con el plan Inicio y subir después?',
-    a: 'Sí. Puedes subir a Crecer o Pro cuando tu negocio lo necesite.',
+    a: 'Sí. Si subes dentro de los primeros 6 meses, el setup de Inicio se descuenta del setup del plan nuevo.',
   },
   {
     q: '¿Trabajan con IA o automatizaciones?',
-    a: 'Sí, pero primero revisamos alcance y viabilidad para no prometer de más.',
+    a: 'Hoy lo tratamos como una solución bajo evaluación, no como promesa estándar. Primero revisamos qué quieres automatizar, qué información tienes disponible y si conviene resolverlo con IA, formularios, respuestas rápidas u otra herramienta más simple.',
   },
   {
     q: '¿Trabajan fuera de Santiago?',

@@ -65,7 +65,7 @@ export function PlanesSuscripcion() {
                   </span>
                 )}
 
-                <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-[#8325fd] to-[#a855ff] text-white shadow-sm">
+                <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-white text-[#8325fd] border border-[#8325fd]/20 shadow-sm">
                   Potenciado con IA
                   ✨
                 </span>

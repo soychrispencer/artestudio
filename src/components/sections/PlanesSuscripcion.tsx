@@ -65,12 +65,23 @@ export function PlanesSuscripcion() {
                   </span>
                 )}
 
-                <p className="text-sm font-semibold text-primary mb-1">Plan {plan.name}</p>
+                <p className="text-sm font-semibold text-primary mb-1">{plan.name}</p>
                 <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                    Potenciado con IA
+                  </span>
+                </div>
                 <p className="text-xs text-muted mb-5">Para quién: {plan.idealFor}</p>
 
                 <div className="mb-5 rounded-2xl bg-[var(--bg)] border border-[var(--border)] p-4">
                   <p className="text-xs text-muted uppercase tracking-wide mb-1">{PRICING_UI.setupLabel}</p>
+                  {plan.originalSetup && (
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xs text-muted line-through">Antes {formatCLP(plan.originalSetup)}</span>
+                      <span className="text-xs font-semibold text-primary">50% OFF</span>
+                    </div>
+                  )}
                   <p className="text-3xl font-bold text-primary">
                     {formatCLP(plan.setup)}
                   </p>

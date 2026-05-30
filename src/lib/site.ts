@@ -49,9 +49,9 @@ export const NAV_LINKS = [
 export const HERO = {
   badge: 'Diseño web profesional · Chile',
   title: 'Tu landing lista en 48 hrs',
-  titleAccent: 'Desde $99.990',
+  titleAccent: 'Desde $74.990',
   subtitle:
-    'El pago mensual cubre hosting, mantenimiento técnico básico y soporte para que tu web siga funcionando correctamente.',
+    'Incluye: hosting, mantenimiento y soporte para que tu web siga funcionando correctamente.',
   cta: 'Quiero mi landing',
   ctaSecondary: 'Ver planes',
   trust: [

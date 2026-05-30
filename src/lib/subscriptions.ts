@@ -9,6 +9,7 @@ export type SubscriptionPlan = {
   idealFor: string
   category?: 'core' | 'social'
   setup: number
+  originalSetup?: number
   monthly: number
   regularMonthly?: number
   priceNote?: string
@@ -32,13 +33,15 @@ export const MIN_COMMITMENT_MONTHS = 3
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'plan-esencial',
-    name: 'Plan Esencial',
-    tagline: 'Tu landing lista en 48 hrs · Potenciado con IA',
+    name: 'Esencial',
+    tagline: 'Tu landing lista en 48 hrs',
     idealFor: 'Emprendedores y pymes que necesitan una página simple y efectiva.',
     category: 'core',
     setup: 74_990,
+    originalSetup: 149_990,
     monthly: 9_990,
     delivery: '48 horas hábiles desde que apruebas el briefing.',
+    badge: '50% OFF',
     includes: [
       '1 página tipo onepage con hasta 5 secciones',
       'Diseño responsive (se ve bien en celular)',
@@ -61,8 +64,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   },
   {
     id: 'plan-pro',
-    name: 'Plan Pro',
-    tagline: 'Sitio web corporativo · Potenciado con IA',
+    name: 'Pro',
+    tagline: 'Sitio web corporativo',
     idealFor: 'Negocios que necesitan un sitio profesional con múltiples páginas.',
     setup: 199_990,
     monthly: 19_990,
@@ -87,8 +90,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   },
   {
     id: 'plan-pro-plus',
-    name: 'Plan Pro+ / Ecommerce',
-    tagline: 'Tienda online completa · Potenciado con IA',
+    name: 'Pro+ / Ecommerce',
+    tagline: 'Tienda online completa',
     idealFor: 'Negocios que necesitan vender online o tienen necesidades avanzadas.',
     setup: 299_990,
     monthly: 29_990,

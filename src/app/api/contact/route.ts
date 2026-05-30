@@ -37,9 +37,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Log para depuración; aquí puedes integrar envío por email (Resend, Nodemailer, etc.)
-    console.log('Contacto recibido:', { name: nameStr, email: emailStr, message: messageStr })
-
     return NextResponse.json({ success: true, message: 'Mensaje recibido. Te contactaremos pronto.' })
   } catch {
     return NextResponse.json(

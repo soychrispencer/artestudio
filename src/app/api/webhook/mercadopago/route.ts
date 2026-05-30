@@ -5,9 +5,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { type, action, data } = body
 
-    console.log(`[MercadoPago Webhook] Type: ${type}, Action: ${action}`, data)
-
-    // TODO: Aquí procesarías el estado de la suscripción (data.id) 
+    // TODO: Aquí procesarías el estado de la suscripción (data.id)
     // y actualizarías tu base de datos o enviarías un email.
     
     return NextResponse.json({ received: true }, { status: 200 })

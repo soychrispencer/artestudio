@@ -2,8 +2,6 @@
  * Copy orientado al CLIENTE — conversión
  */
 
-import { MIN_COMMITMENT_MONTHS } from './subscriptions'
-
 export const WA_NUMBER = '56938733230'
 
 export const CONTACT = {
@@ -49,16 +47,16 @@ export const NAV_LINKS = [
 ] as const
 
 export const HERO = {
-  badge: 'Web, contenido y soporte digital · Chile',
-  title: 'Consigue más clientes por internet.',
-  titleAccent: 'Web, contenido y soporte para vender mejor.',
+  badge: 'Diseño web profesional · Chile',
+  title: 'Tu landing lista en 48 hrs',
+  titleAccent: 'Desde $99.990',
   subtitle:
-    'Creamos una presencia online clara para que te encuentren, te escriban y confíen en tu negocio.',
-  cta: 'Quiero un plan completo',
-  ctaSecondary: 'Solo necesito un servicio',
+    'El pago mensual cubre hosting, mantenimiento técnico básico y soporte para que tu web siga funcionando correctamente.',
+  cta: 'Quiero mi landing',
+  ctaSecondary: 'Ver planes',
   trust: [
     'Atención directa por WhatsApp',
-    `Activación promocional incluida · mínimo ${MIN_COMMITMENT_MONTHS} meses.`,
+    'Entrega en 48 horas hábiles',
   ],
 } as const
 
@@ -88,33 +86,33 @@ export const PROBLEMAS = {
 } as const
 
 export const PLANES_INTRO = {
-  label: 'Planes principales',
+  label: 'Planes web',
   title: 'Elige tu plan según tu etapa',
-  subtitle: 'Tres caminos claros. Suscripción mensual con activación promocional incluida.',
-  note: `Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses para cubrir la puesta en marcha inicial.`,
+  subtitle: 'Tres opciones claras. Pago único por diseño + mensualidad pequeña para hosting y soporte.',
+  note: 'El pago mensual cubre hosting, mantenimiento técnico básico y soporte.',
 } as const
 
 export const PRICING_UI = {
-  setupLabel: 'Activación promocional incluida',
+  setupLabel: 'Pago único por diseño',
   monthlyLabel: 'Mensualidad',
   monthlySuffix: '/mes',
-  commitmentShort: `Mínimo ${MIN_COMMITMENT_MONTHS} meses`,
+  commitmentShort: 'Hosting, mantenimiento y soporte',
   includesLabel: 'Incluye',
   excludesLabel: 'No incluye',
   deliveryLabel: 'Tiempo de entrega',
-  footnote: `Precios en CLP · Pago por tarjeta vía MercadoPago · Permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses.`,
+  footnote: 'Precios en CLP · Pago por tarjeta vía MercadoPago · El pago mensual cubre hosting, mantenimiento técnico básico y soporte.',
 } as const
 
 export const PLAN_CTA_LABELS = {
-  'plan-inicio': 'Quiero el plan Inicio',
-  'plan-crecer': 'Quiero el plan Crecer',
-  'plan-pro-ia': 'Quiero el plan Pro',
+  'plan-esencial': 'Quiero plan Esencial',
+  'plan-pro': 'Quiero plan Pro',
+  'plan-pro-plus': 'Quiero plan Pro+',
 } as const
 
 export const PLAN_WA_LINKS = {
-  'plan-inicio': WA_LINKS.planInicio,
-  'plan-crecer': WA_LINKS.planCrecer,
-  'plan-pro-ia': WA_LINKS.planPro,
+  'plan-esencial': WA_LINKS.web,
+  'plan-pro': WA_LINKS.web,
+  'plan-pro-plus': WA_LINKS.web,
 } as const
 
 export const AI_ADDON = {
@@ -134,31 +132,15 @@ export const INDIVIDUAL_SERVICES_INTRO = {
 
 export const INDIVIDUAL_SERVICES = [
   {
-    icon: '🌐',
-    title: 'Diseño web / Landing',
-    description: 'Landing base para presentar tu negocio, explicar tu oferta y recibir contactos.',
-    image:
-      'https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 249_990,
-    priceFrom: 'Desde $249.990',
-    paymentLabel: 'Pago único',
-    buyLabel: 'Pagar landing base',
-    priceNote: 'Para una landing simple de una página.',
-    contactCta: {
-      label: 'Cotizar sitio completo',
-      href: WA_LINKS.web,
-    },
-  },
-  {
     icon: '📱',
     title: 'Redes sociales',
     description:
-      'Gestión mensual de 8 contenidos reutilizables: 1 video o reel de hasta 60 segundos y 7 piezas estáticas.',
+      'Gestión mensual de contenido para crecer con consistencia en Instagram, TikTok y Facebook.',
     image:
       'https://images.pexels.com/photos/2077990/pexels-photo-2077990.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
-    priceNote: 'Para partir con contenido mensual sin contratar una web.',
+    priceNote: 'Incluye 8 contenidos mensuales.',
     subscription: {
       id: 'plan-redes-suscripcion',
       title: 'Redes sociales — Suscripción',
@@ -174,71 +156,57 @@ export const INDIVIDUAL_SERVICES = [
   },
   {
     icon: '🎨',
-    title: 'Diseño gráfico',
-    description: 'Diseño puntual para marca, piezas comerciales o material visual que necesitas resolver rápido.',
+    title: 'Branding e Identidad Visual',
+    description: 'Logo profesional, paleta de colores y manual de marca para lanzar tu negocio.',
     image:
       'https://images.pexels.com/photos/5473957/pexels-photo-5473957.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 59_990,
-    priceFrom: 'Desde $59.990',
+    priceFrom: 'Desde $149.990',
     paymentLabel: 'Pago único',
-    buyLabel: 'Pagar diseño base',
-    priceNote: 'Para una pieza o pack simple según alcance.',
+    priceNote: 'Para identidad visual base.',
     contactCta: {
-      label: 'Cotizar branding',
+      label: 'Cotizar branding completo',
       href: WA_LINKS.diseno,
     },
   },
   {
-    icon: '🛠️',
-    title: 'Mantención web',
-    description: 'Actualizaciones, cambios, seguridad y soporte para tu sitio existente.',
+    icon: '🖼️',
+    title: 'Diseño gráfico',
+    description: 'Flyers, presentaciones, menús y material visual para marketing impreso y digital.',
     image:
-      'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
-    priceFrom: 'Desde $49.990/mes',
-    paymentLabel: 'Suscripción mensual',
-    priceNote: 'Para sitios existentes con cambios y cuidado mensual.',
-    subscription: {
-      id: 'plan-mantencion-suscripcion',
-      title: 'Mantención web — Suscripción',
-      setup: 0,
-      monthly: 49_990,
-      cta: 'Contratar mantención',
-      note: 'Incluye actualizaciones y soporte mensual.',
-    },
+      'https://images.pexels.com/photos/7484736/pexels-photo-7484736.jpeg?auto=compress&cs=tinysrgb&w=800',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según alcance',
+    priceNote: 'Para piezas editoriales y corporativas.',
     contactCta: {
-      label: 'Cotizar soporte avanzado',
-      href: WA_LINKS.mantencion,
+      label: 'Cotizar diseño gráfico',
+      href: WA_LINKS.diseno,
     },
   },
   {
-    icon: '⚡',
-    title: 'Automatizaciones',
-    description: 'Automatización simple para ordenar formularios, avisos, tareas o procesos repetitivos.',
+    icon: '💻',
+    title: 'Desarrollo web a medida',
+    description: 'Sitios corporativos, aplicaciones web y plataformas para profesionales y empresas.',
     image:
-      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 89_990,
-    priceFrom: 'Desde $89.990',
-    paymentLabel: 'Pago único',
-    buyLabel: 'Pagar automatización simple',
-    priceNote: 'Para un flujo simple y bien definido.',
+      'https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=800',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según proyecto',
+    priceNote: 'Para desarrollos personalizados.',
     contactCta: {
-      label: 'Cotizar proyecto mayor',
-      href: WA_LINKS.automatizacion,
+      label: 'Cotizar desarrollo web',
+      href: WA_LINKS.web,
     },
   },
   {
-    icon: '🧩',
-    title: 'IA aplicada',
-    description: 'Diagnóstico para evaluar si conviene usar IA en respuestas, procesos o atención al cliente.',
+    icon: '🤖',
+    title: 'Aplicaciones IA',
+    description: 'Automatizaciones, chatbots y soluciones con inteligencia artificial para tu negocio.',
     image:
       'https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 49_990,
-    priceFrom: 'Diagnóstico desde $49.990',
-    paymentLabel: 'Pago único',
-    buyLabel: 'Pagar diagnóstico IA',
-    priceNote: 'No promete chatbot listo; define alcance y viabilidad.',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según proyecto',
+    priceNote: 'Para soluciones personalizadas.',
     contactCta: {
-      label: 'Cotizar implementación',
+      label: 'Cotizar aplicación IA',
       href: WA_LINKS.automatizacionIa,
     },
   },
@@ -278,20 +246,20 @@ export const PRUEBA_SOCIAL = {
 
 export const FAQ_ITEMS = [
   {
-    q: `¿Qué significa la permanencia mínima de ${MIN_COMMITMENT_MONTHS} meses?`,
-    a: `La activación está incluida de forma promocional, por eso pedimos mantener el plan activo al menos ${MIN_COMMITMENT_MONTHS} meses. Ese periodo cubre la puesta en marcha, ajustes iniciales y continuidad técnica. Después puedes cancelar con aviso previo.`,
+    q: '¿Qué incluye el pago mensual?',
+    a: 'El pago mensual cubre hosting, mantenimiento técnico básico y soporte para que tu web siga funcionando correctamente. Es como el servicio de luz o internet: pagas por mantener el servicio activo y funcionando.',
   },
   {
     q: '¿Puedo contratar solo redes sociales sin una web?',
-    a: 'Sí. Puedes contratar Redes Sociales Esencial por $49.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar web después dentro de un plan completo si lo necesitas.',
+    a: 'Sí. Puedes contratar Redes Sociales por $49.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar una web después si lo necesitas.',
   },
   {
-    q: '¿Puedo empezar con el plan Inicio y subir después?',
-    a: 'Sí. Si subes dentro de los primeros 6 meses, el setup de Inicio se descuenta del setup del plan nuevo.',
+    q: '¿Puedo empezar con la Landing y subir después?',
+    a: 'Sí. Si necesitas más adelante un sitio más completo, podemos escalar tu landing a una Web Profesional o Web Avanzada.',
   },
   {
     q: '¿Trabajan con IA o automatizaciones?',
-    a: 'Hoy lo tratamos como una solución bajo evaluación, no como promesa estándar. Primero revisamos qué quieres automatizar, qué información tienes disponible y si conviene resolverlo con IA, formularios, respuestas rápidas u otra herramienta más simple.',
+    a: 'Sí, ofrecemos soluciones de IA y automatizaciones bajo evaluación. Primero revisamos qué quieres automatizar, qué información tienes disponible y si conviene resolverlo con IA, formularios u otra herramienta más simple.',
   },
   {
     q: '¿Trabajan fuera de Santiago?',
@@ -300,9 +268,9 @@ export const FAQ_ITEMS = [
 ] as const
 
 export const CTA_FINAL = {
-  title: '¿Listo para tener más clientes?',
-  subtitle: 'Una conversación de 30 minutos puede cambiar la dirección de tu negocio. Sin compromiso.',
-  primary: 'Hablar por WhatsApp',
+  title: '¿Listo para tener tu landing?',
+  subtitle: 'Tu página lista en 48 horas. Pago único desde $74.990 + $9.990/mes.',
+  primary: 'Cotizar por WhatsApp',
   note: 'Atención directa por WhatsApp · Lunes a viernes 9–19h',
   location: '📍 Atendemos todo Chile de forma remota',
 } as const

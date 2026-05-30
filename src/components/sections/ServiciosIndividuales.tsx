@@ -8,15 +8,12 @@ import { INDIVIDUAL_SERVICES, INDIVIDUAL_SERVICES_INTRO, SECTION_IDS } from '@/l
 import { trackEvent } from '@/lib/analytics'
 
 type IndividualService = (typeof INDIVIDUAL_SERVICES)[number]
-type OneTimeService = IndividualService & {
-  price: number
-  buyLabel?: string
-}
 
 export function ServiciosIndividuales() {
   const { addItem, clear, openCart } = useCart()
 
-  const handleAddService = (service: OneTimeService) => {
+  const handleAddService = (service: IndividualService) => {
+    if (!('price' in service) || typeof service.price !== 'number') return
     trackEvent('service_add_to_cart', { service: service.title, price: service.price })
     clear()
     addItem({
@@ -59,6 +56,7 @@ export function ServiciosIndividuales() {
           {INDIVIDUAL_SERVICES.map((service) => {
             const hasSubscription = 'subscription' in service && Boolean(service.subscription)
             const hasOneTimePrice = 'price' in service && typeof service.price === 'number'
+            const buyLabel = ('buyLabel' in service && typeof service.buyLabel === 'string' && service.buyLabel) || 'Pagar ahora'
 
             return (
               <article key={service.title} className="card-base rounded-2xl overflow-hidden flex h-full flex-col">
@@ -118,7 +116,7 @@ export function ServiciosIndividuales() {
                           className="btn-whatsapp rounded-full px-5 py-2.5 text-sm w-full justify-center"
                         >
                           <ShoppingCart className="w-4 h-4" />
-                          {'buyLabel' in service && service.buyLabel ? service.buyLabel : 'Pagar ahora'}
+                          <span>{buyLabel}</span>
                         </button>
                       ) : null}
 

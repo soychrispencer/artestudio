@@ -68,7 +68,7 @@ export function PlanesSuscripcion() {
                 <p className="text-sm font-semibold text-primary mb-1">{plan.name}</p>
                 <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-semibold bg-[var(--primary)]/10 text-[var(--primary)]">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-semibold bg-[#8325fd] text-white">
                     <Star className="w-3 h-3" />
                     Potenciado con IA
                   </span>

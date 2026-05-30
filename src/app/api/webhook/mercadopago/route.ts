@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { type, action, data } = body
+    const { type: _type, action: _action, data: _data } = body
 
     // TODO: Aquí procesarías el estado de la suscripción (data.id)
     // y actualizarías tu base de datos o enviarías un email.
-    
+
     return NextResponse.json({ received: true }, { status: 200 })
   } catch (error) {
     console.error('Webhook Error:', error)

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import { Check, X, Star } from 'tabler-icons-react'
+import { Check, X } from 'tabler-icons-react'
 import { SubscribeButton } from '@/components/checkout/SubscribeButton'
 import {
   PLANES_INTRO,
@@ -68,9 +68,9 @@ export function PlanesSuscripcion() {
                 <p className="text-sm font-semibold text-primary mb-1">{plan.name}</p>
                 <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-semibold bg-[#8325fd] text-white">
-                    <Star className="w-3 h-3" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-[#8325fd] to-[#a855ff] text-white shadow-sm">
                     Potenciado con IA
+                    ✨
                   </span>
                 </div>
                 <p className="text-xs text-muted mb-5">Para quién: {plan.idealFor}</p>

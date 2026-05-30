@@ -43,8 +43,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     delivery: '48 horas hábiles desde que apruebas el briefing.',
     badge: '50% OFF',
     includes: [
-      '1 página tipo onepage con hasta 5 secciones',
-      'Diseño responsive (se ve bien en celular)',
+      '1 página One Page hasta 5 secciones',
+      'Diseño responsive (adaptado a móvil)',
       'Botón directo a WhatsApp',
       'Formulario de contacto o link externo',
       'SEO on-page básico (títulos, descripciones, estructura)',

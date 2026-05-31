@@ -148,7 +148,7 @@ export function PlanesSuscripcion() {
                     regularMonthly={plan.regularMonthly}
                     className="rounded-full px-5 py-3 text-sm"
                   >
-                    Suscribirme al plan
+                    Quiero este plan
                   </SubscribeButton>
                 </div>
               </article>

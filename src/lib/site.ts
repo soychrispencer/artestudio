@@ -140,7 +140,7 @@ export const INDIVIDUAL_SERVICES = [
       'https://images.pexels.com/photos/2077990/pexels-photo-2077990.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
-    priceNote: 'Incluye 8 contenidos mensuales.',
+    priceNote: 'Ideal para mantener tu marca activa cada mes.',
     subscription: {
       id: 'plan-redes-suscripcion',
       title: 'Redes sociales — Suscripción',
@@ -229,8 +229,8 @@ export const PROCESO = {
       description: 'Tú tienes la última palabra en todo. Sin sorpresas.',
     },
     {
-      title: 'Creces cada mes',
-      description: 'Reportes, mejoras y estrategia continua. Tu equipo siempre activo.',
+      title: 'Mantienes tu web activa',
+      description: 'Hosting, mantenimiento técnico y soporte básico para que tu presencia online siga funcionando.',
     },
   ],
 } as const

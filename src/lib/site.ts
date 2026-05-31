@@ -210,6 +210,22 @@ export const INDIVIDUAL_SERVICES = [
       href: WA_LINKS.automatizacionIa,
     },
   },
+  {
+    icon: '🔧',
+    title: 'Actualizaciones',
+    description: 'Mantenimientos, modificaciones y actualizaciones web de los planes y proyectos que tenemos. De modificaciones menores a completas.',
+    image:
+      'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+    priceFrom: 'Desde $29.990',
+    paymentLabel: 'Por proyecto',
+    priceNote: 'Dependiendo del contenido requerido.',
+    price: 29_990,
+    buyLabel: 'Pagar ahora',
+    contactCta: {
+      label: 'Cotizar actualización',
+      href: WA_LINKS.web,
+    },
+  },
 ] as const
 
 export const PROCESO = {

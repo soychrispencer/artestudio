@@ -137,7 +137,7 @@ export const INDIVIDUAL_SERVICES = [
     description:
       'Gestión mensual de contenido para crecer con consistencia en Instagram, TikTok y Facebook.',
     image:
-      'https://images.pexels.com/photos/3252291/pexels-photo-3252291.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $49.990/mes',
     paymentLabel: 'Suscripción mensual',
     priceNote: 'Ideal para mantener tu marca activa cada mes.',
@@ -159,7 +159,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Branding e Identidad Visual',
     description: 'Logo profesional, paleta de colores y manual de marca para lanzar tu negocio.',
     image:
-      'https://images.pexels.com/photos/6476254/pexels-photo-6476254.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $149.990',
     paymentLabel: 'Pago único',
     priceNote: 'Para identidad visual base.',
@@ -173,7 +173,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Diseño gráfico',
     description: 'Flyers, presentaciones, menús y material visual para marketing impreso y digital.',
     image:
-      'https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Cotizar',
     paymentLabel: 'Según alcance',
     priceNote: 'Para piezas editoriales y corporativas.',
@@ -187,7 +187,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Desarrollo web a medida',
     description: 'Sitios corporativos, aplicaciones web y plataformas para profesionales y empresas.',
     image:
-      'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/5711697/pexels-photo-5711697.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Cotizar',
     paymentLabel: 'Según proyecto',
     priceNote: 'Para desarrollos personalizados.',
@@ -201,7 +201,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Aplicaciones IA',
     description: 'Automatizaciones, chatbots y soluciones con inteligencia artificial para tu negocio.',
     image:
-      'https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Cotizar',
     paymentLabel: 'Según proyecto',
     priceNote: 'Para soluciones personalizadas.',
@@ -215,7 +215,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Actualizaciones',
     description: 'Mantenimientos, modificaciones y actualizaciones web de los planes y proyectos que tenemos. De modificaciones menores a completas.',
     image:
-      'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/3851976/pexels-photo-3851976.jpeg?auto=compress&cs=tinysrgb&w=800',
     priceFrom: 'Desde $29.990',
     paymentLabel: 'Por proyecto',
     priceNote: 'Dependiendo del contenido requerido.',

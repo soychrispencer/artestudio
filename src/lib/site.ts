@@ -21,6 +21,7 @@ export const WA_LINKS = {
   planInicio: waLink('Hola Artestudio, quiero el plan Inicio. Mi negocio es de '),
   planCrecer: waLink('Hola Artestudio, quiero el plan Crecer. Mi negocio es de '),
   planPro: waLink('Hola Artestudio, quiero el plan Pro. Mi negocio es de '),
+  planCrece: waLink('Hola Artestudio, quiero el Plan Crece con landing page + redes sociales. Mi negocio es de '),
   redes: waLink('Hola Artestudio, quiero cotizar gestión de redes sociales. Mi negocio es de '),
   web: waLink('Hola Artestudio, quiero cotizar diseño web. Mi negocio es de '),
   automatizacionIa: waLink('Hola Artestudio, quiero evaluar automatizaciones o IA para mi negocio. Mi negocio es de '),
@@ -32,6 +33,7 @@ export const WA_LINKS = {
 export const SECTION_IDS = {
   inicio: 'inicio',
   planes: 'planes',
+  crece: 'crece',
   serviciosIndividuales: 'servicios-individuales',
   proceso: 'proceso',
   prueba: 'prueba',
@@ -41,6 +43,7 @@ export const SECTION_IDS = {
 
 export const NAV_LINKS = [
   { label: 'Planes', href: `#${SECTION_IDS.planes}` },
+  { label: 'Crece', href: `#${SECTION_IDS.crece}` },
   { label: 'Servicios', href: `#${SECTION_IDS.serviciosIndividuales}` },
   { label: 'Cómo funciona', href: `#${SECTION_IDS.proceso}` },
   { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
@@ -137,14 +140,14 @@ export const INDIVIDUAL_SERVICES = [
     description:
       'Gestión mensual de contenido para crecer con consistencia en Instagram, TikTok y Facebook.',
     image: '/images/services/redes-sociales.png',
-    priceFrom: 'Desde $49.990/mes',
+    priceFrom: 'Desde $89.990/mes',
     paymentLabel: 'Suscripción mensual',
     priceNote: 'Ideal para mantener tu marca activa cada mes.',
     subscription: {
       id: 'plan-redes-suscripcion',
       title: 'Redes sociales — Suscripción',
       setup: 0,
-      monthly: 49_990,
+      monthly: 89_990,
       cta: 'Suscribirme a redes',
       note: 'Incluye 8 contenidos mensuales.',
     },
@@ -261,7 +264,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: '¿Puedo contratar solo redes sociales sin una web?',
-    a: 'Sí. Puedes contratar Redes Sociales por $49.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar una web después si lo necesitas.',
+    a: 'Sí. Puedes contratar Redes Sociales desde $89.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar una web después si lo necesitas.',
   },
   {
     q: '¿Puedo empezar con la Landing y subir después?',

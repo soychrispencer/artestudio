@@ -117,6 +117,35 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   },
 ]
 
+export const CRECE_PLAN: SubscriptionPlan = {
+  id: 'plan-crece',
+  name: 'Crece',
+  tagline: 'Landing page + redes sociales',
+  idealFor: 'Negocios que quieren captar clientes con una página clara y contenido activo en redes.',
+  category: 'social',
+  setup: 149_990,
+  originalSetup: 249_990,
+  monthly: 99_990,
+  delivery: 'Landing en 48 horas hábiles y primer pack de redes durante la primera semana.',
+  badge: 'Pack web + redes',
+  includes: [
+    'Landing page One Page enfocada en conversión',
+    'Botón directo a WhatsApp o formulario de contacto',
+    'SEO on-page básico para la landing',
+    'Bio/perfil de Instagram optimizado',
+    '8 contenidos mensuales para redes sociales',
+    '1 reel o video corto incluido al mes',
+    'Calendario mensual de publicaciones',
+    'Diseño visual coherente entre landing y redes',
+    'Hosting, mantenimiento y soporte básico',
+  ],
+  excludes: [
+    'Pauta publicitaria pagada',
+    'Community management avanzado',
+    'eCommerce o tienda online',
+  ],
+}
+
 export const SUBSCRIPTION_ADDONS: SubscriptionAddon[] = [
   {
     id: 'addon-ia-pro',
@@ -131,7 +160,7 @@ export const SUBSCRIPTION_ADDONS: SubscriptionAddon[] = [
     description:
       '+8 publicaciones diseñadas al mes (feed y stories). Ideal si ya tienes plan y necesitas más volumen; para empezar con web + redes, Crecimiento suele convenir más.',
     setup: 29_990,
-    monthly: 59_990,
+    monthly: 79_990,
   },
   {
     id: 'addon-web-extra',

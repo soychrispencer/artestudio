@@ -16,23 +16,25 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes | Chile',
+  title: 'Artestudio — Sistemas de crecimiento para empresas | Chile',
   description:
-    'Hacemos tu presencia digital para que te encuentren y te escriban. Planes claros para emprendedores y pymes en Chile.',
+    'Diseñamos sistemas inteligentes de crecimiento: publicidad, web, IA y automatizaciones trabajando como un solo sistema para atraer y convertir clientes.',
   keywords: [
-    'diseño web Chile',
-    'agencia digital Chile',
-    'redes sociales Chile',
-    'landing express Chile',
-    'soporte digital Chile',
+    'sistema de crecimiento Chile',
+    'estudio de crecimiento digital',
+    'automatizaciones empresas Chile',
+    'IA para negocios Chile',
+    'landing page Chile',
+    'Google Ads Chile',
+    'Meta Ads Chile',
   ],
   authors: [{ name: 'Artestudio' }],
   metadataBase: new URL(siteUrl),
   robots: 'index, follow',
   icons: { icon: '/favicon.png' },
   openGraph: {
-    title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes',
-    description: 'Tu negocio merece clientes desde internet. Web, contenido y soporte digital.',
+    title: 'Artestudio — Sistemas de crecimiento para empresas',
+    description: 'Diseñamos sistemas inteligentes de crecimiento para empresas en Chile.',
     url: siteUrl,
     siteName: 'Artestudio',
     locale: 'es_CL',
@@ -41,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Artestudio — Web, contenido y soporte digital para conseguir clientes',
-    description: 'Tu negocio merece clientes desde internet. Web, contenido y soporte digital.',
+    title: 'Artestudio — Sistemas de crecimiento para empresas',
+    description: 'Diseñamos sistemas inteligentes de crecimiento para empresas en Chile.',
     images: [`${siteUrl}/og-image.png`],
   },
 }

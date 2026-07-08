@@ -29,18 +29,10 @@ function PagoExitoContent() {
     setError('')
 
     try {
-      // Llamamos a la API pero con setup 0 para todos los items
-      // Esto forzará que la API cree una suscripción (Preapproval) pura
       const subscriptionItems = order.items.map((it: any) => ({
         ...it,
-        setup: 0, // Ya se pagó en el paso anterior
-        // El monthly se mantiene igual
+        setup: 0,
       }))
-
-      // Calculamos la fecha de inicio para 30 días en el futuro
-      const futureDate = new Date()
-      futureDate.setDate(futureDate.getDate() + 30)
-      const startDate = futureDate.toISOString()
 
       const res = await fetch('/api/payment', {
         method: 'POST',
@@ -49,13 +41,12 @@ function PagoExitoContent() {
           items: subscriptionItems,
           customer: order.buyer,
           orderId: `SUB-${order.orderId || Date.now()}`,
-          startDate, // Hacemos que la suscripción empiece en 30 días
+          checkoutMode: 'subscription',
         }),
       })
 
       const data = await res.json()
       if (data.init_point || data.sandbox_init_point) {
-        // Redirigir al flujo de suscripción
         window.location.href = data.init_point ?? data.sandbox_init_point
       } else {
         throw new Error(data.error || 'No se pudo generar el link de suscripción')
@@ -78,6 +69,20 @@ function PagoExitoContent() {
   }
 
   const hasMonthly = order.items?.some((it: any) => it.monthly > 0)
+  const monthlyAmount =
+    order.monthlyTotal ??
+    order.items?.reduce(
+      (acc: number, it: any) => acc + (it.monthly ?? 0) * (it.quantity || 1),
+      0
+    ) ??
+    0
+  const setupAmount =
+    order.setupTotal ??
+    order.items?.reduce(
+      (acc: number, it: any) => acc + (it.setup ?? 0) * (it.quantity || 1),
+      0
+    ) ??
+    0
 
   return (
     <div className="max-w-2xl mx-auto py-16 px-4">
@@ -89,22 +94,26 @@ function PagoExitoContent() {
         <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/20">
           <Check size={40} className="text-white" />
         </div>
-        
+
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          ¡Pago Inicial Confirmado! 🏁
+          ¡Setup confirmado!
         </h1>
-        <p className="text-xl text-gray-600 dark:text-dark-text-secondary mb-10">
-          Hemos recibido el pago de tu Setup y el primer mes de servicio.
+        <p className="text-xl text-gray-600 dark:text-dark-text-secondary mb-4">
+          Recibimos tu pago de {formatPrice(setupAmount)} por el diseño de tu landing.
+        </p>
+        <p className="text-sm text-gray-500 dark:text-dark-text-secondary mb-10">
+          Paso 1 de 2 completado. Falta activar el hosting mensual.
         </p>
 
         {hasMonthly && (
           <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 mb-10 text-left">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <CreditCard className="text-primary" />
-              Paso Final: Activar Mensualidad Automática
+              Paso 2: Activar hosting mensual
             </h2>
             <p className="text-gray-700 dark:text-dark-text-secondary mb-6">
-              Para asegurar la continuidad de tu servicio y automatizar los cobros de los meses siguientes ({formatPrice(order.items.reduce((acc: number, it: any) => acc + (it.monthly * (it.quantity || 1)), 0))} /mes), debes activar tu suscripción ahora:
+              Para mantener tu landing online ({formatPrice(monthlyAmount)}/mes — hosting, SSL, soporte y
+              mantenimiento), activa la suscripción en MercadoPago:
             </p>
 
             <button
@@ -118,14 +127,15 @@ function PagoExitoContent() {
                   Generando link seguro...
                 </>
               ) : (
-                'Activar Cobro Automático Mensual'
+                `Activar hosting — ${formatPrice(monthlyAmount)}/mes`
               )}
             </button>
-            
+
             {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
-            
+
             <p className="text-xs text-gray-500 dark:text-dark-text-secondary mt-6 text-center leading-relaxed">
-              * El primer cargo automático se realizará en 30 días. Puedes cancelar cuando quieras desde tu panel de Mercado Pago.
+              * El cobro mensual se activa al completar este paso. Permanencia mínima de 3 meses. Puedes
+              gestionar la suscripción desde tu panel de Mercado Pago.
             </p>
           </div>
         )}

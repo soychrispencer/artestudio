@@ -74,8 +74,8 @@ export function Navbar() {
               </span>
             )}
           </button>
-          <Button href={WA_LINKS.general} external variant="primary" className="!py-2.5 !px-5 !text-sm">
-            Quiero empezar
+          <Button href={WA_LINKS.reunion} external variant="primary" className="!py-2.5 !px-5 !text-sm">
+            Agendar reunión
           </Button>
         </div>
       </div>

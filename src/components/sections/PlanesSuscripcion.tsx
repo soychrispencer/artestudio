@@ -1,10 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import { useState } from 'react'
-import { Check, X } from 'tabler-icons-react'
+import type { ReactNode } from 'react'
+import { Check } from 'tabler-icons-react'
+import { BrandWhatsapp } from 'tabler-icons-react'
 import { SubscribeButton } from '@/components/checkout/SubscribeButton'
 import {
+  GROWTH_PLANS,
   PLANES_INTRO,
   PRICING_UI,
   SECTION_IDS,
@@ -12,154 +13,132 @@ import {
 } from '@/lib/site'
 import { SUBSCRIPTION_PLANS, formatCLP } from '@/lib/subscriptions'
 
-const COLLAPSED_INCLUDES = 5
-const COLLAPSED_EXCLUDES = 2
+function PlanCard({
+  name,
+  tagline,
+  priceMain,
+  priceSub,
+  includesLabel,
+  includes,
+  featured,
+  badge,
+  footer,
+}: {
+  name: string
+  tagline: string
+  priceMain: string
+  priceSub: string
+  includesLabel: string
+  includes: readonly string[]
+  featured?: boolean
+  badge?: string
+  footer: ReactNode
+}) {
+  return (
+    <article
+      className={`relative flex h-full flex-col rounded-3xl p-6 md:p-7 card-base ${
+        featured ? 'border-primary/50 ring-1 ring-primary/30 z-10' : ''
+      }`}
+    >
+      {badge && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-primary text-white text-xs font-bold uppercase tracking-wide whitespace-nowrap">
+          {badge}
+        </span>
+      )}
+
+      <div className="mb-5 min-h-[4.5rem]">
+        <p className="text-sm font-semibold text-primary mb-1">{name}</p>
+        <p className="text-[var(--text)] font-medium leading-snug">{tagline}</p>
+      </div>
+
+      <div className="mb-5 min-h-[7.5rem] rounded-2xl bg-[var(--bg)] border border-[var(--border)] p-4 flex flex-col justify-center">
+        <p className="text-xs text-muted uppercase tracking-wide mb-1">{PRICING_UI.setupLabel}</p>
+        <p className="text-3xl font-bold text-primary leading-tight">{priceMain}</p>
+        <p className="text-xs text-muted mt-2">{priceSub}</p>
+      </div>
+
+      <div className="mb-4 flex-grow">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted mb-2">{includesLabel}</p>
+        <ul className="space-y-2">
+          {includes.map((item) => (
+            <li key={item} className="flex gap-2 text-sm text-muted-light">
+              <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-auto pt-4 border-t border-[var(--border)]">{footer}</div>
+    </article>
+  )
+}
 
 export function PlanesSuscripcion() {
-  const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({})
-  const mainPlans = SUBSCRIPTION_PLANS
+  const landingPlan = SUBSCRIPTION_PLANS[0]
 
   return (
     <section id={SECTION_IDS.planes} className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)]">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-8 items-end mb-12">
-          <div>
-            <p className="section-label">{PLANES_INTRO.label}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">{PLANES_INTRO.title}</h2>
-            <p className="text-muted-light max-w-2xl mb-2">{PLANES_INTRO.subtitle}</p>
-            <p className="text-sm text-muted max-w-2xl">{PLANES_INTRO.note}</p>
-          </div>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--border)] bg-card">
-            <Image
-              src="/images/contenido-redes.png"
-              alt="Planificación de contenido reutilizable para redes sociales"
-              fill
-              sizes="(min-width: 1024px) 38vw, 100vw"
-              className="object-cover"
-            />
-          </div>
+        <div className="mb-12 max-w-2xl">
+          <p className="section-label">{PLANES_INTRO.label}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3">{PLANES_INTRO.title}</h2>
+          <p className="text-muted-light">{PLANES_INTRO.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
-          {mainPlans.map((plan) => {
-            const isExpanded = expandedPlans[plan.id] ?? false
-            const visibleIncludes = isExpanded ? plan.includes : plan.includes.slice(0, COLLAPSED_INCLUDES)
-            const visibleExcludes = plan.excludes
-              ? isExpanded
-                ? plan.excludes
-                : plan.excludes.slice(0, COLLAPSED_EXCLUDES)
-              : undefined
-            const hasHiddenItems =
-              plan.includes.length > COLLAPSED_INCLUDES || (plan.excludes?.length ?? 0) > COLLAPSED_EXCLUDES
+          {landingPlan && (
+            <PlanCard
+              name={landingPlan.name}
+              tagline={landingPlan.tagline}
+              priceMain={formatCLP(landingPlan.setup)}
+              priceSub={`${PRICING_UI.monthlyLabel} ${formatCLP(landingPlan.monthly)}${PRICING_UI.monthlySuffix}`}
+              includesLabel={PRICING_UI.includesLabel}
+              includes={landingPlan.includes}
+              footer={
+                <SubscribeButton
+                  planId={landingPlan.id}
+                  title={`Plan ${landingPlan.name} — Artestudio`}
+                  setup={landingPlan.setup}
+                  monthly={landingPlan.monthly}
+                  className="rounded-full px-5 py-3 text-sm w-full justify-center"
+                >
+                  Quiero este plan
+                </SubscribeButton>
+              }
+            />
+          )}
 
-            return (
-              <article
-                key={plan.id}
-                className={`relative flex h-full flex-col rounded-3xl p-6 md:p-7 card-base ${
-                  plan.featured ? 'border-primary/50 ring-1 ring-primary/30 z-10' : ''
-                }`}
-              >
-                {plan.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-primary text-white text-xs font-bold uppercase tracking-wide">
-                    {plan.badge}
-                  </span>
-                )}
-
-                <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold bg-white text-[#8325fd] border border-[#8325fd]/20 shadow-sm">
-                  Potenciado con IA
-                  ✨
-                </span>
-
-                <p className="text-sm font-semibold text-primary mb-1">{plan.name}</p>
-                <p className="text-[var(--text)] font-medium mb-1">{plan.tagline}</p>
-                <p className="text-xs text-muted mb-5">Para quién: {plan.idealFor}</p>
-
-                <div className="mb-5 rounded-2xl bg-[var(--bg)] border border-[var(--border)] p-4">
-                  <p className="text-xs text-muted uppercase tracking-wide mb-1">{PRICING_UI.setupLabel}</p>
-                  {plan.originalSetup && (
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs text-muted line-through">Antes {formatCLP(plan.originalSetup)}</span>
-                      <span className="text-xs font-semibold text-primary">50% OFF</span>
-                    </div>
-                  )}
-                  <p className="text-3xl font-bold text-primary">
-                    {formatCLP(plan.setup)}
-                  </p>
-                  <p className="text-xs text-muted mt-2">
-                    + {formatCLP(plan.monthly)}{PRICING_UI.monthlySuffix} · {PRICING_UI.commitmentShort}
-                  </p>
-                </div>
-
-                <div className="mb-4 flex-grow">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted mb-2">
-                    {PRICING_UI.includesLabel}
-                  </p>
-                  <ul className="space-y-2 mb-5">
-                    {visibleIncludes.map((item) => (
-                      <li key={item} className="flex gap-2 text-sm text-muted-light">
-                        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {visibleExcludes && visibleExcludes.length > 0 && (
-                    <>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-muted mb-2">
-                        {PRICING_UI.excludesLabel}
-                      </p>
-                      <ul className="space-y-2">
-                        {visibleExcludes.map((item) => (
-                          <li key={item} className="flex gap-2 text-sm text-muted">
-                            <X className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-60" />
-                            <span className="opacity-85">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-
-                  {hasHiddenItems && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpandedPlans((current) => ({
-                          ...current,
-                          [plan.id]: !isExpanded,
-                        }))
-                      }
-                      className="mt-4 text-left text-sm font-semibold text-primary hover:text-[var(--accent-2)] transition-colors"
-                    >
-                      {isExpanded ? 'Ver menos' : 'Ver todas las características'}
-                    </button>
-                  )}
-                </div>
-
-                <div className="mt-auto pt-4 border-t border-[var(--border)]">
-                  <p className="text-xs text-muted-light mb-4">
-                    <span className="font-semibold text-[var(--text)]">{PRICING_UI.deliveryLabel}:</span>{' '}
-                    {plan.delivery}
-                  </p>
-                  <SubscribeButton
-                    planId={plan.id}
-                    title={`Plan ${plan.name} — Artestudio`}
-                    setup={plan.setup}
-                    monthly={plan.monthly}
-                    regularMonthly={plan.regularMonthly}
-                    className="rounded-full px-5 py-3 text-sm"
-                  >
-                    Quiero este plan
-                  </SubscribeButton>
-                </div>
-              </article>
-            )
-          })}
+          {GROWTH_PLANS.map((plan) => (
+            <PlanCard
+              key={plan.id}
+              name={plan.name}
+              tagline={plan.tagline}
+              priceMain={plan.priceMain}
+              priceSub={plan.priceSub}
+              includesLabel={plan.includesLabel}
+              includes={plan.includes}
+              featured={'featured' in plan ? plan.featured : false}
+              badge={'badge' in plan ? plan.badge : undefined}
+              footer={
+                <a
+                  href={plan.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp rounded-full px-5 py-3 text-sm w-full justify-center"
+                >
+                  <BrandWhatsapp className="w-4 h-4" />
+                  {plan.cta}
+                </a>
+              }
+            />
+          ))}
         </div>
 
-        <div className="text-center text-xs text-muted mt-8 space-y-2">
+        <div className="text-center text-xs text-muted mt-8">
           <p>{PRICING_UI.footnote}</p>
-          <p>
-            ¿Tienes dudas sobre qué plan es para ti?{' '}
+          <p className="mt-2">
+            ¿Tienes dudas?{' '}
             <a
               href={WA_LINKS.asesoria}
               target="_blank"

@@ -16,7 +16,12 @@ export async function POST(request: NextRequest) {
 
     const customer = body.customer ?? {}
     const orderId = typeof body.orderId === 'string' ? body.orderId.trim() : ''
-    const checkoutMode = body.checkoutMode === 'subscription' ? 'subscription' : 'standard'
+    const checkoutMode =
+      body.checkoutMode === 'subscription'
+        ? 'subscription'
+        : body.checkoutMode === 'setup_then_subscription'
+          ? 'setup_then_subscription'
+          : 'standard'
 
     if (!itemsInput.length) {
       return NextResponse.json({ error: 'Faltan datos requeridos' }, { status: 400 })
@@ -64,7 +69,7 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN
+    const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN || process.env.MERCADO_PAGO_ACCESS_TOKEN
     if (!accessToken) {
       return NextResponse.json({ error: 'MercadoPago no configurado' }, { status: 500 })
     }
@@ -73,7 +78,68 @@ export async function POST(request: NextRequest) {
     const email = typeof customer.email === 'string' ? customer.email.trim() : ''
 
     // ─────────────────────────────────────────────
-    // CASO A: SUSCRIPCIÓN REAL (Checkout recurrente de MercadoPago)
+    // CASO A: SETUP ÚNICO → luego suscripción en /pago-exito
+    // ─────────────────────────────────────────────
+    if (checkoutMode === 'setup_then_subscription' && totalSetup > 0) {
+      const preferenceBody: Record<string, unknown> = {
+        items: [
+          {
+            title: `Setup: ${titles.length > 1 ? 'Mix Servicios' : titles[0]}`,
+            quantity: 1,
+            unit_price: totalSetup,
+            currency_id: 'CLP',
+          },
+        ],
+        external_reference: orderId,
+        metadata: {
+          items_input: itemsInput,
+          total_monthly: totalMonthly,
+          customer,
+        },
+      }
+
+      const name = typeof customer.name === 'string' ? customer.name.trim() : ''
+      const phone = typeof customer.phone === 'string' ? customer.phone.trim() : ''
+      if (email || name || phone) {
+        const [firstName, ...rest] = name.split(' ').filter(Boolean)
+        const surname = rest.join(' ')
+        preferenceBody.payer = {
+          email: email || undefined,
+          name: firstName || undefined,
+          surname: surname || undefined,
+          phone: phone ? { number: phone.replace(/[^0-9]/g, '') } : undefined,
+        }
+      }
+
+      const successUrl = `${siteUrl}/pago-exito?orderId=${orderId}`
+      preferenceBody.back_urls = {
+        success: successUrl,
+        failure: `${siteUrl}/failure`,
+        pending: `${siteUrl}/pending`,
+      }
+      preferenceBody.auto_return = 'approved'
+
+      const resp = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(preferenceBody),
+      })
+
+      if (!resp.ok) {
+        const errorBody = await resp.text()
+        console.error('MercadoPago Setup Preference error:', errorBody)
+        return NextResponse.json({ error: 'Error al iniciar pago de setup' }, { status: 502 })
+      }
+
+      const preference = await resp.json()
+      return NextResponse.json(preference)
+    }
+
+    // ─────────────────────────────────────────────
+    // CASO B: SUSCRIPCIÓN (Checkout recurrente de MercadoPago)
     // ─────────────────────────────────────────────
     if (checkoutMode === 'subscription' && totalMonthly > 0) {
       const startDate = typeof body.startDate === 'string' ? body.startDate : undefined
@@ -116,72 +182,10 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // ─────────────────────────────────────────────
-    // CASO B: PAGO INICIAL CON SETUP (Usamos Preferencia)
-    // ─────────────────────────────────────────────
-    if (totalSetup > 0) {
-      const preferenceBody: Record<string, unknown> = {
-        items: [
-          {
-            title: `Pago Inicial: ${titles.length > 1 ? 'Mix Servicios' : titles[0]} (Setup + Mes 1)`,
-            quantity: 1,
-            unit_price: totalSetup + totalMonthly,
-            currency_id: 'CLP',
-          }
-        ],
-        external_reference: orderId,
-        metadata: {
-          items_input: itemsInput, // Guardamos para el paso 2
-          total_monthly: totalMonthly,
-          customer: customer
-        }
-      }
-
-      const name = typeof customer.name === 'string' ? customer.name.trim() : ''
-      const phone = typeof customer.phone === 'string' ? customer.phone.trim() : ''
-      if (email || name || phone) {
-        const [firstName, ...rest] = name.split(' ').filter(Boolean)
-        const surname = rest.join(' ')
-        preferenceBody.payer = {
-          email: email || undefined,
-          name: firstName || undefined,
-          surname: surname || undefined,
-          phone: phone ? { number: phone.replace(/[^0-9]/g, '') } : undefined,
-        }
-      }
-
-      // IMPORTANTE: URL de éxito personalizada para activar suscripción
-      const successUrl = `${siteUrl}/pago-exito?orderId=${orderId}`
-      preferenceBody.back_urls = {
-        success: successUrl,
-        failure: `${siteUrl}/failure`,
-        pending: `${siteUrl}/pending`,
-      }
-      preferenceBody.auto_return = 'approved'
-
-      const resp = await fetch('https://api.mercadopago.com/checkout/preferences', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(preferenceBody),
-      })
-
-      if (!resp.ok) {
-        const errorBody = await resp.text()
-        console.error('MercadoPago Setup Preference error:', errorBody)
-        return NextResponse.json({ error: 'Error al iniciar pago de setup' }, { status: 502 })
-      }
-
-      const preference = await resp.json()
-      return NextResponse.json(preference)
-    }
-
     const startDate = typeof body.startDate === 'string' ? body.startDate : undefined
 
     // ─────────────────────────────────────────────
-    // CASO C: SUSCRIPCIÓN PURA (Sin setup)
+    // CASO C: SUSCRIPCIÓN PURA (Sin setup, modo estándar)
     // ─────────────────────────────────────────────
     if (totalMonthly > 0) {
       const preapprovalBody: any = {

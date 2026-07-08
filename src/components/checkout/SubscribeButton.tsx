@@ -39,8 +39,7 @@ export function SubscribeButton({
     addItem({
       id: planId,
       title,
-      setup: 0,
-      setupWaived: setup,
+      setup,
       monthly,
       quantity: 1,
     })

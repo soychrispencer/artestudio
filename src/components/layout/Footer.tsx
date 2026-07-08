@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { CONTACT, NAV_LINKS, WA_LINKS } from '@/lib/site'
+import { BRAND, CONTACT, FOOTER_RESOURCES, FOOTER_SOLUTIONS, NAV_LINKS, WA_LINKS } from '@/lib/site'
 import { BrandInstagram, BrandWhatsapp } from 'tabler-icons-react'
 
 export function Footer() {
@@ -11,12 +11,26 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-surface">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div>
-            <p className="text-lg font-bold text-[var(--text)] mb-2">Artestudio</p>
+            <p className="text-lg font-bold text-[var(--text)] mb-1">Artestudio</p>
+            <p className="text-xs text-primary mb-3">{BRAND.tagline}</p>
             <p className="text-sm text-muted-light leading-relaxed">
-              Ayudamos a emprendedores y pymes en Chile a verse profesionales en internet y recibir más consultas.
+              {BRAND.description}
             </p>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Soluciones</p>
+            <ul className="space-y-2">
+              {FOOTER_SOLUTIONS.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>
@@ -24,6 +38,16 @@ export function Footer() {
             <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
+                  <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted mt-6 mb-4">Recursos</p>
+            <ul className="space-y-2">
+              {FOOTER_RESOURCES.map((link) => (
+                <li key={link.label}>
                   <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
                     {link.label}
                   </a>

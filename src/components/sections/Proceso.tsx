@@ -3,7 +3,7 @@ import { PROCESO, SECTION_IDS } from '@/lib/site'
 
 export function Proceso() {
   return (
-    <section id={SECTION_IDS.proceso} className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)] bg-surface">
+    <section id={SECTION_IDS.metodologia} className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)] bg-surface">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1fr] gap-8 items-center mb-12">
           <div>

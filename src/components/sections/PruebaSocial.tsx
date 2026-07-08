@@ -4,7 +4,7 @@ import { CONTACT, PRUEBA_SOCIAL, SECTION_IDS } from '@/lib/site'
 
 export function PruebaSocial() {
   return (
-    <section id={SECTION_IDS.prueba} className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)]">
+    <section id={SECTION_IDS.prueba} className="scroll-mt-20 py-16 md:py-24 border-t border-[var(--border)] bg-surface">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 items-center">
           <div>

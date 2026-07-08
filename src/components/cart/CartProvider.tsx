@@ -159,7 +159,8 @@ function CartDrawer() {
   const currentStep = steps[step] ?? steps[0]
   const isCartEmpty = items.length === 0
   const hasSubscription = monthlyTotal > 0
-  const checkoutTotal = hasSubscription ? monthlyTotal : total
+  const hasHybridCheckout = total > 0 && monthlyTotal > 0
+  const checkoutTotalToday = total
 
   const goToStep = (nextStep: number) => {
     setError('')
@@ -286,6 +287,12 @@ function CartDrawer() {
         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
           {step === 0 && (
             <>
+              {hasHybridCheckout && (
+                <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 text-sm text-muted-light">
+                  Pagarás en <span className="font-semibold text-primary">2 pasos</span>: setup hoy y hosting
+                  mensual después en MercadoPago.
+                </div>
+              )}
               {items.length === 0 && (
                 <div className="rounded-2xl border border-dashed border-gray-200 dark:border-dark-bg-tertiary p-6 text-center text-gray-600 dark:text-dark-text-secondary">
                   Tu carrito está vacío.
@@ -302,25 +309,18 @@ function CartDrawer() {
                       <p className="font-semibold text-gray-900 dark:text-white">
                         {item.title}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-dark-text-secondary">
-                        {item.monthly > 0 && (
-                          <>
-                            <span className="font-semibold text-primary">{formatPrice(item.monthly)}/mes</span>
-                            {item.setupWaived && item.setupWaived > 0 && (
-                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
-                                <span className="line-through">Antes {formatPrice(item.setupWaived)}</span>{' '}
-                                • <span className="font-semibold text-primary">Activación incluida</span>
-                              </span>
-                            )}
-                            {item.regularMonthly && item.regularMonthly > item.monthly && (
-                              <span className="block text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
-                                Precio normal: {formatPrice(item.regularMonthly)}/mes
-                              </span>
-                            )}
-                          </>
+                      <p className="text-sm text-gray-600 dark:text-dark-text-secondary space-y-1">
+                        {item.setup > 0 && (
+                          <span className="block">
+                            Setup: <span className="font-semibold text-primary">{formatPrice(item.setup)}</span>
+                            {item.monthly > 0 ? ' (pago único hoy)' : ''}
+                          </span>
                         )}
-                        {item.monthly === 0 && (
-                          <span>{formatPrice(item.setup)} CLP</span>
+                        {item.monthly > 0 && (
+                          <span className="block">
+                            Hosting: <span className="font-semibold text-primary">{formatPrice(item.monthly)}/mes</span>
+                            {item.setup > 0 ? ' (paso 2 en MercadoPago)' : ''}
+                          </span>
                         )}
                       </p>
                     </div>
@@ -351,10 +351,17 @@ function CartDrawer() {
                         +
                       </button>
                     </div>
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      {item.monthly > 0
-                        ? `${formatPrice(item.monthly * item.quantity)}/mes`
-                        : formatPrice(item.setup * item.quantity)}
+                    <span className="font-semibold text-gray-900 dark:text-white text-right text-sm">
+                      {item.setup > 0 && item.monthly > 0 ? (
+                        <>
+                          <span className="block">{formatPrice(item.setup * item.quantity)} hoy</span>
+                          <span className="block text-muted font-normal">{formatPrice(item.monthly * item.quantity)}/mes</span>
+                        </>
+                      ) : item.monthly > 0 ? (
+                        `${formatPrice(item.monthly * item.quantity)}/mes`
+                      ) : (
+                        formatPrice(item.setup * item.quantity)
+                      )}
                     </span>
                   </div>
                 </div>
@@ -465,35 +472,42 @@ function CartDrawer() {
                 </p>
                 <div className="mt-3 space-y-3">
                   {items.map((item) => (
-                    <div key={item.id} className="flex justify-between text-sm text-gray-700 dark:text-dark-text-secondary">
-                      <span>
+                    <div key={item.id} className="space-y-1 text-sm text-gray-700 dark:text-dark-text-secondary">
+                      <p className="font-semibold text-gray-900 dark:text-white">
                         {item.title} x{item.quantity}
-                      </span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
-                        {item.monthly > 0
-                          ? `${formatPrice(item.monthly * item.quantity)}/mes`
-                          : formatPrice(item.setup * item.quantity)}
-                      </span>
+                      </p>
+                      {item.setup > 0 && (
+                        <div className="flex justify-between">
+                          <span>Setup (pago único)</span>
+                          <span className="font-semibold text-gray-900 dark:text-white">
+                            {formatPrice(item.setup * item.quantity)}
+                          </span>
+                        </div>
+                      )}
+                      {item.monthly > 0 && (
+                        <div className="flex justify-between">
+                          <span>Hosting (mensual)</span>
+                          <span className="font-semibold text-gray-900 dark:text-white">
+                            {formatPrice(item.monthly * item.quantity)}/mes
+                          </span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
-                {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-dark-bg-tertiary flex justify-between text-sm text-gray-700 dark:text-dark-text-secondary">
-                    <span>Activación promocional incluida</span>
-                    <span className="font-semibold text-primary">Sin cobro hoy</span>
-                  </div>
-                )}
-                {hasSubscription && items.some((item) => item.regularMonthly && item.regularMonthly > item.monthly) && (
-                  <p className="mt-3 text-xs text-gray-500 dark:text-dark-text-secondary">
-                    Se cobrará el precio promocional mostrado; el precio normal figura como referencia.
+                {hasHybridCheckout && (
+                  <p className="mt-4 pt-4 border-t border-gray-200 dark:border-dark-bg-tertiary text-xs text-muted">
+                    Paso 1: pagas el setup hoy. Paso 2: activas el hosting mensual en MercadoPago.
                   </p>
                 )}
               </div>
 
               <p className="text-xs text-muted">
-                {hasSubscription
-                  ? 'MercadoPago activará el cobro automático mensual. La activación está incluida de forma promocional al mantener el plan activo al menos 3 meses.'
-                  : 'Pago seguro en línea.'}
+                {hasHybridCheckout
+                  ? 'Completarás 2 pasos en MercadoPago: primero el setup, luego la suscripción de hosting. Permanencia mínima de 3 meses en el hosting.'
+                  : hasSubscription
+                    ? 'MercadoPago activará el cobro automático mensual. La suscripción tiene permanencia mínima de 3 meses.'
+                    : 'Pago seguro en línea.'}
               </p>
             </div>
           )}
@@ -501,13 +515,19 @@ function CartDrawer() {
 
         <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
           <div className="flex flex-col text-right">
-            <span className="text-lg font-bold text-[var(--text)]">
-              {hasSubscription ? 'Suscripción mensual' : 'Total hoy'}: {formatPrice(checkoutTotal)}
-              {hasSubscription ? '/mes' : ''}
-            </span>
-            {hasSubscription && items.some((item) => item.setupWaived && item.setupWaived > 0) && (
-              <span className="text-sm text-primary font-semibold">
-                Activación promocional incluida
+            {hasHybridCheckout ? (
+              <>
+                <span className="text-lg font-bold text-[var(--text)]">
+                  Total hoy (setup): {formatPrice(checkoutTotalToday)}
+                </span>
+                <span className="text-sm text-muted">
+                  Luego: {formatPrice(monthlyTotal)}/mes de hosting
+                </span>
+              </>
+            ) : (
+              <span className="text-lg font-bold text-[var(--text)]">
+                {hasSubscription ? 'Suscripción mensual' : 'Total hoy'}: {formatPrice(hasSubscription ? monthlyTotal : checkoutTotalToday)}
+                {hasSubscription ? '/mes' : ''}
               </span>
             )}
           </div>
@@ -560,21 +580,21 @@ function CartDrawer() {
                   const orderId = typeof crypto !== 'undefined' && crypto.randomUUID
                     ? `AS-${crypto.randomUUID()}`
                     : `AS-${Date.now()}`
-                  const paymentItems = hasSubscription
-                    ? items.map((item) => ({ ...item, setup: 0 }))
-                    : items
+                  const checkoutMode = hasHybridCheckout
+                    ? 'setup_then_subscription'
+                    : hasSubscription
+                      ? 'subscription'
+                      : 'standard'
+
                   window.localStorage.setItem(
                     'last_order',
                     JSON.stringify({
                       orderId,
                       buyer,
                       items,
-                      setupWaived: items.reduce(
-                        (acc, item) => acc + (item.setupWaived ?? 0) * item.quantity,
-                        0
-                      ),
                       monthlyTotal,
-                      total: checkoutTotal,
+                      setupTotal: total,
+                      totalToday: checkoutTotalToday,
                     })
                   )
 
@@ -582,10 +602,10 @@ function CartDrawer() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                      items: paymentItems,
+                      items,
                       customer: buyer,
                       orderId,
-                      checkoutMode: hasSubscription ? 'subscription' : 'standard',
+                      checkoutMode,
                     }),
                   })
 
@@ -610,9 +630,11 @@ function CartDrawer() {
             >
               {isSubmitting
                 ? 'Procesando...'
-                : hasSubscription
-                  ? 'Activar suscripción en MercadoPago'
-                  : 'Pagar con MercadoPago'}
+                : hasHybridCheckout
+                  ? 'Pagar setup en MercadoPago (paso 1 de 2)'
+                  : hasSubscription
+                    ? 'Activar suscripción en MercadoPago'
+                    : 'Pagar con MercadoPago'}
             </button>
           )}
           {step === 0 && items.length > 0 && (

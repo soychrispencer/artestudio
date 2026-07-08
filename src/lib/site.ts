@@ -1,5 +1,5 @@
 /**
- * Copy orientado al CLIENTE — conversión
+ * Copy orientado al CLIENTE — Sistemas de crecimiento
  */
 
 export const WA_NUMBER = '56938733230'
@@ -16,263 +16,379 @@ function waLink(text: string) {
 }
 
 export const WA_LINKS = {
-  general: waLink('Hola Artestudio, quiero empezar. Mi negocio es de '),
+  general: waLink('Hola Artestudio, quiero hacer crecer mi negocio. Mi negocio es de '),
   asesoria: waLink('Hola Artestudio, tengo dudas antes de contratar. Mi negocio es '),
-  planInicio: waLink('Hola Artestudio, quiero el plan Inicio. Mi negocio es de '),
-  planCrecer: waLink('Hola Artestudio, quiero el plan Crecer. Mi negocio es de '),
-  planPro: waLink('Hola Artestudio, quiero el plan Pro. Mi negocio es de '),
+  diagnostico: waLink('Hola Artestudio, quiero solicitar un diagnóstico de crecimiento. Mi negocio es de '),
+  reunion: waLink('Hola Artestudio, quiero agendar una reunión para hablar de mi negocio. Mi negocio es de '),
+  planInicio: waLink('Hola Artestudio, quiero el plan Landing Express. Mi negocio es de '),
+  planCrecer: waLink('Hola Artestudio, quiero el Sistema de Crecimiento. Mi negocio es de '),
+  planPro: waLink('Hola Artestudio, quiero el plan Empresa. Mi negocio es de '),
   planCrece: waLink('Hola Artestudio, quiero el Plan Crece con landing page + redes sociales. Mi negocio es de '),
   redes: waLink('Hola Artestudio, quiero cotizar gestión de redes sociales. Mi negocio es de '),
+  video: waLink('Hola Artestudio, quiero cotizar edición de video. Mi negocio/canal es de '),
   web: waLink('Hola Artestudio, quiero cotizar diseño web. Mi negocio es de '),
+  landing: waLink('Hola Artestudio, quiero cotizar una landing page. Mi negocio es de '),
+  googleAds: waLink('Hola Artestudio, quiero cotizar Google Ads. Mi negocio es de '),
+  metaAds: waLink('Hola Artestudio, quiero cotizar Meta Ads. Mi negocio es de '),
+  seo: waLink('Hola Artestudio, quiero cotizar SEO. Mi negocio es de '),
+  hosting: waLink('Hola Artestudio, quiero cotizar hosting. Mi negocio es de '),
+  funnels: waLink('Hola Artestudio, quiero cotizar funnels de conversión. Mi negocio es de '),
+  analitica: waLink('Hola Artestudio, quiero cotizar analítica y medición. Mi negocio es de '),
   automatizacionIa: waLink('Hola Artestudio, quiero evaluar automatizaciones o IA para mi negocio. Mi negocio es de '),
   diseno: waLink('Hola Artestudio, quiero cotizar diseño gráfico. Mi negocio es de '),
+  branding: waLink('Hola Artestudio, quiero cotizar branding. Mi negocio es de '),
   mantencion: waLink('Hola Artestudio, quiero cotizar mantención web.'),
   automatizacion: waLink('Hola Artestudio, quiero cotizar automatizaciones. Mi negocio es de '),
 } as const
 
 export const SECTION_IDS = {
   inicio: 'inicio',
+  problemas: 'problemas',
+  solucion: 'solucion',
+  metodologia: 'metodologia',
+  soluciones: 'soluciones',
   planes: 'planes',
-  crece: 'crece',
-  serviciosIndividuales: 'servicios-individuales',
-  proceso: 'proceso',
   prueba: 'prueba',
+  serviciosIndividuales: 'servicios-individuales',
   faq: 'faq',
   contacto: 'contacto',
 } as const
 
 export const NAV_LINKS = [
+  { label: 'Soluciones', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Metodología', href: `#${SECTION_IDS.metodologia}` },
   { label: 'Planes', href: `#${SECTION_IDS.planes}` },
-  { label: 'Crece', href: `#${SECTION_IDS.crece}` },
   { label: 'Servicios', href: `#${SECTION_IDS.serviciosIndividuales}` },
-  { label: 'Cómo funciona', href: `#${SECTION_IDS.proceso}` },
   { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
 ] as const
 
+export const FOOTER_SOLUTIONS = [
+  { label: 'Sistema de Crecimiento', href: `#${SECTION_IDS.planes}` },
+  { label: 'Automatizaciones', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Landing Pages', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Google Ads', href: `#${SECTION_IDS.serviciosIndividuales}` },
+  { label: 'Meta Ads', href: `#${SECTION_IDS.serviciosIndividuales}` },
+] as const
+
+export const FOOTER_RESOURCES = [
+  { label: 'Blog', href: '#' },
+] as const
+
 export const HERO = {
-  badge: 'Diseño web profesional · Chile',
-  title: 'Tu landing lista en 48 hrs',
-  titleAccent: 'Desde $74.990',
+  badge: 'Estudio de crecimiento digital · Chile',
+  title: 'Sistemas que hacen crecer tu negocio.',
   subtitle:
-    'Incluye: hosting, mantenimiento y soporte para que tu web siga funcionando correctamente.',
-  cta: 'Quiero mi landing',
-  ctaSecondary: 'Ver planes',
+    'Publicidad, web, IA y automatizaciones conectadas para atraer clientes y convertir oportunidades.',
+  cta: 'Quiero hacer crecer mi negocio',
+  ctaSecondary: 'Ver cómo funciona',
   trust: [
     'Atención directa por WhatsApp',
-    'Entrega en 48 horas hábiles',
+    'Todo medible y conectado',
   ],
 } as const
 
 export const PROBLEMAS = {
-  title: '¿Te pasa algo de esto?',
-  subtitle: 'Si te reconoces, no estás solo. La mayoría llega por aquí.',
+  title: '¿Te suena familiar?',
+  items: [
+    'Inviertes en publicidad pero no vendes más.',
+    'Tienes web o redes, pero casi nadie te contacta.',
+    'Todo depende de responder WhatsApp manualmente.',
+  ],
+  closing: 'No necesitas más herramientas.',
+  closingAccent: 'Necesitas un sistema.',
+  image: '/images/contenido-redes.png',
+} as const
+
+export const SOLUCION = {
+  title: 'Diseñamos un Sistema de Crecimiento para tu empresa.',
+  text: 'Conectamos publicidad, página web, analítica, automatizaciones e inteligencia artificial para que todo trabaje junto.',
+  highlight: 'No implementamos herramientas.',
+  highlightAccent: 'Diseñamos sistemas completos.',
+} as const
+
+export const METODOLOGIA = {
+  label: 'Metodología',
+  title: 'Artestudio Growth System™',
+  image: '/images/proceso-web-soporte.png',
+  steps: [
+    { title: 'Diagnóstico', description: 'Entendemos tu negocio.', icon: 'search' },
+    { title: 'Arquitectura', description: 'Diseñamos el sistema.', icon: 'blueprint' },
+    { title: 'Implementación', description: 'Web, ads y automatizaciones.', icon: 'code' },
+    { title: 'Optimización', description: 'Mejoramos con datos.', icon: 'chart' },
+    { title: 'Escalamiento', description: 'Seguimos creciendo contigo.', icon: 'rocket' },
+  ],
+} as const
+
+export const SOLUCIONES = {
+  label: 'Soluciones',
+  title: 'Todo conectado en un solo sistema',
+  subtitle: 'No vendemos herramientas sueltas. Diseñamos piezas que trabajan juntas.',
   items: [
     {
-      emoji: '😶',
-      title: 'Tienes negocio, pero poca gente te escribe',
-      description:
-        'Instagram o boca a boca no alcanzan. Necesitas una página clara que explique qué haces y un botón para contactarte al tiro.',
+      title: 'Landing Pages',
+      description: 'Convierte visitas en oportunidades.',
+      price: 'Desde $74.990',
+      image: '/images/services/actualizaciones-web.png',
     },
     {
-      emoji: '📱',
-      title: 'Redes abandonadas o sin orden',
-      description:
-        'Publicas cuando puedes. Sin calendario ni diseño, da la impresión de que el negocio está quieto.',
+      title: 'Sitios Web',
+      description: 'Presencia profesional lista para escalar.',
+      price: 'Cotizar',
+      image: '/images/services/desarrollo-web.png',
     },
     {
-      emoji: '⏳',
-      title: 'No tienes tiempo para web, diseño y tecnología',
-      description:
-        'Quieres enfocarte en vender y atender. Un equipo que lo haga por ti cada mes cambia el juego.',
+      title: 'Publicidad Digital',
+      description: 'Meta Ads y Google Ads con enfoque en resultados.',
+      price: 'Cotizar',
+      image: '/images/services/redes-sociales.png',
+    },
+    {
+      title: 'Automatizaciones',
+      description: 'WhatsApp, CRM y procesos sin tareas repetitivas.',
+      price: 'Cotizar',
+      image: '/images/services/aplicaciones-ia.png',
+    },
+    {
+      title: 'Agentes IA',
+      description: 'Atienden, clasifican leads y dan seguimiento.',
+      price: 'Cotizar',
+      image: '/images/services/aplicaciones-ia.png',
+    },
+    {
+      title: 'Analítica',
+      description: 'GA4, Pixel y dashboards para decidir con datos.',
+      price: 'Cotizar',
+      image: '/images/services/diseno-grafico.png',
     },
   ],
 } as const
 
 export const PLANES_INTRO = {
-  label: 'Planes web',
-  title: 'Elige tu plan según tu etapa',
-  subtitle: 'Tres opciones claras. Pago único por diseño + mensualidad pequeña para hosting y soporte.',
-  note: 'El pago mensual cubre hosting, mantenimiento técnico básico y soporte.',
+  label: 'Planes',
+  title: 'Elige cómo quieres empezar',
+  subtitle: 'Desde una landing para comenzar hasta un sistema completo.',
 } as const
 
 export const PRICING_UI = {
-  setupLabel: 'Pago único por diseño',
-  monthlyLabel: 'Mensualidad',
-  monthlySuffix: '/mes',
-  commitmentShort: 'Hosting, mantenimiento y soporte',
+  setupLabel: 'Setup',
+  monthlyLabel: 'Hosting',
+  monthlySuffix: ' mensual',
+  commitmentShort: 'Hosting, SSL, soporte y mantenimiento',
   includesLabel: 'Incluye',
   excludesLabel: 'No incluye',
   deliveryLabel: 'Tiempo de entrega',
-  footnote: 'Precios en CLP · Pago por tarjeta vía MercadoPago · El pago mensual cubre hosting, mantenimiento técnico básico y soporte.',
+  footnote: 'Precios en CLP · Setup en pago único y hosting en suscripción mensual (2 pasos en MercadoPago).',
 } as const
 
-export const PLAN_CTA_LABELS = {
-  'plan-esencial': 'Quiero plan Esencial',
-  'plan-pro': 'Quiero plan Pro',
-  'plan-pro-plus': 'Quiero plan Pro+',
-} as const
-
-export const PLAN_WA_LINKS = {
-  'plan-esencial': WA_LINKS.web,
-  'plan-pro': WA_LINKS.web,
-  'plan-pro-plus': WA_LINKS.web,
-} as const
-
-export const AI_ADDON = {
-  title: 'Automatización o IA para tu negocio',
-  price: 'bajo evaluación',
-  description:
-    'Si necesitas automatizar respuestas, formularios o procesos, revisamos el alcance antes de prometer una solución.',
-  cta: 'Evaluar automatización',
-} as const
-
-export const INDIVIDUAL_SERVICES_INTRO = {
-  label: 'Servicios individuales',
-  title: '¿Ya sabes lo que necesitas?',
-  subtitle:
-    'También trabajamos servicios individuales para clientes que necesitan algo puntual o quieren empezar por un área específica. Pueden combinarse con cualquier plan o contratarse solos.',
-} as const
-
-export const INDIVIDUAL_SERVICES = [
+export const GROWTH_PLANS = [
   {
-    icon: '📱',
-    title: 'Redes sociales',
-    description:
-      'Gestión mensual de contenido para crecer con consistencia en Instagram, TikTok y Facebook.',
-    image: '/images/services/redes-sociales.png',
-    priceFrom: 'Desde $89.990/mes',
-    paymentLabel: 'Suscripción mensual',
-    priceNote: 'Ideal para mantener tu marca activa cada mes.',
-    subscription: {
-      id: 'plan-redes-suscripcion',
-      title: 'Redes sociales — Suscripción',
-      setup: 0,
-      monthly: 89_990,
-      cta: 'Suscribirme a redes',
-      note: 'Incluye 8 contenidos mensuales.',
-    },
-    contactCta: {
-      label: 'Cotizar redes avanzadas',
-      href: WA_LINKS.redes,
-    },
+    id: 'plan-sistema-crecimiento',
+    name: 'Sistema de Crecimiento',
+    tagline: 'El sistema completo según tu negocio.',
+    priceMain: 'Cotización',
+    priceSub: 'Personalizada según alcance',
+    featured: true,
+    badge: 'Más completo',
+    includesLabel: 'Puede incluir',
+    includes: [
+      'Landing o sitio web',
+      'Meta Ads y Google Ads',
+      'CRM y WhatsApp',
+      'Automatizaciones e IA',
+      'Analítica y funnels',
+    ],
+    cta: 'Solicitar diagnóstico',
+    ctaHref: WA_LINKS.diagnostico,
   },
   {
-    icon: '🎨',
-    title: 'Branding e Identidad Visual',
-    description: 'Logo profesional, paleta de colores y manual de marca para lanzar tu negocio.',
-    image: '/images/services/branding-identidad.png',
-    priceFrom: 'Desde $149.990',
-    paymentLabel: 'Pago único',
-    priceNote: 'Para identidad visual base.',
-    contactCta: {
-      label: 'Cotizar branding completo',
-      href: WA_LINKS.diseno,
-    },
-  },
-  {
-    icon: '🖼️',
-    title: 'Diseño gráfico',
-    description: 'Flyers, presentaciones, menús y material visual para marketing impreso y digital.',
-    image: '/images/services/diseno-grafico.png',
-    priceFrom: 'Cotizar',
-    paymentLabel: 'Según alcance',
-    priceNote: 'Para piezas editoriales y corporativas.',
-    contactCta: {
-      label: 'Cotizar diseño gráfico',
-      href: WA_LINKS.diseno,
-    },
-  },
-  {
-    icon: '💻',
-    title: 'Desarrollo web a medida',
-    description: 'Sitios corporativos, aplicaciones web y plataformas para profesionales y empresas.',
-    image: '/images/services/desarrollo-web.png',
-    priceFrom: 'Cotizar',
-    paymentLabel: 'Según proyecto',
-    priceNote: 'Para desarrollos personalizados.',
-    contactCta: {
-      label: 'Cotizar desarrollo web',
-      href: WA_LINKS.web,
-    },
-  },
-  {
-    icon: '🤖',
-    title: 'Aplicaciones IA',
-    description: 'Automatizaciones, chatbots y soluciones con inteligencia artificial para tu negocio.',
-    image: '/images/services/aplicaciones-ia.png',
-    priceFrom: 'Cotizar',
-    paymentLabel: 'Según proyecto',
-    priceNote: 'Para soluciones personalizadas.',
-    contactCta: {
-      label: 'Cotizar aplicación IA',
-      href: WA_LINKS.automatizacionIa,
-    },
-  },
-  {
-    icon: '🔧',
-    title: 'Actualizaciones',
-    description: 'Mantenimientos, modificaciones y actualizaciones web de los planes y proyectos que tenemos. De modificaciones menores a completas.',
-    image: '/images/services/actualizaciones-web.png',
-    priceFrom: 'Desde $29.990',
-    paymentLabel: 'Por proyecto',
-    priceNote: 'Dependiendo del contenido requerido.',
-    price: 29_990,
-    buyLabel: 'Pagar ahora',
-    contactCta: {
-      label: 'Cotizar actualización',
-      href: WA_LINKS.web,
-    },
+    id: 'plan-empresa',
+    name: 'Empresa',
+    tagline: 'Para negocios que necesitan una estrategia integral.',
+    priceMain: 'A medida',
+    priceSub: 'Diagnóstico y propuesta custom',
+    includesLabel: 'Incluye',
+    includes: [
+      'Diagnóstico de negocio',
+      'Arquitectura del sistema',
+      'Implementación completa',
+      'Optimización continua',
+      'Soporte prioritario',
+    ],
+    cta: 'Agenda una reunión',
+    ctaHref: WA_LINKS.reunion,
   },
 ] as const
+
+export const CASOS_DE_USO = {
+  label: 'Casos de uso',
+  title: 'Sistemas diseñados para tu industria',
+  subtitle: 'Cada negocio es distinto. Estos son algunos escenarios donde diseñamos sistemas de crecimiento.',
+  industries: [
+    { name: 'Veterinaria', flow: ['Meta Ads', 'Landing', 'WhatsApp', 'CRM', 'Reserva'] },
+    { name: 'Inmobiliaria', flow: ['Google Ads', 'Landing', 'Formulario', 'CRM', 'Visita'] },
+    { name: 'Clínica', flow: ['Google Ads', 'Web', 'WhatsApp', 'Agenda', 'Seguimiento'] },
+    { name: 'Automotora', flow: ['Meta Ads', 'Landing', 'WhatsApp', 'CRM', 'Test drive'] },
+    { name: 'Restaurante', flow: ['Meta Ads', 'Landing', 'Reservas', 'WhatsApp', 'Fidelización'] },
+    { name: 'Empresa de Servicios', flow: ['Google Ads', 'Web', 'Formulario', 'CRM', 'Cotización'] },
+    { name: 'Centro Médico', flow: ['Google Ads', 'Web', 'WhatsApp', 'Agenda', 'Recordatorio'] },
+    { name: 'Constructora', flow: ['Meta Ads', 'Landing', 'Formulario', 'CRM', 'Propuesta'] },
+  ],
+} as const
+
+export const IA_SECTION = {
+  label: 'Inteligencia Artificial',
+  title: 'Inteligencia Artificial aplicada a tu negocio',
+  text: 'No usamos IA por moda. La utilizamos para reducir tiempos, automatizar procesos y mejorar la atención de tus clientes.',
+  cards: [
+  { title: 'Agentes IA', description: 'Atienden y responden consultas 24/7.' },
+  { title: 'Automatización de WhatsApp', description: 'Respuestas y seguimientos sin intervención manual.' },
+  { title: 'Seguimientos automáticos', description: 'Nunca pierdas un lead por falta de seguimiento.' },
+  { title: 'Clasificación de clientes', description: 'Prioriza oportunidades según intención de compra.' },
+  { title: 'Respuestas inteligentes', description: 'Respuestas contextuales basadas en tu negocio.' },
+  ],
+} as const
+
+export const POR_QUE_ARTESTUDIO = {
+  label: 'Por qué Artestudio',
+  title: 'Por qué Artestudio',
+  cards: [
+    { title: 'No vendemos herramientas.', description: 'Construimos sistemas.' },
+    { title: 'Todo queda conectado.', description: 'Publicidad, web, CRM y automatizaciones trabajando juntas.' },
+    { title: 'Todo se puede medir.', description: 'Datos claros para tomar decisiones.' },
+    { title: 'Pensado para escalar.', description: 'Crece sin rehacer todo desde cero.' },
+    { title: 'Tecnología moderna.', description: 'IA, automatizaciones y analítica de última generación.' },
+    { title: 'Sin plantillas.', description: 'Cada sistema se diseña para tu negocio.' },
+  ],
+} as const
 
 export const PROCESO = {
   label: 'Proceso',
   title: 'Cómo funciona',
-  steps: [
-    {
-      title: 'Conversas con nosotros',
-      description: '30 minutos por WhatsApp o videollamada. Entendemos tu negocio y elegimos el camino correcto.',
-    },
-    {
-      title: 'Activas tu plan o servicio',
-      description: 'Pagas la activación y al siguiente día hábil ya estamos trabajando.',
-    },
-    {
-      title: 'Revisas y apruebas',
-      description: 'Tú tienes la última palabra en todo. Sin sorpresas.',
-    },
-    {
-      title: 'Mantienes tu web activa',
-      description: 'Hosting, mantenimiento técnico y soporte básico para que tu presencia online siga funcionando.',
-    },
-  ],
+  steps: METODOLOGIA.steps.map((s) => ({ title: s.title, description: s.description })),
 } as const
 
 export const PRUEBA_SOCIAL = {
   label: 'Trabajo real',
   title: 'Trabajo real. Sin inventar.',
-  honest:
-    'Preferimos mostrarte proyectos reales antes que reseñas inventadas.',
+  honest: 'Preferimos mostrarte proyectos reales antes que reseñas inventadas.',
   behanceLabel: 'Ver portafolio en Behance',
   instagramLabel: 'Ver proyectos en Instagram',
 } as const
 
+export const INDIVIDUAL_SERVICES_INTRO = {
+  label: 'Servicios individuales',
+  title: '¿Ya sabes lo que necesitas?',
+  subtitle: 'Servicios puntuales que puedes contratar solos o sumar a tu plan.',
+} as const
+
+export const INDIVIDUAL_SERVICES = [
+  {
+    icon: '💻',
+    title: 'Diseño Web',
+    description: 'Sitios corporativos y profesionales preparados para crecer.',
+    image: '/images/services/desarrollo-web.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según proyecto',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.web },
+  },
+  {
+    icon: '📱',
+    title: 'Redes Sociales',
+    description: 'Contenido mensual para mantener tu marca activa.',
+    image: '/images/services/redes-sociales.png',
+    priceFrom: 'Desde $89.990/mes',
+    paymentLabel: 'Suscripción mensual',
+    subscription: {
+      id: 'plan-redes-esencial',
+      title: 'Redes Esencial — Artestudio',
+      setup: 0,
+      monthly: 89_990,
+      cta: 'Cotizar',
+      note: '12 contenidos mensuales.',
+    },
+    contactCta: { label: 'Cotizar', href: WA_LINKS.redes },
+  },
+  {
+    icon: '🎨',
+    title: 'Branding',
+    description: 'Identidad visual profesional para tu marca.',
+    image: '/images/services/branding-identidad.png',
+    priceFrom: 'Desde $149.990',
+    paymentLabel: 'Pago único',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.branding },
+  },
+  {
+    icon: '📊',
+    title: 'Google Ads',
+    description: 'Campañas orientadas a resultados medibles.',
+    image: '/images/services/diseno-grafico.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según inversión',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.googleAds },
+  },
+  {
+    icon: '📣',
+    title: 'Meta Ads',
+    description: 'Publicidad en Facebook e Instagram con enfoque en conversión.',
+    image: '/images/services/redes-sociales.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según inversión',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.metaAds },
+  },
+  {
+    icon: '🔍',
+    title: 'SEO',
+    description: 'Posicionamiento orgánico para atraer clientes sin pauta.',
+    image: '/images/services/desarrollo-web.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según alcance',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.seo },
+  },
+  {
+    icon: '🌐',
+    title: 'Hosting',
+    description: 'Infraestructura confiable para tu presencia digital.',
+    image: '/images/services/actualizaciones-web.png',
+    priceFrom: 'Desde $9.990/mes',
+    paymentLabel: 'Mensual',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.hosting },
+  },
+  {
+    icon: '⚡',
+    title: 'Automatizaciones',
+    description: 'Elimina tareas repetitivas y conecta tus herramientas.',
+    image: '/images/services/aplicaciones-ia.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según proyecto',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.automatizacion },
+  },
+  {
+    icon: '🤖',
+    title: 'IA',
+    description: 'Agentes inteligentes, chatbots y soluciones con IA.',
+    image: '/images/services/aplicaciones-ia.png',
+    priceFrom: 'Cotizar',
+    paymentLabel: 'Según proyecto',
+    contactCta: { label: 'Cotizar', href: WA_LINKS.automatizacionIa },
+  },
+] as const
+
 export const FAQ_ITEMS = [
   {
-    q: '¿Qué incluye el pago mensual?',
-    a: 'El pago mensual cubre hosting, mantenimiento técnico básico y soporte para que tu web siga funcionando correctamente. Es como el servicio de luz o internet: pagas por mantener el servicio activo y funcionando.',
+    q: '¿Qué es un Sistema de Crecimiento?',
+    a: 'Es la combinación de publicidad, página web, analítica, automatizaciones e IA trabajando juntas para atraer, convertir y retener clientes de forma predecible. No vendemos herramientas sueltas: diseñamos el sistema completo.',
   },
   {
-    q: '¿Puedo contratar solo redes sociales sin una web?',
-    a: 'Sí. Puedes contratar Redes Sociales desde $89.990/mes: 8 contenidos mensuales, con 1 video o reel de hasta 60 segundos y 7 piezas estáticas. También puedes sumar una web después si lo necesitas.',
+    q: '¿Puedo empezar solo con una landing?',
+    a: 'Sí. El plan Landing Express incluye el diseño de tu landing (pago único de $74.990) y hosting mensual ($9.990/mes). El pago online se hace en 2 pasos: primero el setup, luego activas la suscripción de hosting en MercadoPago.',
   },
   {
-    q: '¿Puedo empezar con la Landing y subir después?',
-    a: 'Sí. Si necesitas más adelante un sitio más completo, podemos escalar tu landing a una Web Profesional o Web Avanzada.',
+    q: '¿Qué incluye el pago mensual de Landing Express?',
+    a: 'Hosting, SSL, soporte y mantenimiento técnico para que tu página siga funcionando. El diseño de la landing se cobra una sola vez en el primer paso del checkout.',
   },
   {
-    q: '¿Trabajan con IA o automatizaciones?',
-    a: 'Sí, ofrecemos soluciones de IA y automatizaciones bajo evaluación. Primero revisamos qué quieres automatizar, qué información tienes disponible y si conviene resolverlo con IA, formularios u otra herramienta más simple.',
+    q: '¿Trabajan con IA?',
+    a: 'Sí. Utilizamos IA para agentes de atención, automatización de WhatsApp, clasificación de leads y seguimientos automáticos. Siempre con un propósito claro: reducir tiempos y mejorar resultados.',
   },
   {
     q: '¿Trabajan fuera de Santiago?',
@@ -281,9 +397,15 @@ export const FAQ_ITEMS = [
 ] as const
 
 export const CTA_FINAL = {
-  title: '¿Listo para tener tu landing?',
-  subtitle: 'Tu página lista en 48 horas. Pago único desde $74.990 + $9.990/mes.',
-  primary: 'Cotizar por WhatsApp',
+  title: '¿Listo para dejar de improvisar?',
+  subtitle: 'Hablemos sobre tu negocio y diseñemos el sistema adecuado para hacerlo crecer.',
+  primary: 'Agendar reunión',
   note: 'Atención directa por WhatsApp · Lunes a viernes 9–19h',
   location: '📍 Atendemos todo Chile de forma remota',
+} as const
+
+export const BRAND = {
+  tagline: 'Estudio de crecimiento digital',
+  description:
+    'Diseñamos sistemas inteligentes de crecimiento para empresas. Publicidad, web, IA y automatizaciones trabajando como un solo sistema.',
 } as const

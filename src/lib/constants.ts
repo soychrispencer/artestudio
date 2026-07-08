@@ -126,9 +126,13 @@ export const SEO_KEYWORDS = [
   'landing page Chile',
   'Google Ads Chile',
   'Meta Ads Chile',
+  'TikTok Ads Chile',
   'diseño web Chile',
   'Shopify Chile',
+  'JumpSeller Chile',
   'WordPress Chile',
+  'WooCommerce Chile',
+  'Claude ChatGPT Gemini Cursor',
   'artestudio',
 ] as const
 

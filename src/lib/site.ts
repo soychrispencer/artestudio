@@ -71,18 +71,22 @@ export const FOOTER_SOLUTIONS = [
   { label: 'Analítica', href: `#${SECTION_IDS.soluciones}` },
 ] as const
 
-/** Plataformas y herramientas que también manejamos en proyectos. */
+/** Plataformas y herramientas (A→Z). */
 export const FOOTER_TOOLS = [
-  { label: 'Shopify', href: 'https://www.shopify.com/' },
-  { label: 'JumpSeller', href: 'https://jumpseller.com/' },
-  { label: 'WordPress', href: 'https://wordpress.org/' },
-  { label: 'WooCommerce', href: 'https://woocommerce.com/' },
-  { label: 'Adobe Creative Cloud', href: 'https://www.adobe.com/creativecloud.html' },
-  { label: 'Avid Pro Tools', href: 'https://www.avid.com/pro-tools' },
-  { label: 'Meta Ads', href: 'https://www.facebook.com/business/ads' },
-  { label: 'Google Ads', href: 'https://ads.google.com/' },
-  { label: 'TikTok Ads', href: 'https://ads.tiktok.com/' },
-  { label: 'YouTube Ads', href: 'https://www.youtube.com/ads/' },
+  { label: 'Adobe', href: 'https://www.adobe.com/creativecloud.html', slug: 'adobe' },
+  { label: 'ChatGPT', href: 'https://chatgpt.com/', slug: 'chatgpt' },
+  { label: 'Claude', href: 'https://claude.ai/', slug: 'claude' },
+  { label: 'Cursor', href: 'https://cursor.com/', slug: 'cursor' },
+  { label: 'Gemini', href: 'https://gemini.google.com/', slug: 'gemini' },
+  { label: 'Google Ads', href: 'https://ads.google.com/', slug: 'googleads' },
+  { label: 'JumpSeller', href: 'https://jumpseller.com/', slug: 'jumpseller' },
+  { label: 'Meta Ads', href: 'https://www.facebook.com/business/ads', slug: 'meta' },
+  { label: 'Pro Tools', href: 'https://www.avid.com/pro-tools', slug: 'avid' },
+  { label: 'Shopify', href: 'https://www.shopify.com/', slug: 'shopify' },
+  { label: 'TikTok Ads', href: 'https://ads.tiktok.com/', slug: 'tiktok' },
+  { label: 'WooCommerce', href: 'https://woocommerce.com/', slug: 'woocommerce' },
+  { label: 'WordPress', href: 'https://wordpress.org/', slug: 'wordpress' },
+  { label: 'YouTube Ads', href: 'https://www.youtube.com/ads/', slug: 'youtube' },
 ] as const
 
 export const HERO = {

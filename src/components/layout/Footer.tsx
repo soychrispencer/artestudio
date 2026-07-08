@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { BRAND, CONTACT, FOOTER_SOLUTIONS, FOOTER_TOOLS, NAV_LINKS, WA_LINKS } from '@/lib/site'
+import { ToolBrandIcon } from '@/components/layout/ToolBrandIcon'
 import { BrandInstagram, BrandWhatsapp, Mail } from 'tabler-icons-react'
 
 export function Footer() {
@@ -78,19 +79,22 @@ export function Footer() {
         </div>
 
         <div className="mb-10 pt-8 border-t border-[var(--border)]">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
-            También trabajamos con
-          </p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-5">Trabajamos con</p>
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3.5">
             {FOOTER_TOOLS.map((tool) => (
               <li key={tool.label}>
                 <a
                   href={tool.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-light hover:text-primary transition-colors"
+                  className="group inline-flex items-center gap-2 text-sm text-muted-light transition-colors hover:text-[var(--text)]"
                 >
-                  {tool.label}
+                  <ToolBrandIcon
+                    slug={tool.slug}
+                    label={tool.label}
+                    className="h-[18px] w-[18px] shrink-0 fill-current text-current"
+                  />
+                  <span>{tool.label}</span>
                 </a>
               </li>
             ))}

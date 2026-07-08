@@ -81,6 +81,8 @@ export const FOOTER_TOOLS = [
   { label: 'Avid Pro Tools', href: 'https://www.avid.com/pro-tools' },
   { label: 'Meta Ads', href: 'https://www.facebook.com/business/ads' },
   { label: 'Google Ads', href: 'https://ads.google.com/' },
+  { label: 'TikTok Ads', href: 'https://ads.tiktok.com/' },
+  { label: 'YouTube Ads', href: 'https://www.youtube.com/ads/' },
 ] as const
 
 export const HERO = {

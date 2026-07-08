@@ -107,10 +107,10 @@ export const ROUTES = {
 
 // Datos de la meta información
 export const SITE_CONFIG = {
-  name: 'artestudio.cl',
-  title: 'artestudio.cl - Transformación Digital y Creativa',
+  name: 'Artestudio',
+  title: 'Artestudio — Sistemas de crecimiento para empresas | Chile',
   description:
-    'Agencia creativa y tecnológica en Chile. Expertos en diseño web, desarrollo de software, branding y marketing digital. Transformamos tu negocio con estrategia, diseño y tecnología.',
+    'Diseñamos sistemas inteligentes de crecimiento: publicidad, web, IA y automatizaciones trabajando como un solo sistema para atraer y convertir clientes.',
   url: 'https://artestudio.cl',
   ogImage: 'https://artestudio.cl/og-image.png',
   twitterHandle: '@artestudio_cl',
@@ -119,21 +119,16 @@ export const SITE_CONFIG = {
 
 // Palabras clave SEO
 export const SEO_KEYWORDS = [
-  'agencia digital chile',
-  'agencia creativa chile',
-  'diseño web chile',
-  'desarrollo de software a medida',
-  'branding corporativo',
-  'gestión de redes sociales',
-  'edición de video chile',
-  'edición de reels',
-  'marketing digital',
-  'edición de audio profesional',
-  'mastering de audio',
-  'diseño ux ui',
-  'tiendas online shopify',
-  'diseño web wordpress',
-  'posicionamiento seo',
+  'sistema de crecimiento Chile',
+  'estudio de crecimiento digital',
+  'automatizaciones empresas Chile',
+  'IA para negocios Chile',
+  'landing page Chile',
+  'Google Ads Chile',
+  'Meta Ads Chile',
+  'diseño web Chile',
+  'Shopify Chile',
+  'WordPress Chile',
   'artestudio',
 ] as const
 

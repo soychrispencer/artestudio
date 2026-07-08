@@ -9,6 +9,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Canonical: www → apex (coincide con NEXT_PUBLIC_SITE_URL)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.artestudio.cl' }],
+        destination: 'https://artestudio.cl/:path*',
+        permanent: true,
+      },
       { source: '/precios', destination: '/#planes', permanent: false },
       { source: '/servicios', destination: '/#planes', permanent: false },
       { source: '/landing-express', destination: '/#planes', permanent: false },

@@ -1,8 +1,8 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { BRAND, CONTACT, FOOTER_RESOURCES, FOOTER_SOLUTIONS, NAV_LINKS, WA_LINKS } from '@/lib/site'
-import { BrandInstagram, BrandWhatsapp } from 'tabler-icons-react'
+import { BRAND, CONTACT, FOOTER_SOLUTIONS, FOOTER_TOOLS, NAV_LINKS, WA_LINKS } from '@/lib/site'
+import { BrandInstagram, BrandWhatsapp, Mail } from 'tabler-icons-react'
 
 export function Footer() {
   const pathname = usePathname()
@@ -44,16 +44,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted mt-6 mb-4">Recursos</p>
-            <ul className="space-y-2">
-              {FOOTER_RESOURCES.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div>
@@ -69,8 +59,9 @@ export function Footer() {
             </a>
             <a
               href={`mailto:${CONTACT.email}`}
-              className="block text-sm text-muted-light hover:text-primary mb-3 transition-colors"
+              className="flex items-center gap-2 text-sm text-muted-light hover:text-primary mb-3 transition-colors"
             >
+              <Mail className="w-4 h-4" />
               {CONTACT.email}
             </a>
             <a
@@ -84,6 +75,26 @@ export function Footer() {
               @artestudio.cl
             </a>
           </div>
+        </div>
+
+        <div className="mb-10 pt-8 border-t border-[var(--border)]">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
+            También trabajamos con
+          </p>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {FOOTER_TOOLS.map((tool) => (
+              <li key={tool.label}>
+                <a
+                  href={tool.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-light hover:text-primary transition-colors"
+                >
+                  {tool.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">

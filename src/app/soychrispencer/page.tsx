@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { SoyChrisSpencerHub } from '@/components/soychrispencer/LinkHubPage'
 import { soychrispencerConfig } from '@/content/soychrispencer.config'
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.artestudio.cl').replace(/\/$/, '')
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl').replace(/\/$/, '')
 const profileUrl = `${siteUrl}/soychrispencer`
 
 export const metadata: Metadata = {

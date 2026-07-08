@@ -1,11 +1,14 @@
-import { CONTACT_INFO, SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants'
+import { CONTACT_INFO, SOCIAL_LINKS, SITE_CONFIG } from '@/lib/constants'
+import { FAQ_ITEMS } from '@/lib/site'
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Organization',
-      name: SITE_CONFIG.name,
+      '@id': `${SITE_CONFIG.url}/#organization`,
+      name: 'Artestudio',
+      legalName: 'Artestudio',
       url: SITE_CONFIG.url,
       description: SITE_CONFIG.description,
       email: CONTACT_INFO.email,
@@ -13,17 +16,55 @@ const jsonLd = {
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'CL',
-        addressLocality: CONTACT_INFO.address,
+        addressLocality: 'Chile',
       },
       sameAs: Object.values(SOCIAL_LINKS),
-      logo: SITE_CONFIG.ogImage,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_CONFIG.url}/logos/Logo-Light.png`,
+      },
+      image: SITE_CONFIG.ogImage,
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${SITE_CONFIG.url}/#service`,
+      name: 'Artestudio',
+      url: SITE_CONFIG.url,
+      description: SITE_CONFIG.description,
+      provider: { '@id': `${SITE_CONFIG.url}/#organization` },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Chile',
+      },
+      serviceType: [
+        'Sistemas de crecimiento digital',
+        'Landing pages',
+        'Diseño web',
+        'Publicidad digital',
+        'Automatizaciones',
+        'Inteligencia artificial para negocios',
+      ],
     },
     {
       '@type': 'WebSite',
-      name: SITE_CONFIG.name,
+      '@id': `${SITE_CONFIG.url}/#website`,
+      name: 'Artestudio',
       url: SITE_CONFIG.url,
       description: SITE_CONFIG.description,
       inLanguage: SITE_CONFIG.locale,
+      publisher: { '@id': `${SITE_CONFIG.url}/#organization` },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${SITE_CONFIG.url}/#faq`,
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a,
+        },
+      })),
     },
   ],
 }

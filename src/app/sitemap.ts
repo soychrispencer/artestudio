@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
+const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl').replace(/\/$/, '')
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -11,22 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/success`,
+      url: `${baseUrl}/soychrispencer`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.2,
-    },
-    {
-      url: `${baseUrl}/failure`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.2,
-    },
-    {
-      url: `${baseUrl}/pending`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.2,
+      changeFrequency: 'monthly',
+      priority: 0.4,
     },
   ]
 }

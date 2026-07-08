@@ -64,14 +64,23 @@ export const NAV_LINKS = [
 
 export const FOOTER_SOLUTIONS = [
   { label: 'Sistema de Crecimiento', href: `#${SECTION_IDS.planes}` },
-  { label: 'Automatizaciones', href: `#${SECTION_IDS.soluciones}` },
   { label: 'Landing Pages', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Google Ads', href: `#${SECTION_IDS.serviciosIndividuales}` },
-  { label: 'Meta Ads', href: `#${SECTION_IDS.serviciosIndividuales}` },
+  { label: 'Sitios Web', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Automatizaciones', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Agentes IA', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Analítica', href: `#${SECTION_IDS.soluciones}` },
 ] as const
 
-export const FOOTER_RESOURCES = [
-  { label: 'Blog', href: '#' },
+/** Plataformas y herramientas que también manejamos en proyectos. */
+export const FOOTER_TOOLS = [
+  { label: 'Shopify', href: 'https://www.shopify.com/' },
+  { label: 'JumpSeller', href: 'https://jumpseller.com/' },
+  { label: 'WordPress', href: 'https://wordpress.org/' },
+  { label: 'WooCommerce', href: 'https://woocommerce.com/' },
+  { label: 'Adobe Creative Cloud', href: 'https://www.adobe.com/creativecloud.html' },
+  { label: 'Avid Pro Tools', href: 'https://www.avid.com/pro-tools' },
+  { label: 'Meta Ads', href: 'https://www.facebook.com/business/ads' },
+  { label: 'Google Ads', href: 'https://ads.google.com/' },
 ] as const
 
 export const HERO = {

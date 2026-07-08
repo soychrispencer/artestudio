@@ -16,7 +16,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
-  title: 'Artestudio — Sistemas de crecimiento para empresas | Chile',
+  title: {
+    default: 'Artestudio — Sistemas de crecimiento para empresas | Chile',
+    template: '%s | Artestudio',
+  },
   description:
     'Diseñamos sistemas inteligentes de crecimiento: publicidad, web, IA y automatizaciones trabajando como un solo sistema para atraer y convertir clientes.',
   keywords: [
@@ -29,8 +32,22 @@ export const metadata: Metadata = {
     'Meta Ads Chile',
   ],
   authors: [{ name: 'Artestudio' }],
+  creator: 'Artestudio',
   metadataBase: new URL(siteUrl),
-  robots: 'index, follow',
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   icons: { icon: '/favicon.png' },
   openGraph: {
     title: 'Artestudio — Sistemas de crecimiento para empresas',
@@ -39,13 +56,20 @@ export const metadata: Metadata = {
     siteName: 'Artestudio',
     locale: 'es_CL',
     type: 'website',
-    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630, alt: 'Artestudio' }],
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Artestudio — Sistemas de crecimiento para empresas',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Artestudio — Sistemas de crecimiento para empresas',
     description: 'Diseñamos sistemas inteligentes de crecimiento para empresas en Chile.',
-    images: [`${siteUrl}/og-image.png`],
+    images: ['/og-image.png'],
   },
 }
 

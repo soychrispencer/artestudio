@@ -58,7 +58,7 @@ export const NAV_LINKS = [
   { label: 'Soluciones', href: `#${SECTION_IDS.soluciones}` },
   { label: 'Metodología', href: `#${SECTION_IDS.metodologia}` },
   { label: 'Planes', href: `#${SECTION_IDS.planes}` },
-  { label: 'Servicios', href: `#${SECTION_IDS.serviciosIndividuales}` },
+  { label: 'Soluciones para crecer', href: `#${SECTION_IDS.serviciosIndividuales}` },
   { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
 ] as const
 
@@ -90,10 +90,10 @@ export const FOOTER_TOOLS = [
 ] as const
 
 export const HERO = {
-  badge: 'Estudio de crecimiento digital · Chile',
+  badge: 'Estrategia · Tecnología · Crecimiento',
   title: 'Sistemas que hacen crecer tu negocio.',
   subtitle:
-    'Publicidad, web, IA y automatizaciones conectadas para atraer clientes y convertir oportunidades.',
+    'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para atraer clientes, automatizar procesos y escalar empresas.',
   cta: 'Quiero hacer crecer mi negocio',
   ctaSecondary: 'Ver cómo funciona',
   trust: [
@@ -135,13 +135,13 @@ export const METODOLOGIA = {
 } as const
 
 export const SOLUCIONES = {
-  label: 'Soluciones',
+  label: 'Soluciones para crecer',
   title: 'Todo conectado en un solo sistema',
-  subtitle: 'No vendemos herramientas sueltas. Diseñamos piezas que trabajan juntas.',
+  subtitle: 'No vendemos herramientas sueltas. Diseñamos piezas que trabajan juntas para hacer crecer tu negocio.',
   items: [
     {
       title: 'Landing Pages',
-      description: 'Convierte visitas en oportunidades.',
+      description: 'Convierte más visitas en oportunidades de negocio.',
       price: 'Desde $74.990',
       image: '/images/services/actualizaciones-web.png',
     },
@@ -159,7 +159,8 @@ export const SOLUCIONES = {
     },
     {
       title: 'Automatizaciones',
-      description: 'WhatsApp, CRM y procesos sin tareas repetitivas.',
+      description:
+        'Automatizamos procesos para que tu empresa crezca sin aumentar la carga de trabajo.',
       price: 'Cotizar',
       image: '/images/services/aplicaciones-ia.png',
     },
@@ -291,9 +292,9 @@ export const PRUEBA_SOCIAL = {
 } as const
 
 export const INDIVIDUAL_SERVICES_INTRO = {
-  label: 'Servicios individuales',
+  label: 'A tu medida',
   title: '¿Ya sabes lo que necesitas?',
-  subtitle: 'Servicios puntuales que puedes contratar solos o sumar a tu plan.',
+  subtitle: 'Contrata servicios puntuales o súmalos a tu sistema de crecimiento.',
 } as const
 
 export const INDIVIDUAL_SERVICES = [
@@ -420,7 +421,7 @@ export const CTA_FINAL = {
 } as const
 
 export const BRAND = {
-  tagline: 'Estudio de crecimiento digital',
+  tagline: 'Estrategia · Tecnología · Crecimiento',
   description:
-    'Diseñamos sistemas inteligentes de crecimiento para empresas. Publicidad, web, IA y automatizaciones trabajando como un solo sistema.',
+    'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para atraer clientes, automatizar procesos y escalar empresas.',
 } as const

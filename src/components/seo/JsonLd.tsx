@@ -25,7 +25,7 @@ const jsonLd = {
       },
       image: SITE_CONFIG.ogImage,
       knowsAbout: [
-        'Sistemas de crecimiento digital',
+        'Estrategia, tecnología y crecimiento',
         'Shopify',
         'JumpSeller',
         'WordPress',
@@ -54,7 +54,7 @@ const jsonLd = {
         name: 'Chile',
       },
       serviceType: [
-        'Sistemas de crecimiento digital',
+        'Estrategia, tecnología y crecimiento',
         'Landing pages',
         'Diseño web',
         'Publicidad digital',

@@ -110,7 +110,7 @@ export const SITE_CONFIG = {
   name: 'Artestudio',
   title: 'Artestudio — Sistemas de crecimiento para empresas | Chile',
   description:
-    'Diseñamos sistemas inteligentes de crecimiento: publicidad, web, IA y automatizaciones trabajando como un solo sistema para atraer y convertir clientes.',
+    'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para atraer clientes, automatizar procesos y escalar empresas.',
   url: 'https://artestudio.cl',
   ogImage: 'https://artestudio.cl/og-image.png',
   twitterHandle: '@artestudio_cl',
@@ -120,7 +120,7 @@ export const SITE_CONFIG = {
 // Palabras clave SEO
 export const SEO_KEYWORDS = [
   'sistema de crecimiento Chile',
-  'estudio de crecimiento digital',
+  'estrategia tecnología crecimiento',
   'automatizaciones empresas Chile',
   'IA para negocios Chile',
   'landing page Chile',

@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     template: '%s | Artestudio',
   },
   description:
-    'Diseñamos sistemas inteligentes de crecimiento: publicidad, web, IA y automatizaciones trabajando como un solo sistema para atraer y convertir clientes.',
+    'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para atraer clientes, automatizar procesos y escalar empresas.',
   keywords: [
     'sistema de crecimiento Chile',
-    'estudio de crecimiento digital',
+    'estrategia tecnología crecimiento',
     'automatizaciones empresas Chile',
     'IA para negocios Chile',
     'landing page Chile',
@@ -54,7 +54,8 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.png' },
   openGraph: {
     title: 'Artestudio — Sistemas de crecimiento para empresas',
-    description: 'Diseñamos sistemas inteligentes de crecimiento para empresas en Chile.',
+    description:
+      'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para escalar empresas en Chile.',
     url: siteUrl,
     siteName: 'Artestudio',
     locale: 'es_CL',
@@ -71,7 +72,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Artestudio — Sistemas de crecimiento para empresas',
-    description: 'Diseñamos sistemas inteligentes de crecimiento para empresas en Chile.',
+    description:
+      'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para escalar empresas en Chile.',
     images: ['/og-image.png'],
   },
 }

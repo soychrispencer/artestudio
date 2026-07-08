@@ -18,7 +18,7 @@ export function Hero() {
               {HERO.title}
             </h1>
 
-            <p className="fade-up fade-up-d3 text-lg text-muted-light leading-relaxed mb-8 max-w-xl">
+            <p className="fade-up fade-up-d3 text-lg text-muted-light leading-relaxed mb-8 max-w-2xl">
               {HERO.subtitle}
             </p>
 
@@ -49,7 +49,7 @@ export function Hero() {
             <div className="relative aspect-[4/3] lg:aspect-[16/11] overflow-hidden rounded-3xl border border-[var(--border)] bg-card shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
               <Image
                 src="/images/hero-clientes-online.png"
-                alt="Sistema de crecimiento digital para negocios"
+                alt="Sistemas de crecimiento para empresas"
                 fill
                 priority
                 sizes="(min-width: 1024px) 54vw, 100vw"

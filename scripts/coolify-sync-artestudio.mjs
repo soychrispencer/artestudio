@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Sincroniza variables de Artestudio en Coolify y encola redeploy.
- * Credenciales Coolify: Simple/.env.deploy (COOLIFY_URL + COOLIFY_API_TOKEN)
+ * Credenciales Coolify: Artestudio/.env.deploy o Simple/.env.deploy (fallback)
  * Secretos MP: Simple/services/api/.env.local + Artestudio/.env.local
  *
  * Uso:
@@ -11,6 +11,7 @@
 import fs from 'node:fs'
 
 const ROOT = 'C:/Users/chris/Desktop/Artestudio'
+const ARTESTUDIO_DEPLOY = `${ROOT}/.env.deploy`
 const SIMPLE_DEPLOY = 'C:/Users/chris/Desktop/Simple/.env.deploy'
 const SIMPLE_API_ENV = 'C:/Users/chris/Desktop/Simple/services/api/.env.local'
 const ARTESTUDIO_ENV = `${ROOT}/.env.local`
@@ -36,14 +37,18 @@ function parseEnv(file) {
 }
 
 function loadDeploy() {
-  const env = parseEnv(SIMPLE_DEPLOY)
+  const deployPath = fs.existsSync(ARTESTUDIO_DEPLOY) ? ARTESTUDIO_DEPLOY : SIMPLE_DEPLOY
+  const env = parseEnv(deployPath)
   const url = env.COOLIFY_URL?.replace(/\/$/, '')
   const token = env.COOLIFY_API_TOKEN
   if (!url || !token) {
-    console.error('Faltan COOLIFY_URL o COOLIFY_API_TOKEN en Simple/.env.deploy')
+    console.error(
+      'Faltan COOLIFY_URL o COOLIFY_API_TOKEN.\n' +
+        'Crea Artestudio/.env.deploy (ver .env.deploy.example) o usa Simple/.env.deploy.',
+    )
     process.exit(1)
   }
-  return { url, token }
+  return { url, token, deployPath }
 }
 
 function normalizeValue(value) {
@@ -86,7 +91,8 @@ const TARGET = {
 
 const FORBIDDEN = new Set(['NEXT_PUBLIC_MERCADOPAGO_ACCESS_TOKEN'])
 
-const { url, token } = loadDeploy()
+const { url, token, deployPath } = loadDeploy()
+console.log('Coolify config:', deployPath)
 const headers = {
   Authorization: `Bearer ${token}`,
   Accept: 'application/json',

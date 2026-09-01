@@ -43,32 +43,36 @@ export const WA_LINKS = {
 
 export const SECTION_IDS = {
   inicio: 'inicio',
+  servicios: 'servicios-home',
   problemas: 'problemas',
   solucion: 'solucion',
   metodologia: 'metodologia',
+  puertas: 'puertas',
+  /** @deprecated moved to /servicios */
   soluciones: 'soluciones',
+  /** @deprecated moved to /servicios */
   planes: 'planes',
   prueba: 'prueba',
+  /** @deprecated moved to /servicios */
   serviciosIndividuales: 'servicios-individuales',
   faq: 'faq',
   contacto: 'contacto',
 } as const
 
 export const NAV_LINKS = [
-  { label: 'Soluciones', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Metodología', href: `#${SECTION_IDS.metodologia}` },
-  { label: 'Planes', href: `#${SECTION_IDS.planes}` },
-  { label: 'Soluciones para crecer', href: `#${SECTION_IDS.serviciosIndividuales}` },
-  { label: 'Contacto', href: `#${SECTION_IDS.contacto}` },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Método Construye', href: '/construye' },
+  { label: 'Contacto', href: `/#${SECTION_IDS.contacto}` },
 ] as const
 
 export const FOOTER_SOLUTIONS = [
-  { label: 'Sistema de Crecimiento', href: `#${SECTION_IDS.planes}` },
-  { label: 'Landing Pages', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Sitios Web', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Automatizaciones', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Agentes IA', href: `#${SECTION_IDS.soluciones}` },
-  { label: 'Analítica', href: `#${SECTION_IDS.soluciones}` },
+  { label: 'Sistema de crecimiento', href: `/#${SECTION_IDS.inicio}` },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Web', href: '/servicios/web' },
+  { label: 'Contenido', href: '/servicios/contenido' },
+  { label: 'Ads', href: '/servicios/ads' },
+  { label: 'Crecimiento', href: '/servicios/crecimiento' },
+  { label: 'Método Construye', href: '/construye' },
 ] as const
 
 /** Plataformas y herramientas (A→Z). */
@@ -135,9 +139,10 @@ export const METODOLOGIA = {
 } as const
 
 export const SOLUCIONES = {
-  label: 'Soluciones para crecer',
+  label: 'El sistema',
   title: 'Todo conectado en un solo sistema',
-  subtitle: 'No vendemos herramientas sueltas. Diseñamos piezas que trabajan juntas para hacer crecer tu negocio.',
+  subtitle:
+    'Estas son las piezas que conectamos. No las vendemos sueltas como catálogo: las diseñamos para que trabajen juntas.',
   items: [
     {
       title: 'Landing Pages',
@@ -292,9 +297,10 @@ export const PRUEBA_SOCIAL = {
 } as const
 
 export const INDIVIDUAL_SERVICES_INTRO = {
-  label: 'A tu medida',
+  label: 'Servicios puntuales',
   title: '¿Ya sabes lo que necesitas?',
-  subtitle: 'Contrata servicios puntuales o súmalos a tu sistema de crecimiento.',
+  subtitle:
+    'Si no buscas el sistema completo, contrata piezas sueltas: web, ads, branding, SEO u hosting.',
 } as const
 
 export const INDIVIDUAL_SERVICES = [

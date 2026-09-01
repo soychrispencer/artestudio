@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Método Construye — Guía práctica 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  /* Spencer System — mismo núcleo que Artestudio / Construye web */
+  --ink:#111111; --ink-soft:#1a1a1a; --paper:#fafafa; --white:#ffffff;
+  --mute:#737373; --mute-light:#525252; --line:#e5e5e5; --line-strong:#d4d4d4;
+  --field:#f5f5f5; --accent:#3f3a8c; --accent-soft:#f3f2f8; --accent-muted:#8b86c4;
+  --font:"Inter",system-ui,sans-serif; --font-accent:"Instrument Serif",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink-soft);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+.board{display:flex;flex-direction:column;align-items:center;gap:28px;padding:40px 16px 80px}
+.note{max-width:210mm;color:color-mix(in srgb,var(--paper) 70%,transparent);font-size:13px;line-height:1.5;text-align:center}
+.note strong{color:var(--paper);font-weight:500}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;gap:10px;justify-content:center;padding:12px;background:var(--ink);width:100%}
+.toolbar button{font:500 13px var(--font);padding:10px 16px;border-radius:10px;border:0;cursor:pointer;background:var(--paper);color:var(--ink)}
+.page{width:210mm;height:297mm;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.4);page-break-after:always;break-after:page}
+.page.dark{background:var(--ink);color:var(--white)}
+.page-inner{padding:16mm 15mm 20mm;height:100%;display:flex;flex-direction:column}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:14px}
+.meta .dim{opacity:.55}
+.pill{display:inline-flex;align-items:center;border:1px solid currentColor;border-radius:999px;padding:4px 11px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;width:fit-content}
+.pill.solid{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pill.brand{border-color:var(--accent);color:var(--accent)}
+.page.dark .pill.solid{background:var(--white);color:var(--ink);border-color:var(--white)}
+.page.dark .pill.brand{border-color:var(--accent-muted);color:var(--accent-muted)}
+.display{font-weight:800;letter-spacing:-.04em;line-height:.95}
+.serif{font-family:var(--font-accent);font-style:italic;font-weight:400}
+.footer{position:absolute;left:15mm;right:15mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.45}
+.p{font-size:14.5px;line-height:1.58;margin-bottom:13px;color:var(--ink)}
+.page.dark .p{color:rgba(255,255,255,.85)}
+.muted{color:var(--mute)}
+.h1{font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;margin:6px 0 14px}
+.h2{font-size:29px;font-weight:800;letter-spacing:-.035em;line-height:1.08;margin:4px 0 14px}
+.h3{font-size:18px;font-weight:700;letter-spacing:-.02em;margin:0 0 10px}
+.rule{height:1px;background:currentColor;opacity:.15;width:100%;margin:20px 0}
+.field{background:var(--field);border:1px solid var(--line);border-radius:10px;min-height:70px;padding:14px 16px}
+.field.tall{min-height:150px}
+.field.lines{background:linear-gradient(to bottom,transparent 33px,var(--line) 34px) repeat-y;background-size:100% 34px;background-color:var(--field)}
+.field-label{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:16px 0 8px;font-weight:500}
+.check{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.4}
+.check:last-child{border-bottom:0}
+.box{width:20px;height:20px;border:1.5px solid var(--ink);border-radius:4px;flex-shrink:0;margin-top:1px}
+.hazlo{border-left:5px solid var(--accent);padding:14px 0 14px 16px;margin-top:12px;background:linear-gradient(90deg,var(--accent-soft) 0,transparent 72%)}
+.hazlo.pin-bottom{margin-top:auto}
+.hazlo h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px;font-weight:700;color:var(--accent)}
+.hazlo .p{font-size:13.5px;margin-bottom:10px;line-height:1.5;color:var(--ink)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.compare{border-radius:12px;padding:18px;min-height:170px}
+.compare h3{font-size:16px;font-weight:700;margin-bottom:13px}
+.compare ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:13px;line-height:1.4}
+.compare ul li{padding-left:14px;position:relative}
+.compare ul li::before{content:"–";position:absolute;left:0;opacity:.7}
+.compare.ink ul li::before{opacity:.85}
+.compare.muted{background:var(--field)}
+.compare.ink{background:var(--ink);color:var(--white);box-shadow:inset 0 3px 0 0 var(--accent)}
+.page.dark .compare.muted{background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.22)}
+.page.dark .compare.ink{background:var(--white);color:var(--ink);box-shadow:inset 0 3px 0 0 var(--accent)}
+.page.dark .compare.ink ul li::before{opacity:.7}
+.module{border:1px solid var(--line);border-radius:12px;padding:16px 15px;background:var(--white)}
+.module h5{font-size:13.5px;font-weight:700;margin-bottom:6px}
+.module p{font-size:12.5px;line-height:1.5;color:var(--mute)}
+.giant{font-weight:800;font-size:96px;line-height:.8;letter-spacing:-.05em;color:var(--line)}
+.page.dark .giant{color:rgba(255,255,255,.12)}
+.principle-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 12px}
+.table th,.table td{border-bottom:1px solid var(--line);padding:7px 4px;text-align:left;vertical-align:top}
+.table th{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.pillar-row{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+.pillar-row .n{font-weight:800;font-size:16px}
+.pillar-row .name{font-size:14.5px;font-weight:600}
+.pillar-row .hint{font-size:11.5px;color:var(--mute);margin-top:2px}
+.marks{display:flex;gap:7px}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:5px;font-size:9.5px;display:grid;place-items:center;opacity:.4}
+.diag{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--white);margin-bottom:12px}
+.diag .qt{font-weight:700;font-size:14.5px}
+.diag .qs{font-size:12.5px;color:var(--mute);margin:4px 0 11px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:1px solid var(--line);border-radius:8px;padding:10px 11px;font-size:12px;display:flex;gap:7px}
+.opt b{font-weight:800}
+.wordmark{font-weight:700;font-size:12px;letter-spacing:-.03em;text-transform:lowercase}
+.wordmark .wm-accent{color:var(--accent)}
+.page.dark .wordmark .wm-accent{color:var(--accent-muted)}
+.brand-rule{width:48px;height:3px;background:var(--accent);margin:16px 0;border:0;opacity:1}
+.page.dark .brand-rule{background:var(--accent-muted)}
+.flow-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin-top:4px}
+.flow-step{border:1.5px solid var(--line);border-radius:12px;padding:14px 12px;background:var(--white);text-align:center}
+.flow-step .n{font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--accent);margin-bottom:6px}
+.flow-step .t{font-weight:800;font-size:15px;letter-spacing:-.02em;line-height:1.15}
+.flow-step .d{font-size:11px;line-height:1.35;color:var(--mute);margin-top:6px}
+.flow-step.final{background:var(--ink);border-color:var(--ink);color:var(--white);box-shadow:inset 0 3px 0 0 var(--accent)}
+.flow-step.final .n{color:var(--accent-muted)}
+.flow-step.final .d{color:rgba(255,255,255,.65)}
+.flow-arrow{display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--accent);padding-bottom:4px}
+.path-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:6px;align-items:stretch;margin:14px 0 6px}
+.path-step{border:1.5px solid var(--line);border-radius:12px;padding:14px 10px;background:var(--white);text-align:center;min-height:110px;display:flex;flex-direction:column;justify-content:center}
+.path-step .n{font-weight:800;font-size:10px;letter-spacing:.14em;color:var(--accent);margin-bottom:6px}
+.path-step .t{font-weight:800;font-size:14px;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+.path-step .d{font-size:10.5px;line-height:1.35;color:var(--mute)}
+.path-step.done{background:var(--paper);border-color:var(--line)}
+.path-step.done .n{color:var(--mute)}
+.path-step.next{background:var(--ink);border-color:var(--ink);color:var(--white);box-shadow:inset 0 3px 0 0 var(--accent)}
+.path-step.next .n{color:var(--accent-muted)}
+.path-step.next .d{color:rgba(255,255,255,.65)}
+.path-arrow{display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--accent)}
+.path-caption{font-size:11px;color:var(--mute);text-align:center;margin-bottom:12px}
+.system-map{border:1px solid var(--line);border-radius:14px;padding:16px 14px;background:var(--white);margin:4px 0 2px}
+.system-map .sm-label{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.system-map .sm-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:4px;align-items:center}
+.system-map .sm-node{border:1.5px solid var(--ink);border-radius:10px;padding:10px 6px;text-align:center;background:var(--paper);min-height:58px;display:flex;flex-direction:column;justify-content:center}
+.system-map .sm-node b{font-size:12px;font-weight:800;letter-spacing:-.02em;display:block;line-height:1.15}
+.system-map .sm-node span{font-size:10px;color:var(--mute);line-height:1.25;margin-top:3px}
+.system-map .sm-node.accent{background:var(--ink);border-color:var(--ink);color:var(--white);box-shadow:inset 0 3px 0 0 var(--accent)}
+.system-map .sm-node.accent span{color:rgba(255,255,255,.65)}
+.system-map .sm-arr{text-align:center;font-weight:700;color:var(--accent);font-size:14px}
+.system-map .sm-loop{margin-top:12px;text-align:center;font-size:11.5px;color:var(--mute);letter-spacing:.02em}
+.system-map .sm-loop strong{color:var(--ink);font-weight:700}
+.publisher{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.publisher.centered{align-items:center}
+.qr-block{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--white);margin-top:10px}
+.qr-block img{width:72px;height:72px;flex-shrink:0;display:block;border-radius:6px}
+.qr-block .qr-copy{flex:1}
+.qr-block .qr-copy h5{font-size:12.5px;font-weight:700;margin-bottom:4px}
+.qr-block .qr-copy p{font-size:11.5px;line-height:1.4;color:var(--mute);margin:0}
+.qr-block .qr-copy .url{font-size:11px;font-weight:600;color:var(--accent);margin-top:4px;letter-spacing:.01em}
+.page.dark .qr-block{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+.page.dark .qr-block .qr-copy h5{color:var(--white)}
+.page.dark .qr-block .qr-copy p{color:rgba(255,255,255,.7)}
+.page.dark .qr-block .qr-copy .url{color:var(--accent-muted)}
+.qr-block.centered{flex-direction:column;text-align:center;border:0;background:transparent;padding:0;gap:10px;margin-top:0}
+.qr-block.centered img{width:88px;height:88px;background:var(--white);padding:6px;border-radius:10px}
+.page.dark .qr-block.centered{background:transparent;border:0}
+.publisher span{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.45}
+.publisher img{height:14px;width:auto;display:block}
+.page.dark .logo-on-dark{filter:invert(1)}
+.quote{font-size:15px;line-height:1.4;border-left:3px solid var(--ink);padding-left:12px;margin:12px 0;font-weight:500}
+.tiny{font-size:11px;line-height:1.4;color:var(--mute)}
+.author-note{border:1px dashed var(--line);border-radius:10px;padding:10px;background:var(--paper);font-size:11px;line-height:1.4;color:var(--mute);margin:10px 0}
+@media print{
+  body{background:var(--white)}
+  .board{padding:0;gap:0}
+  .note,.toolbar{display:none!important}
+  .page{box-shadow:none;margin:0;width:210mm;height:297mm}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button onclick="window.print()">Imprimir / Guardar PDF</button>
+</div>
+<div class="board">
+  <p class="note"><strong>Método Construye · Guía práctica 01 · v1.0</strong><br/>
+  38 páginas A4 · Inter · Workbook · Ctrl+P → Guardar como PDF</p>
+  <section class="page dark"><div class="page-inner">
+  <div class="meta"><span>GP-01 · Guía práctica</span><span class="dim">Versión 1.0 · 2026</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0 28px">
+    <div class="pill brand" style="margin-bottom:22px">Método Construye</div>
+    <h1 class="display" style="font-size:64px;max-width:14ch;line-height:1.02">Construye, no<br/>improvises.</h1>
+    <div class="brand-rule"></div>
+    <p class="p" style="font-size:15px;max-width:34ch;margin:0">Guía práctica 01 — Diagnóstico. No es el método completo: es el primer paso para saber si estás construyendo o improvisando.</p>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;line-height:1.7">12 principios<br/>10 pilares<br/>1 diagnóstico</div>
+    <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <div class="wordmark"><span class="wm-accent">método</span> construye</div>
+      <div class="publisher"><span>Una publicación de</span><img class="logo-on-dark" src="assets/brand/artestudio-logo-dark.png" alt="Artestudio"/></div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.65">Chris Spencer</div>
+    </div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Portada</span><span>01</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Cómo usar esta guía</span></span><span class="dim">02</span></div>
+  <h2 class="display h1">No lo leas.<br/>Trabájalo.</h2>
+  <p class="serif" style="font-size:20px;color:var(--mute);margin-bottom:16px">Esto no es un ebook para subrayar. Es una guía práctica.</p>
+  <p class="p">No es el Método Construye completo. Es la <strong>Guía práctica 01</strong>: claridad sobre dónde estás y qué necesitas construir primero. También puedes hacer el diagnóstico online en <strong>artestudio.cl/construye</strong>.</p>
+  <div class="grid-3" style="margin:14px 0">
+    <div class="module"><div class="display" style="font-size:22px;margin-bottom:6px">01</div><h5>Úsala como espejo</h5><p>Si no cambia cómo miras tu negocio, no sirve.</p></div>
+    <div class="module"><div class="display" style="font-size:22px;margin-bottom:6px">02</div><h5>Escribe siempre</h5><p>Los campos vacíos no son decoración.</p></div>
+    <div class="module"><div class="display" style="font-size:22px;margin-bottom:6px">03</div><h5>Aplica lo que lees</h5><p>Cuando veas «En la práctica» o «Hazlo ahora», no pases de largo.</p></div>
+  </div>
+  <div class="module" style="background:var(--field);border:0;margin-bottom:12px">
+    <h5 style="margin-bottom:8px">Al terminar tendrás</h5>
+    <div class="check"><div class="box"></div><div>Tu etapa: Idea / Fundamentos / Construcción / Sistema</div></div>
+    <div class="check"><div class="box"></div><div>Los 3 principios que más necesitas aplicar</div></div>
+    <div class="check"><div class="box"></div><div>El pilar más débil</div></div>
+    <div class="check"><div class="box"></div><div>Una prioridad concreta para 30 días</div></div>
+  </div>
+  <div class="hazlo">
+    <h4>Hazlo ahora · 2 min</h4>
+    <p class="p">Escribe tu negocio y lo que crees que es tu mayor problema. Al final, vuelve y compara.</p>
+    <div class="field-label">Mi negocio / Mi mayor problema percibido</div>
+    <div class="field lines" style="min-height:170px"></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Uso</span><span>02</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Introducción</span></span><span class="dim">03</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px;position:relative">
+    <div class="giant" style="position:absolute;right:0;top:40px;font-size:160px">00</div>
+    <h2 class="display" style="font-size:48px;max-width:12ch;position:relative">Por qué existe esta guía</h2>
+    <p class="serif" style="font-size:22px;margin-top:14px;opacity:.7;max-width:22ch">La mayoría trabaja mucho. Pocas construyen un sistema.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Intro</span><span>03</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Introducción</span></span><span class="dim">04</span></div>
+  <h2 class="h2">Si estás aquí, probablemente conoces esto</h2>
+  <p class="p">Trabajas todo el día y, aun así, sientes que nunca terminas. Descansas y aparece la culpa. Cada semana apagas incendios. Desde fuera parece que avanzas. Desde dentro, no tanto.</p>
+  <p class="p">La mayoría intenta resolverlo buscando más clientes, más publicidad o una herramienta nueva. Rara vez ese es el verdadero problema.</p>
+  <div class="quote">La mayoría de los emprendedores no tiene un problema de esfuerzo. Tiene un problema de construcción.</div>
+  <p class="p">Yo también lo viví: muchos proyectos, pocas bases. Esta guía existe para que mires tu negocio con otro filtro — no para contarte mi historia.</p>
+  <p class="p"><strong>¿Estás construyendo un negocio… o solo trabajando dentro de él?</strong></p>
+  <p class="tiny">Si al terminar piensas «ahora entiendo por qué no avanzaba», habrá cumplido.</p>
+  <div class="hazlo">
+    <h4>Hazlo ahora · 3 min</h4>
+    <p class="p">Completa: «Hoy mi negocio avanza principalmente por _______________, no por un sistema.»</p>
+    <div class="field lines" style="min-height:110px"></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Intro</span><span>04</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill brand">El modelo</span></span><span class="dim">05</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px">
+    <h2 class="display" style="font-size:40px;max-width:14ch;line-height:1.05">Construye, no<br/>improvises.</h2>
+    <p class="serif" style="font-size:20px;color:var(--mute)">No es un eslogan. Es un filtro.</p>
+    <div class="brand-rule" style="margin:0"></div>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="compare muted" style="min-height:0">
+        <h3>Trabajar en el negocio</h3>
+        <ul>
+          <li>Más horas</li>
+          <li>Más incendios</li>
+          <li>Todo depende de ti</li>
+        </ul>
+      </div>
+      <div class="compare ink" style="min-height:0">
+        <h3>Construir el negocio</h3>
+        <ul>
+          <li>Mejor orden</li>
+          <li>Mejor base</li>
+          <li>El sistema avanza</li>
+        </ul>
+      </div>
+    </div>
+    <p class="display" style="font-size:22px;line-height:1.25;margin-top:8px;max-width:18ch">¿Estoy construyendo un negocio… o solo trabajando dentro de él?</p>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="n">01</div>
+        <div class="t">Principios</div>
+        <div class="d">Cómo decides</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="n">02</div>
+        <div class="t">Pilares</div>
+        <div class="d">Qué partes existen</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step final">
+        <div class="n">03</div>
+        <div class="t">Sistema</div>
+        <div class="d">Cuando se conectan</div>
+      </div>
+    </div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Modelo</span><span>05</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 01</span></span><span class="dim">06</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px;position:relative">
+    <div class="giant" style="position:absolute;right:0;top:40px;font-size:160px">01</div>
+    <h2 class="display" style="font-size:44px;max-width:13ch;position:relative">El problema no es el esfuerzo.</h2>
+    <p class="serif" style="font-size:22px;margin-top:14px;opacity:.7">Es construir sin sistema.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cap. 01</span><span>06</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 01</span></span><span class="dim">07</span></div>
+  <p class="p">Si te preguntara el primer paso para crear un negocio, probablemente dirías: idea, logo, web, Instagram, clientes. Durante años también pensé eso.</p>
+  <p class="p"><strong>Estaba construyendo sin un orden.</strong> Días llenos y semanas que no avanzan; si paras, todo se cae; culpa al descansar; siempre un incendio más urgente que lo importante.</p>
+  <p class="p">Imagina construir una casa empezando por los muebles. Absurdo — y aun así muchos compran dominio sin propuesta, diseñan logo sin cliente o invierten en ads sin validar: <strong>antes de tiempo</strong>.</p>
+  <div class="grid-2" style="margin:10px 0">
+    <div class="compare muted" style="min-height:0;padding:14px"><h3>Improvisar</h3><ul><li>Resolver la urgencia del día</li><li>Actividad sin dirección</li><li>Todo depende de ti hoy</li></ul></div>
+    <div class="compare ink" style="min-height:0;padding:14px"><h3>Construir</h3><ul><li>Diseñar el proceso una vez</li><li>Documentar y medir</li><li>El negocio avanza sin ti presente</li></ul></div>
+  </div>
+  <div class="quote">El marketing no arregla un negocio mal construido. Solo hace más visibles sus problemas.</div>
+  <div class="field-label">Inventario — marca solo lo que existe de verdad</div>
+  <div class="check"><div class="box"></div><div>Propuesta de valor escrita</div></div>
+  <div class="check"><div class="box"></div><div>Lista de productos/servicios con precios</div></div>
+  <div class="check"><div class="box"></div><div>Al menos un proceso documentado</div></div>
+  <div class="check"><div class="box"></div><div>Forma repetible de conseguir clientes</div></div>
+  <div class="hazlo">
+    <h4>Hazlo ahora · 5 min</h4>
+    <p class="p">La casilla vacía que más te preocupa + qué haces hoy que deberías haber hecho después.</p>
+    <div class="field lines" style="min-height:88px"></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cap. 01</span><span>07</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 02</span></span><span class="dim">08</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px;position:relative">
+    <div class="giant" style="position:absolute;right:0;top:40px;font-size:160px">02</div>
+    <h2 class="display" style="font-size:42px;max-width:14ch;position:relative">Qué significa construir un negocio</h2>
+    <p class="serif" style="font-size:20px;margin-top:14px;opacity:.7;max-width:24ch">Un sistema para entregar valor de forma constante.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cap. 02</span><span>08</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 02</span></span><span class="dim">09</span></div>
+  <p class="p">Crear, vender y generar ingresos es parte de un negocio — pero solo una parte. <strong>Un negocio es un sistema creado para entregar valor de manera constante.</strong></p>
+  <p class="p">Una persona puede vender sin haber construido un negocio: puede depender solo de ella, sin procesos, sin saber cuánto gana realmente.</p>
+  <div class="grid-2" style="margin:10px 0">
+    <div class="module"><h5>Ingreso</h5><p>Desaparece cuando termina una venta.</p></div>
+    <div class="module"><h5>Activo</h5><p>Sigue generando valor: marca, proceso, base de clientes, producto repetible.</p></div>
+  </div>
+  <div class="system-map">
+    <div class="sm-label">Negocio = piezas conectadas</div>
+    <div class="sm-row">
+      <div class="sm-node"><b>Cliente</b><span>A quién</span></div>
+      <div class="sm-arr">→</div>
+      <div class="sm-node"><b>Oferta</b><span>Qué das</span></div>
+      <div class="sm-arr">→</div>
+      <div class="sm-node"><b>Entrega</b><span>Cómo cumples</span></div>
+      <div class="sm-arr">→</div>
+      <div class="sm-node"><b>Cobro</b><span>Cómo ganas</span></div>
+      <div class="sm-arr">→</div>
+      <div class="sm-node accent"><b>Aprende</b><span>Qué mejora</span></div>
+    </div>
+    <div class="sm-loop">Si una pieza falta o no se conecta, <strong>improvisas</strong>. Si se repiten juntas, <strong>construyes</strong>.</div>
+  </div>
+  <div class="quote">La herramienta rara vez es el problema. El problema suele ser el sistema.</div>
+  <div class="hazlo">
+    <h4>Hazlo ahora · 5 min</h4>
+    <p class="p">1) ¿Dependes más de esfuerzo personal o de sistemas? 2) ¿Qué pieza de arriba es tu eslabón más débil?</p>
+    <div class="field lines" style="min-height:120px"></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cap. 02</span><span>09</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 03</span></span><span class="dim">10</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px;position:relative">
+    <div class="giant" style="position:absolute;right:0;top:30px;font-size:140px">03</div>
+    <h2 class="display" style="font-size:44px;max-width:12ch;position:relative">Los 12 Principios</h2>
+    <p class="serif" style="font-size:20px;margin-top:14px;opacity:.7">Toda construcción necesita cimientos.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>10</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 03 · Índice</span></span><span class="dim">11</span></div>
+  <p class="p">No son hacks. Son principios atemporales. Aquí los trabajas como <strong>ficha de diagnóstico</strong>.</p>
+  <div class="grid-2" style="margin-top:10px;flex:1;align-content:start">
+    <div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">01</div><div style="font-size:13px;font-weight:600;line-height:1.25">Construye, no improvises</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">02</div><div style="font-size:13px;font-weight:600;line-height:1.25">Los problemas construyen negocios</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">03</div><div style="font-size:13px;font-weight:600;line-height:1.25">La acción vale más que el conocimiento</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">04</div><div style="font-size:13px;font-weight:600;line-height:1.25">La honestidad es una ventaja competitiva</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">05</div><div style="font-size:13px;font-weight:600;line-height:1.25">Todo debe poder medirse</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">06</div><div style="font-size:13px;font-weight:600;line-height:1.25">Documenta antes de delegar</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">07</div><div style="font-size:13px;font-weight:600;line-height:1.25">La tecnología acelera. No reemplaza el criterio</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">08</div><div style="font-size:13px;font-weight:600;line-height:1.25">Nunca dejes de aprender</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">09</div><div style="font-size:13px;font-weight:600;line-height:1.25">Nunca dejes de crear</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">10</div><div style="font-size:13px;font-weight:600;line-height:1.25">Mejora continuamente</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">11</div><div style="font-size:13px;font-weight:600;line-height:1.25">Construye activos, no solo ingresos</div></div><div class="module" style="display:flex;gap:10px;align-items:center;padding:14px 13px"><div class="display" style="font-size:18px;min-width:28px">12</div><div style="font-size:13px;font-weight:600;line-height:1.25">Las personas primero</div></div>
+  </div>
+  <p class="tiny" style="margin-top:12px">Cada ficha: explicación · señales · un campo de escritura · en la práctica.</p>
+<div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>11</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 01</span></span><span class="dim">12</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Construye, no improvises</h2>
+      <div class="giant" style="font-size:64px">01</div>
+    </div>
+    <p class="p">Un negocio sólido no nace por inspiración. Nace por decisiones tomadas en el orden correcto. La diferencia entre alguien ocupado y alguien que avanza no es la cantidad de horas: es si cada acción deja una pieza más fuerte que ayer.</p>
+    <p class="p">Improvisar es reaccionar a lo urgente, saltar de herramienta en herramienta y confundir movimiento con progreso. Construir es elegir qué no harás, sostener un orden y poder explicar — en una frase — qué estás fortaleciendo este mes. Si no sabes por qué haces algo, probablemente estás improvisando.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Cambias de estrategia cada semana. Adoptas herramientas porque «todos las usan». No puedes decir que no.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Cada acción responde a una decisión previa. Puedes explicar qué construyes este mes — y qué no harás.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Antes de empezar algo nuevo, escribe en una línea qué parte del negocio fortaleces: cliente, oferta, entrega, cobro o aprendizaje. Si no puedes responderlo, pausa.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>12</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 02</span></span><span class="dim">13</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Los problemas construyen negocios</h2>
+      <div class="giant" style="font-size:64px">02</div>
+    </div>
+    <p class="p">No persigas ideas. Persigue problemas reales. Las empresas que perduran no se enamoran de un producto: se enamoran de una necesidad que alguien está dispuesto a resolver una y otra vez. Los productos cambian; los problemas permanecen.</p>
+    <p class="p">Cuando hablas más de lo que ofreces que del dolor que alivias, construyes sobre arena. Un problema claro orienta la oferta, el mensaje, el precio y la entrega. Un problema vago («ayudar a crecer», «mejorar resultados») permite cualquier cosa… y por eso no construye nada.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Hablas más del producto que del problema. La oferta cambia según el ánimo del día.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>El cliente se reconoce en tu descripción. Hay un problema concreto, escrito y específico.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Describe el problema sin nombrar tu producto. Si al quitarlo la frase se cae, aún no tienes un problema: tienes una idea disfrazada.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>13</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 03</span></span><span class="dim">14</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">La acción vale más que el conocimiento</h2>
+      <div class="giant" style="font-size:64px">03</div>
+    </div>
+    <p class="p">Leer no cambia negocios. Implementar sí. El conocimiento sin ejecución crea una sensación peligrosa: la de estar avanzando mientras el negocio permanece igual. Aprender sin aplicar es otra forma de procrastinar — más elegante, igual de costosa.</p>
+    <p class="p">No necesitas saber más para empezar lo que ya sabes. Necesitas la versión mínima: algo incompleto pero real, que puedas terminar y observar. La claridad llega después de la acción, no antes.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Más cursos empezados que procesos terminados. Dices «ya lo sé» pero no lo aplicas.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Cada aprendizaje cambia algo visible esta semana. Hay un entregable mínimo, no solo una idea.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Si ya «sabes» qué hacer, el siguiente paso no es otro curso. Es la versión mínima que puedas terminar hoy o esta semana.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>14</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 04</span></span><span class="dim">15</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">La honestidad es una ventaja competitiva</h2>
+      <div class="giant" style="font-size:64px">04</div>
+    </div>
+    <p class="p">No te mientas. No le mientas a tus clientes. No maquilles resultados. No prometas lo que no puedes cumplir. La confianza tarda años en construirse y minutos en perderse. Un diagnóstico falso produce un plan falso — y un plan falso consume meses.</p>
+    <p class="p">La honestidad aquí no es un eslogan moral: es un filtro operativo. Si evitas mirar las cifras, si vendes lo que no puedes entregar, si te cuentas una historia más cómoda que la realidad, estás improvisando con disfraz de estrategia.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Evitas mirar las cifras. Vendes lo que no puedes entregar con consistencia.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Prefieres una verdad incómoda a una historia cómoda. El alcance es claro antes del sí.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Haz una lista corta de lo que evitas mirar (cifras, promesas, calidad, dependencia de ti). Elige una verdad y úsala como punto de partida, no como vergüenza.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>15</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 05</span></span><span class="dim">16</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Todo debe poder medirse</h2>
+      <div class="giant" style="font-size:64px">05</div>
+    </div>
+    <p class="p">Las opiniones ayudan. Los datos deciden. No para obsesionarte con números ni convertir tu negocio en un tablero infinito: para saber si avanzaste o solo estuviste ocupado. Lo que no se mide no mejora — se discute, se intuye y se improvisan soluciones.</p>
+    <p class="p">No necesitas medirlo todo. Necesitas pocos indicadores que respondan preguntas reales: ¿entró dinero? ¿cuánto costó conseguirlo? ¿cuántas personas confían en ti esta semana? Sin ese mínimo, cada decisión es un debate… y los debates no construyen.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>«Creo que este mes fue bueno.» Decides solo por intuición.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Sabes ingresos, costos o al menos un indicador clave. La intuición se contrasta con un número.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Elige 1–3 números que mirarás cada semana. Deben responder: ¿avancé o solo estuve ocupado?</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>16</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 06</span></span><span class="dim">17</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Documenta antes de delegar</h2>
+      <div class="giant" style="font-size:64px">06</div>
+    </div>
+    <p class="p">Si un proceso solo existe en tu cabeza, tu empresa depende completamente de ti. Cada vacación, cada enfermedad, cada día saturado se convierte en un riesgo. Documentar no es burocracia: es construir libertad.</p>
+    <p class="p">No se puede mejorar lo que no se puede explicar. No se puede delegar lo que no se puede enseñar. La documentación imperfecta — cinco pasos toscos — vale más que el proceso «perfecto» que solo tú entiendes. Primero se escribe; después se mejora; después se reparte.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>«Es más rápido si lo hago yo.» Cada entrega sale distinta.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Alguien más podría seguir el proceso sin llamarte. Hay pasos escritos, aunque sean imperfectos.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Elige la entrega que más repites y escríbela en pasos imperfectos. Si nadie podría seguirla sin llamarte, aún no está documentada: está memorizada.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>17</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 07</span></span><span class="dim">18</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">La tecnología acelera. No reemplaza el criterio</h2>
+      <div class="giant" style="font-size:64px">07</div>
+    </div>
+    <p class="p">La IA, las automatizaciones y el software pueden multiplicar un buen negocio. No corrigen uno mal construido. Si no tienes claro el cliente, la oferta o la entrega, una herramienta nueva solo hace más rápido el desorden.</p>
+    <p class="p">Primero el sistema; después la tecnología. Las herramientas cambian cada año. Los principios — orden, medición, documentación, foco en el problema — permanecen. Buscar la app antes del cuello de botella es improvisación con factura.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Buscas la herramienta antes del problema. Acumulas apps sin procesos.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Sabes qué cuello de botella quieres acelerar. Cada herramienta está atada a un problema real.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Antes de instalar o pagar otra app, escribe el cuello de botella concreto. Si la herramienta no lo ataca, es distracción.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>18</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 08</span></span><span class="dim">19</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Nunca dejes de aprender</h2>
+      <div class="giant" style="font-size:64px">08</div>
+    </div>
+    <p class="p">El mercado cambia. Las herramientas cambian. Tus clientes cambian. Si dejas de aprender, tu negocio deja de evolucionar — aunque hoy funcione. Aprender no es acumular pestañas abiertas: es actualizar el criterio con el que decides.</p>
+    <p class="p">El aprendizaje útil está ligado a una debilidad concreta. Si estudias «un poco de todo», no profundizas en nada y vuelves al mismo techo. Un tema por mes, aplicado a tu pilar más débil, construye más que doce cursos a medias.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Temas nuevos cada semana sin aplicar. Consumes sin implementar.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Un tema ligado a tu pilar más débil. El aprendizaje termina en un ajuste documentado.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Elige un solo tema ligado a tu pilar más débil. Descarta el resto 30 días. El aprendizaje termina cuando hay un ajuste aplicado, no cuando termina el video.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>19</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 09</span></span><span class="dim">20</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Nunca dejes de crear</h2>
+      <div class="giant" style="font-size:64px">09</div>
+    </div>
+    <p class="p">Cada idea nueva es una oportunidad. No todas serán un negocio, pero cada una enseña algo para la siguiente. La creatividad es un músculo: se fortalece produciendo, no esperando el momento perfecto.</p>
+    <p class="p">Esperar claridad total para empezar es improvisación disfrazada de prudencia. Planear en abstracto no genera información; crear sí. Un borrador, una oferta publicada, una prueba pequeña — eso construye. La lista interminable de «cuando tenga tiempo» no.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Planeas sin producir nada visible. Esperas el momento perfecto.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Cada semana hay un entregable concreto. Creas la versión mínima y aprendes.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Cada semana debería existir algo visible: un borrador, una oferta, una página, un proceso o una prueba. Crear genera información; planear en abstracto no.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>20</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 10</span></span><span class="dim">21</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Mejora continuamente</h2>
+      <div class="giant" style="font-size:64px">10</div>
+    </div>
+    <p class="p">No busques el negocio perfecto. Busca uno un poco mejor que ayer. Las empresas sólidas rara vez nacen de un único cambio enorme: nacen de cientos de pequeñas mejoras acumuladas, sostenidas en el tiempo.</p>
+    <p class="p">Cuando algo falla, la tentación es rediseñar todo. Eso suele ser improvisación con disfraz de ambición. Construir es cambiar una variable, medir, documentar y seguir. Sin ritmo de revisión, repites los mismos errores con nueva energía.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Cambias todo cuando algo falla. Repites sin revisar.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Cambias una variable, mides, documentas. Hay un ritmo de revisión.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Cuando algo falle, no rediseñes todo. Cambia una variable, mide y documenta. La mejora sin ritmo es solo reacción.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>21</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 11</span></span><span class="dim">22</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Construye activos, no solo ingresos</h2>
+      <div class="giant" style="font-size:64px">11</div>
+    </div>
+    <p class="p">Un ingreso desaparece cuando termina una venta. Un activo sigue generando valor: un proceso documentado, una marca reconocible, una base de clientes, una metodología, una reputación. Pregúntate siempre: ¿estoy creando un ingreso o un activo?</p>
+    <p class="p">Si todo tu esfuerzo se convierte solo en dinero del mes, estás vendiendo tiempo — no construyendo un negocio. Parte del trabajo semanal debe quedar como algo que funciona aunque tú no estés presente. Eso es la diferencia entre facturar y construir.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Todo el esfuerzo se convierte solo en dinero del mes. Meses buenos y vacíos sin explicación estructural.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>Puedes señalar 2–3 activos que trabajan a tu favor. Parte del esfuerzo queda como sistema.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Parte de tu esfuerzo semanal debe quedar como algo que trabaja sin que tú estés. Si todo se vuelve solo dinero del mes, vendes tiempo — no construyes negocio.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>22</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 03 · Principio 12</span></span><span class="dim">23</span></div>
+    <div class="principle-head">
+      <h2 class="display" style="font-size:28px;max-width:15ch;margin:0">Las personas primero</h2>
+      <div class="giant" style="font-size:64px">12</div>
+    </div>
+    <p class="p">Los negocios existen gracias a las personas: clientes, equipo, proveedores, socios. La tecnología puede ayudarte a trabajar mejor. Nunca debe hacerte olvidar que al otro lado hay alguien con un problema, una expectativa y una confianza puesta en ti.</p>
+    <p class="p">La eficiencia sin humanidad destruye lo que el sistema pretendía proteger. Un proceso frío, una respuesta automática mal puesta o una promesa que nadie sostiene pueden ahorrar minutos y costar relaciones. Construir es reducir fricción… sin eliminar el trato humano.</p>
+    <div class="grid-2" style="margin:8px 0 10px">
+      <div class="module"><h5>Señal de improvisación</h5><p>Tratas a las personas como interrupciones del sistema. La eficiencia destruye confianza.</p></div>
+      <div class="module"><h5>Señal de construcción</h5><p>El sistema reduce fricción sin eliminar el trato humano. La experiencia de quien recibe valor mejora.</p></div>
+    </div>
+    <div class="field-label">¿Dónde aplica esto en mi negocio hoy?</div>
+    <div class="field lines" style="min-height:150px;margin-bottom:8px"></div>
+    <div class="hazlo pin-bottom">
+      <h4>En la práctica</h4>
+      <p class="p">Revisa dónde tu «eficiencia» daña la experiencia de alguien. El sistema debe reducir fricción humana, no eliminar el trato humano.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>23</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 03 · Cierre</span></span><span class="dim">24</span></div>
+  <h2 class="h2">Elige tus tres</h2>
+  <p class="p">No intentes aplicar los doce esta semana. Elige los tres que más necesitas ahora.</p>
+  <div class="field-label">Principio · Porque</div>
+  <div class="field lines" style="min-height:72px;margin-bottom:10px"></div>
+  <div class="field lines" style="min-height:72px;margin-bottom:10px"></div>
+  <div class="field lines" style="min-height:72px;margin-bottom:16px"></div>
+  <div class="quote">Las herramientas cambian. Los principios permanecen.</div>
+  <p class="serif" style="font-size:22px;margin-top:18px">¿Construiste… o improvisaste?</p>
+<div class="footer"><span>Método Construye · GP-01</span><span>Principios</span><span>24</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 04</span></span><span class="dim">25</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px;position:relative">
+    <div class="giant" style="position:absolute;right:0;top:30px;font-size:140px">04</div>
+    <h2 class="display" style="font-size:44px;max-width:12ch;position:relative">Los 10 pilares de un negocio moderno</h2>
+    <p class="serif" style="font-size:20px;margin-top:14px;opacity:.7">Un negocio nunca será más fuerte que su pilar más débil.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>25</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 04 · Mapa</span></span><span class="dim">26</span></div>
+  <h2 class="h2">El mapa</h2>
+  <p class="p">No construyas todo a la vez. Marca: <strong>F</strong> fuerte · <strong>X</strong> débil · <strong>1</strong> lo que atacas primero.</p>
+  <p class="tiny" style="margin-top:-6px;margin-bottom:10px"><strong>X</strong> = débil en este mapa. En el diagnóstico, <strong>D</strong> significará Sistema (la mejor etapa) — no lo mezcles.</p>
+  
+    <div class="pillar-row">
+      <div class="n">01</div>
+      <div><div class="name">Dirección</div><div class="hint">Hacia dónde construyes</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">02</div>
+      <div><div class="name">Marca</div><div class="hint">Cómo te entienden y recuerdan</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">03</div>
+      <div><div class="name">Producto / Servicio</div><div class="hint">La solución que entregas</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">04</div>
+      <div><div class="name">Marketing</div><div class="hint">Cómo descubren que existes</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">05</div>
+      <div><div class="name">Ventas</div><div class="hint">De interés a cliente</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">06</div>
+      <div><div class="name">Operaciones</div><div class="hint">Cómo entregas lo que prometes</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">07</div>
+      <div><div class="name">Finanzas</div><div class="hint">La realidad en números</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">08</div>
+      <div><div class="name">Tecnología</div><div class="hint">Herramientas al servicio del sistema</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">09</div>
+      <div><div class="name">Legal</div><div class="hint">Proteger lo que construyes</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+    <div class="pillar-row">
+      <div class="n">10</div>
+      <div><div class="name">Mejora continua</div><div class="hint">La capacidad de evolucionar</div></div>
+      <div class="marks"><div class="mark">F</div><div class="mark">X</div><div class="mark">1</div></div>
+    </div>
+  <div class="hazlo" style="margin-top:12px">
+    <h4>Hazlo ahora · 4 min</h4>
+    <p class="p">Un solo pilar para los próximos 30 días. ¿Por qué ese y no otro?</p>
+    <div class="field lines" style="min-height:110px"></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>26</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 04 · Fichas</span></span><span class="dim">27</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:space-between;min-height:0">
+    
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">01 · Dirección</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Antes de construir debes saber hacia dónde vas. Sin dirección, cualquier camino parece correcto.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Cambias de rumbo con cada tendencia.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Decisiones semanales alineadas a una dirección escrita.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Tengo claro hacia dónde quiero llevar mi negocio?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">02 · Marca</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Una marca no es un logo. Es la percepción que construyen sobre ti en cada contacto.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Cada pieza habla un idioma distinto.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Alguien describe quién eres de forma consistente.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Las personas entienden quién soy, qué hago y qué valor entrego?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">03 · Producto / Servicio</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">No vendas características. Construye una solución que mejore la vida de alguien.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">La oferta cambia según el cliente del día.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Oferta clara: alcance, precio, resultado.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Mi oferta entrega un valor fácil de entender?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+    
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>27</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 04 · Fichas</span></span><span class="dim">28</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:space-between;min-height:0">
+    
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">04 · Marketing</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">No consiste en convencer. Consiste en que las personas correctas descubran que existes.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Publicas cuando te acuerdas.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Canal y ritmo sostenibles y medibles.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Tengo una forma constante de atraer interesados?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">05 · Ventas</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Vender no es presionar. Es reducir la incertidumbre. Las mejores ventas ocurren cuando la confianza supera al miedo.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Cada venta es una conversación improvisada.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Pasos claros del primer contacto al cierre.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Tengo un proceso de interesado a cliente?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">06 · Operaciones</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Todo lo que haces más de una vez debería mejorar, documentarse y, cuando tenga sentido, automatizarse.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Cada entrega es distinta; los errores se repiten.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Flujo de entrega predecible.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Puedo entregar calidad constante?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+    
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>28</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 04 · Fichas</span></span><span class="dim">29</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;justify-content:space-between;min-height:0">
+    
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">07 · Finanzas</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Un negocio necesita comprender costos, precios, márgenes y rentabilidad — no solo ingresos.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">«De memoria» o «más o menos».</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Sabes con números si el mes fue bueno o solo ocupado.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Sé cuánto gana y cuesta mi negocio?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">08 · Tecnología</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Primero el problema. Después la herramienta. La tecnología no reemplaza la estrategia.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Acumulas apps sin procesos.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Cada herramienta atada a un cuello de botella real.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Uso tecnología para problemas reales?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+      <div class="module" style="margin-bottom:0;padding:16px 16px;flex:1;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">09 · Legal</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Construir bien también es proteger acuerdos, responsabilidades y activos.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">«Después lo vemos.»</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Lo básico está ordenado y se revisa.</p></div>
+        </div>
+        <div class="field-label" style="margin-top:auto;margin-bottom:6px">¿Tengo ordenados los aspectos legales importantes?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+    
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>29</span></div></div></section>
+<section class="page"><div class="page-inner">
+    <div class="meta"><span><span class="pill solid">Capítulo 04 · Cierre</span></span><span class="dim">30</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;min-height:0">
+    
+      <div class="module" style="margin-bottom:0;padding:16px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <h3 class="h3" style="margin:0">10 · Mejora continua</h3>
+        </div>
+        <p class="p" style="font-size:13px;line-height:1.5;margin-bottom:10px">Un negocio que deja de aprender se queda atrás — aunque hoy funcione.</p>
+        <div class="grid-2" style="margin:4px 0 8px;gap:12px">
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Improvisado</div><p class="tiny">Repites sin revisar.</p></div>
+          <div><div class="field-label" style="margin-top:0;margin-bottom:6px">Construido</div><p class="tiny">Ritmo de revisión con ajustes documentados.</p></div>
+        </div>
+        <div class="field-label" style="margin-bottom:6px">¿Aprendo de lo que hago o solo repito?</div>
+        <div class="field lines" style="min-height:72px"></div>
+      </div>
+    
+    <div class="hazlo" style="margin-top:8px">
+      <h4>Cierre · Los 10 pilares</h4>
+      <p class="p">Un negocio nunca será más fuerte que su pilar más débil. No necesitas fortalecer los diez a la vez: necesitas nombrar el que, si mejora, permite que el resto avance.</p>
+    </div>
+    <div class="quote" style="margin-top:14px">Construye primero aquello que permitirá avanzar mejor.</div>
+    <div class="field-label">Después de revisar las fichas, mi pilar más débil hoy es…</div>
+    <div class="field lines" style="min-height:88px;margin-bottom:8px"></div>
+    <div class="field-label">Lo ataco primero porque…</div>
+    <div class="field lines" style="min-height:72px"></div>
+    <p class="tiny" style="margin-top:12px">Siguiente: el diagnóstico. Escala A–B–C–D (D = Sistema). No confundas con la X del mapa (= débil). No es una nota: es para confirmar — o corregir — lo que acabas de escribir.</p>
+    </div>
+  <div class="footer"><span>Método Construye · GP-01</span><span>Pilares</span><span>30</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 05</span></span><span class="dim">31</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px">
+    <h2 class="display" style="font-size:42px;max-width:14ch">Diagnóstico</h2>
+    <p class="serif" style="font-size:22px;margin-top:14px;opacity:.7;max-width:22ch">No es un examen. Es un espejo.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Diagnóstico</span><span>31</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Diagnóstico · Antes</span></span><span class="dim">32</span></div>
+  <h2 class="h2">Antes de marcar letras</h2>
+  <p class="p">Hasta aquí viste el filtro. Ahora vas a mirarte con él.</p>
+  <p class="p">No hay nota. No hay «aprobado». Es un espejo.</p>
+  <div class="quote">¿Cuántas veces esta semana sentiste que trabajabas mucho… y aun así no sabías si el negocio estaba mejor?</div>
+  <p class="p" style="margin-top:14px">Esa sensación es lo que vamos a ordenar. Una pregunta por pilar. Diez minutos. Honestidad.</p>
+  <div class="field-label" style="margin-top:34px">La escala que vas a usar en cada pilar</div>
+  <p class="tiny" style="margin-top:-4px;margin-bottom:12px">Recuerda: en el mapa, <strong>X</strong> era débil. Aquí <strong>D</strong> es lo contrario — Sistema, la mejor etapa posible.</p>
+  <div class="grid-2" style="gap:16px">
+    <div class="module"><div class="display" style="font-size:26px;margin-bottom:6px">A</div><h5>No existe</h5><p>Nunca lo has trabajado. Ni siquiera de forma básica.</p></div>
+    <div class="module"><div class="display" style="font-size:26px;margin-bottom:6px">B</div><h5>Improvisado</h5><p>Existe algo, pero depende completamente de ti hoy.</p></div>
+    <div class="module"><div class="display" style="font-size:26px;margin-bottom:6px">C</div><h5>Incompleto</h5><p>Funciona, pero de forma parcial o inconsistente.</p></div>
+    <div class="module"><div class="display" style="font-size:26px;margin-bottom:6px">D</div><h5>Sistema</h5><p>Existe, es consistente y puede sostenerse sin ti.</p></div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Diagnóstico</span><span>32</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Diagnóstico · Escala</span></span><span class="dim">33</span></div>
+  <p class="tiny" style="margin-bottom:10px">Marca A · B · C · D en cada pilar.</p>
+  
+    <div class="diag">
+      <div class="qt">01 · Dirección</div>
+      <div class="qs">¿Tienes claro qué problema resuelves y hacia dónde vas?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">02 · Marca</div>
+      <div class="qs">¿Tu marca transmite una identidad clara y consistente?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">03 · Producto / Servicio</div>
+      <div class="qs">¿Tu oferta responde a un problema claro (idealmente ya contrastado)?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">04 · Marketing</div>
+      <div class="qs">¿Tienes definido cómo descubren que existes?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">05 · Ventas</div>
+      <div class="qs">¿Cómo pasa alguien de interesado a cliente?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Diagnóstico</span><span>33</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Diagnóstico · Continuación</span></span><span class="dim">34</span></div>
+  
+    <div class="diag">
+      <div class="qt">06 · Operaciones</div>
+      <div class="qs">¿Puedes entregar con calidad constante?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">07 · Finanzas</div>
+      <div class="qs">¿Sabes cuánto gana y cuesta tu negocio cada mes?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">08 · Tecnología</div>
+      <div class="qs">¿Usas herramientas/IA para problemas reales?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">09 · Legal</div>
+      <div class="qs">¿Tienes ordenados los aspectos legales básicos?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+    <div class="diag">
+      <div class="qt">10 · Mejora continua</div>
+      <div class="qs">¿Mides si tu negocio mejora con el tiempo?</div>
+      <div class="opts">
+        <div class="opt"><b>A</b> No existe</div>
+        <div class="opt"><b>B</b> Improvisado</div>
+        <div class="opt"><b>C</b> Incompleto</div>
+        <div class="opt"><b>D</b> Sistema</div>
+      </div>
+    </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Diagnóstico</span><span>34</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Diagnóstico · Resultado</span></span><span class="dim">35</span></div>
+  <h2 class="h2">Tu etapa</h2>
+  <p class="p">Cuenta cuántas de cada letra. Esa letra define tu etapa. Si hay empate, prevalece la <strong>más baja</strong>.</p>
+  <p class="tiny" style="margin-bottom:8px">A en los pilares = «No existe» · B = «Improvisado» · C = «Incompleto» · D = «Sistema». Abajo, esa misma letra se lee como etapa del negocio.</p>
+  <div class="grid-2" style="margin:12px 0">
+    <div class="module"><h5>A · Idea</h5><p>Intención real, faltan fundamentos.</p></div>
+    <div class="module"><h5>B · Fundamentos</h5><p>Hay movimiento, depende casi por completo de ti.</p></div>
+    <div class="module"><h5>C · Construcción</h5><p>Piezas reales; falta convertirlas en sistema.</p></div>
+    <div class="module"><h5>D · Sistema</h5><p>Estructura real; el foco es optimizar.</p></div>
+  </div>
+  <div class="field-label">Mi etapa hoy · Pilar más bajo</div>
+  <div class="field" style="min-height:48px;margin-bottom:8px"></div>
+  <div class="field-label">Completa: «Mi negocio no avanzaba como esperaba porque…»</div>
+  <div class="field lines" style="min-height:72px;margin-bottom:10px"></div>
+  <div class="module" style="background:var(--accent-soft);border-color:transparent">
+    <h5>Vuelve a la página 2</h5>
+    <p>Compara con lo que escribiste al empezar como tu «mayor problema».</p>
+  </div>
+  <div class="field-label">¿Qué cambió en cómo ves tu problema?</div>
+  <div class="field lines" style="min-height:64px;margin-bottom:8px"></div>
+  <div class="qr-block">
+    <img src="assets/brand/qr-construye.png" alt="QR Diagnóstico Método Construye"/>
+    <div class="qr-copy">
+      <h5>Diagnóstico online · 3–5 min</h5>
+      <p>Si prefieres el resultado calculado y guardado, hazlo en la web. Misma escala. Misma claridad.</p>
+      <div class="url">artestudio.cl/construye</div>
+    </div>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Diagnóstico</span><span>35</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div class="meta"><span><span class="pill">Capítulo 06</span></span><span class="dim">36</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:20px">
+    <h2 class="display" style="font-size:44px;max-width:11ch;position:relative">Ahora sí lo ves.</h2>
+    <p class="serif" style="font-size:22px;margin-top:14px;opacity:.7;max-width:22ch">No te faltaba motivación. Te faltaba una prioridad.</p>
+  </div>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cierre</span><span>36</span></div></div></section>
+<section class="page"><div class="page-inner">
+  <div class="meta"><span><span class="pill solid">Capítulo 06</span></span><span class="dim">37</span></div>
+  <p class="p">Llegaste hasta aquí ocupado. Sales sabiendo <strong>dónde estás</strong>, <strong>qué pilar te frena</strong> y <strong>qué construir primero</strong>. Eso no es un resumen: es el final de improvisar a ciegas.</p>
+  <div class="field-label" style="margin-top:2px;margin-bottom:0">El camino</div>
+  <div class="path-steps">
+    <div class="path-step done">
+      <div class="n">01 · Hecho</div>
+      <div class="t">Conciencia</div>
+      <div class="d">El filtro: construir vs improvisar</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-step done">
+      <div class="n">02 · Hecho</div>
+      <div class="t">Diagnóstico</div>
+      <div class="d">Tu etapa y tu pilar débil</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-step done">
+      <div class="n">03 · Hecho</div>
+      <div class="t">Prioridad</div>
+      <div class="d">Una pieza, no diez</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-step next">
+      <div class="n">04 · Ahora</div>
+      <div class="t">Construir</div>
+      <div class="d">La pieza que falta</div>
+    </div>
+  </div>
+  <div class="hazlo" style="margin-top:10px">
+    <h4>Tu decisión · 30 días</h4>
+    <p class="p">Complétalo con precisión. Si suena vago, aún estás improvisando.</p>
+    <div class="field-label">El pilar / la pieza que voy a construir primero</div>
+    <div class="field" style="min-height:44px;margin-bottom:8px"></div>
+    <div class="field-label">En los próximos 30 días voy a construir esto (concreto, visible)</div>
+    <div class="field lines" style="min-height:64px;margin-bottom:8px"></div>
+    <div class="field-label">Sabré que estoy construyendo — y no improvisando — cuando…</div>
+    <div class="field lines" style="min-height:56px"></div>
+  </div>
+  <p class="tiny" style="margin-top:12px">Cuando quieras construir el sistema completo — no solo verlo — el Método Construye continúa desde aquí.</p>
+  <p class="serif" style="font-size:20px;margin-top:12px">¿Construiste… o improvisaste?</p>
+<div class="footer"><span>Método Construye · GP-01</span><span>Cierre</span><span>37</span></div></div></section>
+<section class="page dark"><div class="page-inner">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 8mm">
+    <div class="pill brand" style="margin-bottom:28px">Método Construye</div>
+    <h2 class="display" style="font-size:42px;max-width:12ch;margin:0 auto 22px;line-height:1.05">No te faltaba esfuerzo.<br/><span style="opacity:.45">Te faltaba construcción.</span></h2>
+    <div class="brand-rule" style="margin:0 auto 22px"></div>
+    <p class="p" style="max-width:32ch;margin:0 auto 12px;text-align:center">Ahora sabes qué construir primero. Eso cambia todo.</p>
+    <p class="p" style="max-width:30ch;margin:0 auto 28px;text-align:center;opacity:.85">El siguiente paso no es trabajar más. Es construir esa pieza — hasta que deje de depender solo de ti.</p>
+    <p class="serif" style="font-size:24px;opacity:.75;margin:0">Construye, no improvises.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+    <div class="qr-block centered">
+      <img src="assets/brand/qr-construye.png" alt="QR artestudio.cl/construye"/>
+      <div class="qr-copy">
+        <h5 style="color:#fff">Continúa en artestudio.cl/construye</h5>
+        <p>Diagnóstico online · Guarda tu etapa · Vuelve a medir</p>
+      </div>
+    </div>
+    <div class="wordmark" style="margin-top:8px"><span class="wm-accent">método</span> construye</div>
+    <div class="publisher centered"><span>Artestudio</span><img class="logo-on-dark" src="assets/brand/artestudio-logo-dark.png" alt="Artestudio"/></div>
+    <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.45;line-height:1.7;margin-top:4px">Guía práctica 01 · Versión 1.0 · 2026 · Chris Spencer</div>
+  </div>
+</div></section>
+</div>
+</body>
+</html>

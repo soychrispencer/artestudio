@@ -25,8 +25,8 @@ export function PageSection({
   return (
     <section
       id={id}
-      className={`scroll-mt-20 py-20 md:py-28 border-t border-gray-100 dark:border-dark-bg-tertiary ${
-        muted ? 'bg-neutral-50 dark:bg-dark-bg-secondary' : 'bg-white dark:bg-dark-bg'
+      className={`scroll-mt-20 py-20 md:py-28 border-t border-line ${
+        muted ? 'bg-paper' : 'bg-surface'
       } ${className}`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,11 +40,11 @@ export function PageSection({
           {eyebrow && (
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">{eyebrow}</p>
           )}
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink tracking-tight">
             {title}
           </h2>
           {description && (
-            <p className="mt-3 text-base md:text-lg text-gray-600 dark:text-dark-text-secondary leading-relaxed">
+            <p className="mt-3 text-base md:text-lg text-muted-light leading-relaxed">
               {description}
             </p>
           )}

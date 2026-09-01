@@ -1,0 +1,427 @@
+/* Construye — superficie editorial sobre Spencer System (tokens globales). */
+
+.construye {
+  color: var(--ink);
+  background: var(--paper);
+  min-height: 100vh;
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.construyeShell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.construyeMain {
+  flex: 1;
+}
+
+.mcHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.mcShellPad {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .mcShellPad {
+    padding-inline: 2.5rem;
+  }
+}
+
+.mcContent {
+  width: 100%;
+  max-width: 56rem;
+}
+
+.mcContentWide {
+  width: 100%;
+  max-width: 56rem;
+}
+
+.mcHeaderDark {
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.mcHeaderDark .mcBrand {
+  color: var(--paper);
+}
+
+.mcHeaderDark .mcBrandAccent {
+  color: var(--accent-muted);
+}
+
+.mcHeaderDark .mcBrandMeta,
+.mcHeaderDark .mcHeaderLink {
+  color: rgba(250, 250, 250, 0.55);
+}
+
+.mcHeaderDark .mcHeaderLink:hover {
+  color: var(--paper);
+}
+
+.mcBrand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.mcBrandName {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 1.05rem;
+}
+
+.mcBrandAccent {
+  color: var(--accent);
+}
+
+.mcBrandMeta {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.mcHeaderLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.mcHeaderLink:hover {
+  color: var(--accent);
+}
+
+.mcFooter {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  background: var(--paper);
+}
+
+.mcFooter a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mcFooter a:hover {
+  color: var(--accent);
+}
+
+.mcFooterDark {
+  background: var(--ink);
+  border-top-color: rgba(255, 255, 255, 0.1);
+  color: rgba(250, 250, 250, 0.55);
+}
+
+.mcFooterDark a {
+  color: var(--paper);
+}
+
+.mcFooterDark a:hover {
+  color: var(--accent-muted);
+}
+
+.mcBand {
+  padding: 4.5rem 0;
+}
+
+.mcBandHero {
+  min-height: min(78vh, 720px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 3.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.mcBandDark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.mcBandDark .mcDisplay {
+  color: var(--paper);
+}
+
+.mcBandDark .mcMuted {
+  color: rgba(250, 250, 250, 0.58);
+}
+
+.mcBandDark .mcAccent,
+.mcBandDark .mcStepNum {
+  color: var(--accent-muted);
+}
+
+.mcBandDark .mcInk {
+  color: var(--paper);
+}
+
+.mcBandDark .mcRule {
+  background: var(--accent);
+}
+
+.mcBandDark .mcPill {
+  border-color: var(--accent-muted);
+  color: var(--accent-muted);
+}
+
+.mcBandDark .mcBtnPrimary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.mcBandDark .mcBtnPrimary:hover {
+  background: var(--surface);
+}
+
+.mcBandDark .mcBtnGhost {
+  border-color: rgba(250, 250, 250, 0.28);
+  color: var(--paper);
+  background: transparent;
+}
+
+.mcBandDark .mcBtnGhost:hover {
+  border-color: var(--paper);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mcBandLight {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.mcBandPaper {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.mcBandClose {
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+}
+
+.mcSteps {
+  display: grid;
+  gap: 2.25rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .mcSteps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.mcStep {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--ink);
+}
+
+.mcHazloBlock {
+  border-left: 5px solid var(--accent);
+  padding: 1.75rem 0 1.75rem 1.35rem;
+  background: linear-gradient(90deg, var(--accent-dim) 0%, transparent 70%);
+}
+
+.mcPill {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mcPillSolid {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.mcDisplay {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+
+.mcSerif {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.mcRule {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border: 0;
+  margin: 1rem 0;
+}
+
+.mcMuted {
+  color: var(--muted);
+}
+
+.mcAccent {
+  color: var(--accent);
+}
+
+.mcInk {
+  color: var(--ink);
+}
+
+.mcLink {
+  display: block;
+  width: fit-content;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.mcLink:hover {
+  color: var(--ink);
+}
+
+.mcCard {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+}
+
+.mcHazlo {
+  border-left: 5px solid var(--accent);
+  padding: 1rem 0 1rem 1rem;
+  background: linear-gradient(90deg, var(--accent-dim) 0%, transparent 72%);
+}
+
+.mcOption {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  color: var(--ink);
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mcOption:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.mcOptionActive {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.mcProgressTrack {
+  height: 4px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.mcProgressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.mcBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  padding: 0.9rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.mcBtn:hover {
+  transform: translateY(-1px);
+}
+
+.mcBtnPrimary {
+  background: var(--ink);
+  color: var(--surface);
+  border: 1.5px solid var(--ink);
+}
+
+.mcBtnPrimary:hover {
+  background: var(--ink-soft);
+}
+
+.mcBtnGhost {
+  border: 1.5px solid var(--border);
+  color: var(--ink);
+  background: transparent;
+}
+
+.mcBtnGhost:hover {
+  border-color: var(--ink);
+  background: var(--surface);
+}
+
+.mcSectionLine {
+  border-color: var(--border);
+}
+
+.mcStepNum {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mcDivider {
+  border-color: var(--border);
+}

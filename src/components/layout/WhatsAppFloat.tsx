@@ -1,7 +1,13 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { BrandWhatsapp } from 'tabler-icons-react'
 import { WA_LINKS } from '@/lib/site'
 
 export function WhatsAppFloat() {
+  const pathname = usePathname()
+  if (pathname.startsWith('/soychrispencer') || pathname.startsWith('/construye')) return null
+
   return (
     <a
       href={WA_LINKS.general}

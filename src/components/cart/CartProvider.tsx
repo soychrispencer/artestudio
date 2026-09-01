@@ -236,7 +236,7 @@ function CartDrawer() {
                   goToStep(step - 1)
                 }
               }}
-              className={`w-10 h-10 rounded-xl border border-gray-200 dark:border-dark-bg-tertiary flex items-center justify-center transition-colors ${
+              className={`w-10 h-10 rounded-xl border border-line flex items-center justify-center transition-colors ${
                 step === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:border-primary'
               }`}
               aria-label="Volver"
@@ -245,17 +245,17 @@ function CartDrawer() {
               <ChevronLeft className="w-5 h-5" />
             </button>
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted">
                 Paso {step + 1} de 3
               </p>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-ink">
                 {currentStep}
               </h3>
             </div>
           </div>
           <button
             onClick={closeCart}
-            className="w-10 h-10 rounded-xl border border-gray-200 dark:border-dark-bg-tertiary flex items-center justify-center hover:border-primary transition-colors"
+            className="w-10 h-10 rounded-xl border border-line flex items-center justify-center hover:border-primary transition-colors"
             aria-label="Cerrar carrito"
           >
             <X className="w-5 h-5" />
@@ -263,21 +263,21 @@ function CartDrawer() {
         </div>
 
         <div className="px-6 pt-4">
-          <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-gray-500 dark:text-dark-text-secondary">
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-muted">
             {steps.map((label, idx) => (
               <div key={label} className="flex items-center gap-2 flex-1">
                 <span
                   className={`inline-flex items-center justify-center w-6 h-6 rounded-full border ${
                     idx <= step
                       ? 'border-primary bg-primary text-white'
-                      : 'border-gray-200 dark:border-dark-bg-tertiary text-gray-400'
+                      : 'border-line text-accent-2'
                   }`}
                 >
                   {idx + 1}
                 </span>
                 <span className="hidden sm:inline">{label}</span>
                 {idx < steps.length - 1 && (
-                  <span className="flex-1 h-px bg-gray-200 dark:bg-dark-bg-tertiary" />
+                  <span className="flex-1 h-px bg-line" />
                 )}
               </div>
             ))}
@@ -294,7 +294,7 @@ function CartDrawer() {
                 </div>
               )}
               {items.length === 0 && (
-                <div className="rounded-2xl border border-dashed border-gray-200 dark:border-dark-bg-tertiary p-6 text-center text-gray-600 dark:text-dark-text-secondary">
+                <div className="rounded-2xl border border-dashed border-line p-6 text-center text-muted-light">
                   Tu carrito está vacío.
                 </div>
               )}
@@ -302,14 +302,14 @@ function CartDrawer() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary p-4 bg-gray-50 dark:bg-dark-bg-secondary"
+                  className="rounded-2xl border border-line p-4 bg-field"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">
+                      <p className="font-semibold text-ink">
                         {item.title}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-dark-text-secondary space-y-1">
+                      <p className="text-sm text-muted-light space-y-1">
                         {item.setup > 0 && (
                           <span className="block">
                             Setup: <span className="font-semibold text-primary">{formatPrice(item.setup)}</span>
@@ -326,7 +326,7 @@ function CartDrawer() {
                     </div>
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="text-gray-500 hover:text-red-500 transition-colors"
+                      className="text-muted hover:text-red-500 transition-colors"
                       aria-label="Quitar item"
                     >
                       <Trash className="w-4 h-4" />
@@ -337,21 +337,21 @@ function CartDrawer() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded-lg border border-gray-200 dark:border-dark-bg-tertiary text-gray-700 dark:text-dark-text-secondary"
+                        className="w-8 h-8 rounded-lg border border-line text-muted-light"
                       >
                         -
                       </button>
-                      <span className="min-w-[28px] text-center font-semibold text-gray-900 dark:text-white">
+                      <span className="min-w-[28px] text-center font-semibold text-ink">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded-lg border border-gray-200 dark:border-dark-bg-tertiary text-gray-700 dark:text-dark-text-secondary"
+                        className="w-8 h-8 rounded-lg border border-line text-muted-light"
                       >
                         +
                       </button>
                     </div>
-                    <span className="font-semibold text-gray-900 dark:text-white text-right text-sm">
+                    <span className="font-semibold text-ink text-right text-sm">
                       {item.setup > 0 && item.monthly > 0 ? (
                         <>
                           <span className="block">{formatPrice(item.setup * item.quantity)} hoy</span>
@@ -372,10 +372,10 @@ function CartDrawer() {
           {step === 1 && (
             <div className="space-y-5">
               <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+                <p className="text-sm uppercase tracking-[0.2em] text-muted">
                   Datos de contacto
                 </p>
-                <p className="text-sm text-gray-600 dark:text-dark-text-secondary mt-2">
+                <p className="text-sm text-muted-light mt-2">
                   Completa tus datos para registrar la solicitud y coordinar la entrega.
                 </p>
               </div>
@@ -391,55 +391,55 @@ function CartDrawer() {
                     className="sr-only"
                   />
                 </label>
-                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                <label className="text-sm text-muted-light">
                   Nombre y apellido *
                   <input
                     type="text"
                     value={buyer.name}
                     onChange={(e) => setBuyer((prev) => ({ ...prev, name: e.target.value }))}
-                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    className="mt-2 w-full rounded-xl border border-line bg-[var(--bg)] px-3 py-2 text-ink"
                     placeholder="Juan Pérez"
                     required
                   />
                 </label>
-                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                <label className="text-sm text-muted-light">
                   Email *
                   <input
                     type="email"
                     value={buyer.email}
                     onChange={(e) => setBuyer((prev) => ({ ...prev, email: e.target.value }))}
-                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    className="mt-2 w-full rounded-xl border border-line bg-[var(--bg)] px-3 py-2 text-ink"
                     placeholder="hola@tudominio.cl"
                     required
                   />
                 </label>
-                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                <label className="text-sm text-muted-light">
                   WhatsApp / Teléfono *
                   <input
                     type="tel"
                     value={buyer.phone}
                     onChange={(e) => setBuyer((prev) => ({ ...prev, phone: e.target.value }))}
-                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    className="mt-2 w-full rounded-xl border border-line bg-[var(--bg)] px-3 py-2 text-ink"
                     placeholder="+56 9 1234 5678"
                     required
                   />
                 </label>
-                <label className="text-sm text-gray-600 dark:text-dark-text-secondary">
+                <label className="text-sm text-muted-light">
                   Empresa (opcional)
                   <input
                     type="text"
                     value={buyer.company}
                     onChange={(e) => setBuyer((prev) => ({ ...prev, company: e.target.value }))}
-                    className="mt-2 w-full rounded-xl border border-gray-200 dark:border-dark-bg-tertiary bg-white dark:bg-dark-bg px-3 py-2 text-gray-900 dark:text-white"
+                    className="mt-2 w-full rounded-xl border border-line bg-[var(--bg)] px-3 py-2 text-ink"
                     placeholder="Nombre de la marca"
                   />
                 </label>
-                <label className="flex items-start gap-3 text-sm text-gray-600 dark:text-dark-text-secondary">
+                <label className="flex items-start gap-3 text-sm text-muted-light">
                   <input
                     type="checkbox"
                     checked={isHuman}
                     onChange={(e) => setIsHuman(e.target.checked)}
-                    className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                    className="mt-1 h-4 w-4 rounded border-line-strong text-primary focus:ring-primary"
                   />
                   Confirmo que soy una persona y no un bot.
                 </label>
@@ -452,34 +452,34 @@ function CartDrawer() {
 
           {step === 2 && (
             <div className="space-y-4">
-              <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary bg-gray-50 dark:bg-dark-bg-secondary p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+              <div className="rounded-2xl border border-line bg-field p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted">
                   Datos confirmados
                 </p>
-                <div className="mt-3 text-sm text-gray-700 dark:text-dark-text-secondary space-y-2">
-                  <p><span className="font-semibold text-gray-900 dark:text-white">Cliente:</span> {buyer.name}</p>
-                  <p><span className="font-semibold text-gray-900 dark:text-white">Email:</span> {buyer.email}</p>
-                  <p><span className="font-semibold text-gray-900 dark:text-white">Teléfono:</span> {buyer.phone}</p>
+                <div className="mt-3 text-sm text-muted-light space-y-2">
+                  <p><span className="font-semibold text-ink">Cliente:</span> {buyer.name}</p>
+                  <p><span className="font-semibold text-ink">Email:</span> {buyer.email}</p>
+                  <p><span className="font-semibold text-ink">Teléfono:</span> {buyer.phone}</p>
                   {buyer.company && (
-                    <p><span className="font-semibold text-gray-900 dark:text-white">Empresa:</span> {buyer.company}</p>
+                    <p><span className="font-semibold text-ink">Empresa:</span> {buyer.company}</p>
                   )}
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-gray-200 dark:border-dark-bg-tertiary p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-dark-text-secondary">
+              <div className="rounded-2xl border border-line p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted">
                   Resumen de pago
                 </p>
                 <div className="mt-3 space-y-3">
                   {items.map((item) => (
-                    <div key={item.id} className="space-y-1 text-sm text-gray-700 dark:text-dark-text-secondary">
-                      <p className="font-semibold text-gray-900 dark:text-white">
+                    <div key={item.id} className="space-y-1 text-sm text-muted-light">
+                      <p className="font-semibold text-ink">
                         {item.title} x{item.quantity}
                       </p>
                       {item.setup > 0 && (
                         <div className="flex justify-between">
                           <span>Setup (pago único)</span>
-                          <span className="font-semibold text-gray-900 dark:text-white">
+                          <span className="font-semibold text-ink">
                             {formatPrice(item.setup * item.quantity)}
                           </span>
                         </div>
@@ -487,7 +487,7 @@ function CartDrawer() {
                       {item.monthly > 0 && (
                         <div className="flex justify-between">
                           <span>Hosting (mensual)</span>
-                          <span className="font-semibold text-gray-900 dark:text-white">
+                          <span className="font-semibold text-ink">
                             {formatPrice(item.monthly * item.quantity)}/mes
                           </span>
                         </div>
@@ -496,7 +496,7 @@ function CartDrawer() {
                   ))}
                 </div>
                 {hasHybridCheckout && (
-                  <p className="mt-4 pt-4 border-t border-gray-200 dark:border-dark-bg-tertiary text-xs text-muted">
+                  <p className="mt-4 pt-4 border-t border-line text-xs text-muted">
                     Paso 1: pagas el setup hoy. Paso 2: activas el hosting mensual en MercadoPago.
                   </p>
                 )}
@@ -513,7 +513,7 @@ function CartDrawer() {
           )}
         </div>
 
-        <div className="border-t border-gray-200 dark:border-dark-bg-tertiary p-6 space-y-4">
+        <div className="border-t border-line p-6 space-y-4">
           <div className="flex flex-col text-right">
             {hasHybridCheckout ? (
               <>

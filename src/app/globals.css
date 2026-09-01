@@ -4,21 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Spencer System — punto medio (mock aprobado)
+   Núcleo: ink / paper / mute. Accent editorial opcional. */
+
 :root {
-  color-scheme: dark;
-  --bg: #0f0f0f;
-  --surface: #1a1a1a;
-  --card: #1a1a1a;
-  --card-hover: #222222;
-  --accent: #8325fd;
-  --accent-dim: rgba(131, 37, 253, 0.12);
-  --accent-2: #a855ff;
-  --accent-2-dim: rgba(168, 85, 255, 0.12);
-  --text: #ffffff;
-  --muted: #b0b0b0;
-  --muted-light: #d0d0d0;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(131, 37, 253, 0.35);
+  color-scheme: light;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-hover: #f5f5f5;
+  --ink: #111111;
+  --ink-soft: #1a1a1a;
+  --paper: #fafafa;
+  --field: #f5f5f5;
+  --text: #111111;
+  --muted: #737373;
+  --muted-light: #525252;
+  --border: #e5e5e5;
+  --line-strong: #d4d4d4;
+  /* Accent editorial (Construye / señales raras) — no es la marca UI */
+  --accent: #3f3a8c;
+  --accent-dim: #f3f2f8;
+  --accent-muted: #8b86c4;
+  --accent-2: #a3a3a3;
+  --accent-2-dim: rgba(17, 17, 17, 0.06);
+  --border-accent: rgba(17, 17, 17, 0.2);
 }
 
 html {
@@ -38,13 +48,19 @@ h3,
 h4,
 h5,
 h6 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+}
+
+.font-display {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
 }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -53,7 +69,7 @@ h6 {
 }
 
 .fade-up {
-  animation: fadeUp 0.7s ease forwards;
+  animation: fadeUp 0.65s ease forwards;
   opacity: 0;
 }
 
@@ -64,51 +80,178 @@ h6 {
 .fade-up-d5 { animation-delay: 0.5s; }
 .fade-up-d6 { animation-delay: 0.6s; }
 
-.glow-accent {
-  background: radial-gradient(
-    ellipse 60% 50% at 50% 0%,
-    rgba(131, 37, 253, 0.15) 0%,
-    transparent 70%
-  );
-}
-
-.ai-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-.text-gradient-primary {
-  background: linear-gradient(120deg, #8325fd 0%, #a855ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 .section-label {
-  @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3;
+  @apply text-xs font-semibold uppercase tracking-[0.16em] text-muted mb-3;
 }
 
 .card-base {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+  border-radius: 14px;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .card-base:hover {
   background: var(--card-hover);
+  border-color: var(--line-strong);
+}
+
+.section-pad {
+  @apply py-16 md:py-24;
+}
+
+.section-shell {
+  @apply max-w-site mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .bg-accent-dim {
   background-color: var(--accent-dim);
 }
 
+.band-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.band-ink .section-label,
+.band-ink .text-primary {
+  color: rgba(250, 250, 250, 0.55);
+}
+
 .btn-whatsapp {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-primary text-white shadow-medium hover:shadow-lg transition-all duration-300;
+  @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+}
+
+.btn-whatsapp:hover {
+  background: var(--ink-soft);
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-white/15 text-white hover:border-primary/60 hover:text-primary transition-all duration-300;
+  @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  background: transparent;
 }
+
+.btn-outline:hover {
+  border-color: var(--ink);
+  background: var(--surface);
+}
+
+.pill-brand {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--line-strong);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.pill-editorial {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.display-xl {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.hazlo {
+  border-left: 3px solid var(--ink);
+  padding: 1.25rem 0 1.25rem 1.25rem;
+  background: var(--field);
+}
+
+.hazlo-editorial {
+  border-left-color: var(--accent);
+  background: linear-gradient(90deg, var(--accent-dim) 0%, transparent 72%);
+}
+
+.compare {
+  border-radius: 14px;
+  padding: 1.35rem 1.4rem;
+}
+
+.compare-muted {
+  background: var(--field);
+  color: var(--text);
+}
+
+.compare-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.giant-num {
+  font-weight: 800;
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--border);
+}
+
+.band-ink .giant-num {
+  color: rgba(250, 250, 250, 0.12);
+}
+
+.band-ink .pill-brand {
+  border-color: rgba(250, 250, 250, 0.28);
+  color: rgba(250, 250, 250, 0.7);
+}
+
+.band-ink .btn-outline {
+  border-color: rgba(250, 250, 250, 0.25);
+  color: var(--paper);
+}
+
+.band-ink .btn-outline:hover {
+  border-color: var(--paper);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.band-ink .btn-whatsapp {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.band-ink .btn-whatsapp:hover {
+  background: var(--surface);
+}
+
+/* Texto sobre bandas ink (portadas / featured) */
+.on-ink-faint {
+  color: color-mix(in srgb, var(--paper) 50%, transparent);
+}
+
+.on-ink-muted {
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
+}
+
+.on-ink-soft {
+  color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
+.on-ink-strong {
+  color: color-mix(in srgb, var(--paper) 88%, transparent);
+}
+
+.scrim-ink {
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
+}
+
+.scrim-paper {
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+}
+

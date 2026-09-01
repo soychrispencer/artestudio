@@ -40,7 +40,7 @@ export function ServiceCard({ service }: { service: Service }) {
       transition={{ duration: 0.6 }}
       className="group relative"
     >
-      <div className="glass dark:glass-dark p-6 rounded-xl h-full flex flex-col transition-smooth border border-gray-200 dark:border-white/10 hover-glow">
+      <div className="p-6 rounded-xl h-full flex flex-col transition-smooth border border-line ">
         {/* Badge */}
         {service.badge && (
           <div className="absolute -top-3 -right-3 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold">
@@ -49,15 +49,15 @@ export function ServiceCard({ service }: { service: Service }) {
         )}
 
         {/* Icon */}
-        <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-dark-bg-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-primary/10 dark:group-hover:bg-primary/20">
+        <div className="w-12 h-12 rounded-lg bg-field flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-primary/10">
           <Icon className="w-6 h-6 text-primary" />
         </div>
 
         {/* Content */}
-        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-dark-text group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-semibold mb-2 text-ink group-hover:text-primary transition-colors">
           {service.title}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-dark-text-secondary mb-6 flex-grow">
+        <p className="text-sm text-muted-light mb-6 flex-grow">
           {service.description}
         </p>
 
@@ -66,7 +66,7 @@ export function ServiceCard({ service }: { service: Service }) {
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">{formatPrice(service.price)}</span>
           </div>
-          <p className="text-xs text-gray-500 dark:text-dark-text-secondary mt-1">
+          <p className="text-xs text-muted mt-1">
             precio en pesos chilenos
           </p>
         </div>
@@ -74,7 +74,7 @@ export function ServiceCard({ service }: { service: Service }) {
         {/* CTA Button */}
         <button
           onClick={handleMercadoPagoClick}
-          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth group/btn"
+          className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark  transition-smooth group/btn"
         >
           <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
           Contratar

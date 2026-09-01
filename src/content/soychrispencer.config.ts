@@ -125,6 +125,13 @@ export const soychrispencerConfig: SoyChrisSpencerConfig = {
   ],
   projects: [
     {
+      title: 'Método Construye',
+      description:
+        'Metodología para dejar de improvisar: diagnostica tu negocio en minutos y descarga la Guía práctica 01 gratis.',
+      tags: ['Método', 'Diagnóstico', 'Guía'],
+      website: 'https://www.artestudio.cl/guia-gratuita',
+    },
+    {
       title: 'Artestudio',
       description: 'Mi estudio creativo: branding, marketing y desarrollo web para marcas que quieren crecer de forma sostenible.',
       tags: ['Branding', 'Marketing', 'Desarrollo'],

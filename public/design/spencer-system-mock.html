@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spencer System — Mock visual (punto medio)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-soft: #1a1a1a;
+      --paper: #fafafa;
+      --surface: #ffffff;
+      --mute: #737373;
+      --mute-2: #a3a3a3;
+      --line: #e5e5e5;
+      --line-strong: #d4d4d4;
+      --field: #f5f5f5;
+      /* Toque Spencer: acento raro, casi nunca. Solo señales editoriales */
+      --accent: #3f3a8c;
+      --radius: 10px;
+      --radius-lg: 14px;
+      --font: "Inter", system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: #ececec;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .intro {
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+    .intro .tag {
+      display: inline-flex;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 14px;
+    }
+    .intro h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .intro p {
+      color: var(--mute);
+      font-size: 15px;
+      max-width: 52ch;
+    }
+    .intro strong { color: var(--ink); font-weight: 600; }
+
+    .board {
+      display: grid;
+      gap: 28px;
+    }
+
+    .panel {
+      background: var(--paper);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .panel-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .panel-label span.live {
+      font-size: 11px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 500;
+      color: var(--mute-2);
+    }
+
+    /* —— TOKENS —— */
+    .tokens {
+      padding: 28px 24px 32px;
+      background: #fff;
+    }
+    .tokens h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .tokens .sub {
+      color: var(--mute);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 700px) {
+      .swatches { grid-template-columns: repeat(3, 1fr); }
+    }
+    .swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .swatch .chip {
+      height: 64px;
+    }
+    .swatch .meta {
+      padding: 10px 10px 12px;
+      background: #fff;
+      font-size: 11px;
+    }
+    .swatch .meta b { display: block; font-weight: 600; margin-bottom: 2px; }
+    .swatch .meta code { color: var(--mute); font-family: ui-monospace, monospace; font-size: 10px; }
+
+    .rules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 700px) {
+      .rules { grid-template-columns: 1fr; }
+    }
+    .rule {
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      background: var(--field);
+      border: 1px solid var(--line);
+    }
+    .rule h3 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .rule li {
+      list-style: none;
+      font-size: 13px;
+      color: var(--mute);
+      padding: 4px 0;
+    }
+    .rule li::before {
+      content: "– ";
+      color: var(--ink);
+    }
+
+    /* —— MARKETING (Artestudio) —— */
+    .mkt-hero {
+      background: var(--ink);
+      color: #fafafa;
+      padding: 48px 36px 56px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+    }
+    .mkt-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,255,255,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .mkt-hero > * { position: relative; z-index: 1; }
+    .mkt-brand {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      opacity: 0.85;
+    }
+    .mkt-hero h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+      max-width: 14ch;
+      margin-bottom: 16px;
+    }
+    .mkt-hero h2 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .mkt-hero p {
+      color: rgba(250,250,250,0.58);
+      font-size: 16px;
+      max-width: 40ch;
+      margin-bottom: 28px;
+    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1.5px solid transparent;
+      cursor: default;
+      text-decoration: none;
+    }
+    .btn-light {
+      background: #fafafa;
+      color: var(--ink);
+    }
+    .btn-ghost-light {
+      background: transparent;
+      color: #fafafa;
+      border-color: rgba(250,250,250,0.25);
+    }
+    .link-quiet {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(250,250,250,0.55);
+    }
+
+    .mkt-body {
+      padding: 36px;
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+    @media (max-width: 800px) {
+      .mkt-body { grid-template-columns: 1fr; padding: 24px; }
+    }
+    .mkt-body h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .mkt-body .lead {
+      color: var(--mute);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .cats {
+      display: grid;
+      gap: 10px;
+    }
+    .cat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+    .cat b { font-size: 14px; font-weight: 650; }
+    .cat span { font-size: 12px; color: var(--mute); }
+    .cat i {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--mute-2);
+    }
+
+    .side-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .side-card .kicker {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 10px;
+    }
+    .side-card h4 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .side-card p { font-size: 13px; color: var(--mute); margin-bottom: 16px; }
+    .btn-dark {
+      background: var(--ink);
+      color: #fff;
+      width: 100%;
+    }
+
+    /* —— PRODUCT (Simple) —— */
+    .app {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 420px;
+      background: var(--paper);
+    }
+    @media (max-width: 800px) {
+      .app { grid-template-columns: 1fr; }
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      padding: 20px 14px;
+    }
+    .sidebar .logo {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.03em;
+      padding: 8px 10px 20px;
+    }
+    .nav-item {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--mute);
+      margin-bottom: 2px;
+    }
+    .nav-item.active {
+      background: var(--field);
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .app-main { padding: 24px 28px 32px; }
+    .app-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .app-top h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 700px) {
+      .stats { grid-template-columns: 1fr; }
+    }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+    .stat .l { font-size: 12px; color: var(--mute); margin-bottom: 6px; }
+    .stat .v { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+    .table {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 0.8fr 0.7fr;
+      gap: 8px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      align-items: center;
+    }
+    .table-row:last-child { border-bottom: 0; }
+    .table-row.head {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      background: var(--field);
+    }
+    .badge {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--field);
+      color: var(--ink);
+    }
+    .badge.ok { background: #111; color: #fff; }
+
+    /* —— PERSONAL —— */
+    .personal {
+      padding: 48px 36px;
+      background: var(--paper);
+      text-align: left;
+      max-width: 520px;
+    }
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--ink);
+      margin-bottom: 20px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .personal h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+    .personal .role {
+      color: var(--mute);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+    .personal .bio {
+      font-size: 15px;
+      color: var(--mute);
+      margin-bottom: 22px;
+      max-width: 40ch;
+    }
+    .personal .bio em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink);
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .chip-p {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      background: #fff;
+    }
+    .links { display: grid; gap: 8px; }
+    .plink {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .plink span { color: var(--mute-2); font-weight: 500; }
+
+    /* —— CONSTRUYE note —— */
+    .method-note {
+      padding: 28px 36px 36px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 800px) {
+      .method-note { grid-template-columns: 1fr; }
+    }
+    .method-note h3 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .method-note p { font-size: 13px; color: var(--mute); }
+    .accent-demo {
+      margin-top: 12px;
+      border-left: 3px solid var(--accent);
+      padding: 12px 14px;
+      background: #f3f2f8;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+    }
+    .accent-demo b { color: var(--accent); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+
+    .footer-note {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="intro">
+      <div class="tag">Mock · no es código de producción</div>
+      <h1>Spencer System — punto medio</h1>
+      <p>
+        No es “todo Construye”. Es <strong>negro, blanco y grises</strong>: simple, minimalista y limpio
+        (Uber / Apple / SumUp), con tu toque: tipografía con carácter, botones semi-redondos,
+        ritmo portada ink + contenido paper. El violeta queda <strong>opcional</strong>, solo para
+        señales editoriales del método.
+      </p>
+    </div>
+
+    <div class="board">
+      <!-- TOKENS -->
+      <section class="panel">
+        <div class="panel-label">
+          <span>01 · Núcleo global</span>
+          <span class="live">Una sola paleta base para todos los proyectos</span>
+        </div>
+        <div class="tokens">
+          <h2>Ink · Paper · Mute</h2>
+          <p class="sub">El color de marca por defecto es la tipografía y el contraste — no un glow púrpura.</p>
+          <div class="swatches">
+            <div class="swatch"><div class="chip" style="background:#111"></div><div class="meta"><b>Ink</b><code>#111111</code></div></div>
+            <div class="swatch"><div class="chip" style="background:#1a1a1a"></div><div class="meta"><b>Ink soft</b><code>#1A1A1A</code></div></div>
+            <div class="swatch"><div class="chip" style="background:#fafafa;border-bottom:1px solid #eee"></div><div class="meta"><b>Paper</b><code>#FAFAFA</code></div></div>
+            <div class="swatch"><div class="chip" style="background:#fff;border-bottom:1px solid #eee"></div><div class="meta"><b>Surface</b><code>#FFFFFF</code></div></div>
+            <div class="swatch"><div class="chip" style="background:#737373"></div><div class="meta"><b>Mute</b><code>#737373</code></div></div>
+            <div class="swatch"><div class="chip" style="background:#e5e5e5"></div><div class="meta"><b>Line</b><code>#E5E5E5</code></div></div>
+          </div>
+          <div class="rules">
+            <div class="rule">
+              <h3>Sí</h3>
+              <ul>
+                <li>Primary button = negro</li>
+                <li>Radios 10–14px</li>
+                <li>Mucho aire, poca decoración</li>
+                <li>Serif solo en 1–2 palabras clave</li>
+                <li>Un CTA principal por vista</li>
+              </ul>
+            </div>
+            <div class="rule">
+              <h3>No</h3>
+              <ul>
+                <li>Purple glow / glass / grids “IA”</li>
+                <li>Copiar workbook a toda la web</li>
+                <li>Pastillas full-round en botones</li>
+                <li>Tres CTAs compitiendo</li>
+                <li>Un look distinto por proyecto</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARKETING -->
+      <section class="panel">
+        <div class="panel-label">
+          <span>02 · Artestudio (marketing)</span>
+          <span class="live">Hero ink + catálogo limpio · 1 CTA</span>
+        </div>
+        <div class="mkt-hero">
+          <div class="mkt-brand">Artestudio</div>
+          <h2>Servicios digitales para <em>crecer</em>.</h2>
+          <p>Web, contenido y ads. Compra packs o agenda un proyecto a medida.</p>
+          <div class="btn-row">
+            <span class="btn btn-light">Ver servicios</span>
+            <span class="link-quiet">Agendar reunión →</span>
+          </div>
+        </div>
+        <div class="mkt-body">
+          <div>
+            <h3>Elige una categoría</h3>
+            <p class="lead">Cuatro puertas. Sin metodologías compitiendo en la home.</p>
+            <div class="cats">
+              <div class="cat"><div><b>Web</b><br /><span>Landing, sitios, hosting</span></div><i>→</i></div>
+              <div class="cat"><div><b>Contenido</b><br /><span>Redes, video, Reels</span></div><i>→</i></div>
+              <div class="cat"><div><b>Ads</b><br /><span>Meta, Google, SEO</span></div><i>→</i></div>
+              <div class="cat"><div><b>Crecimiento</b><br /><span>Sistema a medida</span></div><i>→</i></div>
+            </div>
+          </div>
+          <div class="side-card">
+            <div class="kicker">Producto destacado</div>
+            <h4>Landing Express</h4>
+            <p>Setup $74.990 + hosting mensual. Compra directa desde la ficha.</p>
+            <span class="btn btn-dark">Comprar ahora</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT -->
+      <section class="panel">
+        <div class="panel-label">
+          <span>03 · Simple (producto)</span>
+          <span class="live">Misma base · UI densa · accent = ink (verticales aparte)</span>
+        </div>
+        <div class="app">
+          <aside class="sidebar">
+            <div class="logo">Simple</div>
+            <div class="nav-item active">Dashboard</div>
+            <div class="nav-item">Clientes</div>
+            <div class="nav-item">Ventas</div>
+            <div class="nav-item">Ajustes</div>
+          </aside>
+          <div class="app-main">
+            <div class="app-top">
+              <h3>Dashboard</h3>
+              <span class="btn btn-dark" style="height:36px;padding:0 14px;font-size:13px">Nueva venta</span>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="l">Ingresos</div><div class="v">$2.4M</div></div>
+              <div class="stat"><div class="l">Leads</div><div class="v">128</div></div>
+              <div class="stat"><div class="l">Conversión</div><div class="v">4.2%</div></div>
+            </div>
+            <div class="table">
+              <div class="table-row head"><span>Cliente</span><span>Canal</span><span>Monto</span><span>Estado</span></div>
+              <div class="table-row"><span>Cunatex</span><span>Meta Ads</span><span>$890.000</span><span class="badge ok">Pagado</span></div>
+              <div class="table-row"><span>Industrial Nano</span><span>Google</span><span>$420.000</span><span class="badge">Pendiente</span></div>
+              <div class="table-row"><span>Cliente demo</span><span>Orgánico</span><span>$74.990</span><span class="badge ok">Pagado</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERSONAL -->
+      <section class="panel">
+        <div class="panel-label">
+          <span>04 · Marca personal</span>
+          <span class="live">Sin glow · mismo ADN · más humano</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+          <div class="personal">
+            <div class="avatar">CS</div>
+            <h2>Chris Spencer</h2>
+            <p class="role">Creatividad · Tecnología · Negocios</p>
+            <p class="bio">Constructor de marcas y sistemas. Menos improvisar, más <em>construir</em>.</p>
+            <div class="chips">
+              <span class="chip-p">Artestudio</span>
+              <span class="chip-p">Método Construye</span>
+              <span class="chip-p">Simple</span>
+            </div>
+            <div class="links">
+              <div class="plink"><b>WhatsApp</b><span>→</span></div>
+              <div class="plink"><b>Proyectos</b><span>→</span></div>
+              <div class="plink"><b>Método Construye</b><span>→</span></div>
+            </div>
+          </div>
+          <div class="method-note" style="border-top:0;border-left:1px solid var(--line);align-content:start">
+            <div>
+              <h3>¿Y Construye?</h3>
+              <p>
+                Sigue siendo editorial, pero ya no impone su look a todo. Comparte ink/paper/Inter.
+                El acento violeta aparece solo en guías y señales “Hazlo ahora”.
+              </p>
+              <div class="accent-demo">
+                <b>Hazlo ahora</b>
+                Escribe el problema que resuelves en una frase.
+              </div>
+            </div>
+            <div>
+              <h3>Punto medio</h3>
+              <p>
+                Uber/Apple/SumUp = claridad monocroma.<br /><br />
+                Tu toque = serif en una palabra, botones negros semi-redondos, portadas ink, cero decoración tech.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">
+      Abre este archivo en el navegador · si te late, lo convertimos en tokens reales en los repos.
+    </p>
+  </div>
+</body>
+</html>

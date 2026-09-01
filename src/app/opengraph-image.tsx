@@ -1,15 +1,15 @@
 import { ImageResponse } from 'next/og'
- 
+
 export const runtime = 'edge'
- 
-export const alt = 'artestudio.cl - Agencia Digital'
+
+export const alt = 'Artestudio — Sistemas de crecimiento'
 export const size = {
   width: 1200,
   height: 630,
 }
- 
+
 export const contentType = 'image/png'
- 
+
 export default async function Image() {
   return new ImageResponse(
     (
@@ -19,57 +19,60 @@ export default async function Image() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#0f0f0f',
-          color: 'white',
+          backgroundColor: '#fafafa',
+          color: '#111111',
           fontFamily: 'sans-serif',
+          padding: 72,
         }}
       >
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 40,
+            gap: 16,
+            marginBottom: 28,
+            fontSize: 18,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: '#737373',
+            fontWeight: 600,
           }}
         >
-          <div
-            style={{
-              height: 80,
-              width: 80,
-              borderRadius: '50%',
-              backgroundColor: '#8325fd',
-              marginRight: 20,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 40,
-              fontWeight: 'bold',
-              color: 'white',
-            }}
-          >
-            a
-          </div>
-          <h1 style={{ fontSize: 80, fontWeight: 'bold', margin: 0, letterSpacing: '-0.05em' }}>
-            artestudio
-          </h1>
+          Artestudio
         </div>
         <div
           style={{
-            fontSize: 32,
-            color: '#a1a1aa',
-            backgroundColor: '#18181b',
-            padding: '10px 30px',
-            borderRadius: 50,
+            width: 48,
+            height: 3,
+            backgroundColor: '#111111',
+            marginBottom: 28,
+          }}
+        />
+        <h1
+          style={{
+            fontSize: 72,
+            fontWeight: 800,
+            margin: 0,
+            letterSpacing: '-0.04em',
+            lineHeight: 1.02,
+            maxWidth: 900,
           }}
         >
-          Transformación Digital y Creativa
-        </div>
+          Sistemas de crecimiento para empresas
+        </h1>
+        <p
+          style={{
+            fontSize: 28,
+            color: '#6b6b6b',
+            marginTop: 28,
+            maxWidth: 720,
+          }}
+        >
+          Estrategia, tecnología y operación — sin improvisar.
+        </p>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size },
   )
 }

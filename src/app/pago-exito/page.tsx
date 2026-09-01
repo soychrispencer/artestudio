@@ -95,23 +95,23 @@ function PagoExitoContent() {
           <Check size={40} className="text-white" />
         </div>
 
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 className="text-4xl font-bold text-ink mb-4">
           ¡Setup confirmado!
         </h1>
-        <p className="text-xl text-gray-600 dark:text-dark-text-secondary mb-4">
+        <p className="text-xl text-muted-light mb-4">
           Recibimos tu pago de {formatPrice(setupAmount)} por el diseño de tu landing.
         </p>
-        <p className="text-sm text-gray-500 dark:text-dark-text-secondary mb-10">
+        <p className="text-sm text-muted mb-10">
           Paso 1 de 2 completado. Falta activar el hosting mensual.
         </p>
 
         {hasMonthly && (
           <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 mb-10 text-left">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-ink mb-4 flex items-center gap-2">
               <CreditCard className="text-primary" />
               Paso 2: Activar hosting mensual
             </h2>
-            <p className="text-gray-700 dark:text-dark-text-secondary mb-6">
+            <p className="text-muted-light mb-6">
               Para mantener tu landing online ({formatPrice(monthlyAmount)}/mes — hosting, SSL, soporte y
               mantenimiento), activa la suscripción en MercadoPago:
             </p>
@@ -119,7 +119,7 @@ function PagoExitoContent() {
             <button
               onClick={handleActivateSubscription}
               disabled={isSubscribing}
-              className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all flex items-center justify-center gap-2 text-lg shadow-xl shadow-primary/20 disabled:opacity-50"
+              className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all flex items-center justify-center gap-2 text-lg  disabled:opacity-50"
             >
               {isSubscribing ? (
                 <>
@@ -133,7 +133,7 @@ function PagoExitoContent() {
 
             {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
 
-            <p className="text-xs text-gray-500 dark:text-dark-text-secondary mt-6 text-center leading-relaxed">
+            <p className="text-xs text-muted mt-6 text-center leading-relaxed">
               * El cobro mensual se activa al completar este paso. Permanencia mínima de 3 meses. Puedes
               gestionar la suscripción desde tu panel de Mercado Pago.
             </p>
@@ -152,7 +152,7 @@ function PagoExitoContent() {
           </a>
           <Link
             href="/"
-            className="px-6 py-3 border border-gray-200 dark:border-dark-bg-tertiary text-gray-700 dark:text-dark-text-secondary rounded-xl hover:bg-gray-50 dark:hover:bg-dark-bg-secondary transition-all"
+            className="px-6 py-3 border border-line text-muted-light rounded-xl hover:bg-field transition-all"
           >
             Volver al Inicio
           </Link>
@@ -164,7 +164,7 @@ function PagoExitoContent() {
 
 export default function PagoExitoPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-dark-bg">
+    <main className="min-h-screen bg-[var(--bg)]">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Cargando...</div>}>
         <PagoExitoContent />
       </Suspense>

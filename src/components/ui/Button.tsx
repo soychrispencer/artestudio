@@ -11,9 +11,9 @@ type ButtonProps = {
 }
 
 const variants = {
-  primary: 'btn-whatsapp rounded-full !shadow-[0_0_32px_rgba(131,37,253,0.25)]',
-  outline: 'btn-outline rounded-full',
-  ghost: 'text-muted-light hover:text-white',
+  primary: 'btn-whatsapp',
+  outline: 'btn-outline',
+  ghost: 'text-muted hover:text-[var(--text)]',
 }
 
 export function Button({

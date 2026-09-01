@@ -7,7 +7,7 @@ import { BrandInstagram, BrandWhatsapp, Mail } from 'tabler-icons-react'
 
 export function Footer() {
   const pathname = usePathname()
-  if (pathname.startsWith('/soychrispencer')) return null
+  if (pathname.startsWith('/soychrispencer') || pathname.startsWith('/construye')) return null
 
   return (
     <footer className="border-t border-[var(--border)] bg-surface">
@@ -22,7 +22,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Soluciones</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Servicios</p>
             <ul className="space-y-2">
               {FOOTER_SOLUTIONS.map((link) => (
                 <li key={link.label}>

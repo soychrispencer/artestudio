@@ -63,7 +63,7 @@ export function PlanCrece() {
                 }`}
               >
                 {plan.badge && (
-                  <span className="absolute left-5 top-5 z-10 rounded-full bg-gradient-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                  <span className="absolute left-5 top-5 z-10 rounded-full bg-[var(--ink)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
                     {plan.badge}
                   </span>
                 )}

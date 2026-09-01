@@ -1,5 +1,10 @@
 import coreWebVitals from 'eslint-config-next/core-web-vitals'
 
-const config = [...coreWebVitals]
+const config = [
+  ...coreWebVitals,
+  {
+    ignores: ['_social_qa/**'],
+  },
+]
 
 export default config

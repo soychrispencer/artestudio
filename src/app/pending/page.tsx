@@ -6,7 +6,7 @@ import { Clock, Home, BrandWhatsapp } from 'tabler-icons-react'
 
 export default function PendingPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg)] px-4">
       <motion.div
         className="text-center max-w-md"
         initial={{ opacity: 0, scale: 0.9 }}
@@ -14,16 +14,16 @@ export default function PendingPage() {
         transition={{ duration: 0.6 }}
       >
         <motion.div
-          className="w-20 h-20 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-6"
+          className="w-20 h-20 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-6"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
         >
-          <Clock className="w-10 h-10 text-amber-600 dark:text-amber-400" />
+          <Clock className="w-10 h-10 text-amber-600" />
         </motion.div>
 
         <motion.h1
-          className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-3"
+          className="text-4xl font-bold text-ink mb-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -32,7 +32,7 @@ export default function PendingPage() {
         </motion.h1>
 
         <motion.p
-          className="text-lg text-gray-600 dark:text-dark-text-secondary mb-8"
+          className="text-lg text-muted-light mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -48,7 +48,7 @@ export default function PendingPage() {
         >
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth flex-1"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark  transition-smooth flex-1"
           >
             <Home className="w-5 h-5" />
             Volver al Inicio

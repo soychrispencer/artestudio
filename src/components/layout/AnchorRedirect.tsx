@@ -10,8 +10,8 @@ export function AnchorRedirect({ hash }: { hash: string }) {
   }, [hash])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg">
-      <p className="text-sm text-gray-500">Redirigiendo…</p>
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg)]">
+      <p className="text-sm text-muted">Redirigiendo…</p>
     </div>
   )
 }

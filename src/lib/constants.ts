@@ -21,9 +21,10 @@ export const SOCIAL_LINKS = {
 
 // Colores de la marca
 export const BRAND_COLORS = {
-  primary: '#8325fd',
-  primaryDark: '#6b1dc9',
-  primaryLight: '#a855ff',
+  primary: '#111111',
+  primaryDark: '#000000',
+  primaryLight: '#525252',
+  editorial: '#3f3a8c',
   success: '#10b981',
   warning: '#f59e0b',
   error: '#ef4444',

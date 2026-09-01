@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Inter } from 'next/font/google'
+import { Instrument_Serif, Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
@@ -11,6 +11,13 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { CartProvider } from '@/components/cart/CartProvider'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const instrument = Instrument_Serif({
+  weight: '400',
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-instrument',
+  display: 'swap',
+})
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl'
 const gaId = process.env.NEXT_PUBLIC_GA_ID
@@ -81,12 +88,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0f0f0f',
+  themeColor: '#fafafa',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es" className={`${inter.variable} ${instrument.variable}`}>
       <body className="font-sans bg-bg text-[var(--text)] antialiased">
         {gaId ? (
           <>

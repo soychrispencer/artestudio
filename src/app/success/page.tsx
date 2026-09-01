@@ -90,7 +90,7 @@ function SuccessContent() {
         </motion.div>
 
         <motion.h1
-          className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-3"
+          className="text-4xl font-bold text-ink mb-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -99,7 +99,7 @@ function SuccessContent() {
         </motion.h1>
 
         <motion.p
-          className="text-lg text-gray-600 dark:text-dark-text-secondary mb-8"
+          className="text-lg text-muted-light mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -108,15 +108,15 @@ function SuccessContent() {
         </motion.p>
 
         <motion.div
-          className="bg-gray-50 dark:bg-dark-bg-secondary p-6 rounded-lg mb-8 border border-gray-200 dark:border-dark-bg-tertiary"
+          className="bg-field p-6 rounded-lg mb-8 border border-line"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <p className="text-sm text-gray-600 dark:text-dark-text-secondary mb-2">
+          <p className="text-sm text-muted-light mb-2">
             Pronto recibirás un email con los detalles de tu pedido
           </p>
-          <p className="text-xs text-gray-500 dark:text-dark-text-secondary">
+          <p className="text-xs text-muted">
             Guarda tu número de transacción para futuras referencias
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ function SuccessContent() {
         >
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark hover:shadow-lg transition-smooth flex-1"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark  transition-smooth flex-1"
           >
             <Home className="w-5 h-5" />
             Volver al Inicio
@@ -138,7 +138,7 @@ function SuccessContent() {
             href="https://mail.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-dark-bg-secondary text-gray-900 dark:text-dark-text rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-dark-bg-tertiary transition-smooth flex-1"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-field text-ink rounded-xl font-semibold hover:bg-line transition-smooth flex-1"
           >
             <Mail className="w-5 h-5" />
             Ver Email
@@ -146,7 +146,7 @@ function SuccessContent() {
         </motion.div>
 
         <motion.p
-          className="text-sm text-gray-500 dark:text-dark-text-secondary mt-6"
+          className="text-sm text-muted mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
@@ -167,7 +167,7 @@ function SuccessContent() {
 
 export default function SuccessPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-bg px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg)] px-4">
       <Suspense fallback={<div>Cargando...</div>}>
         <SuccessContent />
       </Suspense>

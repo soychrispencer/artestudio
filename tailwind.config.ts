@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#8325fd',
-        'primary-dark': '#6b1dc9',
-        'primary-light': '#a855ff',
+        primary: 'var(--ink)',
+        'primary-dark': '#000000',
+        'primary-light': 'var(--muted-light)',
         bg: 'var(--bg)',
         surface: 'var(--surface)',
         card: 'var(--card)',
@@ -20,27 +20,28 @@ const config: Config = {
         'accent-2': 'var(--accent-2)',
         muted: 'var(--muted)',
         'muted-light': 'var(--muted-light)',
-        dark: {
-          bg: '#0f0f0f',
-          'bg-secondary': '#1a1a1a',
-          'bg-tertiary': '#2a2a2a',
-          text: '#ffffff',
-          'text-secondary': '#b0b0b0',
-        },
+        ink: 'var(--ink)',
+        paper: 'var(--paper)',
+        field: 'var(--field)',
+        line: 'var(--border)',
+        'line-strong': 'var(--line-strong)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-instrument)', 'Georgia', 'serif'],
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #8325fd 0%, #a855ff 100%)',
+        'gradient-primary': 'linear-gradient(135deg, var(--ink) 0%, #404040 100%)',
       },
       borderColor: {
         DEFAULT: 'var(--border)',
         accent: 'var(--border-accent)',
+        line: 'var(--border)',
+        'line-strong': 'var(--line-strong)',
       },
       boxShadow: {
-        soft: '0 2px 8px rgba(0, 0, 0, 0.04)',
-        medium: '0 4px 16px rgba(0, 0, 0, 0.08)',
+        soft: '0 2px 8px rgba(17, 17, 17, 0.04)',
+        medium: '0 8px 24px rgba(17, 17, 17, 0.06)',
       },
       maxWidth: {
         site: '72rem',

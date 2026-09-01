@@ -2,7 +2,6 @@
 
 import { CONTACT_INFO } from '@/lib/constants'
 import { MAIN_NAV, SECTION_IDS, sectionHref } from '@/lib/navigation'
-import { ThemeToggle } from '../ui/ThemeToggle'
 import { useState, useEffect, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 import { BrandWhatsapp, Menu2, ShoppingCart, X } from 'tabler-icons-react'
@@ -65,15 +64,15 @@ export function Header() {
     `text-sm font-medium transition-colors ${
       isHome && activeId === id
         ? 'text-primary'
-        : 'text-gray-600 dark:text-dark-text-secondary hover:text-gray-900 dark:hover:text-white'
+        : 'text-muted-light hover:text-ink'
     }`
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-200/80 dark:border-white/10'
-          : 'bg-white/70 dark:bg-dark-bg/70 backdrop-blur-sm border-b border-transparent'
+          ? 'bg-surface/90 backdrop-blur-md border-b border-line/80'
+          : 'bg-surface/70 backdrop-blur-sm border-b border-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +88,7 @@ export function Header() {
               alt="artestudio"
               height={28}
               width={110}
-              className="h-7 w-auto object-contain block dark:hidden"
+              className="h-7 w-auto object-contain block"
               priority
             />
             <Image
@@ -97,7 +96,7 @@ export function Header() {
               alt="artestudio"
               height={28}
               width={110}
-              className="h-7 w-auto object-contain hidden dark:block"
+              className="h-7 w-auto object-contain hidden"
               priority
             />
           </button>
@@ -116,14 +115,13 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle isScrolled={scrolled} />
             <button
               type="button"
               onClick={() => {
                 trackEvent('header_cart_click')
                 openCart()
               }}
-              className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-white/10 text-gray-700 dark:text-dark-text-secondary hover:border-primary/40 transition-colors"
+              className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line text-muted-light hover:border-primary/40 transition-colors"
               aria-label="Carrito"
             >
               <ShoppingCart className="w-4 h-4" />
@@ -146,7 +144,7 @@ export function Header() {
             </button>
             <button
               type="button"
-              className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-white/10"
+              className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? 'Cerrar menú' : 'Menú'}
               aria-expanded={menuOpen}
@@ -157,7 +155,7 @@ export function Header() {
         </div>
 
         {menuOpen && (
-          <nav className="md:hidden pb-4 pt-1 flex flex-col gap-1 border-t border-gray-100 dark:border-dark-bg-tertiary mt-1">
+          <nav className="md:hidden pb-4 pt-1 flex flex-col gap-1 border-t border-line mt-1">
             {MAIN_NAV.map((item) => (
               <button
                 key={item.id}
@@ -166,7 +164,7 @@ export function Header() {
                 className={`text-left px-3 py-2.5 rounded-lg text-sm font-medium ${
                   isHome && activeId === item.id
                     ? 'bg-primary/10 text-primary'
-                    : 'text-gray-700 dark:text-dark-text-secondary'
+                    : 'text-muted-light'
                 }`}
               >
                 {item.label}

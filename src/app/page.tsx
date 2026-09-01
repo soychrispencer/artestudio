@@ -1,22 +1,16 @@
 import { Hero } from '@/components/sections/Hero'
-import { Metodologia } from '@/components/sections/Metodologia'
-import { Problemas } from '@/components/sections/Problemas'
-import { Soluciones } from '@/components/sections/Soluciones'
-import { PlanesSuscripcion } from '@/components/sections/PlanesSuscripcion'
-import { ServiciosIndividuales } from '@/components/sections/ServiciosIndividuales'
-import { FAQ } from '@/components/sections/FAQ'
+import { HomeServicios } from '@/components/sections/HomeServicios'
+import { HomeAMedida } from '@/components/sections/HomeAMedida'
+import { HomeConstruye } from '@/components/sections/HomeConstruye'
 import { CTAFinal } from '@/components/sections/CTAFinal'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Metodologia />
-      <Problemas />
-      <Soluciones />
-      <PlanesSuscripcion />
-      <ServiciosIndividuales />
-      <FAQ />
+      <HomeServicios />
+      <HomeAMedida />
+      <HomeConstruye />
       <CTAFinal />
     </>
   )

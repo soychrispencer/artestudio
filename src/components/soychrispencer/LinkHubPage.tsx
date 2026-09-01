@@ -125,15 +125,11 @@ export function SoyChrisSpencerHub() {
 
   return (
     <>
-      <div className={`${styles.page} text-white`} data-soychrispencer-root>
-        <div className={styles.grid} />
-        <div className={`${styles.glow} ${styles.glowTop}`} />
-        <div className={`${styles.glow} ${styles.glowBottom}`} />
-
+      <div className={`${styles.page} text-[var(--text)]`} data-soychrispencer-root>
         <div className="relative mx-auto w-full max-w-6xl px-4 pb-24 pt-24 sm:px-6 lg:px-8">
           <motion.section
             id="home"
-            className="grid gap-8 rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:p-10"
+            className="grid gap-8 rounded-[14px] border border-[var(--border)] bg-surface p-6 sm:p-8 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:p-10"
             initial="hidden"
             animate="visible"
             variants={{
@@ -152,13 +148,13 @@ export function SoyChrisSpencerHub() {
                 <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
                   {soychrispencerConfig.profile.name}
                 </h1>
-                <p className="text-base font-medium text-primary-light sm:text-lg">
+                <p className="text-base font-medium text-muted sm:text-lg">
                   {soychrispencerConfig.profile.handle}
                 </p>
-                <p className="text-xl font-medium text-white/90 sm:text-2xl">
+                <p className="text-xl font-medium text-[var(--text)] sm:text-2xl">
                   {soychrispencerConfig.hero.headline}
                 </p>
-                <p className="text-base text-white/70 sm:text-lg">
+                <p className="text-base text-muted sm:text-lg">
                   {soychrispencerConfig.hero.subheadline}
                 </p>
               </div>
@@ -167,7 +163,7 @@ export function SoyChrisSpencerHub() {
                 {soychrispencerConfig.hero.chips.map((chip) => (
                   <span
                     key={chip}
-                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/80"
+                    className="rounded-full border border-[var(--border)] bg-[var(--field)] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--muted-light)]"
                   >
                     {chip}
                   </span>
@@ -179,20 +175,20 @@ export function SoyChrisSpencerHub() {
                   href={soychrispencerConfig.hero.ctas.whatsapp.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-[10px] bg-[var(--ink)] px-5 py-3 text-sm font-semibold text-[var(--paper)] transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   <BrandIcon path={siWhatsapp.path} className="h-4 w-4" />
                   {soychrispencerConfig.hero.ctas.whatsapp.label}
                 </a>
                 <a
                   href={soychrispencerConfig.hero.ctas.projects.href}
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-light/60 hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:border-[var(--ink)] hover:bg-[var(--field)]"
                 >
                   {soychrispencerConfig.hero.ctas.projects.label}
                 </a>
                 <a
                   href={soychrispencerConfig.hero.ctas.email.href}
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-primary-light/60 hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-5 py-3 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:border-[var(--ink)] hover:bg-[var(--field)]"
                 >
                   <Mail className="h-4 w-4" />
                   {soychrispencerConfig.hero.ctas.email.label}
@@ -200,9 +196,9 @@ export function SoyChrisSpencerHub() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp} className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+            <motion.div variants={fadeUp} className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
               <div className="space-y-4">
-                <div className={`${styles.avatarRing} relative mx-auto h-44 w-44 overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-primary/40 to-primary-light/20`}>
+                <div className={`${styles.avatarRing} relative mx-auto h-44 w-44 overflow-hidden rounded-full border border-[var(--border)] bg-[var(--field)]`}>
                   <Image
                     src={avatarSrc}
                     alt={soychrispencerConfig.profile.avatar.alt}
@@ -215,13 +211,13 @@ export function SoyChrisSpencerHub() {
                   />
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/55">
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--field)] px-4 py-3">
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted">
                     Perfil profesional
                   </p>
                   <div className="mt-2 space-y-2">
                     {soychrispencerConfig.professionalSummary.map((line) => (
-                      <p key={line} className="text-sm text-white/85">
+                      <p key={line} className="text-sm text-[var(--text)]">
                         {line}
                       </p>
                     ))}
@@ -240,11 +236,11 @@ export function SoyChrisSpencerHub() {
             variants={fadeUp}
           >
             <div className="mb-8 space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-light">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                 Que hago hoy
               </p>
               <h2 className="text-3xl font-bold sm:text-4xl">Proyectos y plataformas</h2>
-              <p className="max-w-2xl text-white/70">
+              <p className="max-w-2xl text-muted">
                 Desarrollo marcas, productos y sistemas comerciales enfocados en resultados reales.
               </p>
             </div>
@@ -252,7 +248,7 @@ export function SoyChrisSpencerHub() {
               {soychrispencerConfig.projects.map((project, index) => (
                 <motion.article
                   key={project.title}
-                  className={`${styles.glassCard} ${styles.lift} rounded-3xl p-6`}
+                  className={`${styles.surfaceCard} ${styles.lift} rounded-[14px] p-6`}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
@@ -261,13 +257,13 @@ export function SoyChrisSpencerHub() {
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <h3 className="text-2xl font-semibold">{project.title}</h3>
-                      <p className="text-sm leading-relaxed text-white/75">{project.description}</p>
+                      <p className="text-sm leading-relaxed text-muted">{project.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <span
                           key={`${project.title}-${tag}`}
-                          className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-white/70"
+                          className="rounded-full border border-[var(--border)] bg-[var(--field)] px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-muted"
                         >
                           {tag}
                         </span>
@@ -278,7 +274,7 @@ export function SoyChrisSpencerHub() {
                         href={project.website}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-white/20"
+                        className="inline-flex items-center gap-2 rounded-[10px] bg-[var(--field)] px-4 py-2.5 text-sm font-semibold text-[var(--text)] transition-colors duration-300 hover:bg-[var(--card-hover)]"
                       >
                         Ver
                         <ExternalLink className="h-4 w-4" />
@@ -288,7 +284,7 @@ export function SoyChrisSpencerHub() {
                           href={project.instagram}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-primary-light/45 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary-light transition-colors duration-300 hover:bg-primary/20"
+                          className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-4 py-2.5 text-sm font-semibold text-muted transition-colors duration-300 hover:bg-[var(--card-hover)]"
                         >
                           <BrandIcon path={siInstagram.path} className="h-4 w-4" />
                           Instagram
@@ -310,11 +306,11 @@ export function SoyChrisSpencerHub() {
             variants={fadeUp}
           >
             <div className="mb-8 space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-light">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                 Trayectoria
               </p>
               <h2 className="text-3xl font-bold sm:text-4xl">Resumen profesional y experiencia reciente</h2>
-              <p className="max-w-3xl text-white/70">
+              <p className="max-w-3xl text-muted">
                 Aqui ves lo principal y lo mas reciente. El detalle completo esta disponible en el boton Ver trayectoria completa.
               </p>
             </div>
@@ -322,32 +318,32 @@ export function SoyChrisSpencerHub() {
             <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
               <div className="grid gap-4 sm:grid-cols-2">
                 {trajectoryPreview.map((item) => (
-                  <article key={`${item.period}-${item.title}`} className={`${styles.glassCard} ${styles.lift} rounded-2xl p-5`}>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">{item.period}</p>
-                    <h3 className="mt-2 text-base font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-white/70">{item.subtitle}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-white/70">{item.summary}</p>
+                  <article key={`${item.period}-${item.title}`} className={`${styles.surfaceCard} ${styles.lift} rounded-2xl p-5`}>
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">{item.period}</p>
+                    <h3 className="mt-2 text-base font-semibold text-[var(--text)]">{item.title}</h3>
+                    <p className="mt-1 text-sm text-muted">{item.subtitle}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{item.summary}</p>
                   </article>
                 ))}
               </div>
 
               <div className="space-y-5">
-                <div className={`${styles.glassCard} rounded-3xl p-6`}>
+                <div className={`${styles.surfaceCard} rounded-[14px] p-6`}>
                   <h3 className="text-xl font-semibold">Lo principal hoy</h3>
-                  <ul className="mt-4 space-y-2 text-sm text-white/75">
+                  <ul className="mt-4 space-y-2 text-sm text-muted">
                     <li>• Fundador de Artestudio y constructor del ecosistema Simple.</li>
                     <li>• Enfoque en asesoria, desarrollo y crecimiento de proyectos.</li>
                     <li>• Experiencia combinada en creatividad, negocio e inmobiliario.</li>
                   </ul>
                 </div>
 
-                <div className={`${styles.glassCard} rounded-3xl p-6`}>
+                <div className={`${styles.surfaceCard} rounded-[14px] p-6`}>
                   <h3 className="text-xl font-semibold">Habilidades clave</h3>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {soychrispencerConfig.skills.slice(0, 8).map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white/80"
+                        className="rounded-full border border-[var(--border)] bg-[var(--field)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--muted-light)]"
                       >
                         {skill}
                       </span>
@@ -358,7 +354,7 @@ export function SoyChrisSpencerHub() {
                 <button
                   type="button"
                   onClick={() => setIsTrajectoryOpen(true)}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary-light/45 bg-primary/10 px-5 py-3 text-sm font-semibold text-primary-light transition-colors duration-300 hover:bg-primary/20"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-5 py-3 text-sm font-semibold text-muted transition-colors duration-300 hover:bg-[var(--card-hover)]"
                 >
                   Ver trayectoria completa
                   <ExternalLink className="h-4 w-4" />
@@ -376,7 +372,7 @@ export function SoyChrisSpencerHub() {
             variants={fadeUp}
           >
             <div className="mb-8 space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-light">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                 Redes personales
               </p>
               <h2 className="text-3xl font-bold sm:text-4xl">Conectemos donde quieras</h2>
@@ -393,15 +389,15 @@ export function SoyChrisSpencerHub() {
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/20 text-primary-light">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-[var(--field)] text-muted">
                         <BrandIcon path={socialIconMap[social.icon].path} className="h-5 w-5" />
                       </span>
                       <div>
-                        <p className="text-sm font-semibold text-white">{social.label}</p>
-                        <p className="text-xs text-white/65">{social.handle}</p>
+                        <p className="text-sm font-semibold text-[var(--text)]">{social.label}</p>
+                        <p className="text-xs text-muted">{social.handle}</p>
                       </div>
                     </div>
-                    <ExternalLink className="h-4 w-4 text-white/60" />
+                    <ExternalLink className="h-4 w-4 text-muted" />
                   </div>
                 </a>
               ))}
@@ -411,7 +407,7 @@ export function SoyChrisSpencerHub() {
               <button
                 type="button"
                 onClick={handleCopy}
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-4 py-2.5 text-sm font-semibold text-[var(--text)] transition-colors duration-300 hover:bg-[var(--field)]"
               >
                 {copied ? (
                   <>
@@ -436,15 +432,15 @@ export function SoyChrisSpencerHub() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
           >
-            <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-8`}>
+            <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-8`}>
               <div className="space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-light">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                   Contacto
                 </p>
                 <h2 className="text-3xl font-bold sm:text-4xl">
                   Si tienes una idea, hablemos.
                 </h2>
-                <p className="max-w-2xl text-white/75">
+                <p className="max-w-2xl text-muted">
                   Te puedo ayudar a definir, construir y escalar tu proyecto. El canal mas directo es WhatsApp.
                 </p>
               </div>
@@ -455,7 +451,7 @@ export function SoyChrisSpencerHub() {
                     href={action.href}
                     target={action.href.startsWith('mailto:') ? undefined : '_blank'}
                     rel={action.href.startsWith('mailto:') ? undefined : 'noreferrer'}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07] px-4 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-primary-light/60 hover:bg-white/[0.12]"
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-[var(--border)] bg-[var(--field)] px-4 py-3 text-sm font-semibold text-[var(--text)] transition-colors duration-300 hover:border-[var(--ink)] hover:bg-[var(--field)]"
                   >
                     {action.icon === 'mail' ? (
                       <Mail className="h-4 w-4" />
@@ -482,12 +478,12 @@ export function SoyChrisSpencerHub() {
             <button
               type="button"
               onClick={() => setIsTrajectoryOpen(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
               aria-label="Cerrar trayectoria"
             />
 
             <motion.div
-              className="relative z-10 w-full max-w-6xl rounded-3xl border border-white/15 bg-[#090415]/95 p-4 shadow-2xl sm:p-6"
+              className="relative z-10 w-full max-w-6xl rounded-[14px] border border-[var(--border)] bg-surface p-4 shadow-2xl sm:p-6"
               initial={{ opacity: 0, y: 22, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 22, scale: 0.98 }}
@@ -496,15 +492,15 @@ export function SoyChrisSpencerHub() {
               aria-modal="true"
               aria-label="Trayectoria completa"
             >
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+              <div className="flex items-start justify-between gap-4 border-b border-[var(--border)] pb-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-light">CV publico</p>
-                  <h3 className="mt-1 text-2xl font-bold text-white">Trayectoria completa</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">CV publico</p>
+                  <h3 className="mt-1 text-2xl font-bold text-[var(--text)]">Trayectoria completa</h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsTrajectoryOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/5 text-white transition-colors duration-300 hover:bg-white/10"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-[var(--border)] bg-[var(--field)] text-[var(--text)] transition-colors duration-300 hover:bg-[var(--field)]"
                   aria-label="Cerrar"
                 >
                   <X className="h-5 w-5" />
@@ -513,7 +509,7 @@ export function SoyChrisSpencerHub() {
 
               <div className="custom-scrollbar mt-4 max-h-[calc(88vh-6.5rem)] overflow-y-auto pr-1 sm:pr-2">
                 <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
-                  <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                  <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                     <h4 className="mb-5 text-xl font-semibold">Timeline cronologica</h4>
                     <div className="relative pl-7">
                       <div className={styles.timelineLine} />
@@ -521,14 +517,14 @@ export function SoyChrisSpencerHub() {
                         {soychrispencerConfig.timeline.map((item) => (
                           <article key={`${item.period}-${item.title}`} className="relative">
                             <span className={`${styles.timelineBullet} absolute -left-7 top-1.5`} />
-                            <p className="text-xs font-semibold uppercase tracking-[0.17em] text-primary-light">
+                            <p className="text-xs font-semibold uppercase tracking-[0.17em] text-muted">
                               {item.period}
                             </p>
-                            <h4 className="mt-2 text-lg font-semibold text-white">{item.title}</h4>
-                            <p className="text-sm text-white/70">{item.subtitle}</p>
-                            <p className="mt-2 text-sm leading-relaxed text-white/70">{item.summary}</p>
+                            <h4 className="mt-2 text-lg font-semibold text-[var(--text)]">{item.title}</h4>
+                            <p className="text-sm text-muted">{item.subtitle}</p>
+                            <p className="mt-2 text-sm leading-relaxed text-muted">{item.summary}</p>
                             {item.bullets?.length ? (
-                              <ul className="mt-2 space-y-1 text-sm text-white/70">
+                              <ul className="mt-2 space-y-1 text-sm text-muted">
                                 {item.bullets.map((bullet) => (
                                   <li key={bullet}>• {bullet}</li>
                                 ))}
@@ -541,64 +537,64 @@ export function SoyChrisSpencerHub() {
                   </div>
 
                   <div className="space-y-6">
-                    <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                    <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                       <h4 className="text-xl font-semibold">Formacion academica</h4>
                       <div className="mt-4 space-y-4">
                         {soychrispencerConfig.education.map((item) => (
-                          <article key={`${item.period}-${item.institution}`} className="space-y-1 border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                            <p className="text-xs uppercase tracking-[0.14em] text-primary-light">{item.period}</p>
-                            <p className="text-sm font-semibold text-white">{item.institution}</p>
-                            <p className="text-sm text-white/80">{item.program}</p>
-                            <p className="text-sm text-white/65">{item.details}</p>
+                          <article key={`${item.period}-${item.institution}`} className="space-y-1 border-b border-[var(--border)] pb-4 last:border-b-0 last:pb-0">
+                            <p className="text-xs uppercase tracking-[0.14em] text-muted">{item.period}</p>
+                            <p className="text-sm font-semibold text-[var(--text)]">{item.institution}</p>
+                            <p className="text-sm text-[var(--muted-light)]">{item.program}</p>
+                            <p className="text-sm text-muted">{item.details}</p>
                           </article>
                         ))}
                       </div>
                     </div>
 
-                    <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                    <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                       <h4 className="text-xl font-semibold">Emprendimientos</h4>
                       <div className="mt-4 space-y-4">
                         {soychrispencerConfig.ventures.map((item) => (
-                          <article key={`${item.period}-${item.name}`} className="space-y-1 border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                            <p className="text-xs uppercase tracking-[0.14em] text-primary-light">{item.period}</p>
-                            <p className="text-sm font-semibold text-white">{item.name}</p>
-                            <p className="text-sm text-white/80">{item.role}</p>
-                            <p className="text-sm text-white/65">{item.summary}</p>
+                          <article key={`${item.period}-${item.name}`} className="space-y-1 border-b border-[var(--border)] pb-4 last:border-b-0 last:pb-0">
+                            <p className="text-xs uppercase tracking-[0.14em] text-muted">{item.period}</p>
+                            <p className="text-sm font-semibold text-[var(--text)]">{item.name}</p>
+                            <p className="text-sm text-[var(--muted-light)]">{item.role}</p>
+                            <p className="text-sm text-muted">{item.summary}</p>
                           </article>
                         ))}
                       </div>
                     </div>
 
-                    <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                    <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                       <h4 className="text-xl font-semibold">Experiencia inmobiliaria</h4>
                       <div className="mt-4 space-y-4">
                         {soychrispencerConfig.realEstate.map((item) => (
-                          <article key={`${item.period}-${item.company}`} className="space-y-1 border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                            <p className="text-xs uppercase tracking-[0.14em] text-primary-light">{item.period}</p>
-                            <p className="text-sm font-semibold text-white">{item.company}</p>
-                            <p className="text-sm text-white/80">{item.role}</p>
-                            <p className="text-sm text-white/65">{item.summary}</p>
+                          <article key={`${item.period}-${item.company}`} className="space-y-1 border-b border-[var(--border)] pb-4 last:border-b-0 last:pb-0">
+                            <p className="text-xs uppercase tracking-[0.14em] text-muted">{item.period}</p>
+                            <p className="text-sm font-semibold text-[var(--text)]">{item.company}</p>
+                            <p className="text-sm text-[var(--muted-light)]">{item.role}</p>
+                            <p className="text-sm text-muted">{item.summary}</p>
                           </article>
                         ))}
                       </div>
                     </div>
 
-                    <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                    <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                       <h4 className="text-xl font-semibold">Trayectoria artistica</h4>
-                      <ul className="mt-4 space-y-2 text-sm text-white/70">
+                      <ul className="mt-4 space-y-2 text-sm text-muted">
                         {soychrispencerConfig.musicHighlights.map((item) => (
                           <li key={item}>• {item}</li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className={`${styles.glassCard} rounded-3xl p-6 sm:p-7`}>
+                    <div className={`${styles.surfaceCard} rounded-[14px] p-6 sm:p-7`}>
                       <h4 className="text-xl font-semibold">Habilidades clave</h4>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {soychrispencerConfig.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-white/80"
+                            className="rounded-full border border-[var(--border)] bg-[var(--field)] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--muted-light)]"
                           >
                             {skill}
                           </span>

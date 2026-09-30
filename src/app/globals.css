@@ -8,27 +8,27 @@
    Núcleo: ink / paper / mute. Accent editorial opcional. */
 
 :root {
-  color-scheme: light;
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --card: #ffffff;
-  --card-hover: #f5f5f5;
-  --ink: #111111;
-  --ink-soft: #1a1a1a;
-  --paper: #fafafa;
-  --field: #f5f5f5;
-  --text: #111111;
-  --muted: #737373;
-  --muted-light: #525252;
-  --border: #e5e5e5;
-  --line-strong: #d4d4d4;
-  /* Accent editorial (Construye / señales raras) — no es la marca UI */
-  --accent: #3f3a8c;
-  --accent-dim: #f3f2f8;
-  --accent-muted: #8b86c4;
-  --accent-2: #a3a3a3;
-  --accent-2-dim: rgba(17, 17, 17, 0.06);
-  --border-accent: rgba(17, 17, 17, 0.2);
+  color-scheme: dark;
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --card: #1a1a1a;
+  --card-hover: #222222;
+  --ink: #ffffff;
+  --ink-soft: #e5e5e5;
+  --paper: #0f0f0f;
+  --field: #171717;
+  --text: #ffffff;
+  --muted: #b0b0b0;
+  --muted-light: #d0d0d0;
+  --border: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.24);
+
+  --accent: #8325fd;
+  --accent-dim: rgba(131, 37, 253, 0.14);
+  --accent-muted: #c49aff;
+  --accent-2: #a855ff;
+  --accent-2-dim: rgba(168, 85, 255, 0.14);
+  --border-accent: rgba(131, 37, 253, 0.5);
 }
 
 html {
@@ -254,4 +254,5 @@ h6 {
 .scrim-paper {
   background: color-mix(in srgb, var(--paper) 92%, transparent);
 }
+
 

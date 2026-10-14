@@ -11,7 +11,7 @@ export const CONTACT = {
   behance: 'https://www.behance.net/soychrispencer',
 } as const
 
-function waLink(text: string) {
+export function waLink(text: string) {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`
 }
 
@@ -47,6 +47,7 @@ export const SECTION_IDS = {
   trabajo: 'trabajo',
   servicios: 'servicios-home',
   problemas: 'problemas',
+  diagnostico: 'diagnostico',
   solucion: 'solucion',
   metodologia: 'metodologia',
   puertas: 'puertas',
@@ -62,7 +63,9 @@ export const SECTION_IDS = {
 } as const
 
 export const NAV_LINKS = [
+  { label: 'Trabajos', href: `/#${SECTION_IDS.trabajo}` },
   { label: 'Servicios', href: '/servicios' },
+  { label: 'Diagnóstico', href: `/#${SECTION_IDS.diagnostico}` },
   { label: 'Contacto', href: `/#${SECTION_IDS.contacto}` },
 ] as const
 
@@ -149,10 +152,10 @@ export const HOME_HUB = {
 } as const
 
 export const HOME_WORKS = {
-  label: 'Trabajos',
-  title: 'Piezas reales, publicadas.',
+  label: 'Trabajos & Sistemas',
+  title: 'Resultados reales, sistemas funcionando.',
   intro:
-    'Selección visual del estudio. El portafolio completo —casos, marcas y piezas— está en Behance.',
+    'No diseñamos páginas para que se queden quietas. Construimos sistemas que resuelven fricciones comerciales y generan clientes calificados.',
   featuredTag: 'Portafolio',
   featuredTitle: 'Trabajo publicado en Behance',
   moreLabel: 'Ver portafolio en Behance',
@@ -187,6 +190,177 @@ export const HOME_WORKS = {
       image: '/images/services/redes-sociales.png',
     },
   ],
+} as const
+
+export interface CaseStudyItem {
+  id: string
+  client: string
+  category: string
+  metric: string
+  metricLabel: string
+  url?: string
+  urlLabel?: string
+  image: string
+  antes: string
+  sistema: string
+  resultado: string
+  stack: string[]
+}
+
+export const HOME_CASES: CaseStudyItem[] = [
+  {
+    id: 'quiral',
+    client: 'Quiral Proyectos',
+    category: 'Arquitectura, Paisajismo y Obras',
+    metric: '100%',
+    metricLabel: 'Prospección calificada',
+    url: 'https://quiralproyectos.cl',
+    urlLabel: 'quiralproyectos.cl',
+    image: '/images/casos/quiral.png',
+    antes:
+      'Consultas informales por mensaje directo y cotizaciones manuales sin filtro previo de metraje, presupuesto ni zona geográfica.',
+    sistema:
+      'Landing page de alta fidelidad en Next.js con diseño editorial boutique, calificador por tipo de proyecto y enrutamiento automático a WhatsApp.',
+    resultado:
+      'Filtrado del 100% de consultas antes del primer contacto, eliminación de cotizaciones desalineadas y percepción de constructora boutique.',
+    stack: ['Next.js 16', 'Tailwind CSS', 'Framer Motion', 'WhatsApp Webhook'],
+  },
+  {
+    id: 'tradicional360',
+    client: 'Tradicional360',
+    category: 'Consultoría Comercial & Retail B2B',
+    metric: '2 min',
+    metricLabel: 'Diagnóstico comercial previo',
+    url: 'https://tradicional360.cl',
+    urlLabel: 'tradicional360.cl',
+    image: '/images/casos/tradicional360.png',
+    antes:
+      'Ventas consultivas complejas con reuniones exploratorias largas y prospectos sin noción clara de su madurez comercial.',
+    sistema:
+      'Web de conversión con radar interactivo de madurez comercial, selector de dolor empresarial y captura directa a Google Workspace.',
+    resultado:
+      'Los clientes agendan la reunión conociendo su diagnóstico y brecha comercial, acelerando drásticamente el ciclo de cierre.',
+    stack: ['Next.js 16', 'Radar Interactivo', 'Google Workspace', 'TypeScript'],
+  },
+  {
+    id: 'atria',
+    client: 'Atria Abogadas',
+    category: 'Estudio Jurídico Especializado',
+    metric: '1er día',
+    metricLabel: 'Autoridad y confianza',
+    url: 'https://atriabogadas.cl',
+    urlLabel: 'atriabogadas.cl',
+    image: '/images/casos/atria.png',
+    antes:
+      'Dependencia de recomendaciones esporádicas y ausencia de un canal estructurado que transmitiera el rigor técnico del estudio.',
+    sistema:
+      'Identidad visual editorial sobria (Cormorant/Inter), sistema de contenido estratégico por lotes y embudo de primera sesión con guion comercial.',
+    resultado:
+      'Posicionamiento institucional sólido, clientes informados antes de la reunión y flujo ordenado de consultas jurídicas.',
+    stack: ['Brand System', 'Estrategia de Contenido', 'Embudo Comercial'],
+  },
+  {
+    id: 'simple',
+    client: 'Simple Plataforma',
+    category: 'SaaS & Gestión de Citas',
+    metric: '24/7',
+    metricLabel: 'Operación automatizada',
+    url: 'https://simpleplataforma.app',
+    urlLabel: 'simpleplataforma.app',
+    image: '/images/proceso-web-soporte.png',
+    antes:
+      'Horas perdidas coordinando citas por WhatsApp, cobros demorados y cancelaciones de última hora sin abono.',
+    sistema:
+      'Plataforma SaaS con pasarela de cobro integrada, confirmación inmediata y recordatorios automáticos sincronizados al calendario.',
+    resultado:
+      'Cobro garantizado y agenda completa gestionada en piloto automático sin intervención humana.',
+    stack: ['SaaS Fullstack', 'Pasarela de Pagos', 'Automatización de Citas'],
+  },
+]
+
+export interface DiagnosticStage {
+  id: string
+  letter: string
+  number: string
+  title: string
+  headline: string
+  sintoma: string
+  queConstruir: string
+  solucionLink: string
+  solucionLabel: string
+  waText: string
+}
+
+export const HOME_DIAGNOSTICO = {
+  label: 'Diagnóstico comercial',
+  title: '¿En qué etapa está tu empresa',
+  titleAccent: 'hoy?',
+  intro:
+    'Antes de contratar una web, hacer publicidad o comprar herramientas, necesitas saber exactamente qué pieza te falta construir.',
+  stages: [
+    {
+      id: 'idea',
+      letter: 'A',
+      number: '01',
+      title: 'Idea / Validación',
+      headline: 'Hay intención real. Todavía faltan fundamentos.',
+      sintoma:
+        'Tienes el conocimiento o producto, pero la oferta no está validada, no hay precios claros ni flujo predecible de personas interesadas.',
+      queConstruir:
+        'Una Landing Express con propuesta de valor clara, mensaje directo y botón a WhatsApp para validar tracción real en pocos días.',
+      solucionLink: '/servicios/landing-express',
+      solucionLabel: 'Ver Landing Express ($74.990)',
+      waText:
+        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [A: Idea]. Me interesa validar mi oferta con una Landing.',
+    },
+    {
+      id: 'fundamentos',
+      letter: 'B',
+      number: '02',
+      title: 'Fundamentos',
+      headline: 'Hay movimiento, pero casi todo depende de ti.',
+      sintoma:
+        'Tienes clientes y cobras, pero apagas incendios todo el día. Cotizaciones a pulso, publicaciones desordenadas y captación irregular.',
+      queConstruir:
+        'Un canal comercial estructurado: identidad sólida, contenido estratégico por lotes y un flujo de cotizaciones que no te quite el día.',
+      solucionLink: '/servicios/redes-esencial',
+      solucionLabel: 'Ver Redes & Contenido ($89.990)',
+      waText:
+        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [B: Fundamentos]. Quiero dejar de improvisar y ordenar mi captación.',
+    },
+    {
+      id: 'construccion',
+      letter: 'C',
+      number: '03',
+      title: 'Construcción',
+      headline: 'Ya tienes piezas reales. Falta convertirlas en sistema.',
+      sintoma:
+        'El negocio factura y el servicio es bueno, pero el crecimiento está estancado porque tu web, tus anuncios y tus ventas no se comunican entre sí.',
+      queConstruir:
+        'Un Sistema de Crecimiento integral: Landing de alta conversión + Campañas en Google/Meta Ads + CRM o WhatsApp estructurado + Medición.',
+      solucionLink: '/servicios/sistema-crecimiento',
+      solucionLabel: 'Ver Sistema de Crecimiento',
+      waText:
+        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [C: Construcción]. Me gustaría cotizar un Sistema de Crecimiento.',
+    },
+    {
+      id: 'sistema',
+      letter: 'D',
+      number: '04',
+      title: 'Sistema',
+      headline: 'Hay estructura real. El foco es optimizar y delegar.',
+      sintoma:
+        'Tu empresa ya opera con equipo y flujo recurrente. El cuello de botella es el tiempo en tareas manuales, respuestas repetitivas y soporte.',
+      queConstruir:
+        'Automatizaciones de proceso, agentes de IA para atención y calificación de prospectos 24/7 e integraciones profundas entre plataformas.',
+      solucionLink: '/servicios#ia',
+      solucionLabel: 'Ver IA y Automatización',
+      waText:
+        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [D: Sistema]. Busco automatizar procesos e integrar IA.',
+    },
+  ] as DiagnosticStage[],
+  fullQuizText: 'Hacer el diagnóstico completo de 10 pilares (2 min)',
+  fullQuizHref: '/construye/diagnostico',
 } as const
 
 export const HOME_EXPERTISE = {

@@ -19,58 +19,120 @@ export default async function Image() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          backgroundColor: '#fafafa',
-          color: '#111111',
+          justifyContent: 'space-between',
+          backgroundColor: '#0c0c0c',
+          color: '#ffffff',
           fontFamily: 'sans-serif',
-          padding: 72,
+          padding: '72px 80px',
+          border: '12px solid #141414',
         }}
       >
+        {/* Header */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              fontSize: 16,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#a3a3a3',
+              fontWeight: 700,
+            }}
+          >
+            <div
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                backgroundColor: '#ffffff',
+              }}
+            />
+            Artestudio
+          </div>
+          <div
+            style={{
+              fontSize: 15,
+              color: '#737373',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+            }}
+          >
+            artestudio.cl
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div
+            style={{
+              width: 56,
+              height: 3,
+              backgroundColor: '#ffffff',
+            }}
+          />
+          <h1
+            style={{
+              fontSize: 68,
+              fontWeight: 800,
+              margin: 0,
+              letterSpacing: '-0.04em',
+              lineHeight: 1.05,
+              maxWidth: 960,
+              color: '#ffffff',
+            }}
+          >
+            Sistemas que hacen crecer tu empresa.
+          </h1>
+          <p
+            style={{
+              fontSize: 26,
+              color: '#a3a3a3',
+              margin: 0,
+              maxWidth: 820,
+              lineHeight: 1.4,
+            }}
+          >
+            Estrategia, desarrollo web, automatizaciones con IA y captación comercial en Chile.
+          </p>
+        </div>
+
+        {/* Footer Badges */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: 16,
-            marginBottom: 28,
-            fontSize: 18,
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: '#737373',
-            fontWeight: 600,
           }}
         >
-          Artestudio
+          {['Web & Landings', 'Automatizaciones & IA', 'Ads & Campañas', 'Casos Reales'].map(
+            (tag) => (
+              <div
+                key={tag}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: 9999,
+                  backgroundColor: '#181818',
+                  border: '1px solid #2a2a2a',
+                  color: '#e5e5e5',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {tag}
+              </div>
+            ),
+          )}
         </div>
-        <div
-          style={{
-            width: 48,
-            height: 3,
-            backgroundColor: '#111111',
-            marginBottom: 28,
-          }}
-        />
-        <h1
-          style={{
-            fontSize: 72,
-            fontWeight: 800,
-            margin: 0,
-            letterSpacing: '-0.04em',
-            lineHeight: 1.02,
-            maxWidth: 900,
-          }}
-        >
-          Sistemas de crecimiento para empresas
-        </h1>
-        <p
-          style={{
-            fontSize: 28,
-            color: '#6b6b6b',
-            marginTop: 28,
-            maxWidth: 720,
-          }}
-        >
-          Estrategia, tecnología y operación — sin improvisar.
-        </p>
       </div>
     ),
     { ...size },

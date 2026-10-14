@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { ALL_SERVICES } from '@/content/services-catalog'
 
 const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://artestudio.cl').replace(/\/$/, '')
 
@@ -7,20 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/servicios`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/servicios/web`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    {
-      url: `${baseUrl}/servicios/contenido`,
+    ...ALL_SERVICES.map((service) => ({
+      url: `${baseUrl}${service.href}`,
       lastModified: now,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
-    },
-    { url: `${baseUrl}/servicios/ads`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    {
-      url: `${baseUrl}/servicios/crecimiento`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+    })),
     { url: `${baseUrl}/construye`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     {
       url: `${baseUrl}/construye/diagnostico`,

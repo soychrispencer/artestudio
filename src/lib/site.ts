@@ -25,8 +25,8 @@ export const WA_LINKS = {
   planPro: waLink('Hola Artestudio, quiero el plan Empresa. Mi negocio es de '),
   planCrece: waLink('Hola Artestudio, quiero el Plan Crece con landing page + redes sociales. Mi negocio es de '),
   redes: waLink('Hola Artestudio, quiero cotizar gestión de redes sociales. Mi negocio es de '),
-  video: waLink('Hola Artestudio, quiero cotizar edición de video. Mi negocio/canal es de '),
-  web: waLink('Hola Artestudio, quiero cotizar diseño web. Mi negocio es de '),
+  video: waLink('Hola Artestudio, quiero cotizar edición de video / Reels. Mi negocio es de '),
+  web: waLink('Hola Artestudio, quiero cotizar diseño web / ecommerce. Mi negocio es de '),
   landing: waLink('Hola Artestudio, quiero cotizar una landing page. Mi negocio es de '),
   googleAds: waLink('Hola Artestudio, quiero cotizar Google Ads. Mi negocio es de '),
   metaAds: waLink('Hola Artestudio, quiero cotizar Meta Ads. Mi negocio es de '),
@@ -43,6 +43,8 @@ export const WA_LINKS = {
 
 export const SECTION_IDS = {
   inicio: 'inicio',
+  estudio: 'estudio',
+  trabajo: 'trabajo',
   servicios: 'servicios-home',
   problemas: 'problemas',
   solucion: 'solucion',
@@ -61,18 +63,16 @@ export const SECTION_IDS = {
 
 export const NAV_LINKS = [
   { label: 'Servicios', href: '/servicios' },
-  { label: 'Método Construye', href: '/construye' },
   { label: 'Contacto', href: `/#${SECTION_IDS.contacto}` },
 ] as const
 
 export const FOOTER_SOLUTIONS = [
-  { label: 'Sistema de crecimiento', href: `/#${SECTION_IDS.inicio}` },
   { label: 'Servicios', href: '/servicios' },
-  { label: 'Web', href: '/servicios/web' },
-  { label: 'Contenido', href: '/servicios/contenido' },
-  { label: 'Ads', href: '/servicios/ads' },
-  { label: 'Crecimiento', href: '/servicios/crecimiento' },
-  { label: 'Método Construye', href: '/construye' },
+  { label: 'Landing Express', href: '/servicios/landing-express' },
+  { label: 'Edición de Reels', href: '/servicios/edicion-reels-8' },
+  { label: 'Redes Sociales', href: '/servicios/redes-esencial' },
+  { label: 'IA y automatización', href: '/servicios#ia' },
+  { label: 'Sistema de Crecimiento', href: '/servicios/sistema-crecimiento' },
 ] as const
 
 /** Plataformas y herramientas (A→Z). */
@@ -95,27 +95,163 @@ export const FOOTER_TOOLS = [
 
 export const HERO = {
   badge: 'Estrategia · Tecnología · Crecimiento',
-  title: 'Sistemas que hacen crecer tu negocio.',
+  titleAccent: 'Sistemas',
+  titleLines: ['que hacen crecer', 'tu negocio.'],
   subtitle:
-    'Diseñamos sistemas de crecimiento que integran estrategia, tecnología e inteligencia artificial para atraer clientes, automatizar procesos y escalar empresas.',
-  cta: 'Quiero hacer crecer mi negocio',
-  ctaSecondary: 'Ver cómo funciona',
-  trust: [
-    'Atención directa por WhatsApp',
-    'Todo medible y conectado',
+    'Landing desde $74.990, edición de Reels desde $59.990, redes desde $89.990 o un sistema completo que conecta tus ventas.',
+  cta: 'Ver servicios',
+  ctaSecondary: 'Agendar reunión',
+  ringText: 'Estrategia · Tecnología · Crecimiento · ',
+  statValue: '2019',
+  statLabel: 'Estudio en Chile',
+  image: '/images/hero-clientes-online.png',
+  imageAlt: 'Artestudio: sistemas de crecimiento aplicados a un negocio real',
+} as const
+
+export const HOME_HUB = {
+  label: 'El estudio',
+  title: 'Un centro para crear, conectar y crecer.',
+  items: [
+    {
+      id: 'agencia',
+      label: 'Agencia',
+      title: 'Sistemas de crecimiento',
+      text: 'Web, ads, CRM y medición diseñados para trabajar juntos.',
+      href: '/servicios/sistema-crecimiento',
+      image: '/images/proceso-web-soporte.png',
+    },
+    {
+      id: 'laboratorio',
+      label: 'Laboratorio',
+      title: 'IA y automatizaciones',
+      text: 'Agentes, WhatsApp y procesos que no dependen de ti.',
+      href: '/servicios/automatizaciones-ia',
+      image: '/images/services/aplicaciones-ia.png',
+    },
+    {
+      id: 'creaciones',
+      label: 'Creaciones',
+      title: 'Diseño y contenido',
+      text: 'Identidad, piezas y trabajo publicado en Behance.',
+      href: CONTACT.behance,
+      external: true,
+      image: '/images/services/branding-identidad.png',
+    },
+    {
+      id: 'servicios',
+      label: 'Servicios',
+      title: 'Packs y proyectos',
+      text: 'Compra online lo que tiene precio, o cotiza lo a medida.',
+      href: '/servicios',
+      image: '/images/services/desarrollo-web.png',
+    },
+  ],
+} as const
+
+export const HOME_WORKS = {
+  label: 'Trabajos',
+  title: 'Piezas reales, publicadas.',
+  intro:
+    'Selección visual del estudio. El portafolio completo —casos, marcas y piezas— está en Behance.',
+  featuredTag: 'Portafolio',
+  featuredTitle: 'Trabajo publicado en Behance',
+  moreLabel: 'Ver portafolio en Behance',
+  highlights: [
+    'Web, landings y sistemas',
+    'Identidad y contenido',
+    'Ads y campañas',
+  ],
+  items: [
+    {
+      title: 'Presencia digital',
+      tag: 'Web',
+      href: CONTACT.behance,
+      image: '/images/services/desarrollo-web.png',
+    },
+    {
+      title: 'Contenido en circulación',
+      tag: 'Editorial',
+      href: CONTACT.behance,
+      image: '/images/contenido-redes.png',
+    },
+    {
+      title: 'Identidad visual',
+      tag: 'Marca',
+      href: CONTACT.behance,
+      image: '/images/services/branding-identidad.png',
+    },
+    {
+      title: 'Campañas y piezas',
+      tag: 'Ads',
+      href: CONTACT.behance,
+      image: '/images/services/redes-sociales.png',
+    },
+  ],
+} as const
+
+export const HOME_EXPERTISE = {
+  label: 'Servicios',
+  title: '¿Qué necesitas ahora?',
+  intro: 'Unidad, pack o sistema. La IA entra cuando aporta, no como adorno.',
+  images: {
+    web: '/images/services/desarrollo-web.png',
+    contenido: '/images/contenido-redes.png',
+    ads: '/images/services/redes-sociales.png',
+    ia: '/images/services/aplicaciones-ia.png',
+    packs: '/images/contenido-redes.png',
+    crecimiento: '/images/proceso-web-soporte.png',
+  } as const,
+} as const
+
+export const HOME_MARQUEE = ['Estrategia', 'Tecnología', 'Crecimiento'] as const
+
+export const HOME_STATS = {
+  label: 'Artestudio',
+  items: [
+    { value: 2019, suffix: '', label: 'Origen' },
+    { value: 7, suffix: '+', label: 'Años' },
+    { value: 100, suffix: '%', label: 'Remoto en Chile' },
   ],
 } as const
 
 export const PROBLEMAS = {
-  title: '¿Te suena familiar?',
+  label: 'El contraste',
+  title: 'Elegir estudio es difícil porque pocos entregan un',
+  titleAccent: 'sistema',
+  intro: 'Comparamos lo habitual en el mercado con cómo trabajamos.',
+  leftLabel: 'Improvisar',
+  rightLabel: 'Construir',
   items: [
     'Inviertes en publicidad pero no vendes más.',
     'Tienes web o redes, pero casi nadie te contacta.',
     'Todo depende de responder WhatsApp manualmente.',
+    'Herramientas sueltas, sin un proceso claro.',
+  ],
+  construir: [
+    'Publicidad que alimenta un sistema, no una urgencia.',
+    'Web y canales que convierten contacto en proceso.',
+    'Operación medible, conectada y menos manual.',
+    'Una base que puedes mejorar sin partir de cero.',
   ],
   closing: 'No necesitas más herramientas.',
   closingAccent: 'Necesitas un sistema.',
   image: '/images/contenido-redes.png',
+} as const
+
+export const HOME_PRUEBA = {
+  ctaTitle: 'Conversemos 15 minutos',
+  ctaText: 'Sin presión. Te orientamos al servicio correcto.',
+  cta: 'Agendar reunión',
+  ctaNote: 'Una llamada corta, por WhatsApp.',
+  statValue: '2019',
+  statLabel: 'Estudio en Chile',
+  statNote: '100% remoto',
+  processLabel: 'Cómo avanzamos',
+  processTitle: 'Claro, acotado y conectado',
+  processSteps: ['Entendemos qué necesitas hoy', 'Definimos una propuesta y alcance', 'Implementamos y medimos lo que sigue'],
+  processNote: 'Puedes empezar con una pieza o con una solución completa.',
+  industriesLabel: 'Con quiénes trabajamos',
+  industries: ['Comercio', 'Servicios', 'Profesionales', 'Educación', 'Marcas online'],
 } as const
 
 export const SOLUCION = {
@@ -126,15 +262,24 @@ export const SOLUCION = {
 } as const
 
 export const METODOLOGIA = {
-  label: 'Metodología',
-  title: 'Artestudio Growth System™',
+  label: 'Cómo avanzamos',
+  title: 'De la idea al sistema.',
+  titleAccent: 'sistema',
+  note: 'Así ordenamos un proyecto de Artestudio: diagnóstico comercial, propuesta y operación. No es el Método Construye — esa guía vive aparte.',
   image: '/images/proceso-web-soporte.png',
   steps: [
-    { title: 'Diagnóstico', description: 'Entendemos tu negocio.', icon: 'search' },
-    { title: 'Arquitectura', description: 'Diseñamos el sistema.', icon: 'blueprint' },
-    { title: 'Implementación', description: 'Web, ads y automatizaciones.', icon: 'code' },
-    { title: 'Optimización', description: 'Mejoramos con datos.', icon: 'chart' },
-    { title: 'Escalamiento', description: 'Seguimos creciendo contigo.', icon: 'rocket' },
+    { title: 'Idea', description: 'Claridad de problema, oferta y destino.', icon: 'search' },
+    {
+      title: 'Fundamentos',
+      description: 'Piezas claras y repetibles, sin improvisar cada día.',
+      icon: 'blueprint',
+    },
+    {
+      title: 'Construcción',
+      description: 'Web, contenido, ads e inteligencia trabajando juntas.',
+      icon: 'code',
+    },
+    { title: 'Sistema', description: 'Medición, mejora y una operación que no depende del apuro.', icon: 'chart' },
   ],
 } as const
 
@@ -402,15 +547,19 @@ export const FAQ_ITEMS = [
   },
   {
     q: '¿Puedo empezar solo con una landing?',
-    a: 'Sí. El plan Landing Express incluye el diseño de tu landing (pago único de $74.990) y hosting mensual ($9.990/mes). El pago online se hace en 2 pasos: primero el setup, luego activas la suscripción de hosting en MercadoPago.',
+    a: 'Sí. Landing Express cuesta $74.990 + IVA por única vez e incluye diseño one-page, publicación y un dominio .cl durante el primer año. Después mantienes hosting, SSL, soporte y mantención técnica por $9.990 + IVA al mes.',
   },
   {
     q: '¿Qué incluye el pago mensual de Landing Express?',
-    a: 'Hosting, SSL, soporte y mantenimiento técnico para que tu página siga funcionando. El diseño de la landing se cobra una sola vez en el primer paso del checkout.',
+    a: 'Hosting, SSL, soporte y mantención técnica para que tu página siga funcionando. El dominio .cl está incluido el primer año, sujeto a disponibilidad y registrado a nombre del cliente; su renovación posterior no está incluida.',
   },
   {
     q: '¿Trabajan con IA?',
-    a: 'Sí. Utilizamos IA para agentes de atención, automatización de WhatsApp, clasificación de leads y seguimientos automáticos. Siempre con un propósito claro: reducir tiempos y mejorar resultados.',
+    a: 'Sí. La usamos en el trabajo diario y también armamos proyectos a medida: WhatsApp, automatizaciones, agentes o herramientas internas. El alcance no es un pack cerrado: primero diagnosticamos y después cotizamos.',
+  },
+  {
+    q: '¿Hacen funnels?',
+    a: 'Sí. Un funnel acota el camino de la visita al contacto o al pago (páginas de paso, captura y medición). Parte desde $149.990 + IVA, según cuántos pasos necesites.',
   },
   {
     q: '¿Trabajan fuera de Santiago?',

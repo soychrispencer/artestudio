@@ -9,6 +9,7 @@ import { HashScrollOnLoad } from '@/components/layout/HashScrollOnLoad'
 import JsonLd from '@/components/seo/JsonLd'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { CartProvider } from '@/components/cart/CartProvider'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const instrument = Instrument_Serif({
@@ -88,13 +89,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#fafafa',
+  themeColor: '#0f0f0f',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${instrument.variable}`}>
+    <html lang="es" className={`${inter.variable} ${instrument.variable}`} suppressHydrationWarning>
       <body className="font-sans bg-bg text-[var(--text)] antialiased">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var theme=localStorage.getItem('artestudio-theme-v2');if(theme!=='light'&&theme!=='dark'){theme='dark'}document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme}catch(e){}})();`}
+        </Script>
         {gaId ? (
           <>
             <Script
@@ -114,13 +118,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ) : null}
         <GoogleAnalytics gaId={gaId} />
         <JsonLd />
-        <CartProvider>
-          <HashScrollOnLoad />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <WhatsAppFloat />
-        </CartProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <HashScrollOnLoad />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppFloat />
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

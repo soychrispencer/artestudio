@@ -5,83 +5,65 @@ import { BrandWhatsapp } from 'tabler-icons-react'
 import { SubscribeButton } from '@/components/checkout/SubscribeButton'
 import type { ServiceItem } from '@/content/services-catalog'
 
-export function ServiceCard({ item }: { item: ServiceItem }) {
+export function ServiceIndexCard({ item }: { item: ServiceItem }) {
   return (
-    <article className="card-base rounded-xl p-6 flex h-full flex-col">
-      <h3 className="text-lg font-bold text-[var(--text)]">{item.title}</h3>
-      <p className="mt-2 text-sm text-muted leading-relaxed flex-grow">{item.description}</p>
-
-      {item.highlights && item.highlights.length > 0 && (
-        <ul className="mt-4 space-y-1.5">
-          {item.highlights.map((h) => (
-            <li key={h} className="text-sm text-muted-light pl-3 relative">
-              <span className="absolute left-0 text-primary">–</span>
-              {h}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <div className="mt-5 pt-4 border-t border-[var(--border)]">
-        <p className="text-lg font-extrabold tracking-[-0.02em] text-[var(--text)]">{item.priceLabel}</p>
-        {item.billingNote && <p className="text-xs text-muted mt-1">{item.billingNote}</p>}
-
-        <div className="mt-4">
-          {item.cta.kind === 'buy' ? (
-            <SubscribeButton
-              planId={item.cta.plan.id}
-              title={`${item.cta.plan.name} — Artestudio`}
-              setup={item.cta.plan.setup}
-              monthly={item.cta.plan.monthly}
-              regularMonthly={item.cta.plan.regularMonthly}
-              className="w-full justify-center"
-            >
-              Comprar ahora
-            </SubscribeButton>
-          ) : (
-            <a
-              href={item.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline w-full justify-center py-3.5 text-sm"
-            >
-              <BrandWhatsapp className="w-4 h-4" />
-              {item.cta.label ?? 'Cotizar'}
-            </a>
-          )}
-        </div>
+    <Link
+      href={item.href}
+      className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-surface p-6 transition-colors hover:border-[var(--ink)]"
+    >
+      <h3 className="text-xl font-extrabold tracking-[-0.03em] text-[var(--text)]">
+        {item.title}
+      </h3>
+      <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">{item.headline}</p>
+      <div className="mt-6">
+        <p className="text-lg font-extrabold tracking-[-0.02em] text-[var(--text)]">
+          {item.priceLabel}
+        </p>
+        {item.billingNote ? <p className="mt-1 text-sm text-muted">{item.billingNote}</p> : null}
+        <p className="mt-4 text-sm font-semibold text-[var(--text)] group-hover:underline">
+          {item.cta.kind === 'buy' ? 'Ver y contratar →' : 'Ver y cotizar →'}
+        </p>
       </div>
-    </article>
+    </Link>
   )
 }
 
-export function ServiceCategoryNav({ active }: { active?: string }) {
-  const links = [
-    { href: '/servicios', label: 'Overview' },
-    { href: '/servicios/web', label: 'Web' },
-    { href: '/servicios/contenido', label: 'Contenido' },
-    { href: '/servicios/ads', label: 'Ads' },
-    { href: '/servicios/crecimiento', label: 'Crecimiento' },
-  ]
+export function ServiceCta({
+  item,
+  className = '',
+}: {
+  item: ServiceItem
+  className?: string
+}) {
+  if (item.cta.kind === 'buy') {
+    return (
+      <SubscribeButton
+        planId={item.cta.plan.id}
+        title={`${item.cta.plan.name} — Artestudio`}
+        setup={item.cta.plan.setup}
+        monthly={item.cta.plan.monthly}
+        regularMonthly={item.cta.plan.regularMonthly}
+        className={`justify-center ${className}`}
+      >
+        Comprar ahora
+      </SubscribeButton>
+    )
+  }
 
   return (
-    <nav className="flex flex-wrap gap-2 mb-10" aria-label="Categorías de servicios">
-      {links.map((link) => {
-        const isActive = active === link.href
-        return (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`rounded-[10px] px-3.5 py-2 text-sm font-semibold border transition-colors ${
-              isActive
-                ? 'bg-[var(--ink)] text-white border-[var(--ink)]'
-                : 'border-[var(--border)] text-muted hover:border-[var(--ink)] hover:text-[var(--text)]'
-            }`}
-          >
-            {link.label}
-          </Link>
-        )
-      })}
-    </nav>
+    <a
+      href={item.cta.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`btn-outline inline-flex items-center justify-center gap-2 py-3.5 text-sm ${className}`}
+    >
+      <BrandWhatsapp className="w-4 h-4" />
+      {item.cta.label ?? 'Cotizar por WhatsApp'}
+    </a>
   )
+}
+
+/** @deprecated Use ServiceIndexCard — kept name alias during migration */
+export function ServiceCard({ item }: { item: ServiceItem }) {
+  return <ServiceIndexCard item={item} />
 }

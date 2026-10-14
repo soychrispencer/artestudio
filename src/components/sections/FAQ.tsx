@@ -14,7 +14,7 @@ export function FAQ() {
           <p className="section-label">Dudas frecuentes</p>
           <h2 className="display-xl text-3xl md:text-4xl text-[var(--text)] mb-8">
             Antes de{' '}
-            <span className="font-display text-primary">contratar</span>
+            <span className="font-display italic text-[var(--text)]">contratar</span>
           </h2>
           <div className="border-y border-[var(--border)]">
             {HOME_FAQ.map((item) => (

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
 import { SECTION_IDS } from '@/lib/site'
 
 export function HomePuertas() {
@@ -32,27 +31,21 @@ export function HomePuertas() {
             <p className="mt-5 text-sm font-semibold text-[var(--text)]">Ir a servicios →</p>
           </Link>
 
-          <Link
-            href="/construye"
-            className="compare-ink rounded-xl p-7 transition-opacity hover:opacity-95"
+          <a
+            href={`#${SECTION_IDS.contacto}`}
+            className="card-base rounded-xl p-7 hover:border-[var(--ink)] transition-colors group"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent-2)] mb-3">
-              Quiero claridad primero
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary mb-3">
+              Prefiero conversar
             </p>
-            <h3 className="text-2xl font-extrabold tracking-[-0.03em] text-[var(--paper)]">
-              Método Construye
+            <h3 className="text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)] group-hover:text-primary transition-colors">
+              Hablar con alguien
             </h3>
-            <p className="mt-3 on-ink-muted leading-relaxed">
-              Diagnostica tu negocio en minutos y descarga la Guía práctica 01 gratis.
+            <p className="mt-3 text-muted leading-relaxed">
+              Cuéntanos tu negocio y te orientamos al siguiente paso sin compromiso.
             </p>
-            <p className="mt-5 text-sm font-semibold text-[var(--paper)]">Empezar diagnóstico →</p>
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Button href={`#${SECTION_IDS.contacto}`} variant="outline" className="px-5 py-3">
-            Prefiero hablar con alguien
-          </Button>
+            <p className="mt-5 text-sm font-semibold text-[var(--text)]">Ir a contacto →</p>
+          </a>
         </div>
       </div>
     </section>

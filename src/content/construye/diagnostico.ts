@@ -176,4 +176,5 @@ export const CONSTRUYE_PATHS = {
   resultado: '/construye/resultado',
   guia: '/construye/guia',
   guiaFile: '/construye/guia-practica-01.html',
+  guiaPdf: '/construye/metodo-construye-guia-practica-01.pdf',
 } as const

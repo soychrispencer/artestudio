@@ -6,7 +6,7 @@ export const MONTHLY_MODEL_DISCLAIMER =
   'El setup cubre la creación inicial de tu landing o sitio. El plan mensual cubre hosting, soporte básico, continuidad técnica y 1 modificación menor al mes. Nuevas secciones, rediseños, ecommerce, carga de productos, campañas o administración de contenido se cotizan aparte.'
 
 export const LANDING_EXPRESS_WHATSAPP =
-  'Hola Artestudio, quiero la Landing Express ($74.990 setup + $14.990/mes). ¿Podemos hablar?'
+  'Hola Artestudio, quiero la Landing Express ($74.990 setup + $9.990/mes). ¿Podemos hablar?'
 
 export const WEB_PRO_WHATSAPP =
   'Hola Artestudio, necesito una web más completa (pago único o plan personalizado). ¿Me orientan?'
@@ -20,7 +20,7 @@ export const ENTRY_OFFERS = [
     badge: 'Entrada rápida',
     emoji: '⚡',
     title: 'Landing Express',
-    priceLine: 'Desde $74.990 setup + $14.990/mes',
+    priceLine: '$74.990 + IVA · luego $9.990 + IVA/mes',
     idealFor: [
       'Talleres y servicios locales',
       'Profesionales independientes',
@@ -28,13 +28,12 @@ export const ENTRY_OFFERS = [
       'WhatsApp y links de compra',
     ],
     includes: [
-      'Landing de una página',
-      'Textos base asistidos con herramientas digitales',
-      'Diseño responsive',
-      'Botón WhatsApp o link de compra',
-      'Hosting incluido',
-      'Soporte básico',
-      '1 modificación menor mensual (no acumulable)',
+      'Diseño personalizado one-page',
+      'Hasta 7 secciones',
+      'Adaptación móvil',
+      'Botón WhatsApp y formulario',
+      'SEO básico y publicación',
+      'Dominio .cl el primer año',
     ],
     excludes: [
       'eCommerce y catálogo de productos',
@@ -51,24 +50,24 @@ export const ENTRY_OFFERS = [
     id: 'web-profesional',
     badge: 'Más completo',
     emoji: '🌐',
-    title: 'Web Profesional',
-    priceLine: 'Pago único desde $249.990',
-    priceNote: 'También disponible con setup + mensual según alcance.',
+    title: 'Web Corporativa',
+    priceLine: 'Desde $149.990',
+    priceNote: 'Pago único o setup + mensual con soporte prioritario.',
     idealFor: [
       'Empresas y marcas personales',
       'Negocios que necesitan más secciones',
       'Mayor autoridad y estructura',
     ],
     includes: [
-      'Sitio corporativo o micrositio amplio',
-      'Arquitectura de contenidos',
-      'SEO on-page según plan',
+      'Sitio corporativo o institucional hasta 10 páginas',
+      'Arquitectura de contenidos y conversión',
+      'SEO on-page y Google Analytics 4',
       'Capacitación para autogestión',
-      'Mantención opcional desde $59.990/mes',
+      'Mantención opcional continua',
     ],
     excludes: [
       'No es la oferta express de una sola página',
-      'eCommerce completo → ver plan Pro+',
+      'eCommerce con pasarela de pagos → ver tienda online',
     ],
     cta: 'Ver planes web',
     whatsappMessage: WEB_PRO_WHATSAPP,
@@ -76,20 +75,21 @@ export const ENTRY_OFFERS = [
   },
   {
     id: 'ecommerce',
-    badge: 'Consultivo',
+    badge: 'Ventas Online',
     emoji: '🛒',
-    title: 'eCommerce y plataformas',
-    priceLine: 'Desde cotización',
-    priceNote: 'Web Pro+ eCommerce desde $790.000 · Desarrollo a medida según alcance.',
+    title: 'eCommerce y Tiendas',
+    priceLine: 'Desde $249.990',
+    priceNote: 'Shopify, WooCommerce, Jumpseller o desarrollo a medida.',
     idealFor: [
       'Tiendas online',
-      'Catálogos grandes',
-      'Integraciones y automatizaciones',
+      'Catálogos con catálogo y stock',
+      'Integración con pagos y envíos',
     ],
     includes: [
-      'Shopify, WooCommerce, WordPress o a medida',
-      'Flujo de compra y pagos',
-      'Estrategia según volumen y operación',
+      'Shopify, WooCommerce o Jumpseller',
+      'Integración Webpay, Flow, MercadoPago y despachos',
+      'Automatización de carrito abandonado',
+      'Capacitación completa de operación',
     ],
     excludes: [],
     cta: 'Cotizar ecommerce',
@@ -104,27 +104,27 @@ export const COMPLEMENT_SERVICES = [
     title: 'Redes sociales',
     desc: 'Gestión, contenido y comunidad',
     from: 'Desde $89.990/mes',
-    href: '/servicio/redes-sociales',
+    href: '/servicios#contenido',
+  },
+  {
+    emoji: '🎬',
+    title: 'Edición de Reels',
+    desc: 'Tú grabas, nosotros editamos',
+    from: 'Packs desde $59.990/mes',
+    href: '/servicios#contenido',
   },
   {
     emoji: '🎨',
     title: 'Branding',
     desc: 'Identidad visual y manual de marca',
     from: 'Desde $149.990',
-    href: '/servicio/branding',
+    href: '/servicios#contenido',
   },
   {
     emoji: '📄',
     title: 'Diseño gráfico',
     desc: 'Flyers, presentaciones, papelería',
     from: 'Desde $55.000',
-    href: '/servicio/diseno-grafico',
-  },
-  {
-    emoji: '🎬',
-    title: 'Video y audio',
-    desc: 'Reels, podcast, mastering',
-    from: 'Desde $35.000',
-    href: '/servicio/edicion-video',
+    href: '/servicios#contenido',
   },
 ] as const

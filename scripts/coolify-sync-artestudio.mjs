@@ -9,12 +9,15 @@
  *   node scripts/coolify-sync-artestudio.mjs --apply   # sync + deploy
  */
 import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const ROOT = 'C:/Users/chris/Desktop/Artestudio'
-const ARTESTUDIO_DEPLOY = `${ROOT}/.env.deploy`
-const SIMPLE_DEPLOY = 'C:/Users/chris/Desktop/Simple/.env.deploy'
-const SIMPLE_API_ENV = 'C:/Users/chris/Desktop/Simple/services/api/.env.local'
-const ARTESTUDIO_ENV = `${ROOT}/.env.local`
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const ROOT = path.resolve(__dirname, '..')
+const ARTESTUDIO_DEPLOY = path.join(ROOT, '.env.deploy')
+const SIMPLE_DEPLOY = path.resolve(ROOT, '../Simple/.env.deploy')
+const SIMPLE_API_ENV = path.resolve(ROOT, '../Simple/services/api/.env.local')
+const ARTESTUDIO_ENV = path.join(ROOT, '.env.local')
 
 const apply = process.argv.includes('--apply')
 const force = process.argv.includes('--force')

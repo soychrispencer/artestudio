@@ -1,13 +1,17 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { BRAND, CONTACT, FOOTER_SOLUTIONS, FOOTER_TOOLS, NAV_LINKS, WA_LINKS } from '@/lib/site'
-import { ToolBrandIcon } from '@/components/layout/ToolBrandIcon'
+import { BRAND, CONTACT, FOOTER_SOLUTIONS, NAV_LINKS, WA_LINKS } from '@/lib/site'
 import { BrandInstagram, BrandWhatsapp, Mail } from 'tabler-icons-react'
 
 export function Footer() {
   const pathname = usePathname()
-  if (pathname.startsWith('/soychrispencer') || pathname.startsWith('/construye')) return null
+  if (
+    pathname.startsWith('/soychrispencer') ||
+    pathname.startsWith('/construye') ||
+    pathname.startsWith('/dev')
+  )
+    return null
 
   return (
     <footer className="border-t border-[var(--border)] bg-surface">
@@ -19,6 +23,12 @@ export function Footer() {
             <p className="text-sm text-muted-light leading-relaxed">
               {BRAND.description}
             </p>
+            <a
+              href="/construye"
+              className="mt-4 inline-block text-xs text-muted hover:text-primary transition-colors"
+            >
+              Método Construye ↗
+            </a>
           </div>
 
           <div>
@@ -76,29 +86,6 @@ export function Footer() {
               @artestudio.cl
             </a>
           </div>
-        </div>
-
-        <div className="mb-10 pt-8 border-t border-[var(--border)]">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-5">Trabajamos con</p>
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3.5">
-            {FOOTER_TOOLS.map((tool) => (
-              <li key={tool.label}>
-                <a
-                  href={tool.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-muted-light transition-colors hover:text-[var(--text)]"
-                >
-                  <ToolBrandIcon
-                    slug={tool.slug}
-                    label={tool.label}
-                    className="h-[18px] w-[18px] shrink-0 fill-current text-current"
-                  />
-                  <span>{tool.label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">

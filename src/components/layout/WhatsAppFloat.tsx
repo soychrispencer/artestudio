@@ -6,7 +6,12 @@ import { WA_LINKS } from '@/lib/site'
 
 export function WhatsAppFloat() {
   const pathname = usePathname()
-  if (pathname.startsWith('/soychrispencer') || pathname.startsWith('/construye')) return null
+  if (
+    pathname.startsWith('/soychrispencer') ||
+    pathname.startsWith('/construye') ||
+    pathname.startsWith('/dev')
+  )
+    return null
 
   return (
     <a

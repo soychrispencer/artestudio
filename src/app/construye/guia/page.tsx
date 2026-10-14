@@ -29,13 +29,23 @@ export default function GuiaPage() {
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
+            href={CONSTRUYE_PATHS.guiaPdf}
+            download="Metodo-Construye-Guia-practica-01.pdf"
+            className={`${styles.mcBtn} ${styles.mcBtnPrimary}`}
+          >
+            Descargar PDF gratis
+          </a>
+          <a
             href={CONSTRUYE_PATHS.guiaFile}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.mcBtn} ${styles.mcBtnPrimary}`}
+            className={`${styles.mcBtn} ${styles.mcBtnGhost}`}
           >
-            Abrir / descargar guía
+            Abrir versión web
           </a>
+        </div>
+
+        <div className="mt-4">
           <Link href={CONSTRUYE_PATHS.diagnostico} className={`${styles.mcBtn} ${styles.mcBtnGhost}`}>
             Hacer el diagnóstico primero
           </Link>

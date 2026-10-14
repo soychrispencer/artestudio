@@ -39,6 +39,7 @@ export const SERVICE_NAV_GROUPS: { id: ServiceNavGroup; label: string; descripti
     description: 'Piezas gráficas, video y audio.',
   },
   {
+
     id: 'tecnico',
     label: 'Técnico y packs',
     description: 'Desarrollo, mantención e integrales.',
@@ -50,21 +51,21 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
     slug: '_landing-express',
     title: 'Landing Express',
     shortDesc: 'Setup + mensual · 24–48 hrs',
-    from: '$74.990 + $14.990/mes',
+    from: '$74.990 + $9.990/mes',
     group: 'entrada',
   },
   {
     slug: 'diseno-web',
     title: 'Diseño Web y eCommerce',
-    shortDesc: 'Web Esencial, Pro y Pro+',
-    from: 'Desde $249.990',
+    shortDesc: 'Web Corporativa y Tiendas',
+    from: 'Desde $149.990',
     group: 'web',
   },
   {
     slug: 'mantencion-web',
     title: 'Mantención Web',
     shortDesc: 'Soporte técnico y administración',
-    from: 'Desde $59.990/mes',
+    from: 'Desde $9.990/mes',
     group: 'web',
   },
   {
@@ -103,9 +104,9 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
   },
   {
     slug: 'edicion-video',
-    title: 'Edición de Video',
-    shortDesc: 'Reels, TikTok, Shorts',
-    from: 'Desde $35.000',
+    title: 'Edición de Video y Reels',
+    shortDesc: 'Reels, TikTok, YouTube',
+    from: 'Packs desde $59.990',
     group: 'creativo',
   },
   {

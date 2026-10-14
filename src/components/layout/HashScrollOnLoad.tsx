@@ -8,7 +8,7 @@ export function HashScrollOnLoad() {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (pathname !== '/') return
+    if (pathname !== '/' && pathname !== '/servicios') return
     const hash = window.location.hash.replace('#', '')
     if (!hash) return
 

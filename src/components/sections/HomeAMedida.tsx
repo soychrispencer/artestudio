@@ -4,29 +4,27 @@ import { WA_LINKS } from '@/lib/site'
 
 export function HomeAMedida() {
   return (
-    <section className="py-16 md:py-20 bg-surface border-t border-[var(--border)]">
+    <section className="py-12 md:py-16 border-t border-[var(--border)] bg-surface">
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-end">
-          <div>
-            <p className="section-label">Proyectos a medida</p>
-            <h2 className="display-xl text-3xl md:text-4xl text-[var(--text)] mb-4">
-              Si tu negocio necesita un{' '}
-              <span className="font-display text-primary">sistema completo</span>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="max-w-xl">
+            <h2 className="text-xl md:text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)] mb-2">
+              ¿Necesitas un sistema completo?
             </h2>
-            <p className="text-muted leading-relaxed max-w-xl">
-              Diagnóstico, arquitectura e implementación conectada (web, ads, medición,
-              automatizaciones). No es un pack de catálogo: es un proyecto.
+            <p className="text-muted leading-relaxed">
+              Diagnóstico, arquitectura e implementación conectada. No es un pack: es un proyecto a
+              medida.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 lg:justify-end">
-            <Button href={WA_LINKS.reunion} external className="px-6 py-3.5 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <Button href={WA_LINKS.reunion} external className="px-5 py-3 justify-center">
               Agendar reunión
             </Button>
             <Link
-              href="/servicios/crecimiento"
-              className="btn-outline px-6 py-3.5 text-sm font-semibold justify-center"
+              href="/servicios/sistema-crecimiento"
+              className="btn-outline px-5 py-3 text-sm font-semibold justify-center"
             >
-              Ver crecimiento
+              Sistema de Crecimiento
             </Link>
           </div>
         </div>

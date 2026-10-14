@@ -1,58 +1,98 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { SERVICE_CATEGORIES, SERVICE_HUB } from '@/content/services-catalog'
-import { ServiceCategoryNav } from '@/components/servicios/ServiceCard'
+import {
+  SERVICE_CATEGORIES,
+  SERVICE_FAMILIES,
+  SERVICE_HUB,
+} from '@/content/services-catalog'
 import { WA_LINKS } from '@/lib/site'
+import { ServiceIndexCard } from '@/components/servicios/ServiceCard'
 
 export const metadata: Metadata = {
   title: 'Servicios',
   description:
-    'Web, contenido, ads y sistema de crecimiento. Compra packs con precio o cotiza proyectos a medida.',
+    'Landing desde $74.990, redes desde $89.990, ads, proyectos con IA, packs o un sistema completo.',
   alternates: { canonical: '/servicios' },
 }
 
 export default function ServiciosPage() {
   return (
     <div className="bg-[var(--bg)]">
-      <section className="pt-28 pb-16 md:pb-20 border-b border-[var(--border)]">
+      <section className="pt-24 md:pt-28 pb-10">
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="section-label">{SERVICE_HUB.label}</p>
-          <h1 className="display-xl text-4xl md:text-5xl text-[var(--text)] max-w-3xl mb-4">
-            Elige cómo quieres{' '}
-            <span className="font-display text-primary">trabajar</span> con nosotros
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-[-0.04em] text-[var(--text)] mb-4">
+            {SERVICE_HUB.title}
           </h1>
-          <p className="text-muted text-lg leading-relaxed max-w-2xl mb-8">{SERVICE_HUB.subtitle}</p>
-          <ServiceCategoryNav active="/servicios" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {SERVICE_CATEGORIES.map((cat) => (
-              <Link
-                key={cat.id}
-                href={cat.href}
-                className="card-base rounded-xl p-6 hover:border-[var(--ink)] transition-colors group"
+          <p className="text-muted text-lg max-w-xl mb-8">{SERVICE_HUB.subtitle}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {SERVICE_FAMILIES.map((family) => (
+              <a
+                key={family.id}
+                href={`#${family.id}`}
+                className={`rounded-2xl border px-5 py-4 transition-colors ${
+                  family.id === 'system'
+                    ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
+                    : 'border-[var(--border)] bg-surface hover:border-[var(--ink)]'
+                }`}
               >
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary mb-3">
-                  {cat.label}
+                <p className="font-extrabold tracking-[-0.03em]">{family.title}</p>
+                <p
+                  className={`mt-1 text-sm ${
+                    family.id === 'system' ? 'text-white/65' : 'text-muted'
+                  }`}
+                >
+                  {family.intro}
                 </p>
-                <h2 className="text-xl font-bold text-[var(--text)] group-hover:text-primary transition-colors">
-                  {cat.title}
-                </h2>
-                <p className="mt-2 text-sm text-muted leading-relaxed">{cat.subtitle}</p>
-                <p className="mt-4 text-sm font-semibold text-[var(--text)]">
-                  Ver {cat.label.toLowerCase()} →
-                </p>
-              </Link>
+              </a>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="hazlo mt-12 max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary mb-3">
-              ¿No sabes por dónde empezar?
-            </p>
-            <p className="text-lg font-bold text-[var(--text)] mb-3">
-              Agenda una reunión y diseñamos el sistema contigo.
-            </p>
-            <a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer" className="btn-whatsapp px-5 py-3 text-sm">
+      {SERVICE_FAMILIES.map((family) => {
+        const cats = SERVICE_CATEGORIES.filter((c) => c.family === family.id)
+        return (
+          <div key={family.id} id={family.id}>
+            {cats.map((cat) => (
+              <section
+                key={cat.id}
+                id={cat.id}
+                className="scroll-mt-24 py-10 border-t border-[var(--border)]"
+              >
+                <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted mb-2">
+                    {family.title} · {cat.label}
+                  </p>
+                  <h2 className="text-2xl md:text-3xl font-extrabold tracking-[-0.03em] text-[var(--text)]">
+                    {cat.prompt}
+                  </h2>
+                  <p className="mt-2 mb-6 max-w-xl text-muted">{cat.subtitle}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {cat.items.map((item) => (
+                      <ServiceIndexCard key={item.id} item={item} />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
+        )
+      })}
+
+      <section className="py-14 md:py-16">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-[var(--border)] bg-surface px-6 py-8 md:px-8 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+            <div>
+              <p className="text-xl font-extrabold tracking-[-0.03em] text-[var(--text)]">
+                ¿No sabes cuál elegir?
+              </p>
+              <p className="mt-1 text-muted">15 minutos. Te decimos el servicio correcto, sin presión.</p>
+            </div>
+            <a
+              href={WA_LINKS.reunion}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp px-5 py-3 text-sm w-fit shrink-0"
+            >
               Agendar reunión
             </a>
           </div>

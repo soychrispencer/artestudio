@@ -146,10 +146,26 @@ body{background:var(--ink-soft);color:var(--ink);font-family:var(--font);-webkit
 .tiny{font-size:11px;line-height:1.4;color:var(--mute)}
 .author-note{border:1px dashed var(--line);border-radius:10px;padding:10px;background:var(--paper);font-size:11px;line-height:1.4;color:var(--mute);margin:10px 0}
 @media print{
-  body{background:var(--white)}
-  .board{padding:0;gap:0}
+  @page{size:A4;margin:0}
+  html,body{background:var(--white)!important;width:210mm}
+  .board{padding:0!important;gap:0!important;align-items:stretch}
   .note,.toolbar{display:none!important}
-  .page{box-shadow:none;margin:0;width:210mm;height:297mm}
+  .page{
+    box-shadow:none!important;
+    margin:0!important;
+    width:210mm!important;
+    height:297mm!important;
+    max-height:297mm!important;
+    overflow:hidden!important;
+    page-break-after:always;
+    break-after:page;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .page:last-of-type{
+    page-break-after:auto;
+    break-after:auto;
+  }
 }
 </style>
 </head>

@@ -58,7 +58,7 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
     slug: 'diseno-web',
     title: 'Diseño Web y eCommerce',
     shortDesc: 'Web Corporativa y Tiendas',
-    from: 'Desde $149.990',
+    from: 'Desde $349.990',
     group: 'web',
   },
   {
@@ -79,7 +79,7 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
     slug: 'branding',
     title: 'Branding',
     shortDesc: 'Identidad visual completa',
-    from: 'Desde $149.990',
+    from: 'Desde $260.000',
     group: 'marca',
   },
   {

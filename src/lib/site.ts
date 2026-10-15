@@ -654,7 +654,7 @@ export const INDIVIDUAL_SERVICES = [
     title: 'Branding',
     description: 'Identidad visual profesional para tu marca.',
     image: '/images/services/branding-identidad.png',
-    priceFrom: 'Desde $149.990',
+    priceFrom: 'Desde $260.000',
     paymentLabel: 'Pago único',
     contactCta: { label: 'Cotizar', href: WA_LINKS.branding },
   },
@@ -733,7 +733,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: '¿Hacen funnels?',
-    a: 'Sí. Un funnel acota el camino de la visita al contacto o al pago (páginas de paso, captura y medición). Parte desde $149.990 + IVA, según cuántos pasos necesites.',
+    a: 'Sí. Un funnel acota el camino de la visita al contacto o al pago (páginas de paso, captura y medición). Parte desde $220.000 + IVA, según cuántos pasos necesites.',
   },
   {
     q: '¿Trabajan fuera de Santiago?',

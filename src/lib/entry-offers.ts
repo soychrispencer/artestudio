@@ -51,7 +51,7 @@ export const ENTRY_OFFERS = [
     badge: 'Más completo',
     emoji: '🌐',
     title: 'Web Corporativa',
-    priceLine: 'Desde $149.990',
+    priceLine: 'Desde $349.990',
     priceNote: 'Pago único o setup + mensual con soporte prioritario.',
     idealFor: [
       'Empresas y marcas personales',
@@ -78,7 +78,7 @@ export const ENTRY_OFFERS = [
     badge: 'Ventas Online',
     emoji: '🛒',
     title: 'eCommerce y Tiendas',
-    priceLine: 'Desde $249.990',
+    priceLine: 'Desde $489.990',
     priceNote: 'Shopify, WooCommerce, Jumpseller o desarrollo a medida.',
     idealFor: [
       'Tiendas online',
@@ -117,7 +117,7 @@ export const COMPLEMENT_SERVICES = [
     emoji: '🎨',
     title: 'Branding',
     desc: 'Identidad visual y manual de marca',
-    from: 'Desde $149.990',
+    from: 'Desde $260.000',
     href: '/servicios#contenido',
   },
   {

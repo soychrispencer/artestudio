@@ -112,13 +112,13 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Cotizar Web Corporativa',
     whatsappMessage:
-      'Hola Artestudio, me interesa la Web Corporativa ($149.990 setup + $24.990/mes). ¿Cuándo podemos hablar?',
+      'Hola Artestudio, me interesa la Web Corporativa (desde $349.990). ¿Cuándo podemos hablar?',
   },
   {
     tier: 'proplus',
     name: 'eCommerce & Tienda',
-    originalSetup: 399990,
-    setup: 249990,
+    originalSetup: 599990,
+    setup: 489990,
     monthly: 34990,
     shortDesc: 'Tienda online completa con catálogo, pasarelas de pago y logística.',
     highlights: [
@@ -138,7 +138,7 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Cotizar eCommerce',
     whatsappMessage:
-      'Hola Artestudio, me interesa cotizar una tienda eCommerce (desde $249.990).',
+      'Hola Artestudio, me interesa cotizar una tienda eCommerce (desde $489.990).',
   },
 ]
 
@@ -150,7 +150,7 @@ const brandingPlans: PricingPlan[] = [
   {
     tier: 'esencial',
     name: 'Esencial',
-    setup: 149990,
+    setup: 260000,
     monthly: 0,
     shortDesc: 'Logo profesional + identidad visual base para lanzar tu marca.',
     highlights: [
@@ -170,7 +170,7 @@ const brandingPlans: PricingPlan[] = [
     ],
     cta: 'Crear mi Logo',
     whatsappMessage:
-      'Hola Artestudio, me interesa el plan Esencial de Branding ($149.990). Quiero crear mi logo.',
+      'Hola Artestudio, me interesa el plan Esencial de Branding ($260.000). Quiero crear mi logo.',
   },
   {
     tier: 'pro',
@@ -266,7 +266,7 @@ const redesPlans: PricingPlan[] = [
     badge: 'Más popular',
     recommended: true,
     setup: 0,
-    monthly: 149990,
+    monthly: 189990,
     shortDesc: 'Mayor estrategia, autoridad y video para marcas que buscan destacar.',
     highlights: [
       '12 piezas de contenido al mes (3 por semana)',
@@ -286,7 +286,7 @@ const redesPlans: PricingPlan[] = [
     ],
     cta: 'Quiero Contenido Pro',
     whatsappMessage:
-      'Hola Artestudio, me interesa el Plan Contenido Pro de Redes ($149.990/mes).',
+      'Hola Artestudio, me interesa el Plan Contenido Pro de Redes ($189.990/mes).',
   },
   {
     tier: 'proplus',

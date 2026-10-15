@@ -125,7 +125,7 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
     idealFor: 'Marcas que necesitan mayor autoridad, más video y alcance en varias plataformas.',
     category: 'social',
     setup: 0,
-    monthly: 149_990,
+    monthly: 189_990,
     delivery: 'Primer calendario y planificación durante la primera semana.',
     featured: true,
     badge: 'Más completo',

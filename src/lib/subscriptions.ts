@@ -161,6 +161,7 @@ export const VIDEO_PACK_4: SubscriptionPlan = {
   badge: 'Entrada video',
   includes: [
     '4 Reels, TikToks o Shorts verticales (9:16)',
+    'Estructura de guion y ganchos recomendados para grabar',
     'Cortes de pausas, errores y ritmo dinámico',
     'Subtítulos dinámicos en pantalla',
     'Música en tendencia libre de derechos',
@@ -170,7 +171,7 @@ export const VIDEO_PACK_4: SubscriptionPlan = {
   ],
   excludes: [
     'Material bruto superior a 3 minutos por Reel',
-    'Grabación presencial o redacción de guiones',
+    'Grabación presencial',
     'Publicación en redes o community management',
     'Motion graphics avanzado o efectos 3D',
   ],
@@ -189,6 +190,7 @@ export const VIDEO_PACK_8: SubscriptionPlan = {
   badge: 'Más pedido',
   includes: [
     '8 Reels, TikToks o Shorts verticales (9:16)',
+    'Estructura de guion y ganchos recomendados para cada video',
     'Cortes de pausas, errores y ritmo dinámico',
     'Subtítulos dinámicos con estilo',
     'Música en tendencia libre de derechos',

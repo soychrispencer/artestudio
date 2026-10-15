@@ -39,6 +39,12 @@ export const WA_LINKS = {
   branding: waLink('Hola Artestudio, quiero cotizar branding. Mi negocio es de '),
   mantencion: waLink('Hola Artestudio, quiero cotizar mantención web.'),
   automatizacion: waLink('Hola Artestudio, quiero cotizar automatizaciones. Mi negocio es de '),
+  correo: waLink('Hola Artestudio, me interesa el setup de correo corporativo y Google Workspace. Mi negocio es de '),
+  quiz: waLink('Hola Artestudio, quiero cotizar un quiz o calificador interactivo de clientes. Mi negocio es de '),
+  dossier: waLink('Hola Artestudio, quiero cotizar un dossier comercial o presentación corporativa en PDF. Mi negocio es de '),
+  agenda: waLink('Hola Artestudio, quiero cotizar el sistema de agenda y cobro automático de citas. Mi negocio es de '),
+  packLanzamiento: waLink('Hola Artestudio, me interesa el Pack Lanzamiento (Web + Pauta). Mi negocio es de '),
+  packAutoridad: waLink('Hola Artestudio, me interesa el Pack Autoridad B2B (Marca + Web). Mi negocio es de '),
 } as const
 
 export const SECTION_IDS = {

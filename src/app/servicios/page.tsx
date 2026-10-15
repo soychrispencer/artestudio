@@ -29,15 +29,24 @@ export default function ServiciosPage() {
                 key={family.id}
                 href={`#${family.id}`}
                 className={`rounded-2xl border px-5 py-4 transition-colors ${
-                  family.id === 'system'
+                  family.id === 'pack'
+                    ? 'border-[var(--ink)] bg-[var(--field)] hover:border-[var(--ink)] shadow-sm'
+                    : family.id === 'system'
                     ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
                     : 'border-[var(--border)] bg-surface hover:border-[var(--ink)]'
                 }`}
               >
-                <p className="font-extrabold tracking-[-0.03em]">{family.title}</p>
+                <div className="flex items-center justify-between">
+                  <p className="font-extrabold tracking-[-0.03em]">{family.title}</p>
+                  {family.id === 'pack' && (
+                    <span className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[var(--ink)] text-[var(--paper)]">
+                      Recomendado
+                    </span>
+                  )}
+                </div>
                 <p
                   className={`mt-1 text-sm ${
-                    family.id === 'system' ? 'text-white/65' : 'text-muted'
+                    family.id === 'system' ? 'text-white/70' : 'text-muted'
                   }`}
                 >
                   {family.intro}

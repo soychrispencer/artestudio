@@ -8,7 +8,7 @@ import {
   getServiceCategory,
   isServiceCategoryId,
 } from '@/content/services-catalog'
-import { ServiceCta } from '@/components/servicios/ServiceCard'
+import { ServiceCta, ServiceCrossSellCard } from '@/components/servicios/ServiceCard'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -50,6 +50,9 @@ export default async function ServicioLandingPage({ params }: PageProps) {
   if (!service) notFound()
 
   const category = getServiceCategory(service.categoryId)
+  const relatedServices = (service.relatedSlugs ?? [])
+    .map(getServiceBySlug)
+    .filter((s): s is NonNullable<typeof s> => Boolean(s))
 
   return (
     <div className="bg-[var(--bg)]">
@@ -107,6 +110,28 @@ export default async function ServicioLandingPage({ params }: PageProps) {
 
               {service.footnote ? (
                 <p className="mt-8 max-w-2xl text-sm text-muted leading-relaxed">{service.footnote}</p>
+              ) : null}
+
+              {/* Cross-selling: Combina perfecto con */}
+              {relatedServices.length > 0 ? (
+                <div className="border-t border-[var(--border)] pt-10 mt-12">
+                  <div className="mb-6">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                      Sistemas conectados
+                    </p>
+                    <h3 className="text-xl md:text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)] mt-1">
+                      Combina perfecto con:
+                    </h3>
+                    <p className="text-sm text-muted mt-1">
+                      Servicios que potencian los resultados de tu inversión y resuelven el siguiente paso.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    {relatedServices.map((rel) => (
+                      <ServiceCrossSellCard key={rel.id} item={rel} />
+                    ))}
+                  </div>
+                </div>
               ) : null}
             </div>
 

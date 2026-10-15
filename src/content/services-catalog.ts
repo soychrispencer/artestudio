@@ -35,10 +35,13 @@ export type ServiceItem = {
   problem: string
   priceLabel: string
   billingNote?: string
+  savingsNote?: string
+  badge?: string
   includes: readonly string[]
   monthlyIncludes?: readonly string[]
   footnote?: string
   featured?: boolean
+  relatedSlugs?: readonly string[]
   cta: ServiceCta
 }
 
@@ -64,18 +67,18 @@ export const SERVICE_CATEGORY_IDS: ServiceCategoryId[] = [
 
 export const SERVICE_FAMILIES: { id: ServiceFamily; title: string; intro: string }[] = [
   {
-    id: 'unit',
-    title: 'Por unidad',
-    intro: 'Un servicio, un precio de entrada. Lo combinas después si hace falta.',
+    id: 'pack',
+    title: 'Packs con ahorro',
+    intro: 'Soluciones paquetizadas con descuento frente a contratar por separado.',
   },
   {
-    id: 'pack',
-    title: 'Packs',
-    intro: 'Dos piezas que suelen contratarse juntas, con un solo plan.',
+    id: 'unit',
+    title: 'Por unidad',
+    intro: 'Un servicio específico para la necesidad puntual de tu negocio hoy.',
   },
   {
     id: 'system',
-    title: 'Sistema',
+    title: 'Sistema completo',
     intro: 'Cuando web, contenido, ads e IA tienen que trabajar conectados.',
   },
 ]
@@ -143,6 +146,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         monthlyIncludes: landingExpress.monthlyIncludes,
         footnote: landingExpress.footnote,
         featured: true,
+        relatedSlugs: ['correo-corporativo', 'edicion-reels-4', 'meta-ads', 'pack-lanzamiento'],
         cta: buyFromPlan(landingExpress),
       },
       {
@@ -157,6 +161,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'El negocio creció: necesitas servicios, equipo, casos de éxito y rutas claras de contacto.',
         ...quoteFrom(349_990, 'Pago único o setup + cuotas'),
         includes: ['Arquitectura de contenidos', 'Hasta 8-10 páginas', 'Diseño responsive', 'SEO on-page base', 'Publicación y capacitación'],
+        relatedSlugs: ['correo-corporativo', 'dossier-comercial', 'optimizacion-web', 'pack-autoridad'],
         cta: { kind: 'quote', href: WA_LINKS.web, label: 'Cotizar web corporativa' },
       },
       {
@@ -170,6 +175,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Gestionar ventas por mensaje manual colapsa la operación y no escala.',
         ...quoteFrom(489_990, 'Pago único o implementación según catálogo'),
         includes: ['Configuración de tienda', 'Pasarelas de pago (Webpay, MercadoPago)', 'Integración de despachos', 'Carga inicial de productos', 'Capacitación'],
+        relatedSlugs: ['meta-ads', 'optimizacion-web', 'ia-whatsapp'],
         cta: { kind: 'quote', href: WA_LINKS.web, label: 'Cotizar tienda eCommerce' },
       },
       {
@@ -189,6 +195,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Mejoras de conversión (CTAs móviles y botón flotante)',
           'SEO técnico, sitemap XML y Google Search Console',
         ],
+        relatedSlugs: ['sitio-web', 'meta-ads', 'google-ads'],
         cta: { kind: 'quote', href: WA_LINKS.mantencion, label: 'Cotizar optimización' },
       },
       {
@@ -207,7 +214,48 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Formulario o WhatsApp',
           'Eventos de medición',
         ],
+        relatedSlugs: ['quiz-calificador', 'meta-ads', 'ia-whatsapp'],
         cta: { kind: 'quote', href: WA_LINKS.funnels, label: 'Cotizar funnel' },
+      },
+      {
+        id: 'correo-corporativo',
+        slug: 'correo-corporativo',
+        href: serviceHref('correo-corporativo'),
+        categoryId: 'web',
+        title: 'Correo Corporativo & Workspace',
+        description: 'Cuentas @tuempresa.cl en Google Workspace o Microsoft 365 con DNS antifraude.',
+        headline: 'Deja de usar @gmail.com. Proyecta seriedad y asegura que tus correos no caigan en SPAM.',
+        problem: 'Los correos gratuitos generan desconfianza y los servidores básicos terminan bloqueados por los filtros de correo.',
+        ...quoteFrom(69_990, 'Pago único · hasta 5 cuentas (suscripción Workspace aparte)'),
+        includes: [
+          'Configuración de dominio en Google Workspace o Microsoft 365',
+          'Creación de buzones y alias corporativos (@tuempresa.cl)',
+          'Registros DNS obligatorios: SPF, DKIM y DMARC (0% spam)',
+          'Plantilla de firma digital corporativa unificada',
+          'Sincronización en computadores (Outlook/Gmail) y celulares',
+        ],
+        relatedSlugs: ['landing-express', 'sitio-web', 'dossier-comercial'],
+        cta: { kind: 'quote', href: WA_LINKS.correo, label: 'Cotizar Correo Corporativo' },
+      },
+      {
+        id: 'quiz-calificador',
+        slug: 'quiz-calificador',
+        href: serviceHref('quiz-calificador'),
+        categoryId: 'web',
+        title: 'Quiz Calificador de Clientes',
+        description: 'Embudo interactivo de 4 a 6 preguntas con radar o diagnóstico que filtra prospectos antes de la reunión.',
+        headline: 'Filtra prospectos en automático y recibe solo a clientes con presupuesto.',
+        problem: 'Tu equipo pierde horas en reuniones con curiosos o prospectos que no son tu cliente ideal.',
+        ...quoteFrom(220_000, 'Pago único · diseño interactivo y enrutamiento'),
+        includes: [
+          'Diseño interactivo tipo radar o etapas (como Tradicional360 o Método Construye)',
+          '4 a 6 preguntas estratégicas de filtro comercial',
+          'Cálculo de resultado y diagnóstico personalizado en tiempo real',
+          'Enrutamiento a WhatsApp o CRM con mensaje y datos precargados',
+          'Integración de analítica y eventos de conversión',
+        ],
+        relatedSlugs: ['landing-express', 'sitio-web', 'meta-ads', 'sistema-crecimiento'],
+        cta: { kind: 'quote', href: WA_LINKS.quiz, label: 'Cotizar Quiz Calificador' },
       },
       {
         id: 'mantencion-web',
@@ -225,6 +273,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Horas de cambios mensuales (fotos, textos, banners y productos)',
           'Monitoreo de caídas y soporte prioritario WhatsApp',
         ],
+        relatedSlugs: ['sitio-web', 'correo-corporativo'],
         cta: { kind: 'quote', href: WA_LINKS.hosting, label: 'Cotizar mantención' },
       },
     ],
@@ -250,6 +299,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         ...priceFromPlan(VIDEO_PACK_8),
         includes: VIDEO_PACK_8.includes,
         featured: true,
+        relatedSlugs: ['meta-ads', 'landing-express', 'dossier-comercial'],
         cta: buyFromPlan(VIDEO_PACK_8),
       },
       {
@@ -263,6 +313,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Para empezar a publicar con consistencia sin pagar una gestión completa.',
         ...priceFromPlan(VIDEO_PACK_4),
         includes: VIDEO_PACK_4.includes,
+        relatedSlugs: ['meta-ads', 'landing-express'],
         cta: buyFromPlan(VIDEO_PACK_4),
       },
       {
@@ -276,6 +327,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Si publicas a ratos, las redes no traen consultas. Nos encargamos de diseñar, redactar y publicar.',
         ...priceFromPlan(redesEsencial),
         includes: redesEsencial.includes,
+        relatedSlugs: ['landing-express', 'edicion-reels-4', 'meta-ads'],
         cta: buyFromPlan(redesEsencial),
       },
       {
@@ -289,6 +341,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'El plan esencial se queda corto cuando hay que publicar más seguido y abarcar múltiples redes.',
         ...priceFromPlan(redesPro),
         includes: redesPro.includes,
+        relatedSlugs: ['meta-ads', 'sitio-web', 'ia-whatsapp'],
         cta: buyFromPlan(redesPro),
       },
       {
@@ -302,6 +355,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Generas videos largos o entrevistas pero nadie los edita ni los recicla en formato vertical.',
         ...priceFromPlan(VIDEO_YOUTUBE_PLAN),
         includes: VIDEO_YOUTUBE_PLAN.includes,
+        relatedSlugs: ['edicion-reels-8', 'branding'],
         cta: buyFromPlan(VIDEO_YOUTUBE_PLAN),
       },
       {
@@ -315,7 +369,28 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Cada pieza se ve distinta y la marca no transmite la solidez de tu servicio.',
         ...quoteFrom(260_000, 'Pago único · identidad visual, versiones y manual'),
         includes: ['Logotipo y versiones', 'Paleta y tipografías', 'Mini manual de uso', 'Archivos finales'],
+        relatedSlugs: ['sitio-web', 'dossier-comercial', 'pack-autoridad'],
         cta: { kind: 'quote', href: WA_LINKS.branding, label: 'Cotizar branding' },
+      },
+      {
+        id: 'dossier-comercial',
+        slug: 'dossier-comercial',
+        href: serviceHref('dossier-comercial'),
+        categoryId: 'contenido',
+        title: 'Dossier Comercial & Presentación B2B',
+        description: 'Presentación corporativa interactiva en PDF (10–12 láminas) con la identidad del estudio y botones directos a WhatsApp.',
+        headline: 'Tus propuestas comerciales al nivel de una empresa de primer nivel.',
+        problem: 'Enviar cotizaciones en Word o correos planos te hace ver informal y te obliga a competir por precio.',
+        ...quoteFrom(149_990, 'Pago único · 10 a 12 láminas interactivas'),
+        includes: [
+          'Estructura comercial: Problema, Solución, Metodología, Casos y Tarifas',
+          'Diseño editorial alineado a la identidad de tu marca',
+          'Botones interactivos directos a WhatsApp, llamada o web',
+          'Formato PDF liviano optimizado para envío por chat o correo',
+          'Archivos editables o reutilizables para futuras cotizaciones',
+        ],
+        relatedSlugs: ['branding', 'sitio-web', 'pack-autoridad'],
+        cta: { kind: 'quote', href: WA_LINKS.dossier, label: 'Cotizar Dossier Comercial' },
       },
     ],
   },
@@ -340,6 +415,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         ...quoteFrom(190_000, 'Mensual · pauta aparte · hasta $1.5M de inversión'),
         includes: ['Estrategia y audiencias', 'Creatividades', 'Optimización y reporte'],
         featured: true,
+        relatedSlugs: ['landing-express', 'quiz-calificador', 'edicion-reels-8'],
         cta: { kind: 'quote', href: WA_LINKS.metaAds, label: 'Cotizar Meta Ads' },
       },
       {
@@ -353,6 +429,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Sin campañas estructuradas, esa búsqueda se la lleva otro.',
         ...quoteFrom(190_000, 'Mensual · pauta aparte · hasta $1.5M de inversión'),
         includes: ['Keywords y estructura', 'Tracking de conversiones', 'Reportería'],
+        relatedSlugs: ['landing-express', 'optimizacion-web', 'plan-medios'],
         cta: { kind: 'quote', href: WA_LINKS.googleAds, label: 'Cotizar Google Ads' },
       },
       {
@@ -366,6 +443,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Cada mes empiezas de cero si solo pagas pauta.',
         ...quoteFrom(149_990, 'Mensual · auditoría técnica y contenidos'),
         includes: ['Auditoría técnica', 'On-page y contenidos', 'Seguimiento'],
+        relatedSlugs: ['sitio-web', 'optimizacion-web'],
         cta: { kind: 'quote', href: WA_LINKS.seo, label: 'Cotizar SEO' },
       },
       {
@@ -379,6 +457,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Sin tracking ni ciclo, la pauta es gasto sin aprendizaje.',
         ...quoteFrom(280_000, 'Mensual · Meta + Google Ads estructurados'),
         includes: ['Plan y KPIs', 'GTM / GA4 / píxeles', 'Optimización y reporte'],
+        relatedSlugs: ['landing-express', 'sitio-web', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.diagnostico, label: 'Solicitar propuesta' },
       },
     ],
@@ -410,6 +489,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Ajustes y entrenamiento inicial',
         ],
         featured: true,
+        relatedSlugs: ['landing-express', 'agenda-cobros', 'automatizaciones-ia'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacionIa, label: 'Evaluar IA en WhatsApp' },
       },
       {
@@ -423,7 +503,28 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'El equipo pierde horas en tareas que una integración puede hacer.',
         ...quoteFrom(240_000, 'Pago único o setup + mensual, según proceso'),
         includes: ['Diagnóstico de procesos', 'Integraciones', 'Prueba controlada', 'Documentación simple'],
+        relatedSlugs: ['agenda-cobros', 'ia-whatsapp', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacion, label: 'Evaluar automatización' },
+      },
+      {
+        id: 'agenda-cobros',
+        slug: 'agenda-cobros',
+        href: serviceHref('agenda-cobros'),
+        categoryId: 'ia',
+        title: 'Sistema de Agenda y Cobros 24/7',
+        description: 'Página autónoma de reservas con pasarela de pago obligatoria (Webpay/MercadoPago) y recordatorios automáticos.',
+        headline: 'Cobra por adelantado y llena tu agenda sin coordinar horas por chat.',
+        problem: 'Horas perdidas coordinando citas por WhatsApp y cancelaciones de última hora que te dejan sin ingresos.',
+        ...quoteFrom(240_000, 'Pago único o setup + pasarela de pago'),
+        includes: [
+          'Página de reserva personalizada con horarios y servicios disponibles',
+          'Cobro anticipado obligatorio (Webpay, Tarjetas de Débito/Crédito)',
+          'Sincronización bidireccional con Google Calendar o Outlook',
+          'Recordatorios automáticos por correo o WhatsApp para evitar no-shows',
+          'Capacitación de uso y gestión de bloqueos de horario',
+        ],
+        relatedSlugs: ['landing-express', 'ia-whatsapp', 'automatizaciones-ia'],
+        cta: { kind: 'quote', href: WA_LINKS.agenda, label: 'Cotizar Sistema de Agenda' },
       },
       {
         id: 'proyecto-ia',
@@ -442,6 +543,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Datos y criterios de negocio',
           'Entrega usable, no una demo suelta',
         ],
+        relatedSlugs: ['automatizaciones-ia', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacionIa, label: 'Proponer un proyecto IA' },
       },
     ],
@@ -453,8 +555,31 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     href: '/servicios#packs',
     title: 'Packs',
     prompt: '¿Quieres un pack listo?',
-    subtitle: 'Landing + redes en un solo plan. Entrada web $74.990, contenido desde el piso de Redes Esencial.',
+    subtitle: 'Soluciones paquetizadas con ahorro garantizado frente a contratar piezas sueltas.',
     items: [
+      {
+        id: 'pack-lanzamiento',
+        slug: 'pack-lanzamiento',
+        href: serviceHref('pack-lanzamiento'),
+        categoryId: 'packs',
+        title: 'Pack Lanzamiento: Web + Pauta Ads',
+        description: 'Tu página lista para convertir + campaña activa en Google o Meta Ads desde la primera semana.',
+        headline: 'Página de alta conversión + tráfico calificado desde el día uno.',
+        problem: 'Una web sin anuncios no recibe visitas; y anuncios sin una web optimizada queman el presupuesto.',
+        ...quoteFrom(199_990, 'Setup integral · pauta aparte · ahorro de $50.000'),
+        badge: 'Más pedido',
+        savingsNote: 'Ahorras $50.000 frente a contratar landing y setup de campañas por separado',
+        includes: [
+          'Landing Express (one-page, hasta 7 secciones, WhatsApp, dominio .cl 1er año)',
+          'Setup de campaña en Google Ads o Meta Ads con segmentación inicial',
+          'Configuración técnica de GA4, Google Tag Manager y Meta Pixel / API',
+          'Pruebas de conversión y tracking de clics a WhatsApp',
+          '1 mes de soporte y optimizaciones técnicas iniciales',
+        ],
+        featured: true,
+        relatedSlugs: ['edicion-reels-4', 'correo-corporativo', 'ia-whatsapp'],
+        cta: { kind: 'quote', href: WA_LINKS.packLanzamiento, label: 'Cotizar Pack Lanzamiento' },
+      },
       {
         id: CRECE_PLAN.id,
         slug: 'landing-redes',
@@ -465,9 +590,33 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         headline: 'Página de entrada + contenido mensual, juntos.',
         problem: 'Web sin contenido, o contenido sin destino, deja el embudo a medias.',
         ...priceFromPlan(CRECE_PLAN),
+        badge: 'Pack Continuo',
+        savingsNote: 'Landing Express + Redes Esencial con hosting y mantención incluidos',
         includes: CRECE_PLAN.includes,
         featured: true,
+        relatedSlugs: ['pack-lanzamiento', 'meta-ads', 'correo-corporativo'],
         cta: buyFromPlan(CRECE_PLAN),
+      },
+      {
+        id: 'pack-autoridad',
+        slug: 'pack-autoridad',
+        href: serviceHref('pack-autoridad'),
+        categoryId: 'packs',
+        title: 'Pack Autoridad B2B: Marca + Web',
+        description: 'Identidad visual completa, sitio web corporativo y dossier interactivo para cerrar clientes de ticket alto.',
+        headline: 'Posicionamiento institucional sólido para empresas que venden confianza.',
+        problem: 'Vender servicios de alto valor con una imagen amateur o propuestas en Word te obliga a competir por precio.',
+        ...quoteFrom(549_990, 'Proyecto completo · ahorro de $60.000'),
+        badge: 'Empresas & B2B',
+        savingsNote: 'Ahorras $60.000 contratando el pack completo de marca y web',
+        includes: [
+          'Branding & Identidad visual (logo, versiones, paleta, tipografías y manual)',
+          'Sitio Web Corporativo (hasta 8 páginas, diseño responsive, SEO on-page)',
+          'Dossier Comercial / Presentación B2B interactiva en PDF (10–12 láminas)',
+          'Setup de correos corporativos en Google Workspace (hasta 5 cuentas)',
+        ],
+        relatedSlugs: ['quiz-calificador', 'plan-medios', 'sistema-crecimiento'],
+        cta: { kind: 'quote', href: WA_LINKS.packAutoridad, label: 'Cotizar Pack Autoridad' },
       },
     ],
   },
@@ -498,6 +647,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Medición y mejora',
         ],
         featured: true,
+        relatedSlugs: ['quiz-calificador', 'ia-whatsapp', 'proyecto-estrategico'],
         cta: { kind: 'quote', href: WA_LINKS.diagnostico, label: 'Solicitar diagnóstico' },
       },
       {
@@ -512,6 +662,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         priceLabel: 'Cotizar',
         billingNote: 'Propuesta a medida',
         includes: ['Diagnóstico por marca', 'Plan de medios', 'Web y conversión', 'Reportería'],
+        relatedSlugs: ['sistema-crecimiento', 'plan-medios'],
         cta: { kind: 'quote', href: WA_LINKS.reunion, label: 'Agendar reunión' },
       },
     ],

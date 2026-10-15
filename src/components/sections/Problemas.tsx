@@ -53,7 +53,7 @@ export function Problemas() {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--compare-right-text)] opacity-75">
                   {PROBLEMAS.rightLabel}
                 </p>
-                <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[var(--compare-right-text)]/12 text-[var(--compare-right-text)]">
+                <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-[var(--compare-right-text)]">
                   Artestudio
                 </span>
               </div>
@@ -66,7 +66,7 @@ export function Problemas() {
                 ))}
               </ul>
             </div>
-            <p className="mt-8 pt-6 border-t border-[var(--compare-right-text)]/15 text-xs text-[var(--compare-right-text)] opacity-75">
+            <p className="mt-8 pt-6 border-t border-white/15 text-xs text-[var(--compare-right-text)] opacity-75">
               Resultado: Un proceso repetible y conectado que escala tu empresa.
             </p>
           </div>

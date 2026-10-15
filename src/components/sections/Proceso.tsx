@@ -24,7 +24,7 @@ export function Proceso() {
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {PROCESO.steps.map((step, idx) => (
             <li key={step.title} className="flex gap-4">
-              <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-[var(--field)] text-primary font-bold text-sm flex items-center justify-center border border-[var(--border)]">
+              <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-field text-primary font-bold text-sm flex items-center justify-center border border-[var(--border)]">
                 {idx + 1}
               </span>
               <div className="pt-1">

@@ -30,8 +30,8 @@ export function HomeHub() {
                     sizes="(min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   />
-                  <div className="absolute inset-0 bg-[var(--ink)]/0 transition-colors duration-300 group-hover:bg-[var(--ink)]/35" />
-                  <span className="absolute bottom-4 right-4 rounded-[10px] bg-[var(--paper)] px-3 py-1.5 text-xs font-semibold text-[var(--ink)] translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/40" />
+                  <span className="absolute bottom-4 right-4 rounded-[10px] bg-white text-neutral-950 px-3 py-1.5 text-xs font-semibold translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 shadow-md">
                     {'external' in item && item.external ? 'Abrir' : 'Entrar'}
                   </span>
                 </div>

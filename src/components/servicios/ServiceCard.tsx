@@ -16,7 +16,7 @@ export function ServiceIndexCard({ item }: { item: ServiceItem }) {
           {item.title}
         </h3>
         {item.badge ? (
-          <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-[var(--field)] text-[var(--ink)] border border-[var(--border)]">
+          <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-field text-[var(--ink)] border border-[var(--border)]">
             {item.badge}
           </span>
         ) : null}
@@ -25,7 +25,7 @@ export function ServiceIndexCard({ item }: { item: ServiceItem }) {
       <p className="mt-1 flex-1 text-sm text-muted leading-relaxed">{item.headline}</p>
 
       {item.savingsNote ? (
-        <div className="mt-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--field)] text-xs font-semibold text-[var(--ink)] border border-[var(--border)]">
+        <div className="mt-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-field text-xs font-semibold text-[var(--ink)] border border-[var(--border)]">
           <Discount2 className="w-3.5 h-3.5 shrink-0" />
           <span>{item.savingsNote}</span>
         </div>

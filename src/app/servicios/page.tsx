@@ -30,7 +30,7 @@ export default function ServiciosPage() {
                 href={`#${family.id}`}
                 className={`rounded-2xl border px-5 py-4 transition-colors ${
                   family.id === 'pack'
-                    ? 'border-[var(--ink)] bg-[var(--field)] hover:border-[var(--ink)] shadow-sm'
+                    ? 'border-[var(--ink)] bg-field hover:border-[var(--ink)] shadow-sm'
                     : family.id === 'system'
                     ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
                     : 'border-[var(--border)] bg-surface hover:border-[var(--ink)]'

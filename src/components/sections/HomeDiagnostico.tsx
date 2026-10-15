@@ -43,20 +43,20 @@ export function HomeDiagnostico() {
                 className={`relative p-4 md:p-5 rounded-2xl text-left border transition-all duration-200 cursor-pointer ${
                   isSelected
                     ? 'bg-[var(--ink)] text-[var(--paper)] border-[var(--ink)] shadow-md'
-                    : 'bg-[var(--card)] text-[var(--muted)] hover:text-[var(--text)] border-[var(--border)] hover:border-[var(--line-strong)]'
+                    : 'bg-card text-muted hover:text-[var(--text)] border-[var(--border)] hover:border-[var(--line-strong)]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span
                     className={`text-[11px] font-semibold tracking-[0.14em] uppercase ${
-                      isSelected ? 'text-[var(--paper)]/80' : 'text-muted'
+                      isSelected ? 'text-[var(--paper)] opacity-80' : 'text-muted'
                     }`}
                   >
                     Etapa {stage.letter}
                   </span>
                   <span
                     className={`text-xs font-mono tabular-nums ${
-                      isSelected ? 'text-[var(--paper)]/70' : 'text-muted'
+                      isSelected ? 'text-[var(--paper)] opacity-70' : 'text-muted'
                     }`}
                   >
                     {stage.number}
@@ -82,10 +82,10 @@ export function HomeDiagnostico() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-[2rem] border border-[var(--border)] bg-[var(--card)] p-6 md:p-10 shadow-sm"
+            className="rounded-[2rem] border border-[var(--border)] bg-card p-6 md:p-10 shadow-sm"
           >
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--field)] text-[var(--text)] border border-[var(--border)]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-field text-[var(--text)] border border-[var(--border)]">
                 <Bolt className="w-3.5 h-3.5" />
                 Diagnóstico de situación
               </span>
@@ -101,7 +101,7 @@ export function HomeDiagnostico() {
             {/* Two comparison blocks: Síntoma vs Solución */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
               {/* Síntoma actual */}
-              <div className="p-6 rounded-2xl bg-[var(--field)]/60 border border-[var(--border)]">
+              <div className="p-6 rounded-2xl bg-field border border-[var(--border)]">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted mb-3">
                   <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
                   <span>El síntoma habitual</span>
@@ -112,7 +112,7 @@ export function HomeDiagnostico() {
               </div>
 
               {/* Solución a construir */}
-              <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
+              <div className="p-6 rounded-2xl bg-surface border border-[var(--border)]">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--ink)] mb-3">
                   <Check className="w-4 h-4 text-[var(--ink)] shrink-0" />
                   <span>La pieza a construir</span>

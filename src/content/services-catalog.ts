@@ -24,6 +24,13 @@ export type ServiceCta =
       label?: string
     }
 
+export type ServicePreviewImage = {
+  src: string
+  alt: string
+  caption?: string
+  tag?: string
+}
+
 export type ServiceItem = {
   id: string
   slug: string
@@ -37,6 +44,7 @@ export type ServiceItem = {
   billingNote?: string
   savingsNote?: string
   badge?: string
+  previewImage?: ServicePreviewImage
   includes: readonly string[]
   monthlyIncludes?: readonly string[]
   footnote?: string
@@ -146,6 +154,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         monthlyIncludes: landingExpress.monthlyIncludes,
         footnote: landingExpress.footnote,
         featured: true,
+        previewImage: {
+          src: '/images/casos/quiral.png',
+          alt: 'Landing Express diseñada por Artestudio',
+          tag: 'Caso Real · quiralproyectos.cl',
+          caption: 'Diseño responsive de una sola página, estética editorial boutique, optimización para móviles y botón directo a WhatsApp.',
+        },
         relatedSlugs: ['correo-corporativo', 'edicion-reels-4', 'meta-ads', 'pack-lanzamiento'],
         cta: buyFromPlan(landingExpress),
       },
@@ -161,6 +175,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'El negocio creció: necesitas servicios, equipo, casos de éxito y rutas claras de contacto.',
         ...quoteFrom(349_990, 'Pago único o setup + cuotas'),
         includes: ['Arquitectura de contenidos', 'Hasta 8-10 páginas', 'Diseño responsive', 'SEO on-page base', 'Publicación y capacitación'],
+        previewImage: {
+          src: '/images/casos/tradicional360.png',
+          alt: 'Sitio Web Corporativo diseñado por Artestudio',
+          tag: 'Caso Real · tradicional360.cl',
+          caption: 'Sitio multi-página estructurado con arquitectura de contenidos institucional, páginas de servicios y capturas de prospectos.',
+        },
         relatedSlugs: ['correo-corporativo', 'dossier-comercial', 'optimizacion-web', 'pack-autoridad'],
         cta: { kind: 'quote', href: WA_LINKS.web, label: 'Cotizar web corporativa' },
       },
@@ -175,6 +195,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Gestionar ventas por mensaje manual colapsa la operación y no escala.',
         ...quoteFrom(489_990, 'Pago único o implementación según catálogo'),
         includes: ['Configuración de tienda', 'Pasarelas de pago (Webpay, MercadoPago)', 'Integración de despachos', 'Carga inicial de productos', 'Capacitación'],
+        previewImage: {
+          src: '/images/services/desarrollo-web.png',
+          alt: 'Tienda online eCommerce por Artestudio',
+          tag: 'Shopify / Jumpseller / WooCommerce',
+          caption: 'Catálogo de productos sincronizado, pasarela Webpay/Mercado Pago y flujo de checkout automatizado 24/7.',
+        },
         relatedSlugs: ['meta-ads', 'optimizacion-web', 'ia-whatsapp'],
         cta: { kind: 'quote', href: WA_LINKS.web, label: 'Cotizar tienda eCommerce' },
       },
@@ -195,6 +221,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Mejoras de conversión (CTAs móviles y botón flotante)',
           'SEO técnico, sitemap XML y Google Search Console',
         ],
+        previewImage: {
+          src: '/images/services/actualizaciones-web.png',
+          alt: 'Optimización Web y Analítica por Artestudio',
+          tag: 'Velocidad & Tracking GA4',
+          caption: 'Puesta a punto de Core Web Vitals, medición precisa de conversiones y eventos configurados en Google Tag Manager.',
+        },
         relatedSlugs: ['sitio-web', 'meta-ads', 'google-ads'],
         cta: { kind: 'quote', href: WA_LINKS.mantencion, label: 'Cotizar optimización' },
       },
@@ -214,6 +246,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Formulario o WhatsApp',
           'Eventos de medición',
         ],
+        previewImage: {
+          src: '/images/casos/tradicional360.png',
+          alt: 'Embudo de conversión por Artestudio',
+          tag: 'Funnel Paso a Paso',
+          caption: 'Secuencia interactiva de captura, calificación y derivación a WhatsApp o pasarela de pago sin fricciones.',
+        },
         relatedSlugs: ['quiz-calificador', 'meta-ads', 'ia-whatsapp'],
         cta: { kind: 'quote', href: WA_LINKS.funnels, label: 'Cotizar funnel' },
       },
@@ -234,6 +272,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Plantilla de firma digital corporativa unificada',
           'Sincronización en computadores (Outlook/Gmail) y celulares',
         ],
+        previewImage: {
+          src: '/images/services/actualizaciones-web.png',
+          alt: 'Setup de Correo Corporativo y Google Workspace',
+          tag: 'Google Workspace / Microsoft 365',
+          caption: 'Autenticación SPF, DKIM y DMARC verificada para asegurar entrega directa en la bandeja de entrada.',
+        },
         relatedSlugs: ['landing-express', 'sitio-web', 'dossier-comercial'],
         cta: { kind: 'quote', href: WA_LINKS.correo, label: 'Cotizar Correo Corporativo' },
       },
@@ -254,6 +298,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Enrutamiento a WhatsApp o CRM con mensaje y datos precargados',
           'Integración de analítica y eventos de conversión',
         ],
+        previewImage: {
+          src: '/images/casos/tradicional360.png',
+          alt: 'Quiz interactivo calificador de prospectos',
+          tag: 'Calificador Interactivo',
+          caption: 'Filtro previo que diagnostica al cliente y lo deriva a tu equipo comercial con sus datos y presupuesto ya ordenados.',
+        },
         relatedSlugs: ['landing-express', 'sitio-web', 'meta-ads', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.quiz, label: 'Cotizar Quiz Calificador' },
       },
@@ -273,6 +323,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Horas de cambios mensuales (fotos, textos, banners y productos)',
           'Monitoreo de caídas y soporte prioritario WhatsApp',
         ],
+        previewImage: {
+          src: '/images/services/actualizaciones-web.png',
+          alt: 'Mantención y soporte técnico web por Artestudio',
+          tag: 'Continuidad Técnica & Hosting',
+          caption: 'Servidores de alto rendimiento con SSL, copias de respaldo continuas y soporte técnico prioritario vía WhatsApp.',
+        },
         relatedSlugs: ['sitio-web', 'correo-corporativo'],
         cta: { kind: 'quote', href: WA_LINKS.hosting, label: 'Cotizar mantención' },
       },
@@ -299,6 +355,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         ...priceFromPlan(VIDEO_PACK_8),
         includes: VIDEO_PACK_8.includes,
         featured: true,
+        previewImage: {
+          src: '/images/services/edicion-video.png',
+          alt: 'Edición de Reels y video vertical por Artestudio',
+          tag: '8 Reels Mensuales · 9:16',
+          caption: 'Edición dinámica con subtítulos animados, ganchos de retención y música en tendencia para Instagram y TikTok.',
+        },
         relatedSlugs: ['meta-ads', 'landing-express', 'dossier-comercial'],
         cta: buyFromPlan(VIDEO_PACK_8),
       },
@@ -313,6 +375,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Para empezar a publicar con consistencia sin pagar una gestión completa.',
         ...priceFromPlan(VIDEO_PACK_4),
         includes: VIDEO_PACK_4.includes,
+        previewImage: {
+          src: '/images/services/edicion-video.png',
+          alt: 'Edición de Reels Pack 4 por Artestudio',
+          tag: '4 Reels Mensuales · 1 por Semana',
+          caption: '1 reel semanal editado con ganchos, subtítulos y ritmo optimizado para mantener presencia constante.',
+        },
         relatedSlugs: ['meta-ads', 'landing-express'],
         cta: buyFromPlan(VIDEO_PACK_4),
       },
@@ -327,6 +395,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Si publicas a ratos, las redes no traen consultas. Nos encargamos de diseñar, redactar y publicar.',
         ...priceFromPlan(redesEsencial),
         includes: redesEsencial.includes,
+        previewImage: {
+          src: '/images/services/redes-sociales.png',
+          alt: 'Gestión de Redes Esencial por Artestudio',
+          tag: '8 Contenidos Mensuales',
+          caption: 'Diseño gráfico editorial, carruseles educativos y redacción estratégica con publicación programada.',
+        },
         relatedSlugs: ['landing-express', 'edicion-reels-4', 'meta-ads'],
         cta: buyFromPlan(redesEsencial),
       },
@@ -341,6 +415,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'El plan esencial se queda corto cuando hay que publicar más seguido y abarcar múltiples redes.',
         ...priceFromPlan(redesPro),
         includes: redesPro.includes,
+        previewImage: {
+          src: '/images/services/redes-sociales.png',
+          alt: 'Gestión de Redes Pro por Artestudio',
+          tag: '12 Contenidos + 4 Reels',
+          caption: 'Estrategia integral multiplataforma combinando carruseles de autoridad y video vertical con edición pro.',
+        },
         relatedSlugs: ['meta-ads', 'sitio-web', 'ia-whatsapp'],
         cta: buyFromPlan(redesPro),
       },
@@ -355,6 +435,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Generas videos largos o entrevistas pero nadie los edita ni los recicla en formato vertical.',
         ...priceFromPlan(VIDEO_YOUTUBE_PLAN),
         includes: VIDEO_YOUTUBE_PLAN.includes,
+        previewImage: {
+          src: '/images/services/edicion-video.png',
+          alt: 'Edición de video largo para YouTube y Podcast',
+          tag: 'YouTube + Podcast + Reels',
+          caption: 'Edición multicámara horizontal en 4K/1080p y extracción de píldoras cortas verticales para reels.',
+        },
         relatedSlugs: ['edicion-reels-8', 'branding'],
         cta: buyFromPlan(VIDEO_YOUTUBE_PLAN),
       },
@@ -369,6 +455,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Cada pieza se ve distinta y la marca no transmite la solidez de tu servicio.',
         ...quoteFrom(260_000, 'Pago único · identidad visual, versiones y manual'),
         includes: ['Logotipo y versiones', 'Paleta y tipografías', 'Mini manual de uso', 'Archivos finales'],
+        previewImage: {
+          src: '/images/services/branding-identidad.png',
+          alt: 'Identidad visual y branding por Artestudio',
+          tag: 'Sistema de Marca & Guía de Estilo',
+          caption: 'Logotipo en todas sus versiones vectoriales, paleta cromática, fuentes tipográficas y manual de uso.',
+        },
         relatedSlugs: ['sitio-web', 'dossier-comercial', 'pack-autoridad'],
         cta: { kind: 'quote', href: WA_LINKS.branding, label: 'Cotizar branding' },
       },
@@ -389,6 +481,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Formato PDF liviano optimizado para envío por chat o correo',
           'Archivos editables o reutilizables para futuras cotizaciones',
         ],
+        previewImage: {
+          src: '/images/services/diseno-grafico.png',
+          alt: 'Dossier Comercial B2B por Artestudio',
+          tag: 'Presentación B2B Interactiva',
+          caption: 'Documento comercial interactivo de 10 a 12 láminas con botones de contacto, casos y estructura persuasiva.',
+        },
         relatedSlugs: ['branding', 'sitio-web', 'pack-autoridad'],
         cta: { kind: 'quote', href: WA_LINKS.dossier, label: 'Cotizar Dossier Comercial' },
       },
@@ -415,6 +513,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         ...quoteFrom(190_000, 'Mensual · pauta aparte · hasta $1.5M de inversión'),
         includes: ['Estrategia y audiencias', 'Creatividades', 'Optimización y reporte'],
         featured: true,
+        previewImage: {
+          src: '/images/hero-clientes-online.png',
+          alt: 'Campañas de Meta Ads por Artestudio',
+          tag: 'Meta Ads · Instagram & Facebook',
+          caption: 'Estructura de campañas segmentadas por dolor e intención de compra, con creatividades probadas y medición de conversiones.',
+        },
         relatedSlugs: ['landing-express', 'quiz-calificador', 'edicion-reels-8'],
         cta: { kind: 'quote', href: WA_LINKS.metaAds, label: 'Cotizar Meta Ads' },
       },
@@ -429,6 +533,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Sin campañas estructuradas, esa búsqueda se la lleva otro.',
         ...quoteFrom(190_000, 'Mensual · pauta aparte · hasta $1.5M de inversión'),
         includes: ['Keywords y estructura', 'Tracking de conversiones', 'Reportería'],
+        previewImage: {
+          src: '/images/hero-clientes-online.png',
+          alt: 'Campañas de Google Ads por Artestudio',
+          tag: 'Google Ads · Búsqueda con Intención',
+          caption: 'Campañas en la red de búsqueda optimizadas para aparecer cuando el cliente está buscando activamente tu servicio.',
+        },
         relatedSlugs: ['landing-express', 'optimizacion-web', 'plan-medios'],
         cta: { kind: 'quote', href: WA_LINKS.googleAds, label: 'Cotizar Google Ads' },
       },
@@ -443,6 +553,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Cada mes empiezas de cero si solo pagas pauta.',
         ...quoteFrom(149_990, 'Mensual · auditoría técnica y contenidos'),
         includes: ['Auditoría técnica', 'On-page y contenidos', 'Seguimiento'],
+        previewImage: {
+          src: '/images/services/actualizaciones-web.png',
+          alt: 'Estrategia SEO y posicionamiento orgánico',
+          tag: 'SEO Orgánico & Contenidos',
+          caption: 'Auditoría técnica, optimización on-page y arquitectura de palabras clave para captar visitas sin pagar por clic.',
+        },
         relatedSlugs: ['sitio-web', 'optimizacion-web'],
         cta: { kind: 'quote', href: WA_LINKS.seo, label: 'Cotizar SEO' },
       },
@@ -457,6 +573,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Sin tracking ni ciclo, la pauta es gasto sin aprendizaje.',
         ...quoteFrom(280_000, 'Mensual · Meta + Google Ads estructurados'),
         includes: ['Plan y KPIs', 'GTM / GA4 / píxeles', 'Optimización y reporte'],
+        previewImage: {
+          src: '/images/hero-clientes-online.png',
+          alt: 'Plan de medios y pauta digital',
+          tag: 'Meta + Google Ads',
+          caption: 'Estrategia integral de medios digitales con asignación de presupuesto y seguimiento de CAC y ROAS.',
+        },
         relatedSlugs: ['landing-express', 'sitio-web', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.diagnostico, label: 'Solicitar propuesta' },
       },
@@ -489,6 +611,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Ajustes y entrenamiento inicial',
         ],
         featured: true,
+        previewImage: {
+          src: '/images/services/aplicaciones-ia.png',
+          alt: 'Agente de IA y calificación en WhatsApp por Artestudio',
+          tag: 'Agente IA 24/7 · WhatsApp API',
+          caption: 'Flujo conversacional inteligente entrenado con los datos de tu empresa, calificación automática y handoff a humanos.',
+        },
         relatedSlugs: ['landing-express', 'agenda-cobros', 'automatizaciones-ia'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacionIa, label: 'Evaluar IA en WhatsApp' },
       },
@@ -503,6 +631,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'El equipo pierde horas en tareas que una integración puede hacer.',
         ...quoteFrom(240_000, 'Pago único o setup + mensual, según proceso'),
         includes: ['Diagnóstico de procesos', 'Integraciones', 'Prueba controlada', 'Documentación simple'],
+        previewImage: {
+          src: '/images/services/aplicaciones-ia.png',
+          alt: 'Automatizaciones de procesos comerciales con IA',
+          tag: 'Workflows & Integraciones',
+          caption: 'Integración fluida entre formularios, CRM, bases de datos y avisos en tiempo real para eliminar fricción operativa.',
+        },
         relatedSlugs: ['agenda-cobros', 'ia-whatsapp', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacion, label: 'Evaluar automatización' },
       },
@@ -523,6 +657,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Recordatorios automáticos por correo o WhatsApp para evitar no-shows',
           'Capacitación de uso y gestión de bloqueos de horario',
         ],
+        previewImage: {
+          src: '/images/proceso-web-soporte.png',
+          alt: 'Sistema de agenda y cobros online 24/7',
+          tag: 'Reserva & Cobro Anticipado',
+          caption: 'Página de reservas conectada a Webpay y Google Calendar para asegurar el pago antes de cada sesión.',
+        },
         relatedSlugs: ['landing-express', 'ia-whatsapp', 'automatizaciones-ia'],
         cta: { kind: 'quote', href: WA_LINKS.agenda, label: 'Cotizar Sistema de Agenda' },
       },
@@ -543,6 +683,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Datos y criterios de negocio',
           'Entrega usable, no una demo suelta',
         ],
+        previewImage: {
+          src: '/images/services/aplicaciones-ia.png',
+          alt: 'Proyectos a medida con Inteligencia Artificial',
+          tag: 'IA a Medida · LLMs & Agentes',
+          caption: 'Desarrollo de asistentes internos, procesamiento de documentos y herramientas a medida para tu equipo.',
+        },
         relatedSlugs: ['automatizaciones-ia', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.automatizacionIa, label: 'Proponer un proyecto IA' },
       },
@@ -577,6 +723,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           '1 mes de soporte y optimizaciones técnicas iniciales',
         ],
         featured: true,
+        previewImage: {
+          src: '/images/casos/quiral.png',
+          alt: 'Pack Lanzamiento: Web más Pauta Ads por Artestudio',
+          tag: 'Pack Lanzamiento · Web + Ads',
+          caption: 'Landing Express lista para recibir tráfico desde el primer día, conectada con campañas activas en Meta o Google Ads.',
+        },
         relatedSlugs: ['edicion-reels-4', 'correo-corporativo', 'ia-whatsapp'],
         cta: { kind: 'quote', href: WA_LINKS.packLanzamiento, label: 'Cotizar Pack Lanzamiento' },
       },
@@ -594,6 +746,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         savingsNote: 'Landing Express + Redes Esencial con hosting y mantención incluidos',
         includes: CRECE_PLAN.includes,
         featured: true,
+        previewImage: {
+          src: '/images/contenido-redes.png',
+          alt: 'Pack Landing más Redes Sociales por Artestudio',
+          tag: 'Pack Continuo · Web + Contenido',
+          caption: 'Página web siempre optimizada y redes sociales activas mes a mes con diseño editorial y soporte técnico incluido.',
+        },
         relatedSlugs: ['pack-lanzamiento', 'meta-ads', 'correo-corporativo'],
         cta: buyFromPlan(CRECE_PLAN),
       },
@@ -615,6 +773,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Dossier Comercial / Presentación B2B interactiva en PDF (10–12 láminas)',
           'Setup de correos corporativos en Google Workspace (hasta 5 cuentas)',
         ],
+        previewImage: {
+          src: '/images/casos/atria.png',
+          alt: 'Pack Autoridad B2B: Marca más Web por Artestudio',
+          tag: 'Pack Autoridad B2B · Caso Atria',
+          caption: 'Identidad visual integral, sitio web corporativo de alta gama, dossier comercial interactivo y Google Workspace.',
+        },
         relatedSlugs: ['quiz-calificador', 'plan-medios', 'sistema-crecimiento'],
         cta: { kind: 'quote', href: WA_LINKS.packAutoridad, label: 'Cotizar Pack Autoridad' },
       },
@@ -647,6 +811,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           'Medición y mejora',
         ],
         featured: true,
+        previewImage: {
+          src: '/images/proceso-web-soporte.png',
+          alt: 'Sistema de crecimiento integral por Artestudio',
+          tag: 'Sistema Completo Conectado',
+          caption: 'Arquitectura completa donde web, publicidad, analítica, CRM y automatizaciones trabajan integrados.',
+        },
         relatedSlugs: ['quiz-calificador', 'ia-whatsapp', 'proyecto-estrategico'],
         cta: { kind: 'quote', href: WA_LINKS.diagnostico, label: 'Solicitar diagnóstico' },
       },
@@ -662,6 +832,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         priceLabel: 'Cotizar',
         billingNote: 'Propuesta a medida',
         includes: ['Diagnóstico por marca', 'Plan de medios', 'Web y conversión', 'Reportería'],
+        previewImage: {
+          src: '/images/proceso-web-soporte.png',
+          alt: 'Proyecto multi-marca por Artestudio',
+          tag: 'Estrategia Multi-Marca',
+          caption: 'Dirección unificada para negocios con múltiples líneas de servicio, productos o marcas comerciales.',
+        },
         relatedSlugs: ['sistema-crecimiento', 'plan-medios'],
         cta: { kind: 'quote', href: WA_LINKS.reunion, label: 'Agendar reunión' },
       },

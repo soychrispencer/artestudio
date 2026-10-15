@@ -9,6 +9,7 @@ import {
   isServiceCategoryId,
 } from '@/content/services-catalog'
 import { ServiceCta, ServiceCrossSellCard } from '@/components/servicios/ServiceCard'
+import { ServicePreviewFrame } from '@/components/servicios/ServicePreviewFrame'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -36,6 +37,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: service.title,
     description: service.problem,
     alternates: { canonical: service.href },
+    openGraph: service.previewImage
+      ? {
+          title: `${service.title} | Artestudio`,
+          description: service.problem,
+          images: [{ url: service.previewImage.src, alt: service.previewImage.alt }],
+        }
+      : undefined,
   }
 }
 
@@ -75,6 +83,13 @@ export default async function ServicioLandingPage({ params }: PageProps) {
                 {service.title}
               </h1>
               <p className="text-lg text-muted leading-relaxed max-w-2xl mb-8">{service.problem}</p>
+
+              {/* Mockup Preview Deliverable */}
+              {service.previewImage ? (
+                <div className="mb-10 max-w-2xl">
+                  <ServicePreviewFrame preview={service.previewImage} title={service.title} />
+                </div>
+              ) : null}
 
               <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted mb-4">
                 Qué incluye

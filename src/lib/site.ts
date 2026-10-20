@@ -159,7 +159,7 @@ export const HOME_HUB = {
 
 export const HOME_WORKS = {
   label: 'Trabajos & Sistemas',
-  title: 'Resultados reales, sistemas funcionando.',
+  title: 'Proyectos reales. Soluciones construidas.',
   intro:
     'No diseñamos páginas para que se queden quietas. Construimos sistemas que resuelven fricciones comerciales y generan clientes calificados.',
   featuredTag: 'Portafolio',

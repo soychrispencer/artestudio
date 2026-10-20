@@ -350,7 +350,7 @@ const videoPlans: PricingPlan[] = [
   {
     tier: 'pro',
     name: 'Pack Edición 8',
-    badge: 'Más pedido',
+    badge: 'Recomendado',
     recommended: true,
     setup: 0,
     monthly: 109990,
@@ -432,7 +432,7 @@ const disenoPlans: PricingPlan[] = [
   {
     tier: 'pro',
     name: 'Pro',
-    badge: 'Más pedido',
+    badge: 'Recomendado',
     recommended: true,
     setup: 90000,
     monthly: 0,

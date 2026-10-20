@@ -83,6 +83,8 @@ export const CRECE_PLAN: SubscriptionPlan = {
     'Calendario y línea visual del mes',
     'Hosting, SSL, soporte y mantención de la landing',
   ],
+  footnote:
+    'La mensualidad de $94.990 + IVA comienza a partir del mes 2 (tras la entrega y publicación de tu web). El sitio y dominio son 100% tuyos: si más adelante decides pausar las redes sociales, puedes continuar solo con el hosting y soporte técnico base por $9.990 + IVA/mes.',
   excludes: [
     'Pauta publicitaria',
     'eCommerce',
@@ -121,7 +123,7 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
   {
     id: 'plan-redes-pro',
     name: 'Redes Pro',
-    tagline: '12 contenidos mensuales con estrategia (3 por semana)',
+    tagline: '12 contenidos mensuales con estrategia (incluye 4 reels)',
     idealFor: 'Marcas que necesitan mayor autoridad, más video y alcance en varias plataformas.',
     category: 'social',
     setup: 0,
@@ -130,7 +132,7 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
     featured: true,
     badge: 'Más completo',
     includes: [
-      '12 contenidos mensuales (3 por semana)',
+      '12 contenidos mensuales en total (3 por semana)',
       '8 posts, carruseles de autoridad e historias',
       'Hasta 4 reels editados con subtítulos y ritmo',
       'Adaptación para Instagram, TikTok, Facebook, LinkedIn o YouTube Shorts',
@@ -169,6 +171,8 @@ export const VIDEO_PACK_4: SubscriptionPlan = {
     'Portada simple optimizada',
     '1 ronda de cambios menores por video',
   ],
+  footnote:
+    'Servicio enfocado en edición ágil de material propio. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
   excludes: [
     'Material bruto superior a 3 minutos por Reel',
     'Grabación presencial',
@@ -187,7 +191,7 @@ export const VIDEO_PACK_8: SubscriptionPlan = {
   monthly: 109_990,
   delivery: 'Entrega de 2 videos por semana desde la recepción del material.',
   featured: true,
-  badge: 'Más pedido',
+  badge: 'Recomendado',
   includes: [
     '8 Reels, TikToks o Shorts verticales (9:16)',
     'Estructura de guion y ganchos recomendados para cada video',
@@ -199,6 +203,8 @@ export const VIDEO_PACK_8: SubscriptionPlan = {
     'Portadas simples para cada video',
     '1 ronda de cambios menores por video',
   ],
+  footnote:
+    'Servicio enfocado en edición ágil de material propio. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
   excludes: [
     'Material bruto superior a 3 minutos por Reel',
     'Grabación presencial o guiones',

@@ -95,22 +95,30 @@ function buyFromPlan(plan: SubscriptionPlan): ServiceCta {
   return { kind: 'buy', plan }
 }
 
-function priceFromPlan(plan: SubscriptionPlan): { priceLabel: string; billingNote: string } {
+function priceFromPlan(plan: SubscriptionPlan): {
+  priceLabel: string
+  billingNote: string
+  footnote?: string
+} {
+  const base = plan.footnote ? { footnote: plan.footnote } : {}
   if (plan.setup > 0 && plan.monthly > 0) {
     return {
       priceLabel: `${formatCLP(plan.setup)} + IVA`,
       billingNote: `Luego ${formatCLP(plan.monthly)} + IVA / mes`,
+      ...base,
     }
   }
   if (plan.setup > 0) {
     return {
       priceLabel: `${formatCLP(plan.setup)} + IVA`,
       billingNote: 'Pago único',
+      ...base,
     }
   }
   return {
     priceLabel: `${formatCLP(plan.monthly)} + IVA / mes`,
     billingNote: 'Plan mensual',
+    ...base,
   }
 }
 
@@ -353,7 +361,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         headline: 'Tú grabas. Nosotros editamos 8 Reels al mes.',
         problem: 'Sabes qué decir y grabas con tu celular, pero no tienes tiempo de editar.',
         ...priceFromPlan(VIDEO_PACK_8),
+        badge: VIDEO_PACK_8.badge,
         includes: VIDEO_PACK_8.includes,
+        footnote: VIDEO_PACK_8.footnote,
         featured: true,
         previewImage: {
           src: '/images/services/edicion-video.png',
@@ -375,6 +385,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         problem: 'Para empezar a publicar con consistencia sin pagar una gestión completa.',
         ...priceFromPlan(VIDEO_PACK_4),
         includes: VIDEO_PACK_4.includes,
+        footnote: VIDEO_PACK_4.footnote,
         previewImage: {
           src: '/images/services/edicion-video.png',
           alt: 'Edición de Reels Pack 4 por Artestudio',
@@ -411,15 +422,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         categoryId: 'contenido',
         title: redesPro.name,
         description: redesPro.tagline,
-        headline: '12 contenidos al mes (3 por semana) con estrategia y 4 reels.',
+        headline: '12 contenidos mensuales con estrategia (incluye hasta 4 reels).',
         problem: 'El plan esencial se queda corto cuando hay que publicar más seguido y abarcar múltiples redes.',
         ...priceFromPlan(redesPro),
         includes: redesPro.includes,
         previewImage: {
           src: '/images/services/redes-sociales.png',
           alt: 'Gestión de Redes Pro por Artestudio',
-          tag: '12 Contenidos + 4 Reels',
-          caption: 'Estrategia integral multiplataforma combinando carruseles de autoridad y video vertical con edición pro.',
+          tag: '12 Contenidos (inc. 4 Reels)',
+          caption: 'Estrategia integral multiplataforma: 12 contenidos al mes que incluyen hasta 4 reels con subtítulos y ritmo.',
         },
         relatedSlugs: ['meta-ads', 'sitio-web', 'ia-whatsapp'],
         cta: buyFromPlan(redesPro),
@@ -701,7 +712,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     href: '/servicios#packs',
     title: 'Packs',
     prompt: '¿Quieres un pack listo?',
-    subtitle: 'Soluciones paquetizadas con ahorro garantizado frente a contratar piezas sueltas.',
+    subtitle: 'Soluciones paquetizadas con descuento directo frente a contratar cada servicio por separado.',
     items: [
       {
         id: 'pack-lanzamiento',
@@ -713,7 +724,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         headline: 'Página de alta conversión + tráfico calificado desde el día uno.',
         problem: 'Una web sin anuncios no recibe visitas; y anuncios sin una web optimizada queman el presupuesto.',
         ...quoteFrom(199_990, 'Setup integral · pauta aparte · ahorro de $50.000'),
-        badge: 'Más pedido',
+        badge: 'Recomendado',
         savingsNote: 'Ahorras $50.000 frente a contratar landing y setup de campañas por separado',
         includes: [
           'Landing Express (one-page, hasta 7 secciones, WhatsApp, dominio .cl 1er año)',
@@ -745,6 +756,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         badge: 'Pack Continuo',
         savingsNote: 'Landing Express + Redes Esencial con hosting y mantención incluidos',
         includes: CRECE_PLAN.includes,
+        footnote: CRECE_PLAN.footnote,
         featured: true,
         previewImage: {
           src: '/images/contenido-redes.png',

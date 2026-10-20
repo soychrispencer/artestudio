@@ -1,17 +1,14 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
-import { motion, useReducedMotion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { HERO, SECTION_IDS, WA_LINKS } from '@/lib/site'
-import { StudioSculpture } from '@/components/sculpture/StudioSculpture'
 
 export function Hero() {
   const reduce = useReducedMotion()
   const { scrollY } = useScroll()
   const imageY = useTransform(scrollY, [0, 420], [0, reduce ? 0 : 36])
-  const [viewMode, setViewMode] = useState<'3d' | 'photo'>('3d')
 
   return (
     <section id={SECTION_IDS.inicio} className="relative overflow-hidden bg-[var(--bg)] pt-16">
@@ -39,67 +36,17 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative h-[26rem] mb-12 sm:h-[32rem] lg:h-[min(72vh,44rem)] lg:mb-0">
-          {/* View mode toggle switch */}
-          <div className="absolute top-4 right-4 z-20 flex items-center p-1 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--border)] shadow-sm">
-            <button
-              type="button"
-              onClick={() => setViewMode('3d')}
-              className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold transition-all ${
-                viewMode === '3d'
-                  ? 'bg-[var(--ink)] text-[var(--paper)] shadow-sm'
-                  : 'text-muted hover:text-[var(--text)]'
-              }`}
-            >
-              3D Core
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('photo')}
-              className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold transition-all ${
-                viewMode === 'photo'
-                  ? 'bg-[var(--ink)] text-[var(--paper)] shadow-sm'
-                  : 'text-muted hover:text-[var(--text)]'
-              }`}
-            >
-              Foto
-            </button>
-          </div>
-
-          <AnimatePresence mode="wait">
-            {viewMode === '3d' ? (
-              <motion.div
-                key="3d"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full"
-              >
-                <StudioSculpture />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="photo"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full relative overflow-hidden rounded-2xl bg-[var(--field)] border border-[var(--border)]"
-              >
-                <motion.div style={{ y: imageY }} className="absolute inset-0 -top-6 -bottom-6">
-                  <Image
-                    src={HERO.image}
-                    alt={HERO.imageAlt}
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 56vw, 100vw"
-                    className="object-cover object-[72%_center]"
-                  />
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+        <div className="relative h-[24rem] mb-12 sm:h-[30rem] lg:h-[min(70vh,42rem)] lg:mb-0 overflow-hidden rounded-2xl bg-[var(--field)]">
+          <motion.div style={{ y: imageY }} className="absolute inset-0 -top-6 -bottom-6">
+            <Image
+              src={HERO.image}
+              alt={HERO.imageAlt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 56vw, 100vw"
+              className="object-cover object-[72%_center]"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

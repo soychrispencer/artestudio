@@ -36,30 +36,48 @@ export function Navbar() {
   )
     return null
 
+  const isHome = pathname === '/'
+  const isDarkHero = isHome && !scrolled
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? 'bg-white/95 dark:bg-[#0c0c0c]/95 backdrop-blur-md border-line shadow-sm' : 'bg-transparent border-transparent'
+        scrolled
+          ? 'bg-white/95 dark:bg-[#0c0c0c]/95 backdrop-blur-md border-line shadow-sm'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex-shrink-0 flex items-center" aria-label="Artestudio inicio">
-          <Image
-            src="/logos/Logo-Dark.png"
-            alt="Artestudio"
-            width={120}
-            height={32}
-            className="brand-logo-light h-[30px] sm:h-8 w-auto object-contain"
-            priority
-          />
-          <Image
-            src="/logos/Logo-Light.png"
-            alt="Artestudio"
-            width={120}
-            height={32}
-            className="brand-logo-dark h-[30px] sm:h-8 w-auto object-contain"
-            priority
-          />
+          {isDarkHero ? (
+            <Image
+              src="/logos/Logo-Light.png"
+              alt="Artestudio"
+              width={120}
+              height={32}
+              className="h-[30px] sm:h-8 w-auto object-contain"
+              priority
+            />
+          ) : (
+            <>
+              <Image
+                src="/logos/Logo-Dark.png"
+                alt="Artestudio"
+                width={120}
+                height={32}
+                className="brand-logo-light h-[30px] sm:h-8 w-auto object-contain"
+                priority
+              />
+              <Image
+                src="/logos/Logo-Light.png"
+                alt="Artestudio"
+                width={120}
+                height={32}
+                className="brand-logo-dark h-[30px] sm:h-8 w-auto object-contain"
+                priority
+              />
+            </>
+          )}
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -70,9 +88,11 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm transition-colors ${
-                  active
-                    ? 'text-[var(--text)] font-semibold'
-                    : 'text-muted hover:text-[var(--text)]'
+                  isDarkHero
+                    ? 'text-neutral-300 hover:text-white'
+                    : active
+                      ? 'text-[var(--text)] font-semibold'
+                      : 'text-muted hover:text-[var(--text)]'
                 }`}
               >
                 {link.label}
@@ -82,7 +102,13 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <ThemeToggle
+            className={
+              isDarkHero
+                ? 'inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/15 bg-white/10 text-white hover:bg-white/20 hover:border-white/30 transition-colors'
+                : undefined
+            }
+          />
           {cartCount > 0 && (
             <button
               type="button"
@@ -90,7 +116,11 @@ export function Navbar() {
                 trackEvent('header_cart_click')
                 openCart()
               }}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-[var(--border)] bg-surface text-[var(--text)] hover:border-[var(--ink)] transition-colors"
+              className={`relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] transition-colors ${
+                isDarkHero
+                  ? 'border border-white/15 bg-white/10 text-white hover:border-white/30'
+                  : 'border border-[var(--border)] bg-surface text-[var(--text)] hover:border-[var(--ink)]'
+              }`}
               aria-label="Abrir carrito"
             >
               <ShoppingCart className="w-4 h-4" />
@@ -103,13 +133,21 @@ export function Navbar() {
             href={WA_LINKS.reunion}
             external
             variant="primary"
-            className="!py-2.5 !px-5 !text-sm hidden sm:inline-flex"
+            className={`!py-2.5 !px-5 !text-sm hidden sm:inline-flex ${
+              isDarkHero
+                ? '!bg-white !text-neutral-950 !border-white hover:!bg-neutral-200'
+                : ''
+            }`}
           >
             Agendar reunión
           </Button>
           <button
             type="button"
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-[var(--border)] bg-surface text-[var(--text)]"
+            className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-[10px] transition-colors ${
+              isDarkHero
+                ? 'border border-white/15 bg-white/10 text-white hover:bg-white/20'
+                : 'border border-[var(--border)] bg-surface text-[var(--text)]'
+            }`}
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}

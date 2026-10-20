@@ -111,13 +111,22 @@ export function ResultView() {
         </div>
 
         <div className={`${styles.mcHazlo} mt-12 rounded-r-xl p-6 md:p-8`}>
-          <h2 className={`text-xl font-bold ${styles.mcInk}`}>Siguiente paso</h2>
+          <h2 className={`text-xl font-bold ${styles.mcInk}`}>Siguiente paso recomendado</h2>
           <p className={`mt-2 ${styles.mcMuted}`}>
-            Descarga la Guía práctica 01 y trabaja el pilar más débil con el workbook. Sin atajos:
-            claridad primero.
+            Tu negocio está en etapa <strong className={styles.mcInk}>{stage.letter} ({stage.title})</strong> y el pilar prioritario a destrabar es <strong className={styles.mcInk}>{result.weakest.pillar}</strong>. Puedes conversar directamente con Artestudio para diseñar la solución o descargar la guía práctica de apoyo.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Link href={CONSTRUYE_PATHS.guia} className={`${styles.mcBtn} ${styles.mcBtnPrimary}`}>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row flex-wrap">
+            <a
+              href={`https://wa.me/56972384306?text=${encodeURIComponent(
+                `Hola Artestudio, completé el diagnóstico del Método Construye. Mi empresa está en etapa ${stage.letter} (${stage.title}) y mi pilar más débil es "${result.weakest.pillar}". Me gustaría revisar opciones concretas para resolverlo.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.mcBtn} ${styles.mcBtnPrimary}`}
+            >
+              Hablar con Artestudio sobre mi resultado →
+            </a>
+            <Link href={CONSTRUYE_PATHS.guia} className={`${styles.mcBtn} ${styles.mcBtnGhost}`}>
               Descargar Guía práctica 01
             </Link>
             <Link href={CONSTRUYE_PATHS.diagnostico} className={`${styles.mcBtn} ${styles.mcBtnGhost}`}>

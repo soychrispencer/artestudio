@@ -112,7 +112,7 @@ export function HomeTrabajos() {
                   <div className="p-4 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-900/40">
                     <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300 mb-1.5">
                       <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                      <span>El resultado medible</span>
+                      <span>Qué permite el sistema (Impacto)</span>
                     </div>
                     <p className="text-sm font-medium leading-relaxed text-[var(--text)]">
                       {activeCase.resultado}

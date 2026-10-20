@@ -107,7 +107,7 @@ export const HERO = {
   titleAccent: 'Sistemas',
   titleLines: ['que hacen crecer', 'tu negocio.'],
   subtitle:
-    'Landing desde $74.990, edición de Reels desde $59.990, redes desde $89.990 o un sistema completo que conecta tus ventas.',
+    'Integramos diseño, tecnología, publicidad e inteligencia artificial para atraer clientes calificados, automatizar procesos y construir negocios que crecen.',
   cta: 'Ver servicios',
   ctaSecondary: 'Agendar reunión',
   ringText: 'Estrategia · Tecnología · Crecimiento · ',
@@ -218,8 +218,8 @@ export const HOME_CASES: CaseStudyItem[] = [
     id: 'quiral',
     client: 'Quiral Proyectos',
     category: 'Arquitectura, Paisajismo y Obras',
-    metric: '100%',
-    metricLabel: 'Prospección calificada',
+    metric: 'Precalificado',
+    metricLabel: 'Filtro directo a WhatsApp',
     url: 'https://quiralproyectos.cl',
     urlLabel: 'quiralproyectos.cl',
     image: '/images/casos/quiral.png',
@@ -228,7 +228,7 @@ export const HOME_CASES: CaseStudyItem[] = [
     sistema:
       'Landing page de alta fidelidad en Next.js con diseño editorial boutique, calificador por tipo de proyecto y enrutamiento automático a WhatsApp.',
     resultado:
-      'Filtrado del 100% de consultas antes del primer contacto, eliminación de cotizaciones desalineadas y percepción de constructora boutique.',
+      'Consultas precalificadas con tipo de proyecto, metraje y comuna antes del primer contacto, optimizando el tiempo comercial.',
     stack: ['Next.js 16', 'Tailwind CSS', 'Framer Motion', 'WhatsApp Webhook'],
   },
   {

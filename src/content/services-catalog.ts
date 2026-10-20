@@ -61,6 +61,7 @@ export type ServiceCategory = {
   title: string
   prompt: string
   subtitle: string
+  startingPriceLabel?: string
   items: ServiceItem[]
 }
 
@@ -146,6 +147,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: 'Web',
     prompt: '¿Necesitas una página o tienda?',
     subtitle: 'La entrada es Landing Express. Separamos sitios corporativos de tiendas online.',
+    startingPriceLabel: 'Desde $74.990 + IVA',
     items: [
       {
         id: landingExpress.id,
@@ -350,6 +352,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: 'Contenido & Video',
     prompt: '¿Necesitas contenido o edición?',
     subtitle: 'Edición de Reels desde $59.990. Gestión de redes desde $89.990 al mes.',
+    startingPriceLabel: 'Desde $59.990 + IVA / mes',
     items: [
       {
         id: VIDEO_PACK_8.id,

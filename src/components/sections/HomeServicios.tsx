@@ -24,6 +24,7 @@ export function HomeServicios() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
           {HOME_SERVICE_CATEGORIES.map((cat) => {
             const lead = cat.items.find((item) => item.featured) ?? cat.items[0]
+            const priceLabel = cat.startingPriceLabel ?? lead?.priceLabel
             const image = HOME_EXPERTISE.images[cat.id]
             return (
               <Link
@@ -48,9 +49,9 @@ export function HomeServicios() {
                     {cat.prompt}
                   </h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed">{cat.subtitle}</p>
-                  {lead ? (
+                  {priceLabel ? (
                     <p className="mt-4 text-sm font-semibold text-[var(--text)]">
-                      {lead.priceLabel}
+                      {priceLabel}
                     </p>
                   ) : null}
                   <p className="mt-3 text-sm font-semibold text-[var(--text)] group-hover:underline">

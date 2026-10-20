@@ -8,46 +8,17 @@ import { HERO, SECTION_IDS, WA_LINKS } from '@/lib/site'
 export function Hero() {
   const reduce = useReducedMotion()
   const { scrollY } = useScroll()
-  const imageY = useTransform(scrollY, [0, 500], [0, reduce ? 0 : 36])
+  const imageY = useTransform(scrollY, [0, 420], [0, reduce ? 0 : 36])
 
   return (
-    <section
-      id={SECTION_IDS.inicio}
-      className="relative min-h-[100svh] flex items-center overflow-hidden bg-[var(--bg)]"
-    >
-      {/* Split-Bleed Image: anchors to the right, 100% crisp & unwashed */}
-      <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[56%] xl:w-[52%] pointer-events-none overflow-hidden">
-        <motion.div style={{ y: imageY }} className="absolute inset-0 -top-10 -bottom-10">
-          <Image
-            src={HERO.image}
-            alt={HERO.imageAlt}
-            fill
-            priority
-            sizes="(min-width: 1024px) 56vw, 100vw"
-            className="object-cover object-[70%_center] opacity-90 lg:opacity-100"
-          />
-        </motion.div>
-
-        {/* Horizontal transition gradient: only softens the left seam into the canvas */}
-        <div className="absolute inset-y-0 left-0 w-24 sm:w-40 lg:w-60 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/60 to-transparent" />
-
-        {/* Mobile vertical gradient: smoothly fades image behind text on small screens */}
-        <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-transparent via-[var(--bg)]/85 to-[var(--bg)]" />
-
-        {/* Top gradient for perfect navbar contrast */}
-        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-[var(--bg)]/80 via-[var(--bg)]/30 to-transparent" />
-
-        {/* Bottom edge gradient connecting to stats section */}
-        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[var(--bg)] to-transparent" />
-      </div>
-
-      {/* Hero Typography & CTAs (Left-aligned over solid pure canvas) */}
-      <div className="relative z-10 max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 md:pt-36 md:pb-28 w-full">
-        <div className="max-w-xl xl:max-w-2xl">
+    <section id={SECTION_IDS.inicio} className="relative overflow-hidden bg-[var(--bg)] pt-16">
+      <div className="relative max-w-site mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,0.85fr)] lg:gap-14 lg:min-h-[calc(100svh-4rem)] lg:items-center">
+        {/* Left Column: Typographic Value Proposition */}
+        <div className="py-16 md:py-24 lg:py-20">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
             {HERO.badge}
           </p>
-          <h1 className="max-w-[12ch] text-[clamp(2.8rem,6vw,4.85rem)] font-extrabold tracking-[-0.055em] leading-[0.94] text-[var(--text)] mb-6">
+          <h1 className="max-w-[11ch] text-[clamp(2.8rem,6vw,4.75rem)] font-extrabold tracking-[-0.055em] leading-[0.94] text-[var(--text)] mb-6">
             <span className="block font-display text-[1.08em] text-[var(--text)] italic">
               {HERO.titleAccent}
             </span>
@@ -67,6 +38,36 @@ export function Hero() {
             <Button href={WA_LINKS.reunion} variant="outline" external className="px-6 py-3.5">
               {HERO.ctaSecondary}
             </Button>
+          </div>
+        </div>
+
+        {/* Right Column: Framed Studio Showcase (Opción B) */}
+        <div className="relative h-[25rem] mb-12 sm:h-[31rem] lg:h-[min(72vh,42rem)] lg:mb-0">
+          <div className="relative w-full h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--field)] shadow-xl shadow-black/5 dark:shadow-black/35 group">
+            <motion.div style={{ y: imageY }} className="absolute inset-0 -top-8 -bottom-8">
+              <Image
+                src={HERO.image}
+                alt={HERO.imageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover object-[72%_center] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+            </motion.div>
+
+            {/* Subtle bottom gradient to ground the floating badge */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
+
+            {/* Floating studio badge inside the frame */}
+            <div className="absolute bottom-5 left-5 right-5 sm:right-auto p-3.5 sm:px-4 sm:py-3 rounded-xl bg-white/95 dark:bg-[#141414]/90 backdrop-blur-md border border-[var(--border)] shadow-lg flex items-center gap-2.5">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <p className="text-xs font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                Sistemas aplicados a un negocio real
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id={SECTION_IDS.inicio}
-      className="relative min-h-[calc(100svh-4rem)] flex items-center overflow-hidden bg-[var(--bg)] pt-16"
+      className="relative min-h-[100svh] flex items-center overflow-hidden bg-[var(--bg)]"
     >
       {/* Full-bleed background image with directional gradients */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -33,7 +33,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-[var(--bg)]/50" />
       </div>
 
-      <div className="relative z-10 max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+      <div className="relative z-10 max-w-site mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 md:pt-36 md:pb-28 w-full">
         <div className="max-w-2xl">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
             {HERO.badge}

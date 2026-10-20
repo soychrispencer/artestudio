@@ -10,6 +10,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { CartProvider } from '@/components/cart/CartProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { SmoothScroll } from '@/components/providers/SmoothScroll'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const instrument = Instrument_Serif({
@@ -119,13 +120,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics gaId={gaId} />
         <JsonLd />
         <ThemeProvider>
-          <CartProvider>
-            <HashScrollOnLoad />
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-            <WhatsAppFloat />
-          </CartProvider>
+          <SmoothScroll>
+            <CartProvider>
+              <HashScrollOnLoad />
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+              <WhatsAppFloat />
+            </CartProvider>
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

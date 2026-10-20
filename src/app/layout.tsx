@@ -94,10 +94,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${instrument.variable}`} suppressHydrationWarning>
+    <html lang="es" data-theme="dark" className={`${inter.variable} ${instrument.variable}`} suppressHydrationWarning>
       <body className="font-sans bg-bg text-[var(--text)] antialiased">
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){try{var theme=localStorage.getItem('artestudio-theme-v2');if(theme!=='light'&&theme!=='dark'){theme='dark'}document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme}catch(e){}})();`}
+          {`(function(){try{var theme=localStorage.getItem('artestudio-theme-v2');if(theme!=='light'&&theme!=='dark'){theme='dark'}document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;if(theme==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`}
         </Script>
         {gaId ? (
           <>

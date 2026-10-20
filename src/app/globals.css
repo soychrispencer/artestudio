@@ -109,15 +109,21 @@ body {
 }
 
 .brand-logo-dark {
-  display: none;
+  display: none !important;
 }
 
-html[data-theme='dark'] .brand-logo-light {
-  display: none;
+.brand-logo-light {
+  display: block !important;
 }
 
-html[data-theme='dark'] .brand-logo-dark {
-  display: block;
+html[data-theme='dark'] .brand-logo-light,
+html.dark .brand-logo-light {
+  display: none !important;
+}
+
+html[data-theme='dark'] .brand-logo-dark,
+html.dark .brand-logo-dark {
+  display: block !important;
 }
 
 h1,

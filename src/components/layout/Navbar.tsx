@@ -42,13 +42,13 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex-shrink-0" aria-label="Artestudio inicio">
+        <Link href="/" className="flex-shrink-0 flex items-center" aria-label="Artestudio inicio">
           <Image
             src="/logos/Logo-Dark.png"
             alt="Artestudio"
             width={120}
             height={32}
-            className="brand-logo-light h-7 w-auto"
+            className="brand-logo-light h-[30px] sm:h-8 w-auto object-contain"
             priority
           />
           <Image
@@ -56,7 +56,7 @@ export function Navbar() {
             alt="Artestudio"
             width={120}
             height={32}
-            className="brand-logo-dark h-7 w-auto"
+            className="brand-logo-dark h-[30px] sm:h-8 w-auto object-contain"
             priority
           />
         </Link>

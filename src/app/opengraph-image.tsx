@@ -20,7 +20,7 @@ export default async function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#0c0c0c',
+          backgroundColor: '#101010',
           color: '#ffffff',
           fontFamily: 'sans-serif',
           padding: '72px 80px',
@@ -52,7 +52,7 @@ export default async function Image() {
                 width: 10,
                 height: 10,
                 borderRadius: '50%',
-                backgroundColor: '#ffffff',
+                backgroundColor: '#c8ff00',
               }}
             />
             Artestudio
@@ -120,9 +120,9 @@ export default async function Image() {
                 style={{
                   padding: '8px 18px',
                   borderRadius: 9999,
-                  backgroundColor: '#181818',
+                  backgroundColor: tag.includes('IA') ? '#c8ff00' : '#181818',
                   border: '1px solid #2a2a2a',
-                  color: '#e5e5e5',
+                  color: tag.includes('IA') ? '#101010' : '#e5e5e5',
                   fontSize: 14,
                   fontWeight: 600,
                   letterSpacing: '0.02em',

@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from 'react'
 
 export type Theme = 'light' | 'dark'
 
-const STORAGE_KEY = 'artestudio-theme-v2'
+const STORAGE_KEY = 'artestudio-theme-v3'
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme
@@ -12,13 +12,13 @@ function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle('dark', theme === 'dark')
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', theme === 'dark' ? '#0f0f0f' : '#fafafa')
+    ?.setAttribute('content', theme === 'dark' ? '#101010' : '#fafafa')
 }
 
 export function getStoredTheme(): Theme {
   const saved = window.localStorage.getItem(STORAGE_KEY)
   if (saved === 'light' || saved === 'dark') return saved
-  return 'dark'
+  return 'light'
 }
 
 export function setTheme(theme: Theme) {

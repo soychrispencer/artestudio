@@ -4,12 +4,13 @@ import Link from 'next/link'
 import { BrandWhatsapp, ArrowRight, Discount2 } from 'tabler-icons-react'
 import { SubscribeButton } from '@/components/checkout/SubscribeButton'
 import type { ServiceItem } from '@/content/services-catalog'
+import s from '@/components/studio/StudioServices.module.css'
 
 export function ServiceIndexCard({ item }: { item: ServiceItem }) {
   return (
     <Link
       href={item.href}
-      className="group relative flex h-full flex-col rounded-2xl border border-[var(--border)] bg-surface p-6 transition-all duration-200 hover:border-[var(--ink)] hover:shadow-sm"
+      className={`${s.card} group relative flex h-full flex-col border border-[var(--border)] bg-surface p-6 transition-all duration-200 hover:border-[var(--ink)]`}
     >
       <div className="flex items-start justify-between gap-3 mb-2">
         <h3 className="text-xl font-extrabold tracking-[-0.03em] text-[var(--text)] group-hover:text-[var(--ink)] transition-colors">

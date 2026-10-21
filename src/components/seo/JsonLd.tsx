@@ -21,7 +21,7 @@ const jsonLd = {
       sameAs: Object.values(SOCIAL_LINKS),
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_CONFIG.url}/logos/Logo-Light.png`,
+        url: `${SITE_CONFIG.url}/logos/Artestudio-wordmark-black.png`,
       },
       image: SITE_CONFIG.ogImage,
       knowsAbout: [

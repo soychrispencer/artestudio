@@ -17,6 +17,7 @@ export function ThemeToggle({ className }: { className?: string } = {}) {
     const next = theme === 'dark' ? 'light' : 'dark'
     setCurrentTheme(next)
     setTheme(next)
+    window.dispatchEvent(new Event('artestudio-theme-change'))
   }
 
   if (!mounted) {

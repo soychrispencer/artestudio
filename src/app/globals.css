@@ -21,19 +21,20 @@
   --muted-light: #b5b5b5;
   --border: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.2);
-  --accent: #ffffff;
-  --accent-dim: rgba(255, 255, 255, 0.08);
-  --accent-muted: #a3a3a3;
+  --brand-accent: #c8ff00;
+  --accent: #c8ff00;
+  --accent-dim: rgba(200, 255, 0, 0.12);
+  --accent-muted: #c8ff00;
   --accent-2: #e5e5e5;
   --accent-2-dim: rgba(255, 255, 255, 0.05);
-  --border-accent: rgba(255, 255, 255, 0.25);
+  --border-accent: rgba(200, 255, 0, 0.4);
   --button-text: #0c0c0c;
   --compare-left-bg: #121212;
   --compare-left-text: #8e8e8e;
   --compare-right-bg: #1a1a1a;
   --compare-right-text: #f5f5f5;
   --compare-right-border: rgba(255, 255, 255, 0.12);
-  --compare-right-dot: #ffffff;
+  --compare-right-dot: #c8ff00;
 }
 
 html[data-theme='dark'] {
@@ -51,36 +52,38 @@ html[data-theme='dark'] {
   --muted-light: #b5b5b5;
   --border: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.2);
-  --accent: #ffffff;
-  --accent-dim: rgba(255, 255, 255, 0.08);
-  --accent-muted: #a3a3a3;
+  --brand-accent: #c8ff00;
+  --accent: #c8ff00;
+  --accent-dim: rgba(200, 255, 0, 0.12);
+  --accent-muted: #c8ff00;
   --accent-2: #e5e5e5;
   --accent-2-dim: rgba(255, 255, 255, 0.05);
-  --border-accent: rgba(255, 255, 255, 0.25);
+  --border-accent: rgba(200, 255, 0, 0.4);
   --button-text: #0c0c0c;
   --compare-left-bg: #121212;
   --compare-left-text: #8e8e8e;
   --compare-right-bg: #1a1a1a;
   --compare-right-text: #f5f5f5;
   --compare-right-border: rgba(255, 255, 255, 0.12);
-  --compare-right-dot: #ffffff;
+  --compare-right-dot: #c8ff00;
 }
 
 html[data-theme='light'] {
   color-scheme: light;
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --card: #ffffff;
+  --bg: #f5f5f0;
+  --surface: #fafaf7;
+  --card: #fafaf7;
   --card-hover: #f4f4f5;
   --ink: #111111;
   --ink-soft: #27272a;
   --paper: #fafafa;
-  --field: #f4f4f5;
-  --text: #111111;
-  --muted: #71717a;
+  --field: #e9eae2;
+  --text: #111210;
+  --muted: #656a5d;
   --muted-light: #52525b;
-  --border: #e4e4e7;
+  --border: rgba(17, 18, 16, 0.17);
   --line-strong: #d4d4d8;
+  --brand-accent: #c8ff00;
   --accent: #111111;
   --accent-dim: rgba(17, 17, 17, 0.05);
   --accent-muted: #71717a;
@@ -205,19 +208,20 @@ h6 {
 
 .btn-whatsapp {
   @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200;
-  border-radius: 10px;
-  background: var(--ink);
-  color: var(--button-text);
-  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  background: var(--brand-accent);
+  color: #101010;
+  border: 1.5px solid var(--brand-accent);
 }
 
 .btn-whatsapp:hover {
-  background: var(--ink-soft);
+  background: #d7ff45;
+  border-color: #d7ff45;
 }
 
 .btn-outline {
   @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1.5px solid var(--border);
   color: var(--text);
   background: transparent;
@@ -307,13 +311,14 @@ h6 {
 }
 
 .band-ink .btn-whatsapp {
-  background: var(--paper);
-  color: var(--ink);
-  border-color: var(--paper);
+  background: var(--brand-accent);
+  color: #101010;
+  border-color: var(--brand-accent);
 }
 
 .band-ink .btn-whatsapp:hover {
-  background: var(--surface);
+  background: #d7ff45;
+  border-color: #d7ff45;
 }
 
 /* Texto sobre bandas ink (portadas / featured) */
@@ -349,6 +354,62 @@ h6 {
 
 .hero-spin {
   animation: hero-spin 22s linear infinite;
+}
+
+html[data-theme='light'] .hero-brand {
+  background-color: #fafafa;
+  color: #111111;
+  --hero-ink: #111111;
+}
+
+html[data-theme='light'] .hero-brand h1,
+html[data-theme='light'] .hero-brand p,
+html[data-theme='light'] .hero-brand .hero-badge-text {
+  color: #111111;
+}
+
+html[data-theme='light'] .hero-brand .hero-image {
+  opacity: 0.42;
+  filter: grayscale(0.35);
+}
+
+html[data-theme='light'] .hero-brand .hero-image-wash {
+  background: linear-gradient(90deg, #fafafa 0%, rgba(250, 250, 250, 0.82) 46%, rgba(250, 250, 250, 0.08) 100%);
+}
+
+html[data-theme='light'] .hero-brand .hero-top-wash,
+html[data-theme='light'] .hero-brand .hero-bottom-wash {
+  display: none;
+}
+
+html[data-theme='light'] .hero-brand .hero-image-wash.lg\:hidden {
+  background: linear-gradient(180deg, rgba(250, 250, 250, 0.8) 0%, rgba(250, 250, 250, 0.06) 60%, #fafafa 100%);
+}
+
+html[data-theme='light'] .hero-brand .hero-image-wash.hidden.lg\:block {
+  background: linear-gradient(90deg, #fafafa 0%, rgba(250, 250, 250, 0.8) 46%, rgba(250, 250, 250, 0.08) 100%);
+}
+
+html[data-theme='light'] .hero-brand .hero-badge {
+  background: rgba(17, 17, 17, 0.04);
+  border-color: rgba(17, 17, 17, 0.12);
+}
+
+html[data-theme='light'] .hero-brand .hero-secondary {
+  border-color: rgba(17, 17, 17, 0.25) !important;
+  color: #111111 !important;
+  background: rgba(255, 255, 255, 0.48) !important;
+}
+
+html[data-theme='light'] .hero-brand .hero-secondary:hover {
+  background: rgba(17, 17, 17, 0.06) !important;
+  border-color: rgba(17, 17, 17, 0.45) !important;
+}
+
+html[data-theme='light'] .hero-brand .hero-meta {
+  border-color: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  color: #52525b;
 }
 
 @keyframes pulse-dot {

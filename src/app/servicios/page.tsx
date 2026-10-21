@@ -6,6 +6,7 @@ import {
 } from '@/content/services-catalog'
 import { WA_LINKS } from '@/lib/site'
 import { ServiceIndexCard } from '@/components/servicios/ServiceCard'
+import s from '@/components/studio/StudioServices.module.css'
 
 export const metadata: Metadata = {
   title: 'Servicios',
@@ -16,39 +17,29 @@ export const metadata: Metadata = {
 
 export default function ServiciosPage() {
   return (
-    <div className="bg-[var(--bg)]">
-      <section className="pt-24 md:pt-28 pb-10">
+    <div className={s.servicePage}>
+      <section className={s.catalogHero}>
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-[-0.04em] text-[var(--text)] mb-4">
-            {SERVICE_HUB.title}
-          </h1>
+          <p className={s.eyebrow}>Artestudio / Servicios</p>
+          <h1>Lo que necesitas.<br /><em>Bien conectado.</em></h1>
           <p className="text-muted text-lg max-w-xl mb-8">{SERVICE_HUB.subtitle}</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {SERVICE_FAMILIES.map((family) => (
               <a
                 key={family.id}
                 href={`#${family.id}`}
-                className={`rounded-2xl border px-5 py-4 transition-colors ${
-                  family.id === 'pack'
-                    ? 'border-[var(--ink)] bg-field hover:border-[var(--ink)] shadow-sm'
-                    : family.id === 'system'
-                    ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]'
-                    : 'border-[var(--border)] bg-surface hover:border-[var(--ink)]'
-                }`}
+                className={s.family}
+                data-accent={family.id === 'system'}
               >
                 <div className="flex items-center justify-between">
                   <p className="font-extrabold tracking-[-0.03em]">{family.title}</p>
                   {family.id === 'pack' && (
-                    <span className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[var(--ink)] text-[var(--paper)]">
+                    <span className={s.familyBadge}>
                       Recomendado
                     </span>
                   )}
                 </div>
-                <p
-                  className={`mt-1 text-sm ${
-                    family.id === 'system' ? 'text-white/70' : 'text-muted'
-                  }`}
-                >
+                <p>
                   {family.intro}
                 </p>
               </a>

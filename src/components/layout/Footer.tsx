@@ -1,99 +1,23 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BRAND, CONTACT, FOOTER_SOLUTIONS, NAV_LINKS, WA_LINKS } from '@/lib/site'
-import { BrandInstagram, BrandWhatsapp, Mail } from 'tabler-icons-react'
+import { CONTACT, FOOTER_SOLUTIONS, WA_LINKS } from '@/lib/site'
+import s from '@/components/studio/StudioChrome.module.css'
 
 export function Footer() {
   const pathname = usePathname()
-  if (
-    pathname.startsWith('/soychrispencer') ||
-    pathname.startsWith('/construye') ||
-    pathname.startsWith('/dev')
-  )
-    return null
-
+  if (['/soychrispencer', '/construye', '/dev'].some(prefix => pathname.startsWith(prefix))) return null
   return (
-    <footer className="border-t border-[var(--border)] bg-surface">
-      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
-          <div>
-            <p className="text-lg font-bold text-[var(--text)] mb-1">Artestudio</p>
-            <p className="text-xs text-primary mb-3">{BRAND.tagline}</p>
-            <p className="text-sm text-muted-light leading-relaxed">
-              {BRAND.description}
-            </p>
-            <a
-              href="/construye"
-              className="mt-4 inline-block text-xs text-muted hover:text-primary transition-colors"
-            >
-              Método Construye ↗
-            </a>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Servicios</p>
-            <ul className="space-y-2">
-              {FOOTER_SOLUTIONS.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Navegación</p>
-            <ul className="space-y-2">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-muted-light hover:text-primary transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-4">Contacto</p>
-            <a
-              href={WA_LINKS.general}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-[var(--text)] hover:text-primary mb-2 transition-colors"
-            >
-              <BrandWhatsapp className="w-4 h-4" />
-              {CONTACT.whatsapp}
-            </a>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="flex items-center gap-2 text-sm text-muted-light hover:text-primary mb-3 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              {CONTACT.email}
-            </a>
-            <a
-              href={CONTACT.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-light hover:text-primary transition-colors"
-              aria-label="Instagram"
-            >
-              <BrandInstagram className="w-4 h-4" />
-              @artestudio.cl
-            </a>
-          </div>
+    <footer className={s.footer}>
+      <div className={s.footerInner}>
+        <div className={s.footerTop}>
+          <div className={s.footerBrand}><Link href="/" aria-label="Artestudio inicio"><Image src="/logos/Artestudio-wordmark-white.svg" alt="Artestudio" width={260} height={54} /></Link><p>Creatividad con intención.<br />Tecnología con dirección.</p></div>
+          <div><p className={s.footerLabel}>Explora</p><div className={s.footerLinks}>{FOOTER_SOLUTIONS.map(link => <Link key={link.label} href={link.href}>{link.label}</Link>)}</div></div>
+          <div><p className={s.footerLabel}>Mantengamos el contacto</p><div className={s.footerLinks}><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><a href={WA_LINKS.general} target="_blank" rel="noopener noreferrer">{CONTACT.whatsapp} ↗</a><a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href={CONTACT.behance} target="_blank" rel="noopener noreferrer">Behance ↗</a></div></div>
         </div>
-
-        <div className="pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
-          <p>© 2019 - {new Date().getFullYear()} Artestudio · Chile</p>
-          <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
-            Behance
-          </a>
-        </div>
+        <div className={s.footerBottom}><span>© {new Date().getFullYear()} Artestudio. Desde Chile, en digital.</span><Link href="/construye">Conoce el Método Construye ↗</Link><a href="#contenido">Volver arriba ↑</a></div>
       </div>
     </footer>
   )

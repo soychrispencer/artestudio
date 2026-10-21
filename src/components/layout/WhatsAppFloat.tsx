@@ -7,6 +7,7 @@ import { WA_LINKS } from '@/lib/site'
 export function WhatsAppFloat() {
   const pathname = usePathname()
   if (
+    pathname === '/' ||
     pathname.startsWith('/soychrispencer') ||
     pathname.startsWith('/construye') ||
     pathname.startsWith('/dev')
@@ -19,7 +20,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_24px_rgba(37,211,102,0.45)] hover:scale-105 transition-transform"
+      className="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full border border-black/15 bg-[#c8ff00] text-[#111210] flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
     >
       <BrandWhatsapp className="w-7 h-7" />
     </a>

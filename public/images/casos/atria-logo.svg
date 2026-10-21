@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 360">
+  <g transform="translate(70 8)">
+    <path fill="#637F7D" fill-rule="evenodd" d="M70 8 129 140h-22L96.6 109H43.4L32.4 140H10.5L70 8Zm0 30 15.2 49H54.8L70 38Zm0 62.4a10 10 0 1 1 0 20 10 10 0 0 1 0-20Z"/>
+    <circle cx="75.2" cy="110.6" r="3.8" fill="#C98A6D"/>
+  </g>
+  <text x="140" y="214" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="600" letter-spacing="8" fill="#2A2F2E">ATRIA</text>
+  <text x="140" y="242" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="6" fill="#637F7D">ABOGADAS</text>
+</svg>

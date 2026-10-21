@@ -10,6 +10,7 @@ import {
 } from '@/content/services-catalog'
 import { ServiceCta, ServiceCrossSellCard } from '@/components/servicios/ServiceCard'
 import { ServicePreviewFrame } from '@/components/servicios/ServicePreviewFrame'
+import s from '@/components/studio/StudioServices.module.css'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -63,8 +64,8 @@ export default async function ServicioLandingPage({ params }: PageProps) {
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
 
   return (
-    <div className="bg-[var(--bg)]">
-      <section className="pt-24 md:pt-28 pb-12 md:pb-16">
+    <div className={s.servicePage}>
+      <section className={`${s.detail} pb-12 md:pb-16`}>
         <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="mb-8 text-sm text-muted">
             <Link href="/servicios" className="hover:text-[var(--text)]">

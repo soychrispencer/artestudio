@@ -24,22 +24,18 @@ export function StudioHome() {
   return (
     <div className={s.home}>
       <section id="inicio" className={s.hero} aria-labelledby="studio-title">
+        <div className={s.heroBackdrop} aria-hidden="true"><Image src="/logos/Artestudio-isotipo-acid.png" alt="" fill sizes="70vw" /></div>
         <div className={s.container}>
-          <div className={s.heroEyebrow}><span><i /> Estudio creativo + tecnología</span><span>Independiente. Desde Chile.</span></div>
+          <div className={s.heroEyebrow}><span><i /> Estudio creativo + tecnología</span></div>
           <div className={s.heroGrid}>
             <div className={s.heroCopy}>
-              <h1 id="studio-title">Buenas ideas.<br />Mejor<br /><em>ejecutadas.</em></h1>
+              <h1 id="studio-title">Buenas ideas.<br />Mejor <em>ejecutadas.</em></h1>
               <p>Diseño, marketing e inteligencia artificial.<br className={s.desktopBreak} /> Conectamos las piezas para que tu negocio avance.</p>
               <div className={s.heroActions}>
                 <a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer" className={s.primary}>Hablemos de tu proyecto <Arrow /></a>
                 <a href="#trabajo" className={s.textLink}>Ver proyectos <span aria-hidden="true">↓</span></a>
               </div>
             </div>
-            <figure className={s.portrait}>
-              <div className={s.portraitTop}><span>El lado humano de lo digital.</span><span aria-hidden="true">↗</span></div>
-              <div className={s.portraitImage}><Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, fundador de Artestudio" fill priority sizes="(max-width: 760px) 100vw, 43vw" /></div>
-              <figcaption><span><strong>Chris Spencer</strong><small>Fundador & dirección creativa</small></span><Image className={s.portraitMark} src="/logos/Artestudio-isotipo-acid.png" alt="" width={40} height={40} /></figcaption>
-            </figure>
           </div>
           <div className={s.heroFoot}><span>Creatividad con intención. Tecnología con dirección.</span><a href="#trabajo">Explora el estudio <span aria-hidden="true">↓</span></a></div>
         </div>
@@ -49,16 +45,16 @@ export function StudioHome() {
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>01 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
 
-          <a className={`${s.project} ${s.projectFeatured}`} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
-            <div className={s.featuredVisual}>
-              <div className={s.visualLabel}><span>Tradicional360®</span><span>Web / Estrategia digital</span></div>
+          <div className={s.projectGrid}>
+          <a className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
+            <div className={s.tradicionalVisual}>
+              <div className={s.visualLabel}><span>Tradicional360</span><span>Web / Estrategia digital</span></div>
               <div className={s.browserFrame}><div className={s.browserBar}><span aria-hidden="true">● ● ●</span><span>tradicional360.cl</span><span aria-hidden="true">↗</span></div><div className={s.browserImage}><Image src="/images/casos/tradicional360-web.png" alt="Diseño de la web Tradicional360: propuesta comercial y radar de diagnóstico" fill sizes="(max-width: 760px) 95vw, 80vw" /></div></div>
-              <span className={s.projectOpen}><Arrow /><span>Visitar proyecto</span></span>
+              <span className={s.roundArrow}><Arrow /></span>
             </div>
             <div className={s.projectCaption}><div><h3>Tradicional360</h3><p>Una nueva forma de presentar la consultoría comercial.</p></div><span>Diseño web · Desarrollo · Diagnóstico interactivo</span></div>
           </a>
 
-          <div className={s.projectGrid}>
             <a className={s.project} href="https://quiralproyectos.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.quiralVisual}><Image src="/images/casos/quiral.png" alt="Arquitectura y paisajismo de Quiral Proyectos" fill sizes="(max-width: 760px) 95vw, 45vw" /><div className={s.quiralOverlay}><span>Quiral Proyectos</span><p>Espacios para<br /><em>habitar mejor.</em></p></div><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>Quiral Proyectos</h3><p>Arquitectura, paisaje y una presencia digital a su altura.</p></div><span>Diseño web / Desarrollo</span></div>
@@ -68,6 +64,7 @@ export function StudioHome() {
               <div className={s.projectCaption}><div><h3>Atria Abogadas</h3><p>Una identidad que acompaña y transmite confianza.</p></div><span>Identidad visual / Web</span></div>
             </a>
           </div>
+          <p className={s.galleryHint}>Desliza para explorar los proyectos <span aria-hidden="true">↔</span></p>
           <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Más del estudio en Behance <Arrow /></a>
         </div>
       </section>
@@ -82,7 +79,14 @@ export function StudioHome() {
 
       <section id="estudio" className={s.approach} aria-labelledby="approach-title">
         <div className={s.container}>
-          <div className={s.approachIntro}><p className={s.label}>03 / Del concepto a la acción</p><div><h2 id="approach-title">Un estudio.<br /><em>Todas las piezas.</em></h2><p>La marca que muestras, la web que recibe y el marketing que atrae deberían hablar el mismo idioma. En Artestudio los pensamos juntos, con un trato directo y una ejecución cuidada.</p></div></div>
+          <div className={s.studioIntro}>
+            <figure className={s.portrait}>
+              <div className={s.portraitTop}><span>El lado humano de lo digital.</span><span aria-hidden="true">↗</span></div>
+              <div className={s.portraitImage}><Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, fundador de Artestudio" fill sizes="(max-width: 760px) 90vw, 35vw" /></div>
+              <figcaption><span><strong>Chris Spencer</strong><small>Fundador & dirección creativa</small></span><Image className={s.portraitMark} src="/logos/Artestudio-isotipo-acid.png" alt="" width={40} height={40} /></figcaption>
+            </figure>
+            <div className={s.studioCopy}><p className={s.label}>03 / El estudio</p><h2 id="approach-title">Un estudio.<br /><em>Todas las piezas.</em></h2><p>La marca que muestras, la web que recibe y el marketing que atrae deberían hablar el mismo idioma. En Artestudio los pensamos juntos, con un trato directo y una ejecución cuidada.</p><p className={s.studioSignature}>Soy Chris Spencer. Conecto la estrategia, el diseño y la tecnología para llevar cada proyecto de la idea a la implementación.</p><a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre tu proyecto <Arrow /></a></div>
+          </div>
           <div className={s.steps}>{[
             ['Entender', 'Primero, tu negocio.', 'Escuchamos, revisamos lo que tienes y definimos qué necesita avanzar.'],
             ['Crear', 'Una dirección clara.', 'Damos forma a la estrategia, el diseño y la experiencia de tu marca.'],

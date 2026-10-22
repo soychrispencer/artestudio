@@ -86,7 +86,9 @@ export default async function ServicioLandingPage({ params }: PageProps) {
                 {service.title}
               </h1>
               <p className="text-lg text-muted leading-relaxed max-w-2xl mb-8">{service.headline}</p>
-              <p className="text-muted mb-6">{service.description}</p>
+              {service.description && service.description !== service.headline && (
+                <p className="text-muted mb-6">{service.description}</p>
+              )}
 
             <aside className="h-fit mb-8 max-w-2xl rounded-xl border border-[var(--border)] bg-surface p-6">
               <p className="text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)]">

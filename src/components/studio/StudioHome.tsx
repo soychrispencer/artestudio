@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { CONTACT, FAQ_ITEMS, HOME_DIAGNOSTICO, WA_LINKS, waLink } from '@/lib/site'
 import s from './StudioHome.module.css'
 
@@ -57,7 +57,15 @@ const archivedProjects = [
 
 export function StudioHome() {
   const [stageId, setStageId] = useState('fundamentos')
+  const projectGridRef = useRef<HTMLDivElement>(null)
   const stage = HOME_DIAGNOSTICO.stages.find(item => item.id === stageId)!
+  const scrollProjects = (direction: -1 | 1) => {
+    const track = projectGridRef.current
+    const card = track?.querySelector<HTMLElement>(':scope > a')
+    if (!track || !card) return
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0
+    track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' })
+  }
 
   return (
     <div className={s.home}>
@@ -91,7 +99,7 @@ export function StudioHome() {
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>02 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
 
-          <div className={s.projectGrid}>
+          <div id="project-gallery" ref={projectGridRef} className={s.projectGrid} role="region" aria-roledescription="carrusel" aria-label="Proyectos seleccionados" tabIndex={0}>
             <a className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.onVisual}><Image src="/images/casos/the-on-company-home.jpg" alt="Vista de la página de inicio de The ON Company, con sus líneas de eventos y diseño y construcción" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 48vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Proyecto propio · Identidad visual y web<br />Redes sociales en desarrollo</span></div>
@@ -115,7 +123,13 @@ export function StudioHome() {
               <div className={s.projectCaption}><div><h3>Atria Abogadas</h3></div><span>Identidad visual · Web</span></div>
             </a>
           </div>
-          <p className={s.galleryHint}>Desliza para explorar los proyectos <span aria-hidden="true">↔</span></p>
+          <div className={s.galleryControls}>
+            <p className={s.galleryHint}>Desliza o usa las flechas para ver los proyectos <span aria-hidden="true">↔</span></p>
+            <div className={s.galleryButtons} aria-label="Controles del carrusel">
+              <button type="button" onClick={() => scrollProjects(-1)} aria-label="Ver proyectos anteriores"><Arrow diagonal={false} /></button>
+              <button type="button" onClick={() => scrollProjects(1)} aria-label="Ver proyectos siguientes"><Arrow diagonal={false} /></button>
+            </div>
+          </div>
           <div className={s.moreWork}>
             <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Ver portafolio completo en Behance <Arrow /></a>
             <details className={s.moreProjects}>

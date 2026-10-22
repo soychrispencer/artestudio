@@ -55,13 +55,30 @@ const archivedProjects = [
   { name: 'Model3D', type: 'Diseño y desarrollo web' },
 ]
 
+type ProjectService = 'todos' | 'web' | 'marca' | 'contenido' | 'publicidad' | 'ia'
+
+const projectFilters: { id: ProjectService; label: string }[] = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'web', label: 'Web y plataformas' },
+  { id: 'marca', label: 'Marca y diseño' },
+  { id: 'contenido', label: 'Redes y contenido' },
+  { id: 'publicidad', label: 'Marketing y campañas' },
+  { id: 'ia', label: 'Automatización e IA' },
+]
+
 export function StudioHome() {
   const [stageId, setStageId] = useState('fundamentos')
+  const [projectService, setProjectService] = useState<ProjectService>('todos')
   const projectGridRef = useRef<HTMLDivElement>(null)
   const stage = HOME_DIAGNOSTICO.stages.find(item => item.id === stageId)!
+  const projectMatches = (...services: Exclude<ProjectService, 'todos'>[]) => projectService === 'todos' || services.includes(projectService)
+  const selectProjectService = (service: ProjectService) => {
+    setProjectService(service)
+    requestAnimationFrame(() => projectGridRef.current?.scrollTo({ left: 0, behavior: 'smooth' }))
+  }
   const scrollProjects = (direction: -1 | 1) => {
     const track = projectGridRef.current
-    const card = track?.querySelector<HTMLElement>(':scope > a')
+    const card = track?.querySelector<HTMLElement>(':scope > a:not([hidden])')
     if (!track || !card) return
     const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0
     track.scrollBy({ left: direction * (card.getBoundingClientRect().width + gap), behavior: 'smooth' })
@@ -99,13 +116,17 @@ export function StudioHome() {
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>02 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
 
+          <div className={s.projectFilters} role="group" aria-label="Filtrar proyectos por servicio">
+            {projectFilters.map(filter => <button key={filter.id} type="button" className={projectService === filter.id ? s.filterActive : ''} aria-pressed={projectService === filter.id} onClick={() => selectProjectService(filter.id)}>{filter.label}</button>)}
+          </div>
+
           <div id="project-gallery" ref={projectGridRef} className={s.projectGrid} role="region" aria-roledescription="carrusel" aria-label="Proyectos seleccionados" tabIndex={0}>
-            <a className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
+            <a hidden={!projectMatches('web', 'marca')} className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.onVisual}><Image src="/images/casos/the-on-company-home.jpg" alt="Vista de la página de inicio de The ON Company, con sus líneas de eventos y diseño y construcción" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 48vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Proyecto propio · Identidad visual y web<br />Redes sociales en desarrollo</span></div>
             </a>
 
-          <a className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
+          <a hidden={!projectMatches('web')} className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
             <div className={s.tradicionalVisual}>
               <Image src="/images/casos/tradicional360-web.png" alt="Sitio web de Tradicional360 con su diagnóstico comercial interactivo" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
               <div className={s.tradicionalOverlay}><span>Tradicional360</span><p>Más canal para<br /><em>conquistar.</em></p></div>
@@ -114,13 +135,25 @@ export function StudioHome() {
             <div className={s.projectCaption}><div><h3>Tradicional360</h3></div><span>Web · Diagnóstico interactivo</span></div>
           </a>
 
-            <a className={s.project} href="https://quiralproyectos.cl" target="_blank" rel="noopener noreferrer">
+            <a hidden={!projectMatches('web')} className={s.project} href="https://quiralproyectos.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.quiralVisual}><Image src="/images/casos/quiral.png" alt="Arquitectura y paisajismo de Quiral Proyectos" fill sizes="(max-width: 760px) 95vw, 45vw" /><div className={s.quiralOverlay}><span>Quiral Proyectos</span><p>Espacios para<br /><em>habitar mejor.</em></p></div><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>Quiral Proyectos</h3></div><span>Diseño y desarrollo web</span></div>
             </a>
-            <a className={s.project} href="https://atriabogadas.cl" target="_blank" rel="noopener noreferrer">
-              <div className={s.atriaVisual}><Image src="/images/casos/atria.png" alt="Sistema de identidad visual de Atria Abogadas: logotipo, paleta, redes sociales y aplicaciones" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
-              <div className={s.projectCaption}><div><h3>Atria Abogadas</h3></div><span>Identidad visual · Web</span></div>
+            <a hidden={!projectMatches('web', 'marca', 'contenido')} className={s.project} href="https://atriabogadas.cl" target="_blank" rel="noopener noreferrer">
+              <div className={s.atriaVisual}><Image src="/images/casos/atria.png" alt="Identidad visual, piezas para redes sociales y aplicaciones de Atria Abogadas" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.projectCaption}><div><h3>Atria Abogadas</h3></div><span>Marca · Web · Contenido</span></div>
+            </a>
+            <a hidden={!projectMatches('web', 'marca', 'contenido')} className={s.project} href="https://bukmy.com" target="_blank" rel="noopener noreferrer">
+              <div className={s.bukmyVisual}><Image src="/images/casos/bukmy-social.webp" alt="Pieza de contenido digital para la plataforma educativa Bukmy" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.projectCaption}><div><h3>Bukmy</h3></div><span>Marca · Plataforma · Redes</span></div>
+            </a>
+            <a hidden={!projectMatches('web', 'publicidad')} className={s.project} href="https://simplepropiedades.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.simpleVisual}><Image src="/images/casos/simplepropiedades-campana.webp" alt="Pieza de campaña de SimplePropiedades para publicar propiedades gratis" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.projectCaption}><div><h3>SimplePropiedades</h3></div><span>Plataforma · Campaña digital</span></div>
+            </a>
+            <a hidden={!projectMatches('web', 'ia')} className={s.project} href="https://simpleresto.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.restoVisual}><Image src="/images/casos/simpleresto-panel.webp" alt="Panel de operación de pedidos de SimpleResto, producto en desarrollo" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.projectCaption}><div><h3>SimpleResto</h3></div><span>Producto en desarrollo · IA aplicada</span></div>
             </a>
           </div>
           <div className={s.galleryControls}>

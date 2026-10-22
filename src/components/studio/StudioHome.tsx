@@ -106,24 +106,12 @@ export function StudioHome() {
           <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Más del estudio en Behance <Arrow /></a>
 
           <div className={s.experience} aria-label="Experiencia en proyectos digitales y de marca">
-            <div className={s.experienceHead}><p className={s.label}>Experiencia en proyectos</p><h3>Ideas que se convierten<br />en <em>plataformas y marcas.</em></h3><p>Además de los casos destacados, he creado productos digitales propios y trabajado con marcas de distintos rubros.</p></div>
-
-            <div className={s.experienceBlock}>
-              <div className={s.experienceTitle}><span>01</span><div><h4>Ecosistema Simple</h4><p>Plataformas digitales desarrolladas por Artestudio.</p></div></div>
-              <div className={s.productGrid}>{digitalProducts.map(product => <a key={product.name} className={s.productCard} href={product.href} target="_blank" rel="noopener noreferrer"><span>{product.type}</span><strong>{product.name}</strong><span className={s.productArrow} aria-hidden="true">↗</span></a>)}</div>
+            <div className={s.experienceIntro}><p className={s.label}>Más proyectos</p><p>Además de estos casos, he desarrollado productos digitales propios y colaborado con marcas de distintos rubros.</p></div>
+            <div className={s.credentialRows}>
+              <div className={s.credentialRow}><h3>Productos propios</h3><div className={s.inlineLinks}>{digitalProducts.map((product, index) => <span key={product.name}><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}{product.type === 'Producto en desarrollo' && <small>En desarrollo</small>}</a>{index < digitalProducts.length - 1 && <i aria-hidden="true">·</i>}</span>)}</div></div>
+              <div className={s.credentialRow}><h3>Web, identidad y contenido</h3><div className={s.credentialText}><span><b>Sitios:</b> {clientWebsites.map((client, index) => <span key={client.name}><a href={client.href} target="_blank" rel="noopener noreferrer">{client.name}</a>{index < clientWebsites.length - 1 && ', '}</span>)}</span><span><b>Marcas:</b> {visualIdentityProjects.map((project, index) => <span key={project.name}>{project.name}{index < visualIdentityProjects.length - 1 && ', '}</span>)}</span></div></div>
             </div>
-
-            <div className={s.experienceBlock}>
-              <div className={s.experienceTitle}><span>02</span><div><h4>Webs para clientes</h4><p>Diseño y desarrollo para negocios y organizaciones.</p></div></div>
-              <div className={s.clientList}>{clientWebsites.map(client => <a key={client.name} href={client.href} target="_blank" rel="noopener noreferrer"><strong>{client.name}</strong><span>{client.type}</span><span aria-hidden="true">↗</span></a>)}</div>
-            </div>
-
-            <div className={s.experienceBlock}>
-              <div className={s.experienceTitle}><span>03</span><div><h4>Identidad visual y contenido</h4><p>Marcas para las que desarrollé identidad, piezas gráficas o redes sociales.</p></div></div>
-              <div className={s.brandNames}>{visualIdentityProjects.map(project => <span key={project.name}><strong>{project.name}</strong><small>{project.work}</small></span>)}</div>
-            </div>
-
-            <details className={s.archivedWork}><summary><span>Proyectos históricos</span><span>Algunos sitios dejaron de estar publicados por decisión de sus clientes. El trabajo realizado sigue siendo parte de mi experiencia.</span><b aria-hidden="true">+</b></summary><div className={s.archivedGrid}>{archivedProjects.map(project => <div key={project.name}><strong>{project.name}</strong><span>{project.type}</span></div>)}</div></details>
+            <details className={s.archivedWork}><summary><span>Proyectos históricos</span><span>Sitios que sus clientes dejaron de publicar.</span><b aria-hidden="true">+</b></summary><div className={s.archivedGrid}>{archivedProjects.map(project => <div key={project.name}><strong>{project.name}</strong><span>{project.type}</span></div>)}</div></details>
           </div>
         </div>
       </section>

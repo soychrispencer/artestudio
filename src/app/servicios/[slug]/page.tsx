@@ -10,6 +10,7 @@ import {
 } from '@/content/services-catalog'
 import { ServiceCta, ServiceCrossSellCard } from '@/components/servicios/ServiceCard'
 import { ServicePreviewFrame } from '@/components/servicios/ServicePreviewFrame'
+import { MaintenancePlans } from '@/components/servicios/MaintenancePlans'
 import { MIN_COMMITMENT_MONTHS } from '@/lib/subscriptions'
 import { withIVA } from '@/lib/checkout-pricing'
 import s from '@/components/studio/StudioServices.module.css'
@@ -112,6 +113,7 @@ export default async function ServicioLandingPage({ params }: PageProps) {
                 Ver todos los servicios
               </Link>
             </aside>
+              {service.slug === 'mantencion-web' && <MaintenancePlans />}
               {/* Mockup Preview Deliverable */}
               {service.previewImage ? (
                 <div className="mb-10 max-w-2xl">
@@ -119,19 +121,23 @@ export default async function ServicioLandingPage({ params }: PageProps) {
                 </div>
               ) : null}
 
-              <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted mb-4">
-                Qué incluye
-              </h2>
-              <ul className="space-y-3 max-w-2xl">
-                {service.includes.map((line) => (
-                  <li key={line} className="flex gap-3 text-[var(--text)] leading-relaxed">
-                    <span className="text-muted shrink-0" aria-hidden>
-                      –
-                    </span>
-                    {line}
-                  </li>
-                ))}
-              </ul>
+              {service.slug !== 'mantencion-web' && (
+                <>
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted mb-4">
+                    Qué incluye
+                  </h2>
+                  <ul className="space-y-3 max-w-2xl">
+                    {service.includes.map((line) => (
+                      <li key={line} className="flex gap-3 text-[var(--text)] leading-relaxed">
+                        <span className="text-muted shrink-0" aria-hidden>
+                          –
+                        </span>
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
               {service.monthlyIncludes?.length ? (
                 <>

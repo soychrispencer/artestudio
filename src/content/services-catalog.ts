@@ -329,7 +329,7 @@ const BASE_CATEGORIES: ServiceCategory[] = [
         description: 'Hosting, respaldos y mantención técnica; cambios de contenido según el nivel contratado.',
         headline: 'Mantén tu web activa, segura y respaldada.',
         problem: 'Sin mantención técnica el sitio envejece, se rompe, o pierdes horas intentando cambiar fotos y precios tú mismo.',
-        ...quoteFrom(5_990, 'Mensual · Base $5.990 · Activa $49.990 · Tienda $89.990'),
+        ...quoteFrom(5_990, 'Mensual · compara Base, Activa y Tienda más abajo'),
         includes: [
           'Hosting + certificado SSL',
           'Respaldo semanal y mantención técnica básica',

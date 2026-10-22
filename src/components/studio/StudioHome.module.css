@@ -66,12 +66,14 @@
 .onVisual{position:relative;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#161613}
 .onVisual>img{object-fit:cover;object-position:center 45%;transition:transform .7s}
 .project:hover .onVisual>img{transform:scale(1.025)}
-.tradicionalVisual{position:relative;aspect-ratio:1.12;display:flex;flex-direction:column;justify-content:center;padding:22px;background:#e0e2da;border-radius:5px;overflow:hidden}
-.tradicionalVisual .visualLabel{position:absolute;inset:24px 72px auto 22px;padding:0}
-.tradicionalVisual .visualLabel>span:first-child{font-size:15px}
-.tradicionalVisual .visualLabel>span:last-child{display:none}
-.tradicionalVisual .browserFrame{margin-top:32px}
-.tradicionalVisual .browserImage{aspect-ratio:1.62}
+.tradicionalVisual{position:relative;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#0e1c28;isolation:isolate}
+.tradicionalVisual>img{object-fit:cover;object-position:center top;transition:transform .7s}
+.tradicionalVisual:after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#07111a18 25%,#07111a28 48%,#07111ae8 100%)}
+.project:hover .tradicionalVisual>img{transform:scale(1.035)}
+.tradicionalOverlay{position:absolute;inset:24px;z-index:1;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.tradicionalOverlay>span{font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.tradicionalOverlay>p{font-size:clamp(27px,2.8vw,42px);line-height:1.05;letter-spacing:-.055em;margin-bottom:6px}
+.tradicionalOverlay em{font-family:var(--font-instrument),Georgia,serif;font-weight:400}
 .galleryControls{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:12px}
 .galleryHint{display:flex;align-items:center;gap:12px;font-size:10px;margin:0}
 .galleryButtons{display:flex;gap:8px;flex:none}
@@ -87,13 +89,9 @@
 .quiralOverlay>span{font-size:10px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;padding-right:50px}
 .quiralPlus{color:var(--acid);margin-left:5px}
 .quiralOverlay>p{font-size:clamp(27px,2.8vw,42px);line-height:1.05;letter-spacing:-.055em;margin-bottom:6px}
-.atriaVisual{display:grid;place-items:center;background:#dce2d9;isolation:isolate}
-.atriaPaper{position:relative;width:59%;height:78%;display:flex;align-items:center;justify-content:center;background:#f7f4ee;box-shadow:0 14px 40px #243a3430;transform:rotate(-6deg);transition:transform .6s}
-.atriaPaper img{display:block;width:85%;height:auto;max-height:90%;object-fit:contain}
-.atriaPaper>span{position:absolute;bottom:7%;left:0;right:0;text-align:center;color:#637f7d;font-family:Georgia,serif;font-size:11px}
-.atriaBack{position:absolute;width:49%;height:63%;right:10%;top:18%;background:#637f7d;transform:rotate(12deg);z-index:-1;overflow:hidden}
-.atriaBack img{position:absolute;right:-25%;bottom:-30%;width:110%;height:auto;filter:brightness(0) invert(1);opacity:.3}
-.project:hover .atriaPaper{transform:rotate(-3deg) translateY(-5px)}
+.atriaVisual{isolation:isolate}
+.atriaVisual>img{object-fit:cover;object-position:center 50%;transition:transform .7s}
+.project:hover .atriaVisual>img{transform:scale(1.025)}
 .roundArrow{position:absolute;right:20px;top:20px;z-index:2;display:grid;place-items:center;width:42px;height:42px;background:var(--white);color:var(--black);border-radius:50%;transition:background .2s,transform .2s}
 .project:hover .roundArrow{background:var(--acid);transform:rotate(45deg)}
 .roundArrow svg{width:18px;height:18px}

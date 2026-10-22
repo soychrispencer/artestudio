@@ -107,8 +107,8 @@ export function StudioHome() {
 
           <a className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
             <div className={s.tradicionalVisual}>
-              <div className={s.visualLabel}><span>Tradicional360</span><span>Web / Estrategia digital</span></div>
-              <div className={s.browserFrame}><div className={s.browserBar}><span aria-hidden="true">● ● ●</span><span>tradicional360.cl</span><span aria-hidden="true">↗</span></div><div className={s.browserImage}><Image src="/images/casos/tradicional360-web.png" alt="Diseño de la web Tradicional360: propuesta comercial y radar de diagnóstico" fill sizes="(max-width: 760px) 95vw, 80vw" /></div></div>
+              <Image src="/images/casos/tradicional360-web.png" alt="Sitio web de Tradicional360 con su diagnóstico comercial interactivo" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+              <div className={s.tradicionalOverlay}><span>Tradicional360</span><p>Más canal para<br /><em>conquistar.</em></p></div>
               <span className={s.roundArrow}><Arrow /></span>
             </div>
             <div className={s.projectCaption}><div><h3>Tradicional360</h3></div><span>Web · Diagnóstico interactivo</span></div>
@@ -119,7 +119,7 @@ export function StudioHome() {
               <div className={s.projectCaption}><div><h3>Quiral Proyectos</h3></div><span>Diseño y desarrollo web</span></div>
             </a>
             <a className={s.project} href="https://atriabogadas.cl" target="_blank" rel="noopener noreferrer">
-              <div className={s.atriaVisual}><div className={s.atriaBack} aria-hidden="true"><Image src="/images/casos/atria-olivo.svg" alt="" width={160} height={280} /></div><div className={s.atriaPaper}><Image src="/images/casos/atria-logo.svg" alt="Identidad visual de Atria Abogadas" width={280} height={360} /><span>Derecho de familia</span></div><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.atriaVisual}><Image src="/images/casos/atria.png" alt="Sistema de identidad visual de Atria Abogadas: logotipo, paleta, redes sociales y aplicaciones" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>Atria Abogadas</h3></div><span>Identidad visual · Web</span></div>
             </a>
           </div>

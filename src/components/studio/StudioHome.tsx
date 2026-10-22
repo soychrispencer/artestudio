@@ -75,13 +75,21 @@ export function StudioHome() {
               </div>
             </div>
           </div>
-          <div className={s.heroFoot}><span>Creatividad con intención. Tecnología con dirección.</span><a href="#trabajo">Explora el estudio <span aria-hidden="true">↓</span></a></div>
+          <div className={s.heroFoot}><span>Creatividad con intención. Tecnología con dirección.</span><a href="#servicios-home">Explora el estudio <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </section>
+
+      <section id="servicios-home" className={s.services} aria-labelledby="services-title">
+        <div className={s.container}>
+          <div className={s.sectionHead}><div><p className={s.label}>01 / Lo que conectamos</p><h2 id="services-title">Tu siguiente<br /><em>movimiento.</em></h2></div><p>Desde una pieza puntual hasta un sistema completo.<br />Construimos lo que tu negocio necesita hoy.</p></div>
+          <div className={s.serviceList}>{expertise.map((item, index) => <Link key={item.href} href={item.href} className={s.serviceRow}><span className={s.serviceNumber}>0{index + 1}</span><div><h3>{item.name}</h3><p>{item.description}</p><span className={s.serviceTags}>{item.tags}</span></div><span className={s.serviceArrow}><Arrow /></span></Link>)}</div>
+          <div className={s.servicesFoot}><p>¿Necesitas que todo trabaje junto?</p><Link href="/servicios/sistema-crecimiento">Conoce el Plan integral de crecimiento <Arrow /></Link></div>
         </div>
       </section>
 
       <section id="trabajo" className={s.work} aria-labelledby="work-title">
         <div className={s.container}>
-          <div className={s.sectionHead}><div><p className={s.label}>01 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
+          <div className={s.sectionHead}><div><p className={s.label}>02 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
 
           <div className={s.projectGrid}>
           <a className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
@@ -113,14 +121,6 @@ export function StudioHome() {
             </div>
             <details className={s.archivedWork}><summary><span>Proyectos históricos</span><span>Sitios que sus clientes dejaron de publicar.</span><b aria-hidden="true">+</b></summary><div className={s.archivedGrid}>{archivedProjects.map(project => <div key={project.name}><strong>{project.name}</strong><span>{project.type}</span></div>)}</div></details>
           </div>
-        </div>
-      </section>
-
-      <section id="servicios-home" className={s.services} aria-labelledby="services-title">
-        <div className={s.container}>
-          <div className={s.sectionHead}><div><p className={s.label}>02 / Lo que conectamos</p><h2 id="services-title">Tu siguiente<br /><em>movimiento.</em></h2></div><p>Desde una pieza puntual hasta un sistema completo.<br />Construimos lo que tu negocio necesita hoy.</p></div>
-          <div className={s.serviceList}>{expertise.map((item, index) => <Link key={item.href} href={item.href} className={s.serviceRow}><span className={s.serviceNumber}>0{index + 1}</span><div><h3>{item.name}</h3><p>{item.description}</p><span className={s.serviceTags}>{item.tags}</span></div><span className={s.serviceArrow}><Arrow /></span></Link>)}</div>
-          <div className={s.servicesFoot}><p>¿Necesitas que todo trabaje junto?</p><Link href="/servicios/sistema-crecimiento">Conoce el Plan integral de crecimiento <Arrow /></Link></div>
         </div>
       </section>
 

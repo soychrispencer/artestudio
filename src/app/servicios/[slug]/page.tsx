@@ -63,7 +63,7 @@ export default async function ServicioLandingPage({ params }: PageProps) {
   const category = getServiceCategory(service.categoryId)
   const relatedServices = (service.relatedSlugs ?? [])
     .map(getServiceBySlug)
-    .filter((s): s is NonNullable<typeof s> => Boolean(s))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s) && s?.categoryId !== 'packs')
 
   return (
     <div className={s.servicePage}>

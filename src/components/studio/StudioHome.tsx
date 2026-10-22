@@ -18,6 +18,43 @@ const expertise = [
   { name: 'Automatización e IA', description: 'Menos tareas repetitivas. Más tiempo para lo importante, con herramientas pensadas para tu operación.', tags: 'Integraciones · Asistentes · Procesos', href: '/servicios#ia' },
 ]
 
+const digitalProducts = [
+  { name: 'SimplePlataforma', type: 'Ecosistema digital', href: 'https://simpleplataforma.app' },
+  { name: 'SimpleAutos', type: 'Automotor', href: 'https://simpleautos.app' },
+  { name: 'SimplePropiedades', type: 'Propiedades', href: 'https://simplepropiedades.app' },
+  { name: 'SimpleAgenda', type: 'Reservas y gestión', href: 'https://simpleagenda.app' },
+  { name: 'SimpleSerenatas', type: 'Servicios y experiencias', href: 'https://simpleserenatas.app' },
+  { name: 'SimpleResto', type: 'Producto en desarrollo', href: 'https://simpleresto.app' },
+  { name: 'SimpleTicket', type: 'Producto en desarrollo', href: 'https://simpleticket.app' },
+]
+
+const clientWebsites = [
+  { name: 'Paskal', type: 'Sitio web', href: 'https://www.paskal.cl' },
+  { name: 'Remsco', type: 'Sitio web', href: 'https://www.remsco.cl' },
+  { name: 'UCansteng', type: 'Sitio web', href: 'https://ucansteng.com' },
+]
+
+const visualIdentityProjects = [
+  { name: 'Digital Minds', work: 'Identidad y contenido' },
+  { name: 'Terapia Relacional', work: 'Identidad y redes sociales' },
+  { name: 'Bukmy', work: 'Identidad, plataforma y redes' },
+  { name: 'Estrellitas de Colores', work: 'Identidad y redes sociales' },
+  { name: 'Hipodelicias', work: 'Identidad y redes sociales' },
+  { name: 'ImacPro', work: 'Identidad y sitio web' },
+  { name: 'El Bajonero', work: 'Identidad y redes sociales' },
+  { name: 'Perú Pasión', work: 'Asesoría integral de marca' },
+]
+
+const archivedProjects = [
+  { name: 'Symmec', type: 'Identidad · Web · Redes sociales' },
+  { name: 'Bukmy', type: 'Identidad · Plataforma · Redes sociales' },
+  { name: 'William TRD', type: 'Identidad · Web · Redes sociales' },
+  { name: 'Gama Motors', type: 'Identidad · Web · Redes sociales' },
+  { name: 'Windhouse', type: 'Identidad · Web · Redes sociales' },
+  { name: 'Transportes Amsomar', type: 'Identidad · Web · Redes sociales' },
+  { name: 'Model3D', type: 'Diseño y desarrollo web' },
+]
+
 export function StudioHome() {
   const [stageId, setStageId] = useState('fundamentos')
   const stage = HOME_DIAGNOSTICO.stages.find(item => item.id === stageId)!
@@ -67,6 +104,27 @@ export function StudioHome() {
           </div>
           <p className={s.galleryHint}>Desliza para explorar los proyectos <span aria-hidden="true">↔</span></p>
           <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Más del estudio en Behance <Arrow /></a>
+
+          <div className={s.experience} aria-label="Experiencia en proyectos digitales y de marca">
+            <div className={s.experienceHead}><p className={s.label}>Experiencia en proyectos</p><h3>Ideas que se convierten<br />en <em>plataformas y marcas.</em></h3><p>Además de los casos destacados, he creado productos digitales propios y trabajado con marcas de distintos rubros.</p></div>
+
+            <div className={s.experienceBlock}>
+              <div className={s.experienceTitle}><span>01</span><div><h4>Ecosistema Simple</h4><p>Plataformas digitales desarrolladas por Artestudio.</p></div></div>
+              <div className={s.productGrid}>{digitalProducts.map(product => <a key={product.name} className={s.productCard} href={product.href} target="_blank" rel="noopener noreferrer"><span>{product.type}</span><strong>{product.name}</strong><span className={s.productArrow} aria-hidden="true">↗</span></a>)}</div>
+            </div>
+
+            <div className={s.experienceBlock}>
+              <div className={s.experienceTitle}><span>02</span><div><h4>Webs para clientes</h4><p>Diseño y desarrollo para negocios y organizaciones.</p></div></div>
+              <div className={s.clientList}>{clientWebsites.map(client => <a key={client.name} href={client.href} target="_blank" rel="noopener noreferrer"><strong>{client.name}</strong><span>{client.type}</span><span aria-hidden="true">↗</span></a>)}</div>
+            </div>
+
+            <div className={s.experienceBlock}>
+              <div className={s.experienceTitle}><span>03</span><div><h4>Identidad visual y contenido</h4><p>Marcas para las que desarrollé identidad, piezas gráficas o redes sociales.</p></div></div>
+              <div className={s.brandNames}>{visualIdentityProjects.map(project => <span key={project.name}><strong>{project.name}</strong><small>{project.work}</small></span>)}</div>
+            </div>
+
+            <details className={s.archivedWork}><summary><span>Proyectos históricos</span><span>Algunos sitios dejaron de estar publicados por decisión de sus clientes. El trabajo realizado sigue siendo parte de mi experiencia.</span><b aria-hidden="true">+</b></summary><div className={s.archivedGrid}>{archivedProjects.map(project => <div key={project.name}><strong>{project.name}</strong><span>{project.type}</span></div>)}</div></details>
+          </div>
         </div>
       </section>
 
@@ -86,7 +144,7 @@ export function StudioHome() {
               <div className={s.portraitImage}><Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, fundador de Artestudio" fill sizes="(max-width: 760px) 90vw, 35vw" /></div>
               <figcaption><span><strong>Chris Spencer</strong><small>Fundador & dirección creativa</small></span><Image className={s.portraitMark} src="/logos/Artestudio-isotipo-acid.png" alt="" width={40} height={40} /></figcaption>
             </figure>
-            <div className={s.studioCopy}><p className={s.label}>03 / El estudio</p><h2 id="approach-title">Un estudio.<br /><em>Todas las piezas.</em></h2><p>La marca que muestras, la web que recibe y el marketing que atrae deberían hablar el mismo idioma. En Artestudio los pensamos juntos, con un trato directo y una ejecución cuidada.</p><p className={s.studioSignature}>Soy Chris Spencer. Conecto la estrategia, el diseño y la tecnología para llevar cada proyecto de la idea a la implementación.</p><a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre tu proyecto <Arrow /></a></div>
+            <div className={s.studioCopy}><p className={s.label}>03 / El estudio</p><h2 id="approach-title">Un estudio.<br /><em>Todas las piezas.</em></h2><p>La marca que muestras, la web que recibe y el marketing que atrae deberían hablar el mismo idioma. En Artestudio los pensamos juntos, con un trato directo y una ejecución cuidada.</p><p className={s.studioSignature}>Soy Chris Spencer. Conecto la estrategia, el diseño y la tecnología para llevar cada proyecto de la idea a la implementación.</p><a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre tu proyecto <Arrow /></a><div className={s.founderLinks}><a href="https://www.linkedin.com/in/soychrispencer" target="_blank" rel="noopener noreferrer">LinkedIn <Arrow /></a><a href="https://www.instagram.com/soychrispencer" target="_blank" rel="noopener noreferrer">Instagram <Arrow /></a><Link href="/soychrispencer">Trayectoria y perfil <Arrow /></Link></div></div>
           </div>
           <div className={s.steps}>{[
             ['Entender', 'Primero, tu negocio.', 'Escuchamos, revisamos lo que tienes y definimos qué necesita avanzar.'],

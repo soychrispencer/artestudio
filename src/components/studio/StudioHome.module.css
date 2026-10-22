@@ -88,6 +88,44 @@
 .roundArrow svg{width:18px;height:18px}
 .portfolioLink{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #11121040;padding:20px 0;margin-top:36px;font-size:13px}
 .portfolioLink:hover{border-color:var(--black)}
+.experience{margin-top:104px;border-top:1px solid #11121030;padding-top:48px}
+.experienceHead{display:grid;grid-template-columns:1fr 1fr;column-gap:60px;align-items:end;margin-bottom:58px}
+.experienceHead .label{grid-column:1/-1;margin-bottom:18px}
+.experienceHead h3{font-size:clamp(38px,4.6vw,64px);line-height:1.04;letter-spacing:-.065em;font-weight:500;margin:0}
+.experienceHead h3 em{color:#617d11}
+.experienceHead>p:last-child{font-size:13px;line-height:1.8;color:#66685f;max-width:380px;margin:0 0 5px}
+.experienceBlock{display:grid;grid-template-columns:.72fr 1.28fr;gap:40px;padding:32px 0;border-top:1px solid #11121026}
+.experienceTitle{display:flex;gap:16px;align-items:flex-start}
+.experienceTitle>span{font:10px ui-monospace,monospace;color:#73776a;padding-top:5px}
+.experienceTitle h4{font-size:18px;letter-spacing:-.035em;font-weight:600;margin:0 0 7px}
+.experienceTitle p{font-size:11px;line-height:1.7;color:#72746b;margin:0;max-width:250px}
+.productGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.productCard{position:relative;min-height:112px;padding:16px;background:#e9eadf;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s,transform .2s}
+.productCard:hover{background:var(--acid);transform:translateY(-2px)}
+.productCard>span:first-child{font-size:8px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:#64675c;max-width:80%}
+.productCard strong{font-size:15px;letter-spacing:-.04em;font-weight:600}
+.productCard .productArrow{position:absolute;right:14px;top:12px;font-size:13px}
+.clientList{border-top:1px solid #11121025}
+.clientList>a{display:grid;grid-template-columns:1fr 1.2fr 20px;align-items:center;gap:16px;padding:13px 3px;border-bottom:1px solid #11121025;transition:padding .2s,color .2s}
+.clientList>a:hover{padding-inline:10px;color:#536d00}
+.clientList strong{font-size:14px;letter-spacing:-.025em;font-weight:500}
+.clientList>a>span:nth-child(2){font-size:10px;color:#73756b}
+.clientList>a>span:last-child{text-align:right;font-size:13px}
+.brandNames{display:flex;flex-wrap:wrap;gap:8px}
+.brandNames>span{border:1px solid #1112102c;padding:10px 13px;display:flex;flex-direction:column;gap:5px;min-width:calc(50% - 4px)}
+.brandNames strong{font-size:10px;letter-spacing:-.01em;font-weight:500}
+.brandNames small{font-size:8px;color:#74766c}
+.archivedWork{border-top:1px solid #11121026;margin-top:8px}
+.archivedWork summary{list-style:none;display:grid;grid-template-columns:.72fr 1.28fr 20px;gap:40px;align-items:center;padding:23px 0;cursor:pointer}
+.archivedWork summary::-webkit-details-marker{display:none}
+.archivedWork summary>span:first-child{font-size:13px;font-weight:600}
+.archivedWork summary>span:nth-child(2){font-size:10px;line-height:1.7;color:#6f7168;max-width:470px}
+.archivedWork summary>b{font-size:22px;font-weight:300;transition:transform .2s}
+.archivedWork[open] summary>b{transform:rotate(45deg)}
+.archivedGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px;border-top:1px solid #11121020;padding:6px 0 18px}
+.archivedGrid>div{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid #11121018;padding:13px 0}
+.archivedGrid strong{font-size:11px;font-weight:500}
+.archivedGrid span{font-size:9px;color:#73756b;text-align:right}
 .services{background:var(--black);color:var(--white);padding:104px 0 60px}
 .services h2 em{color:var(--acid)}
 .services .sectionHead>p{color:#a6aa9e}
@@ -115,6 +153,10 @@
 .studioCopy .studioSignature{margin-top:20px;font-size:14px}
 .studioCopy>a{display:inline-flex;align-items:center;gap:22px;margin-top:24px;font-size:12px;font-weight:600;padding-bottom:10px;border-bottom:1px solid #11121055}
 .studioCopy>a svg{width:17px;height:17px}
+.founderLinks{display:flex;flex-wrap:wrap;gap:20px;margin-top:22px}
+.founderLinks a{display:inline-flex;align-items:center;gap:7px;font-size:10px;color:#66685f}
+.founderLinks a:hover{color:#435900}
+.founderLinks svg{width:12px;height:12px}
 .approachIntro{display:grid;grid-template-columns:1fr 2fr;gap:40px}
 .approachIntro>.label{margin-top:10px}
 .approachIntro>div{max-width:760px}
@@ -169,6 +211,8 @@
 @media(max-width:760px){.heroCopy h1{font-size:clamp(38px,11.7vw,88px)}.heroActions{gap:16px}.textLink{font-size:11px;gap:10px}.portraitImage img{object-position:center 34%}.contact h2{font-size:clamp(44px,12vw,88px)}.contactArrow{width:52px;height:52px}.contactGrid{gap:12px}}
 @media(max-width:1100px){.studioIntro{gap:40px}.projectGrid{gap:20px}.quiralOverlay{inset:20px}.tradicionalVisual{padding:16px}.tradicionalVisual .visualLabel{left:16px;font-size:12px}.roundArrow{width:34px;height:34px;right:15px;top:15px}}
 @media(max-width:900px){.projectGrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:calc((100% - 20px)/2);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:0 0 18px;margin-top:0}.projectGrid>.project{scroll-snap-align:start}.galleryHint{display:flex;justify-content:space-between;gap:15px;font-size:10px;color:#71776a;margin-top:12px}.studioIntro{gap:30px}.studioCopy>p:not(.label){font-size:14px}}
-@media(max-width:760px){.heroCopy{padding:20px 0 35px}.heroCopy h1{font-size:clamp(38px,10.8vw,80px);line-height:1.04}.heroEyebrow>span:last-child{display:flex}.heroBackdrop{width:110%;right:-48%;opacity:.07}.heroFoot{margin-top:16px}.projectGrid{grid-template-columns:none;grid-auto-columns:86%;gap:18px;margin-top:0}.tradicionalVisual,.quiralVisual,.atriaVisual{aspect-ratio:1.12}.quiralOverlay>p{font-size:34px}.studioIntro{grid-template-columns:1fr;gap:32px}.studioIntro .portrait{aspect-ratio:1.12;max-width:480px;width:100%;margin:0}.studioCopy h2{margin-bottom:22px}.studioCopy .studioSignature{font-size:13px}.studioCopy>a{font-size:11px}}
+@media(max-width:760px){.heroCopy{padding:20px 0 35px}.heroCopy h1{font-size:clamp(38px,10.8vw,80px);line-height:1.04}.heroEyebrow>span:last-child{display:flex}.heroBackdrop{width:110%;right:-48%;opacity:.07}.heroFoot{margin-top:16px}.projectGrid{grid-template-columns:none;grid-auto-columns:86%;gap:18px;margin-top:0}.tradicionalVisual,.quiralVisual,.atriaVisual{aspect-ratio:1.12}.quiralOverlay>p{font-size:34px}.studioIntro{grid-template-columns:1fr;gap:32px}.studioIntro .portrait{aspect-ratio:1.12;max-width:480px;width:100%;margin:0}.studioCopy h2{margin-bottom:22px}.studioCopy .studioSignature{font-size:13px}.studioCopy>a{font-size:11px}.founderLinks{gap:14px;margin-top:18px}}
 @media(max-width:760px){.studioIntro .portrait{aspect-ratio:1}.studioIntro .portraitImage img{object-position:center 34%}}
+@media(max-width:900px){.experienceBlock{grid-template-columns:.8fr 1.2fr;gap:24px}.productGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.experienceHead{column-gap:35px}}
+@media(max-width:760px){.experience{margin-top:64px;padding-top:35px}.experienceHead{display:block;margin-bottom:35px}.experienceHead .label{margin-bottom:17px}.experienceHead h3{font-size:clamp(37px,10vw,54px)}.experienceHead>p:last-child{margin-top:18px;font-size:12px}.experienceBlock{grid-template-columns:1fr;gap:20px;padding:25px 0}.experienceTitle p{max-width:none}.productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.productCard{min-height:98px;padding:13px}.productCard strong{font-size:13px}.clientList>a{grid-template-columns:.8fr 1.2fr 15px;gap:10px;padding:12px 1px}.clientList strong{font-size:12px}.clientList>a>span:nth-child(2){font-size:9px}.brandNames{gap:6px}.brandNames>span{min-width:calc(50% - 3px);padding:9px 10px}.brandNames strong{font-size:9px}.brandNames small{font-size:7px}.archivedWork summary{grid-template-columns:1fr 20px;gap:7px;padding:19px 0}.archivedWork summary>span:first-child{grid-column:1}.archivedWork summary>span:nth-child(2){grid-column:1;grid-row:2}.archivedWork summary>b{grid-column:2;grid-row:1/3}.archivedGrid{grid-template-columns:1fr}.archivedGrid>div{align-items:flex-start;flex-direction:column;gap:4px}.archivedGrid span{text-align:left;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.home *{transition:none!important;animation:none!important}}

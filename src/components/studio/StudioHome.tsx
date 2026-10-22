@@ -87,6 +87,7 @@ export function StudioHome() {
   return (
     <div className={s.home}>
       <section id="inicio" className={s.hero} aria-labelledby="studio-title">
+        <div className={s.heroBackdrop} aria-hidden="true"><Image src="/images/brand/chris-spencer-studio-green.png" alt="" fill priority sizes="(max-width: 760px) 100vw, 78vw" /></div>
         <div className={s.container}>
           <div className={s.heroEyebrow}><span><i /> Estudio creativo + tecnología</span></div>
           <div className={s.heroGrid}>
@@ -98,10 +99,6 @@ export function StudioHome() {
                 <a href="#trabajo" className={s.textLink}>Ver proyectos <span aria-hidden="true">↓</span></a>
               </div>
             </div>
-            <figure className={s.heroPortrait}>
-              <Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, director creativo de Artestudio" fill priority sizes="(max-width: 760px) 90vw, (max-width: 1100px) 42vw, 38vw" />
-              <figcaption><span>CHRIS SPENCER</span><span>DIRECCIÓN CREATIVA · ARTESTUDIO</span></figcaption>
-            </figure>
           </div>
           <div className={s.heroFoot}><span>Creatividad con intención. Tecnología con dirección.</span><a href="#servicios-home">Explora el estudio <span aria-hidden="true">↓</span></a></div>
         </div>

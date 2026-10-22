@@ -98,12 +98,13 @@
 .projectFilters button:hover{border-color:var(--acid);color:var(--acid)}
 .projectFilters button.filterActive{border-color:var(--acid);background:var(--acid);color:var(--black)}
 .projectFilters button:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-.bukmyVisual,.simpleVisual,.restoVisual{position:relative;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#141414}
-.bukmyVisual>img,.simpleVisual>img,.restoVisual>img{object-fit:cover;transition:transform .7s}
+.bukmyVisual,.simpleVisual,.restoVisual,.terapiaVisual{position:relative;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#141414}
+.bukmyVisual>img,.simpleVisual>img,.restoVisual>img,.terapiaVisual>img{object-fit:cover;transition:transform .7s}
 .bukmyVisual>img{object-position:center center}
 .simpleVisual>img{object-position:center 43%}
 .restoVisual>img{object-position:40% center}
-.project:hover .bukmyVisual>img,.project:hover .simpleVisual>img,.project:hover .restoVisual>img{transform:scale(1.03)}
+.terapiaVisual>img{object-position:center center}
+.project:hover .bukmyVisual>img,.project:hover .simpleVisual>img,.project:hover .restoVisual>img,.project:hover .terapiaVisual>img{transform:scale(1.03)}
 .roundArrow{position:absolute;right:20px;top:20px;z-index:2;display:grid;place-items:center;width:42px;height:42px;background:var(--white);color:var(--black);border-radius:50%;transition:background .2s,transform .2s}
 .project:hover .roundArrow{background:var(--acid);transform:rotate(45deg)}
 .roundArrow svg{width:18px;height:18px}

@@ -147,6 +147,10 @@ export function StudioHome() {
               <div className={s.bukmyVisual}><Image src="/images/casos/bukmy-social.webp" alt="Pieza de contenido digital para la plataforma educativa Bukmy" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>Bukmy</h3></div><span>Marca · Plataforma · Redes</span></div>
             </a>
+            <article hidden={!projectMatches('contenido')} className={s.project}>
+              <div className={s.terapiaVisual}><Image src="/images/casos/terapia-relacional.jpg" alt="Vista de seis publicaciones editoriales para redes sociales de Terapia Relacional" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /></div>
+              <div className={s.projectCaption}><div><h3>Terapia Relacional</h3></div><span>Redes y contenido</span></div>
+            </article>
             <a hidden={!projectMatches('web', 'publicidad')} className={s.project} href="https://simplepropiedades.app" target="_blank" rel="noopener noreferrer">
               <div className={s.simpleVisual}><Image src="/images/casos/simplepropiedades-campana.webp" alt="Pieza de campaña de SimplePropiedades para publicar propiedades gratis" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>SimplePropiedades</h3></div><span>Plataforma · Campaña digital</span></div>

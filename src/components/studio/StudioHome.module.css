@@ -272,6 +272,15 @@
 .heroGrid{display:block}
 .heroCopy{max-width:960px}
 .heroBackdrop{position:absolute;inset:0;width:100%;z-index:0;overflow:hidden;pointer-events:none;background:#111210}
+
+@keyframes heroContentEnter{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.heroEyebrow,.heroCopy h1,.heroCopy>p,.heroActions,.heroFoot{animation:heroContentEnter 760ms cubic-bezier(.22,1,.36,1) both}
+.heroCopy h1{animation-delay:70ms}
+.heroCopy>p{animation-delay:140ms}
+.heroActions{animation-delay:210ms}
+.heroFoot{animation-delay:280ms}
+
+@media(prefers-reduced-motion:reduce){.heroEyebrow,.heroCopy h1,.heroCopy>p,.heroActions,.heroFoot{animation:none}}
 .heroBackdrop:before{display:none}
 .heroBackdrop img{z-index:1;object-fit:contain;object-position:right center;transform:translateY(58px);transform-origin:top right;opacity:1;mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none;filter:none}
 .heroBackdrop:after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(17,18,16,.18) 0%,rgba(17,18,16,.08) 42%,transparent 68%),linear-gradient(0deg,#111210 0%,rgba(17,18,16,.2) 13%,transparent 34%,transparent 100%)}

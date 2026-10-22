@@ -107,7 +107,7 @@ export function StudioHome() {
       <section id="servicios-home" className={s.services} aria-labelledby="services-title">
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>01 / Lo que conectamos</p><h2 id="services-title">Tu siguiente<br /><em>movimiento.</em></h2></div><p>Desde una pieza puntual hasta un sistema completo.<br />Construimos lo que tu negocio necesita hoy.</p></div>
-          <div className={s.serviceList}>{expertise.map((item, index) => <Link key={item.href} href={item.href} className={s.serviceRow}><span className={s.serviceNumber}>0{index + 1}</span><div><h3>{item.name}</h3><p>{item.description}</p><span className={s.serviceTags}>{item.tags}</span></div><span className={s.serviceArrow}><Arrow /></span></Link>)}</div>
+          <div className={s.serviceList} data-motion-stagger>{expertise.map((item, index) => <Link key={item.href} href={item.href} className={s.serviceRow}><span className={s.serviceNumber}>0{index + 1}</span><div><h3>{item.name}</h3><p>{item.description}</p><span className={s.serviceTags}>{item.tags}</span></div><span className={s.serviceArrow}><Arrow /></span></Link>)}</div>
           <div className={s.servicesFoot}><p>¿Necesitas que todo trabaje junto?</p><Link href="/servicios/sistema-crecimiento">Conoce el Plan integral de crecimiento <Arrow /></Link></div>
         </div>
       </section>
@@ -120,7 +120,7 @@ export function StudioHome() {
             {projectFilters.map(filter => <button key={filter.id} type="button" className={projectService === filter.id ? s.filterActive : ''} aria-pressed={projectService === filter.id} onClick={() => selectProjectService(filter.id)}>{filter.label}</button>)}
           </div>
 
-          <div id="project-gallery" ref={projectGridRef} className={s.projectGrid} role="region" aria-roledescription="carrusel" aria-label="Proyectos seleccionados" tabIndex={0}>
+          <div id="project-gallery" ref={projectGridRef} className={s.projectGrid} data-motion-stagger role="region" aria-roledescription="carrusel" aria-label="Proyectos seleccionados" tabIndex={0}>
             <a hidden={!projectMatches('web', 'marca')} className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.onVisual}><Image src="/images/casos/the-on-company-home.jpg" alt="Vista de la página de inicio de The ON Company, con sus líneas de eventos y diseño y construcción" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 48vw" /><span className={s.roundArrow}><Arrow /></span></div>
               <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Proyecto propio · Identidad visual y web<br />Redes sociales en desarrollo</span></div>
@@ -259,7 +259,7 @@ export function StudioHome() {
             <div>
               <h2 id="approach-title">Marca, marketing y tecnología <em>conectados.</em></h2>
               <p>Artestudio combina estrategia, diseño y desarrollo para que tu marca se entienda, tus canales atraigan oportunidades y tu operación aproveche mejor la tecnología.</p>
-              <div className={s.studioPillars}>
+              <div className={s.studioPillars} data-motion-stagger>
                 <div><h3>Marca y experiencia</h3><p>Identidad visual, diseño web y contenido con una dirección reconocible.</p></div>
                 <div><h3>Marketing y crecimiento</h3><p>Redes sociales, campañas y posicionamiento conectados a tus objetivos.</p></div>
                 <div><h3>Tecnología e IA</h3><p>Plataformas, integraciones y automatizaciones para simplificar procesos.</p></div>
@@ -267,7 +267,7 @@ export function StudioHome() {
               <a className={s.studioCta} href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre lo que necesita tu negocio <Arrow /></a>
             </div>
           </div>
-          <div className={s.steps}>{[
+          <div className={s.steps} data-motion-stagger>{[
             ['Entender', 'Primero, tu negocio.', 'Escuchamos, revisamos lo que tienes y definimos qué necesita avanzar.'],
             ['Crear', 'Una dirección clara.', 'Damos forma a la estrategia, el diseño y la experiencia de tu marca.'],
             ['Conectar', 'Todo en funcionamiento.', 'Implementamos, conectamos y dejamos una base que puedas seguir mejorando.'],
@@ -278,7 +278,7 @@ export function StudioHome() {
       <section id="diagnostico" className={s.diagnostic} aria-labelledby="diagnostic-title">
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>04 / Encuentra el punto de partida</p><h2 id="diagnostic-title">¿Qué le falta<br />a tu <em>negocio?</em></h2></div><p>Identifica la etapa en la que estás.<br />Te orientamos sobre la próxima pieza a construir.</p></div>
-          <div className={s.stageTabs} role="tablist" aria-label="Etapa de tu negocio">{HOME_DIAGNOSTICO.stages.map((item, index) => <button key={item.id} type="button" role="tab" id={`stage-${item.id}`} aria-selected={stageId === item.id} aria-controls={`panel-${item.id}`} tabIndex={stageId === item.id ? 0 : -1} onClick={() => setStageId(item.id)} onKeyDown={event => { if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? 3 : (index + (event.key === 'ArrowRight' ? 1 : -1) + 4) % 4; setStageId(HOME_DIAGNOSTICO.stages[next].id); document.getElementById(`stage-${HOME_DIAGNOSTICO.stages[next].id}`)?.focus(); } }}><span>{item.number} /</span>{item.title}</button>)}</div>
+          <div className={s.stageTabs} data-motion-stagger role="tablist" aria-label="Etapa de tu negocio">{HOME_DIAGNOSTICO.stages.map((item, index) => <button key={item.id} type="button" role="tab" id={`stage-${item.id}`} aria-selected={stageId === item.id} aria-controls={`panel-${item.id}`} tabIndex={stageId === item.id ? 0 : -1} onClick={() => setStageId(item.id)} onKeyDown={event => { if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? 3 : (index + (event.key === 'ArrowRight' ? 1 : -1) + 4) % 4; setStageId(HOME_DIAGNOSTICO.stages[next].id); document.getElementById(`stage-${HOME_DIAGNOSTICO.stages[next].id}`)?.focus(); } }}><span>{item.number} /</span>{item.title}</button>)}</div>
           <div className={s.stagePanel} role="tabpanel" id={`panel-${stage.id}`} aria-labelledby={`stage-${stage.id}`} tabIndex={0}><div><p className={s.label}>Tu punto de partida</p><h3>{stage.headline}</h3><p>{stage.sintoma}</p></div><div className={s.stageNext}><p className={s.label}>La siguiente pieza</p><p>{stage.queConstruir}</p><a href={waLink(stage.waText)} target="_blank" rel="noopener noreferrer">Conversemos sobre tu etapa <Arrow /></a><Link href={stage.solucionLink} className={s.stageService}>{stage.solucionLabel} →</Link></div></div>
           <Link href={HOME_DIAGNOSTICO.fullQuizHref} className={s.quizLink}>¿Quieres profundizar? Haz el diagnóstico completo de 10 pilares <Arrow /></Link>
         </div>

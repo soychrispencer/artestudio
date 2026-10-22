@@ -11,6 +11,7 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { CartProvider } from '@/components/cart/CartProvider'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { SmoothScroll } from '@/components/providers/SmoothScroll'
+import { PageMotion } from '@/components/providers/PageMotion'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const instrument = Instrument_Serif({
@@ -127,7 +128,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CartProvider>
               <HashScrollOnLoad />
               <Navbar />
-              <main id="contenido" tabIndex={-1}>{children}</main>
+              <main id="contenido" tabIndex={-1}>
+                {children}
+                <PageMotion />
+              </main>
               <Footer />
               <WhatsAppFloat />
             </CartProvider>

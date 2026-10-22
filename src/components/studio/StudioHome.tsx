@@ -87,7 +87,7 @@ export function StudioHome() {
   return (
     <div className={s.home}>
       <section id="inicio" className={s.hero} aria-labelledby="studio-title">
-        <div className={s.heroBackdrop} aria-hidden="true"><Image src="/images/brand/chris-spencer-hero-source-crop.jpg" alt="" fill priority sizes="(max-width: 760px) 80vw, 56vw" /></div>
+        <div className={s.heroBackdrop} aria-hidden="true"><Image src="/images/brand/chris-spencer-hero-cutout.png" alt="" fill priority sizes="(max-width: 760px) 80vw, 56vw" /></div>
         <div className={s.container}>
           <div className={s.heroEyebrow}><span><i /> Estudio creativo + tecnología</span></div>
           <div className={s.heroGrid}>

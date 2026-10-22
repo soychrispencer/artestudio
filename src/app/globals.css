@@ -502,6 +502,7 @@ html.lenis body {
 }
 
 /* Shared, low-key entrance motion for page sections and selected content groups. */
+html[data-page-motion='ready'] :is(main, footer)[data-scroll-motion='pending'],
 html[data-page-motion='ready'] main [data-scroll-motion='pending'] {
   opacity: 0;
   transform: translate3d(0, 18px, 0);
@@ -512,6 +513,7 @@ html[data-page-motion='ready'] main [data-scroll-motion='pending'] {
   will-change: opacity, transform;
 }
 
+html[data-page-motion='ready'] :is(main, footer)[data-scroll-motion='visible'],
 html[data-page-motion='ready'] main [data-scroll-motion='visible'] {
   opacity: 1;
   transform: none;
@@ -522,6 +524,7 @@ html[data-page-motion='ready'] main [data-scroll-motion='visible'] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html[data-page-motion='ready'] :is(main, footer)[data-scroll-motion],
   html[data-page-motion='ready'] main [data-scroll-motion] {
     opacity: 1;
     transform: none;

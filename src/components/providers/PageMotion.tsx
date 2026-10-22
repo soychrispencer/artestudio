@@ -16,6 +16,8 @@ export function PageMotion() {
 
     const targets = new Set<HTMLElement>()
     main.querySelectorAll<HTMLElement>('section').forEach(section => targets.add(section))
+    const footer = document.querySelector<HTMLElement>('footer')
+    if (footer) targets.add(footer)
 
     main.querySelectorAll<HTMLElement>('[data-motion-stagger]').forEach(group => {
       Array.from(group.children).forEach((child, index) => {

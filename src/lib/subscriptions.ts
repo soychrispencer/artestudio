@@ -35,13 +35,13 @@ export const MIN_COMMITMENT_MONTHS = 3
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'plan-esencial',
-    name: 'Landing Express',
+    name: 'Página web Express',
     tagline: 'Tu página profesional, lista para recibir clientes.',
     idealFor: 'Emprendedores y pymes que necesitan una landing para empezar.',
     category: 'core',
     setup: 74_990,
     monthly: 9_990,
-    delivery: '48 horas hábiles desde que apruebas el briefing.',
+    delivery: '48 horas hábiles desde briefing y materiales completos aprobados.',
     includes: [
       'Diseño personalizado one-page',
       'Hasta 7 secciones',
@@ -57,7 +57,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'SSL',
       'Soporte',
       'Mantención técnica',
-      'Actualizaciones menores',
+      'Sin horas de cambios de contenido; se cotizan por separado',
       'Dominio conectado',
     ],
     footnote:
@@ -68,7 +68,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
 
 export const CRECE_PLAN: SubscriptionPlan = {
   id: 'plan-landing-redes',
-  name: 'Landing + Redes',
+  name: 'Web + Redes sociales',
   tagline: 'Landing Express + Redes Esencial, en un solo plan.',
   idealFor: 'Negocios que necesitan página de entrada y contenido mensual desde el día uno.',
   category: 'social',
@@ -84,7 +84,7 @@ export const CRECE_PLAN: SubscriptionPlan = {
     'Hosting, SSL, soporte y mantención de la landing',
   ],
   footnote:
-    'La mensualidad de $94.990 + IVA comienza a partir del mes 2 (tras la entrega y publicación de tu web). El sitio y dominio son 100% tuyos: si más adelante decides pausar las redes sociales, puedes continuar solo con el hosting y soporte técnico base por $9.990 + IVA/mes.',
+    'La fecha de publicación y el primer ciclo mensual de $94.990 + IVA se acuerdan por escrito antes de contratar. La implementación no incluye un mes gratuito de contenido. El sitio y dominio son 100% tuyos: si más adelante decides pausar las redes sociales, puedes continuar solo con el hosting y soporte técnico base por $9.990 + IVA/mes.',
   excludes: [
     'Pauta publicitaria',
     'eCommerce',
@@ -95,8 +95,8 @@ export const CRECE_PLAN: SubscriptionPlan = {
 export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
   {
     id: 'plan-redes-esencial',
-    name: 'Redes Esencial',
-    tagline: '8 contenidos mensuales (2 por semana)',
+    name: 'Redes sociales · Esencial',
+    tagline: '8 contenidos mensuales en total',
     idealFor: 'Negocios que necesitan presencia constante y profesional sin pagar una agencia tradicional.',
     category: 'social',
     setup: 0,
@@ -104,25 +104,27 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
     delivery: 'Primer calendario y línea visual durante la primera semana.',
     badge: 'Entrada redes',
     includes: [
-      '8 contenidos mensuales (2 por semana)',
+      '8 contenidos mensuales en total',
       '6 posts estáticos o carruseles diseñados',
       'Hasta 2 reels o videos cortos al mes (con material propio)',
       'Diseño de piezas con línea visual del mes',
       'Copy persuasivo y hashtags para cada publicación',
       'Calendario mensual de contenido',
-      'Programación y publicación automática',
+      'Programación en Instagram y Facebook con el mismo contenido',
+      'Carruseles de hasta 5 láminas; una ronda consolidada de cambios por ciclo',
+      'Reels de hasta 60 segundos con hasta 3 minutos de bruto aportado por el cliente',
       'Reporte simple mensual de rendimiento',
     ],
     excludes: [
       'Pauta publicitaria pagada',
       'Grabación presencial',
-      'Community management avanzado',
+      'Atención de comentarios, mensajes y comunidad',
       'Revisión de streams completos',
     ],
   },
   {
     id: 'plan-redes-pro',
-    name: 'Redes Pro',
+    name: 'Redes sociales · Crecimiento',
     tagline: '12 contenidos mensuales con estrategia (incluye 4 reels)',
     idealFor: 'Marcas que necesitan mayor autoridad, más video y alcance en varias plataformas.',
     category: 'social',
@@ -132,10 +134,11 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
     featured: true,
     badge: 'Más completo',
     includes: [
-      '12 contenidos mensuales en total (3 por semana)',
-      '8 posts, carruseles de autoridad e historias',
+      '12 contenidos mensuales en total',
+      '8 piezas entre posts, carruseles de hasta 5 láminas e historias; distribución aprobada en calendario',
+      'Una ronda consolidada de cambios por ciclo; reels de hasta 60 segundos con hasta 3 minutos de bruto por pieza',
       'Hasta 4 reels editados con subtítulos y ritmo',
-      'Adaptación para Instagram, TikTok, Facebook, LinkedIn o YouTube Shorts',
+      'Hasta 2 plataformas elegidas; adaptación del mismo contenido, sin duplicar la cantidad de piezas',
       'Copywriting estratégico para cada publicación',
       'Calendario quincenal y orden de publicación',
       'Diseño de línea visual para el mes',
@@ -144,7 +147,7 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
     excludes: [
       'Pauta publicitaria pagada',
       'Grabación presencial',
-      'Edición de videos largos',
+      'Edición de videos largos y atención de comentarios o mensajes',
       'Revisión de streams completos',
     ],
   },
@@ -153,7 +156,7 @@ export const SOCIAL_MEDIA_PLANS: SubscriptionPlan[] = [
 
 export const VIDEO_PACK_4: SubscriptionPlan = {
   id: 'plan-video-pack-4',
-  name: 'Edición Pack 4',
+  name: 'Edición de Reels · 4 al mes',
   tagline: '4 Reels mensuales listos para publicar',
   idealFor: 'Negocios o creadores que graban su contenido y necesitan 1 video editado por semana.',
   category: 'video',
@@ -163,16 +166,16 @@ export const VIDEO_PACK_4: SubscriptionPlan = {
   badge: 'Entrada video',
   includes: [
     '4 Reels, TikToks o Shorts verticales (9:16)',
-    'Estructura de guion y ganchos recomendados para grabar',
+    'Guía de estructura y ganchos recomendados (sin guion completo) para grabar',
     'Cortes de pausas, errores y ritmo dinámico',
     'Subtítulos dinámicos en pantalla',
-    'Música en tendencia libre de derechos',
+    'Música con licencia compatible con el uso acordado',
     'Ajustes básicos de audio y color',
     'Portada simple optimizada',
     '1 ronda de cambios menores por video',
   ],
   footnote:
-    'Servicio enfocado en edición ágil de material propio. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
+    'Servicio enfocado en edición ágil de material propio. Duración final máxima: 60 segundos por reel. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
   excludes: [
     'Material bruto superior a 3 minutos por Reel',
     'Grabación presencial',
@@ -183,7 +186,7 @@ export const VIDEO_PACK_4: SubscriptionPlan = {
 
 export const VIDEO_PACK_8: SubscriptionPlan = {
   id: 'plan-video-pack-8',
-  name: 'Edición Pack 8',
+  name: 'Edición de Reels · 8 al mes',
   tagline: '8 Reels mensuales (2 por semana)',
   idealFor: 'Marcas y profesionales con ritmo constante de grabación que buscan delegar la edición.',
   category: 'video',
@@ -194,17 +197,17 @@ export const VIDEO_PACK_8: SubscriptionPlan = {
   badge: 'Recomendado',
   includes: [
     '8 Reels, TikToks o Shorts verticales (9:16)',
-    'Estructura de guion y ganchos recomendados para cada video',
+    'Guía de estructura y ganchos recomendados (sin guion completo) para cada video',
     'Cortes de pausas, errores y ritmo dinámico',
     'Subtítulos dinámicos con estilo',
-    'Música en tendencia libre de derechos',
+    'Música con licencia compatible con el uso acordado',
     'Ajustes básicos de audio y color',
     'Adaptación para Instagram, TikTok y Shorts',
     'Portadas simples para cada video',
     '1 ronda de cambios menores por video',
   ],
   footnote:
-    'Servicio enfocado en edición ágil de material propio. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
+    'Servicio enfocado en edición ágil de material propio. Duración final máxima: 60 segundos por reel. El cliente entrega el material bruto grabado (máx. 3 minutos por reel con audio claro). Incluye 1 ronda de ajustes menores por video. Para motion graphics 3D complejos o grabaciones presenciales, cotizar a medida.',
   excludes: [
     'Material bruto superior a 3 minutos por Reel',
     'Grabación presencial o guiones',
@@ -215,7 +218,7 @@ export const VIDEO_PACK_8: SubscriptionPlan = {
 
 export const VIDEO_YOUTUBE_PLAN: SubscriptionPlan = {
   id: 'plan-video-youtube',
-  name: 'Video Largo + Reels',
+  name: 'Edición de YouTube o podcast + clips',
   tagline: '4 reels + 2 videos YouTube/Podcast',
   idealFor: 'Creadores o negocios que producen contenido largo y quieren reciclarlo en vertical.',
   category: 'video',

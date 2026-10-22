@@ -26,7 +26,7 @@ export function SubscribeButton({
   variant = 'primary',
   className = '',
 }: SubscribeButtonProps) {
-  const { addItem, clear, openCart } = useCart()
+  const { addItem, openCart } = useCart()
 
   const handleClick = () => {
     trackEvent('subscribe_click', {
@@ -35,7 +35,6 @@ export function SubscribeButton({
       monthly,
       regular_monthly: regularMonthly,
     })
-    clear()
     addItem({
       id: planId,
       title,

@@ -10,6 +10,8 @@ import {
 } from '@/content/services-catalog'
 import { ServiceCta, ServiceCrossSellCard } from '@/components/servicios/ServiceCard'
 import { ServicePreviewFrame } from '@/components/servicios/ServicePreviewFrame'
+import { MIN_COMMITMENT_MONTHS } from '@/lib/subscriptions'
+import { withIVA } from '@/lib/checkout-pricing'
 import s from '@/components/studio/StudioServices.module.css'
 
 type PageProps = {
@@ -75,7 +77,7 @@ export default async function ServicioLandingPage({ params }: PageProps) {
             <span className="text-[var(--text)]">{service.title}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_20rem] gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-10 lg:gap-16">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted mb-3">
                 {category?.label} · {service.cta.kind === 'buy' ? 'Compra online' : 'A medida'}
@@ -83,8 +85,31 @@ export default async function ServicioLandingPage({ params }: PageProps) {
               <h1 className="text-3xl md:text-4xl font-extrabold tracking-[-0.03em] text-[var(--text)] mb-3">
                 {service.title}
               </h1>
-              <p className="text-lg text-muted leading-relaxed max-w-2xl mb-8">{service.problem}</p>
+              <p className="text-lg text-muted leading-relaxed max-w-2xl mb-8">{service.headline}</p>
+              <p className="text-muted mb-6">{service.description}</p>
 
+            <aside className="h-fit mb-8 max-w-2xl rounded-xl border border-[var(--border)] bg-surface p-6">
+              <p className="text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)]">
+                {service.priceLabel}
+              </p>
+              {service.billingNote ? (
+                <p className="text-sm text-muted mt-1 mb-5">{service.billingNote}</p>
+              ) : (
+                <div className="mb-5" />
+              )}
+              {service.cta.kind === 'buy' && <div className="text-sm text-muted mb-5 space-y-2">
+                <p>IVA incluido: {new Intl.NumberFormat('es-CL', {style:'currency',currency:'CLP',maximumFractionDigits:0}).format(withIVA(service.cta.plan.setup || service.cta.plan.monthly))}{service.cta.plan.setup ? ' de implementación' : ' / mes'}.</p>
+                {service.cta.plan.setup > 0 && <p>Mensualidad final: {new Intl.NumberFormat('es-CL', {style:'currency',currency:'CLP',maximumFractionDigits:0}).format(withIVA(service.cta.plan.monthly))}. Primer cobro mensual: 30 días después del pago de implementación.</p>}
+                <p>Permanencia mínima: {MIN_COMMITMENT_MONTHS} meses de servicio mensual. <Link href="/condiciones-servicios" className="underline">Ver condiciones, cancelación y propiedad</Link>.</p>
+              </div>}
+              <ServiceCta item={service} className="w-full" />
+              <Link
+                href="/servicios"
+                className="mt-4 block text-center text-sm font-semibold text-muted hover:text-[var(--text)]"
+              >
+                Ver todos los servicios
+              </Link>
+            </aside>
               {/* Mockup Preview Deliverable */}
               {service.previewImage ? (
                 <div className="mb-10 max-w-2xl">
@@ -128,6 +153,15 @@ export default async function ServicioLandingPage({ params }: PageProps) {
                 <p className="mt-8 max-w-2xl text-sm text-muted leading-relaxed">{service.footnote}</p>
               ) : null}
 
+              {service.conditions && <section className="mt-10 max-w-2xl space-y-6">
+                <h2 className="text-xl">Alcance y condiciones</h2>
+                {service.cta.kind === 'buy' && <ul className="list-disc pl-5 space-y-2 text-muted">{service.conditions.scope.map(line => <li key={line}>{line}</li>)}</ul>}
+                <h3 className="font-semibold">No incluye</h3>
+                <ul className="list-disc pl-5 space-y-2 text-muted">{service.conditions.excludes.map(line => <li key={line}>{line}</li>)}</ul>
+                <p><strong>Plazos:</strong> {service.cta.kind === 'buy' ? service.cta.plan.delivery : service.conditions.delivery}</p>
+                <p><strong>Revisiones:</strong> {service.conditions.revisions}</p>
+                <p className="text-sm text-muted">Los valores «desde» corresponden al alcance base. Confirmamos alcance, precio final con IVA, calendario y costos externos antes de contratar. <Link href="/condiciones-servicios" className="underline">Condiciones generales</Link>.</p>
+              </section>}
               {/* Cross-selling: Combina perfecto con */}
               {relatedServices.length > 0 ? (
                 <div className="border-t border-[var(--border)] pt-10 mt-12">
@@ -151,23 +185,7 @@ export default async function ServicioLandingPage({ params }: PageProps) {
               ) : null}
             </div>
 
-            <aside className="lg:sticky lg:top-24 h-fit rounded-xl border border-[var(--border)] bg-surface p-6">
-              <p className="text-2xl font-extrabold tracking-[-0.03em] text-[var(--text)]">
-                {service.priceLabel}
-              </p>
-              {service.billingNote ? (
-                <p className="text-sm text-muted mt-1 mb-5">{service.billingNote}</p>
-              ) : (
-                <div className="mb-5" />
-              )}
-              <ServiceCta item={service} className="w-full" />
-              <Link
-                href="/servicios"
-                className="mt-4 block text-center text-sm font-semibold text-muted hover:text-[var(--text)]"
-              >
-                Ver todos los servicios
-              </Link>
-            </aside>
+
           </div>
         </div>
       </section>

@@ -77,7 +77,7 @@ export const NAV_LINKS = [
 
 export const FOOTER_SOLUTIONS = [
   { label: 'Servicios', href: '/servicios' },
-  { label: 'Landing Express', href: '/servicios/landing-express' },
+  { label: 'Página web Express', href: '/servicios/landing-express' },
   { label: 'Edición de Reels', href: '/servicios/edicion-reels-8' },
   { label: 'Redes Sociales', href: '/servicios/redes-esencial' },
   { label: 'IA y automatización', href: '/servicios#ia' },
@@ -374,6 +374,7 @@ export const HOME_EXPERTISE = {
   title: '¿Qué necesitas ahora?',
   intro: 'Unidad, pack o sistema. La IA entra cuando aporta, no como adorno.',
   images: {
+    marca: '/images/services/branding-identidad.png',
     web: '/images/services/desarrollo-web.png',
     contenido: '/images/contenido-redes.png',
     ads: '/images/services/redes-sociales.png',

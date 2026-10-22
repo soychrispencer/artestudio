@@ -4,10 +4,14 @@ import { motion } from 'framer-motion'
 import { useEffect, useState, Suspense } from 'react'
 import Link from 'next/link'
 import { Check, CreditCard, Loader2, BrandWhatsapp } from 'tabler-icons-react'
+import { useSearchParams } from 'next/navigation'
+import { withIVA } from '@/lib/checkout-pricing'
 import { formatPrice } from '@/lib/utils'
 import { CONTACT_INFO } from '@/lib/constants'
 
 function PagoExitoContent() {
+  const params = useSearchParams()
+  const paymentId = params.get('payment_id') ?? params.get('collection_id')
   const [order, setOrder] = useState<any>(null)
   const [isSubscribing, setIsSubscribing] = useState(false)
   const [error, setError] = useState('')
@@ -31,7 +35,7 @@ function PagoExitoContent() {
     try {
       const subscriptionItems = order.items.map((it: any) => ({
         ...it,
-        setup: 0,
+        setup: it.setup,
       }))
 
       const res = await fetch('/api/payment', {
@@ -40,8 +44,9 @@ function PagoExitoContent() {
         body: JSON.stringify({
           items: subscriptionItems,
           customer: order.buyer,
-          orderId: `SUB-${order.orderId || Date.now()}`,
+          orderId: order.orderId,
           checkoutMode: 'subscription',
+          paymentId,
         }),
       })
 
@@ -96,29 +101,29 @@ function PagoExitoContent() {
         </div>
 
         <h1 className="text-4xl font-bold text-ink mb-4">
-          ¡Setup confirmado!
+          Continúa tu contratación
         </h1>
         <p className="text-xl text-muted-light mb-4">
-          Recibimos tu pago de {formatPrice(setupAmount)} por el diseño de tu landing.
+          Implementación: {formatPrice(withIVA(setupAmount))} con IVA. Verificaremos el pago con MercadoPago antes de autorizar la mensualidad.
         </p>
         <p className="text-sm text-muted mb-10">
-          Paso 1 de 2 completado. Falta activar el hosting mensual.
+          Si el pago fue aprobado, puedes autorizar el servicio mensual. Si está pendiente, espera su confirmación.
         </p>
 
         {hasMonthly && (
           <div className="bg-primary/5 border border-primary/20 rounded-2xl p-8 mb-10 text-left">
             <h2 className="text-2xl font-bold text-ink mb-4 flex items-center gap-2">
               <CreditCard className="text-primary" />
-              Paso 2: Activar hosting mensual
+              Paso 2: Activar servicio mensual
             </h2>
             <p className="text-muted-light mb-6">
-              Para mantener tu landing online ({formatPrice(monthlyAmount)}/mes — hosting, SSL, soporte y
-              mantenimiento), activa la suscripción en MercadoPago:
+              La operación web cuesta {formatPrice(withIVA(monthlyAmount))}/mes con IVA — hosting, SSL, soporte y
+              mantención técnica. El primer cobro se programa 30 días después del pago aprobado de implementación:
             </p>
 
             <button
               onClick={handleActivateSubscription}
-              disabled={isSubscribing}
+              disabled={isSubscribing || !paymentId}
               className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all flex items-center justify-center gap-2 text-lg  disabled:opacity-50"
             >
               {isSubscribing ? (
@@ -127,14 +132,15 @@ function PagoExitoContent() {
                   Generando link seguro...
                 </>
               ) : (
-                `Activar hosting — ${formatPrice(monthlyAmount)}/mes`
+                `Autorizar mensualidad — ${formatPrice(withIVA(monthlyAmount))}/mes con IVA`
               )}
             </button>
 
+            {!paymentId && <p className="text-sm mt-4">No hay una referencia de pago verificable en este enlace. Contáctanos para coordinar la activación.</p>}
             {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
 
             <p className="text-xs text-muted mt-6 text-center leading-relaxed">
-              * El cobro mensual se activa al completar este paso. Permanencia mínima de 3 meses. Puedes
+              * El primer cobro será 30 días después del pago aprobado de implementación, no hoy. Permanencia mínima de 3 meses. Puedes
               gestionar la suscripción desde tu panel de Mercado Pago.
             </p>
           </div>

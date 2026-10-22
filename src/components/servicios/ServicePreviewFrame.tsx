@@ -47,7 +47,7 @@ export function ServicePreviewFrame({ preview, title }: ServicePreviewFrameProps
       {preview.caption ? (
         <figcaption className="p-3.5 sm:p-4 border-t border-[var(--border)] bg-surface">
           <p className="text-xs text-muted leading-relaxed">
-            <strong className="text-[var(--text)] font-semibold">Entregable real: </strong>
+            <strong className="text-[var(--text)] font-semibold">Ejemplo de proyecto: </strong>
             {preview.caption}
           </p>
         </figcaption>

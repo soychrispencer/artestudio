@@ -1,3 +1,4 @@
+import { SERVICE_CONDITIONS, CUSTOM_CONDITIONS } from './service-conditions'
 import {
   CRECE_PLAN,
   SOCIAL_MEDIA_PLANS,
@@ -10,7 +11,7 @@ import {
 } from '@/lib/subscriptions'
 import { WA_LINKS } from '@/lib/site'
 
-export type ServiceCategoryId = 'web' | 'contenido' | 'ads' | 'ia' | 'packs' | 'crecimiento'
+export type ServiceCategoryId = 'web' | 'contenido' | 'marca' | 'ads' | 'ia' | 'packs' | 'crecimiento'
 export type ServiceFamily = 'unit' | 'pack' | 'system'
 
 export type ServiceCta =
@@ -48,6 +49,7 @@ export type ServiceItem = {
   includes: readonly string[]
   monthlyIncludes?: readonly string[]
   footnote?: string
+  conditions?: import('./service-conditions').CommercialConditions
   featured?: boolean
   relatedSlugs?: readonly string[]
   cta: ServiceCta
@@ -68,6 +70,7 @@ export type ServiceCategory = {
 export const SERVICE_CATEGORY_IDS: ServiceCategoryId[] = [
   'web',
   'contenido',
+  'marca',
   'ads',
   'ia',
   'packs',
@@ -77,12 +80,12 @@ export const SERVICE_CATEGORY_IDS: ServiceCategoryId[] = [
 export const SERVICE_FAMILIES: { id: ServiceFamily; title: string; intro: string }[] = [
   {
     id: 'pack',
-    title: 'Packs con ahorro',
-    intro: 'Soluciones paquetizadas con descuento frente a contratar por separado.',
+    title: 'Soluciones combinadas',
+    intro: 'Servicios coordinados para una necesidad concreta, con alcance definido.',
   },
   {
     id: 'unit',
-    title: 'Por unidad',
+    title: 'Servicios para tu negocio',
     intro: 'Un servicio específico para la necesidad puntual de tu negocio hoy.',
   },
   {
@@ -138,15 +141,15 @@ const landingExpress = SUBSCRIPTION_PLANS[0]
 const redesEsencial = SOCIAL_MEDIA_PLANS.find((p) => p.id === 'plan-redes-esencial')!
 const redesPro = SOCIAL_MEDIA_PLANS.find((p) => p.id === 'plan-redes-pro')!
 
-export const SERVICE_CATEGORIES: ServiceCategory[] = [
+const BASE_CATEGORIES: ServiceCategory[] = [
   {
     id: 'web',
     family: 'unit',
-    label: 'Web & Tienda',
+    label: 'Páginas web y tiendas',
     href: '/servicios#web',
-    title: 'Web',
+    title: 'Páginas web y tiendas',
     prompt: '¿Necesitas una página o tienda?',
-    subtitle: 'La entrada es Landing Express. Separamos sitios corporativos de tiendas online.',
+    subtitle: 'Una página para empezar, un sitio para tu empresa o una tienda para vender. También rediseño y migración.',
     startingPriceLabel: 'Desde $74.990 + IVA',
     items: [
       {
@@ -178,13 +181,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'sitio-web',
         href: serviceHref('sitio-web'),
         categoryId: 'web',
-        title: 'Web Corporativa',
+        title: 'Sitio web corporativo',
         description: 'Sitio institucional con múltiples páginas, estructura y analítica.',
         headline: 'Cuando una sola página ya no alcanza para mostrar tu empresa.',
         problem:
           'El negocio creció: necesitas servicios, equipo, casos de éxito y rutas claras de contacto.',
         ...quoteFrom(349_990, 'Pago único o setup + cuotas'),
-        includes: ['Arquitectura de contenidos', 'Hasta 8-10 páginas', 'Diseño responsive', 'SEO on-page base', 'Publicación y capacitación'],
+        includes: ['Arquitectura de contenidos', 'Hasta 8 páginas', 'Diseño responsive', 'SEO on-page base', 'Publicación y capacitación'],
         previewImage: {
           src: '/images/casos/tradicional360.png',
           alt: 'Sitio Web Corporativo diseñado por Artestudio',
@@ -199,12 +202,12 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'ecommerce',
         href: serviceHref('ecommerce'),
         categoryId: 'web',
-        title: 'Tienda eCommerce',
+        title: 'Tienda online',
         description: 'Ventas online con Shopify, WooCommerce o Jumpseller.',
         headline: 'Vende tus productos 24/7 con pagos y envíos automatizados.',
         problem: 'Gestionar ventas por mensaje manual colapsa la operación y no escala.',
         ...quoteFrom(489_990, 'Pago único o implementación según catálogo'),
-        includes: ['Configuración de tienda', 'Pasarelas de pago (Webpay, MercadoPago)', 'Integración de despachos', 'Carga inicial de productos', 'Capacitación'],
+        includes: ['Configuración de tienda', 'Pasarelas de pago (Webpay, MercadoPago)', 'Integración de despachos', 'Carga inicial de hasta 20 productos simples', 'Capacitación'],
         previewImage: {
           src: '/images/services/desarrollo-web.png',
           alt: 'Tienda online eCommerce por Artestudio',
@@ -219,14 +222,14 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'optimizacion-web',
         href: serviceHref('optimizacion-web'),
         categoryId: 'web',
-        title: 'Optimización Web & Analítica',
+        title: 'Optimización web y medición',
         description: 'Velocidad, medición (GA4/GTM/Pixel) y conversión para tu web actual.',
         headline: 'Puesta a punto técnica para que tu web cargue rápido y mida cada contacto.',
         problem: 'Tu sitio existe, pero carga lento, no sabes si los anuncios funcionan o no convierte visitas en clientes.',
-        ...quoteFrom(180_000, 'Pago único · Sprint 5–7 días (Setup analítica base desde $89.990)'),
+        ...quoteFrom(180_000, 'Pago único · sprint de 5–7 días hábiles · alcance según diagnóstico'),
         includes: [
           'Optimización de velocidad y Core Web Vitals (móvil y desktop)',
-          'Setup GA4 + Google Tag Manager + Meta Pixel / API Conversiones',
+          'Configuración GA4 + Google Tag Manager; Meta Pixel según alcance',
           'Tracking de eventos (clics a WhatsApp, envíos de formulario)',
           'Mejoras de conversión (CTAs móviles y botón flotante)',
           'SEO técnico, sitemap XML y Google Search Console',
@@ -245,7 +248,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'funnels',
         href: serviceHref('funnels'),
         categoryId: 'web',
-        title: 'Funnel de conversión',
+        title: 'Embudo de captación',
         description: 'Secuencia de páginas, captura y seguimiento para no perder el lead.',
         headline: 'De la visita al WhatsApp o al pago, con un camino claro.',
         problem: 'Tienes tráfico, pero el contacto se cae entre el anuncio, la web y el chat.',
@@ -270,15 +273,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'correo-corporativo',
         href: serviceHref('correo-corporativo'),
         categoryId: 'web',
-        title: 'Correo Corporativo & Workspace',
+        title: 'Configuración de correo corporativo',
         description: 'Cuentas @tuempresa.cl en Google Workspace o Microsoft 365 con DNS antifraude.',
-        headline: 'Deja de usar @gmail.com. Proyecta seriedad y asegura que tus correos no caigan en SPAM.',
+        headline: 'Tu correo con el dominio de tu empresa y autenticación correctamente configurada.',
         problem: 'Los correos gratuitos generan desconfianza y los servidores básicos terminan bloqueados por los filtros de correo.',
         ...quoteFrom(69_990, 'Pago único · hasta 5 cuentas (suscripción Workspace aparte)'),
         includes: [
           'Configuración de dominio en Google Workspace o Microsoft 365',
           'Creación de buzones y alias corporativos (@tuempresa.cl)',
-          'Registros DNS obligatorios: SPF, DKIM y DMARC (0% spam)',
+          'Autenticación DNS: SPF, DKIM y DMARC',
           'Plantilla de firma digital corporativa unificada',
           'Sincronización en computadores (Outlook/Gmail) y celulares',
         ],
@@ -286,7 +289,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           src: '/images/services/actualizaciones-web.png',
           alt: 'Setup de Correo Corporativo y Google Workspace',
           tag: 'Google Workspace / Microsoft 365',
-          caption: 'Autenticación SPF, DKIM y DMARC verificada para asegurar entrega directa en la bandeja de entrada.',
+          caption: 'Autenticación SPF, DKIM y DMARC verificada para mejorar la autenticación y entregabilidad.',
         },
         relatedSlugs: ['landing-express', 'sitio-web', 'dossier-comercial'],
         cta: { kind: 'quote', href: WA_LINKS.correo, label: 'Cotizar Correo Corporativo' },
@@ -296,9 +299,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'quiz-calificador',
         href: serviceHref('quiz-calificador'),
         categoryId: 'web',
-        title: 'Quiz Calificador de Clientes',
+        title: 'Formulario de diagnóstico y calificación',
         description: 'Embudo interactivo de 4 a 6 preguntas con radar o diagnóstico que filtra prospectos antes de la reunión.',
-        headline: 'Filtra prospectos en automático y recibe solo a clientes con presupuesto.',
+        headline: 'Califica consultas por presupuesto, necesidad y plazo antes de una reunión.',
         problem: 'Tu equipo pierde horas en reuniones con curiosos o prospectos que no son tu cliente ideal.',
         ...quoteFrom(220_000, 'Pago único · diseño interactivo y enrutamiento'),
         includes: [
@@ -322,7 +325,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'mantencion-web',
         href: serviceHref('mantencion-web'),
         categoryId: 'web',
-        title: 'Mantención & Soporte Web',
+        title: 'Soporte y mantención web',
         description: 'Continuidad técnica, hosting, backups y cambios de contenido mensuales.',
         headline: 'Hosting, seguridad y horas de cambios para que tu web no quede abandonada.',
         problem: 'Sin mantención técnica el sitio envejece, se rompe, o pierdes horas intentando cambiar fotos y precios tú mismo.',
@@ -330,8 +333,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         includes: [
           'Hosting de alta velocidad + Certificado SSL',
           'Backups automáticos y actualizaciones de seguridad',
-          'Horas de cambios mensuales (fotos, textos, banners y productos)',
-          'Monitoreo de caídas y soporte prioritario WhatsApp',
+          'Cambios de contenido solo en niveles Activa y Tienda, con horas definidas',
+          'Soporte en horario hábil, según el nivel contratado',
         ],
         previewImage: {
           src: '/images/services/actualizaciones-web.png',
@@ -347,9 +350,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 'contenido',
     family: 'unit',
-    label: 'Contenido & Video',
+    label: 'Contenido y redes sociales',
     href: '/servicios#contenido',
-    title: 'Contenido & Video',
+    title: 'Contenido y redes sociales',
     prompt: '¿Necesitas contenido o edición?',
     subtitle: 'Edición de Reels desde $59.990. Gestión de redes desde $89.990 al mes.',
     startingPriceLabel: 'Desde $59.990 + IVA / mes',
@@ -453,7 +456,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           src: '/images/services/edicion-video.png',
           alt: 'Edición de video largo para YouTube y Podcast',
           tag: 'YouTube + Podcast + Reels',
-          caption: 'Edición multicámara horizontal en 4K/1080p y extracción de píldoras cortas verticales para reels.',
+          caption: 'Edición horizontal y clips verticales; cámaras, duración y material se revisan antes de cotizar.',
         },
         relatedSlugs: ['edicion-reels-8', 'branding'],
         cta: buyFromPlan(VIDEO_YOUTUBE_PLAN),
@@ -463,7 +466,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'branding',
         href: serviceHref('branding'),
         categoryId: 'contenido',
-        title: 'Branding & Identidad',
+        title: 'Identidad visual de marca',
         description: 'Identidad visual para que tu marca se reconozca y genere confianza.',
         headline: 'Criterio visual profesional, no piezas sueltas.',
         problem: 'Cada pieza se ve distinta y la marca no transmite la solidez de tu servicio.',
@@ -483,11 +486,11 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'dossier-comercial',
         href: serviceHref('dossier-comercial'),
         categoryId: 'contenido',
-        title: 'Dossier Comercial & Presentación B2B',
-        description: 'Presentación corporativa interactiva en PDF (10–12 láminas) con la identidad del estudio y botones directos a WhatsApp.',
+        title: 'Presentación comercial',
+        description: 'Presentación corporativa interactiva en PDF (10 diapositivas) con la identidad de tu marca y botones directos a WhatsApp.',
         headline: 'Tus propuestas comerciales al nivel de una empresa de primer nivel.',
-        problem: 'Enviar cotizaciones en Word o correos planos te hace ver informal y te obliga a competir por precio.',
-        ...quoteFrom(149_990, 'Pago único · 10 a 12 láminas interactivas'),
+        problem: 'Tu oferta necesita una estructura clara y una presentación consistente con tu marca.',
+        ...quoteFrom(149_990, 'Pago único · 10 diapositivas interactivas'),
         includes: [
           'Estructura comercial: Problema, Solución, Metodología, Casos y Tarifas',
           'Diseño editorial alineado a la identidad de tu marca',
@@ -509,9 +512,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 'ads',
     family: 'unit',
-    label: 'Ads',
+    label: 'Publicidad y posicionamiento',
     href: '/servicios#ads',
-    title: 'Ads',
+    title: 'Publicidad y posicionamiento',
     prompt: '¿Necesitas publicidad?',
     subtitle: 'Gestión con precio de entrada. La inversión en medios es aparte.',
     items: [
@@ -520,7 +523,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'meta-ads',
         href: serviceHref('meta-ads'),
         categoryId: 'ads',
-        title: 'Meta Ads',
+        title: 'Gestión de Instagram y Facebook Ads',
         description: 'Facebook e Instagram orientados a consultas y ventas.',
         headline: 'Pauta en Meta, con medición.',
         problem: 'El orgánico no alcanza: falta audiencia, creatividad y seguimiento.',
@@ -541,7 +544,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'google-ads',
         href: serviceHref('google-ads'),
         categoryId: 'ads',
-        title: 'Google Ads',
+        title: 'Gestión de Google Ads',
         description: 'Búsqueda y performance cuando ya te buscan.',
         headline: 'Aparece en el momento de la intención.',
         problem: 'Sin campañas estructuradas, esa búsqueda se la lleva otro.',
@@ -561,7 +564,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'seo',
         href: serviceHref('seo'),
         categoryId: 'ads',
-        title: 'SEO',
+        title: 'Posicionamiento en Google · SEO',
         description: 'Tráfico orgánico para no depender solo de la pauta.',
         headline: 'Un activo que no se apaga al cortar ads.',
         problem: 'Cada mes empiezas de cero si solo pagas pauta.',
@@ -581,7 +584,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'plan-medios',
         href: serviceHref('plan-medios'),
         categoryId: 'ads',
-        title: 'Plan de medios',
+        title: 'Gestión de Google Ads + Meta Ads',
         description: 'Meta, Google u otras: un ciclo mensual con KPIs.',
         headline: 'Medios con plan, no campañas sueltas.',
         problem: 'Sin tracking ni ciclo, la pauta es gasto sin aprendizaje.',
@@ -601,9 +604,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: 'ia',
     family: 'unit',
-    label: 'IA',
+    label: 'Automatización e IA',
     href: '/servicios#ia',
-    title: 'IA',
+    title: 'Automatización e IA',
     prompt: '¿Necesitas IA o automatizar?',
     subtitle: 'Usamos IA en el trabajo diario y armamos proyectos a medida. El alcance lo definimos contigo.',
     items: [
@@ -612,7 +615,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'ia-whatsapp',
         href: serviceHref('ia-whatsapp'),
         categoryId: 'ia',
-        title: 'Agente de Calificación y Ventas WhatsApp',
+        title: 'Asistente de WhatsApp con IA',
         description: 'Clasificación de prospectos, respuestas inteligentes y seguimiento en WhatsApp 24/7.',
         headline: 'Atiende y califica clientes en piloto automático con el criterio de tu negocio.',
         problem: 'Se pierden prospectos por tardar horas en contestar o por atender consultas no calificadas.',
@@ -639,7 +642,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'automatizaciones-ia',
         href: serviceHref('automatizaciones-ia'),
         categoryId: 'ia',
-        title: 'Automatizaciones',
+        title: 'Automatización de procesos',
         description: 'Procesos repetitivos: formularios, CRM, avisos, reportes.',
         headline: 'Que la operación no dependa de copiar y pegar.',
         problem: 'El equipo pierde horas en tareas que una integración puede hacer.',
@@ -659,7 +662,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'agenda-cobros',
         href: serviceHref('agenda-cobros'),
         categoryId: 'ia',
-        title: 'Sistema de Agenda y Cobros 24/7',
+        title: 'Reservas y cobros online',
         description: 'Página autónoma de reservas con pasarela de pago obligatoria (Webpay/MercadoPago) y recordatorios automáticos.',
         headline: 'Cobra por adelantado y llena tu agenda sin coordinar horas por chat.',
         problem: 'Horas perdidas coordinando citas por WhatsApp y cancelaciones de última hora que te dejan sin ingresos.',
@@ -685,7 +688,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'proyecto-ia',
         href: serviceHref('proyecto-ia'),
         categoryId: 'ia',
-        title: 'Proyecto con IA',
+        title: 'Desarrollo con IA a medida',
         description: 'Herramientas, agentes o productos internos. El abanico es amplio: lo acotamos en diagnóstico.',
         headline: 'IA aplicada a tu caso, no un pack genérico.',
         problem: 'Hay una oportunidad con IA, pero no un producto de catálogo que calce.',
@@ -715,20 +718,19 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     href: '/servicios#packs',
     title: 'Packs',
     prompt: '¿Quieres un pack listo?',
-    subtitle: 'Soluciones paquetizadas con descuento directo frente a contratar cada servicio por separado.',
+    subtitle: 'Tres combinaciones para coordinar web, contenido, marca o campañas en un mismo proyecto.',
     items: [
       {
         id: 'pack-lanzamiento',
         slug: 'pack-lanzamiento',
         href: serviceHref('pack-lanzamiento'),
         categoryId: 'packs',
-        title: 'Pack Lanzamiento: Web + Pauta Ads',
+        title: 'Web + Activación de campañas',
         description: 'Tu página lista para convertir + campaña activa en Google o Meta Ads desde la primera semana.',
         headline: 'Página de alta conversión + tráfico calificado desde el día uno.',
         problem: 'Una web sin anuncios no recibe visitas; y anuncios sin una web optimizada queman el presupuesto.',
-        ...quoteFrom(199_990, 'Setup integral · pauta aparte · ahorro de $50.000'),
+        ...quoteFrom(199_990, 'Implementación inicial · anuncios y gestión mensual aparte'),
         badge: 'Recomendado',
-        savingsNote: 'Ahorras $50.000 frente a contratar landing y setup de campañas por separado',
         includes: [
           'Landing Express (one-page, hasta 7 secciones, WhatsApp, dominio .cl 1er año)',
           'Setup de campaña en Google Ads o Meta Ads con segmentación inicial',
@@ -767,7 +769,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           tag: 'Pack Continuo · Web + Contenido',
           caption: 'Página web siempre optimizada y redes sociales activas mes a mes con diseño editorial y soporte técnico incluido.',
         },
-        relatedSlugs: ['pack-lanzamiento', 'meta-ads', 'correo-corporativo'],
+        relatedSlugs: ['meta-ads', 'google-ads', 'correo-corporativo'],
         cta: buyFromPlan(CRECE_PLAN),
       },
       {
@@ -775,17 +777,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'pack-autoridad',
         href: serviceHref('pack-autoridad'),
         categoryId: 'packs',
-        title: 'Pack Autoridad B2B: Marca + Web',
+        title: 'Marca + Web para empresas',
         description: 'Identidad visual completa, sitio web corporativo y dossier interactivo para cerrar clientes de ticket alto.',
         headline: 'Posicionamiento institucional sólido para empresas que venden confianza.',
         problem: 'Vender servicios de alto valor con una imagen amateur o propuestas en Word te obliga a competir por precio.',
-        ...quoteFrom(549_990, 'Proyecto completo · ahorro de $60.000'),
+        ...quoteFrom(549_990, 'Desde este valor · alcance y precio final por propuesta'),
         badge: 'Empresas & B2B',
-        savingsNote: 'Ahorras $60.000 contratando el pack completo de marca y web',
         includes: [
           'Branding & Identidad visual (logo, versiones, paleta, tipografías y manual)',
           'Sitio Web Corporativo (hasta 8 páginas, diseño responsive, SEO on-page)',
-          'Dossier Comercial / Presentación B2B interactiva en PDF (10–12 láminas)',
+          'Dossier Comercial / Presentación B2B interactiva en PDF (10 diapositivas)',
           'Setup de correos corporativos en Google Workspace (hasta 5 cuentas)',
         ],
         previewImage: {
@@ -813,7 +814,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'sistema-crecimiento',
         href: serviceHref('sistema-crecimiento'),
         categoryId: 'crecimiento',
-        title: 'Sistema de Crecimiento',
+        title: 'Plan integral de crecimiento',
         description: 'Arquitectura e implementación conectada, a la medida del negocio.',
         headline: 'Piezas que se hablan entre sí.',
         problem: 'Contratar web, ads y herramientas por separado suele dejar un sistema roto.',
@@ -840,7 +841,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         slug: 'proyecto-estrategico',
         href: serviceHref('proyecto-estrategico'),
         categoryId: 'crecimiento',
-        title: 'Proyecto multi-marca',
+        title: 'Gestión para varias marcas',
         description: 'Varias marcas o funnels, una dirección.',
         headline: 'Sin duplicar esfuerzo ni mezclar el mensaje.',
         problem: 'Más de una marca o funnel, sin un criterio común.',
@@ -860,12 +861,62 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
 ]
 
+const contentCategory = BASE_CATEGORIES.find(c => c.id === 'contenido')!
+const brandItems = contentCategory.items.filter(i => ['branding', 'dossier-comercial'].includes(i.slug))
+contentCategory.items = contentCategory.items.filter(i => !brandItems.includes(i))
+const brandCategory: ServiceCategory = { id: 'marca', family: 'unit', label: 'Marca y diseño', href: '/servicios#marca', title: 'Marca y diseño', prompt: '¿Tu marca necesita una identidad consistente?', subtitle: 'Identidad visual y presentaciones; aplicaciones y plantillas para llevar tu marca a cada pieza.', items: brandItems }
+const categoryOrder = ['web', 'contenido', 'marca', 'ads', 'ia', 'packs', 'crecimiento']
+export const SERVICE_CATEGORIES: ServiceCategory[] = [...BASE_CATEGORIES, brandCategory].sort((a,b) => categoryOrder.indexOf(a.id) - categoryOrder.indexOf(b.id))
+const additionalServices = [
+  { categoryId: 'web' as const, slug: 'rediseno-migracion', title: 'Rediseño y migración web', description: 'Actualiza o traslada tu sitio conservando contenido y rutas importantes.', scope: ['Inventario del sitio actual, respaldo y propuesta de rediseño o traslado.', 'Cantidad de páginas, contenido a migrar, redirecciones y puesta en marcha definidos antes de contratar.'], excludes: ['Dominio, hosting, licencias y reconstrucción de funcionalidades no incluidas en la propuesta.', 'Garantía de mantener posiciones o tráfico durante una migración.'] },
+  { categoryId: 'marca' as const, slug: 'plantillas-marca', title: 'Aplicaciones de marca y plantillas', description: 'Lleva tu identidad a presentaciones, redes y piezas de uso diario.', scope: ['Diseño a partir de una identidad visual existente.', 'Propuesta con número de plantillas, tamaños, formatos editables y aplicaciones acordadas.'], excludes: ['Rediseño de logotipo, gestión de redes, impresión y licencias de fuentes o plataformas.', 'Adaptaciones ilimitadas y contenidos nuevos fuera del paquete aprobado.'] },
+  { categoryId: 'ads' as const, slug: 'seo-local', title: 'Google Business Profile y SEO local', description: 'Ordena la presencia de tu negocio en Google para una ciudad o zona de atención.', scope: ['Auditoría y optimización de un perfil y una ubicación: datos, categorías, servicios y enlaces.', 'Accesos, verificación disponible, contenido y seguimiento acordados por propuesta.'], excludes: ['Garantía de verificación, recuperación de perfiles suspendidos o primeras posiciones.', 'Publicidad, atención de reseñas y gestión mensual salvo contratación expresa.'] },
+]
+for (const extra of additionalServices) {
+  SERVICE_CATEGORIES.find(category => category.id === extra.categoryId)!.items.push({
+    id: extra.slug, slug: extra.slug, href: serviceHref(extra.slug), categoryId: extra.categoryId,
+    title: extra.title, description: extra.description, headline: extra.description, problem: extra.description,
+    priceLabel: 'Cotizar', billingNote: 'Alcance y precio final antes de contratar', includes: extra.scope,
+    conditions: { scope: extra.scope, excludes: extra.excludes, delivery: 'Calendario acordado tras revisar materiales, accesos y alcance.', revisions: '2 rondas consolidadas sobre el alcance aprobado.' },
+    cta: { kind: 'quote', href: WA_LINKS.reunion, label: 'Solicitar propuesta' },
+  })
+}
+contentCategory.items.sort((a,b) => ['edicion-reels-4','edicion-reels-8','redes-esencial','redes-pro','video-mensual'].indexOf(a.slug) - ['edicion-reels-4','edicion-reels-8','redes-esencial','redes-pro','video-mensual'].indexOf(b.slug))
+for (const category of SERVICE_CATEGORIES) {
+  for (const item of category.items) {
+    item.categoryId = category.id
+    item.conditions = item.conditions ?? SERVICE_CONDITIONS[item.slug] ?? (item.cta.kind === 'buy' ? {
+      scope: [item.cta.plan.idealFor, 'El cliente aporta textos, imágenes y grabaciones con autorización de uso.'],
+      excludes: [...(item.cta.plan.excludes ?? [])], delivery: item.cta.plan.delivery,
+      revisions: item.cta.plan.setup > 0 ? '2 rondas consolidadas de ajustes del diseño; nuevas secciones se cotizan.' : 'Una ronda de ajustes menores por pieza o entrega, según calendario. Nuevos conceptos o grabaciones se cotizan.',
+    } : CUSTOM_CONDITIONS)
+    if (item.cta.kind === 'quote') item.includes = item.conditions.scope
+    if (item.cta.kind === 'quote') item.cta = { ...item.cta, href: 'https://wa.me/56938733230?text=' + encodeURIComponent('Hola Artestudio, quiero una propuesta para ' + item.title + '. Mi negocio es: ') }
+    if (item.slug === 'mantencion-web') { item.description = 'Hosting y operación técnica; cambios de contenido según nivel contratado.'; item.headline = 'Tres niveles de soporte con horas y cobertura definidas.' }
+    if (item.slug === 'pack-lanzamiento') { item.description = 'Una página web y activación inicial de una campaña. Inversión publicitaria y gestión mensual aparte.'; item.headline = 'Tu web y la primera campaña, coordinadas desde el inicio.' }
+    if (item.slug === 'pack-autoridad') { item.description = 'Identidad visual, web corporativa, presentación y configuración de correo, con alcance confirmado por propuesta.'; item.headline = 'Una identidad consistente para presentar tu empresa.' }
+    if (item.slug === 'plan-medios') item.description = 'Gestión mensual de Google y Meta con alcance conjunto; inversión en anuncios aparte.'
+    if (item.slug === 'video-mensual') {
+      item.priceLabel = 'Desde $120.000 + IVA / mes'
+      item.billingNote = 'Propuesta tras revisar duración, cámaras y material'
+      item.cta = { kind: 'quote', href: WA_LINKS.reunion, label: 'Cotizar edición de video' }
+    }
+    if (item.slug === 'landing-redes') item.cta = { kind: 'quote', href: WA_LINKS.reunion, label: 'Coordinar web y redes' }
+    if (item.cta.kind === 'quote') {
+      item.includes = item.conditions.scope
+      item.cta = { ...item.cta, href: 'https://wa.me/56938733230?text=' + encodeURIComponent('Hola Artestudio, quiero una propuesta para ' + item.title + '. Mi negocio es: ') }
+    }
+    // Only use project imagery as proof where the asset actually shows the deliverable.
+    if (item.slug !== 'landing-express') item.previewImage = undefined
+  }
+}
+
 export const ALL_SERVICES: ServiceItem[] = SERVICE_CATEGORIES.flatMap((c) => c.items)
 
 export const FEATURED_SERVICES: ServiceItem[] = ALL_SERVICES.filter((s) => s.featured)
 
 export const HOME_SERVICE_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter(
-  (c) => c.id !== 'packs',
+  (c) => c.family === 'unit',
 )
 
 export function getServiceCategory(id: ServiceCategoryId): ServiceCategory | undefined {
@@ -884,5 +935,5 @@ export const SERVICE_HUB = {
   label: 'Servicios',
   title: '¿Qué necesitas ahora?',
   subtitle:
-    'Por unidad, en pack, o como sistema. Si no estás seguro, agenda 15 minutos y te orientamos.',
+    'Elige lo que necesita tu negocio: web, contenido, marca, publicidad o automatización. Si no estás seguro, te orientamos en una reunión de 15 minutos.',
 } as const

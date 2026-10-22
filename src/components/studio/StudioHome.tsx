@@ -11,10 +11,11 @@ function Arrow({ diagonal = true }: { diagonal?: boolean }) {
 }
 
 const expertise = [
-  { name: 'Web & e-commerce', description: 'Sitios que expresan tu marca y hacen fácil el siguiente paso: contactar, reservar o comprar.', tags: 'Diseño UX/UI · Desarrollo · Tiendas online', href: '/servicios#web' },
-  { name: 'Contenido & marca', description: 'Una identidad reconocible en cada publicación, video y punto de contacto con tus clientes.', tags: 'Diseño · Redes sociales · Reels', href: '/servicios#contenido' },
-  { name: 'Marketing digital', description: 'Campañas con una dirección clara, conectadas a tu web y a la forma en que vendes.', tags: 'Google Ads · Meta Ads · Medición', href: '/servicios#ads' },
-  { name: 'IA & automatización', description: 'Menos tareas repetitivas. Más tiempo para lo importante, con herramientas pensadas para tu operación.', tags: 'Integraciones · Agentes · Procesos', href: '/servicios#ia' },
+  { name: 'Páginas web y tiendas', description: 'Sitios que expresan tu marca y hacen fácil el siguiente paso: contactar, reservar o comprar.', tags: 'Diseño UX/UI · Desarrollo · Tiendas online', href: '/servicios#web' },
+  { name: 'Contenido y redes sociales', description: 'Edición de reels o gestión de contenido: elige cuánto necesitas delegar para publicar con continuidad.', tags: 'Reels · Calendario · Publicación', href: '/servicios#contenido' },
+  { name: 'Marca y diseño', description: 'Una identidad reconocible, desde el logotipo hasta tus presentaciones y aplicaciones de marca.', tags: 'Identidad visual · Presentaciones · Plantillas', href: '/servicios#marca' },
+  { name: 'Publicidad y posicionamiento', description: 'Campañas con una dirección clara, conectadas a tu web y a la forma en que vendes.', tags: 'Google Ads · Meta Ads · SEO', href: '/servicios#ads' },
+  { name: 'Automatización e IA', description: 'Menos tareas repetitivas. Más tiempo para lo importante, con herramientas pensadas para tu operación.', tags: 'Integraciones · Asistentes · Procesos', href: '/servicios#ia' },
 ]
 
 export function StudioHome() {

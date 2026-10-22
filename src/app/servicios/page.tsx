@@ -23,32 +23,17 @@ export default function ServiciosPage() {
           <p className={s.eyebrow}>Artestudio / Servicios</p>
           <h1>Lo que necesitas.<br /><em>Bien conectado.</em></h1>
           <p className="text-muted text-lg max-w-xl mb-8">{SERVICE_HUB.subtitle}</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {SERVICE_FAMILIES.map((family) => (
-              <a
-                key={family.id}
-                href={`#${family.id}`}
-                className={s.family}
-                data-accent={family.id === 'system'}
-              >
-                <div className="flex items-center justify-between">
-                  <p className="font-extrabold tracking-[-0.03em]">{family.title}</p>
-                  {family.id === 'pack' && (
-                    <span className={s.familyBadge}>
-                      Recomendado
-                    </span>
-                  )}
-                </div>
-                <p>
-                  {family.intro}
-                </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {SERVICE_CATEGORIES.filter(c => c.family === 'unit').map(category => (
+              <a key={category.id} href={`#${category.id}`} className={s.family}>
+                <p>{category.label}</p><p>{category.prompt}</p>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      {SERVICE_FAMILIES.map((family) => {
+      {[...SERVICE_FAMILIES].sort((a,b) => ['unit','pack','system'].indexOf(a.id) - ['unit','pack','system'].indexOf(b.id)).map((family) => {
         const cats = SERVICE_CATEGORIES.filter((c) => c.family === family.id)
         return (
           <div key={family.id} id={family.id}>
@@ -67,10 +52,11 @@ export default function ServiciosPage() {
                   </h2>
                   <p className="mt-2 mb-6 max-w-xl text-muted">{cat.subtitle}</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {cat.items.map((item) => (
+                    {cat.items.filter(item => !['correo-corporativo','optimizacion-web','funnels','quiz-calificador','mantencion-web','proyecto-ia','proyecto-estrategico','rediseno-migracion','plantillas-marca','seo-local'].includes(item.slug)).map((item) => (
                       <ServiceIndexCard key={item.id} item={item} />
                     ))}
                   </div>
+                  {cat.items.some(item => ['correo-corporativo','optimizacion-web','funnels','quiz-calificador','mantencion-web','proyecto-ia','proyecto-estrategico','rediseno-migracion','plantillas-marca','seo-local'].includes(item.slug)) && <details className="mt-6 rounded-lg border border-[var(--border)] p-5"><summary className="cursor-pointer font-semibold">Complementos y soluciones a medida</summary><div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">{cat.items.filter(item => ['correo-corporativo','optimizacion-web','funnels','quiz-calificador','mantencion-web','proyecto-ia','proyecto-estrategico','rediseno-migracion','plantillas-marca','seo-local'].includes(item.slug)).map(item => <ServiceIndexCard key={item.id} item={item} />)}</div></details>}
                 </div>
               </section>
             ))}

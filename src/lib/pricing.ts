@@ -83,7 +83,7 @@ const webPlans: PricingPlan[] = [
     ],
     cta: 'Empezar con Landing Express',
     whatsappMessage:
-      'Hola Artestudio, me interesa el plan Landing Express ($74.990 setup + $9.990/mes). ¿Podemos hablar?',
+      'Hola Artestudio, me interesa el plan Landing Express ($74.990 setup + $5.990 + IVA/mes por operación web). ¿Podemos hablar?',
   },
   {
     tier: 'pro',

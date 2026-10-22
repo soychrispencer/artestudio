@@ -40,7 +40,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     idealFor: 'Emprendedores y pymes que necesitan una landing para empezar.',
     category: 'core',
     setup: 74_990,
-    monthly: 9_990,
+    monthly: 5_990,
     delivery: '48 horas hábiles desde briefing y materiales completos aprobados.',
     includes: [
       'Diseño personalizado one-page',
@@ -53,10 +53,10 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Dominio .cl primer año',
     ],
     monthlyIncludes: [
-      'Hosting',
-      'SSL',
-      'Soporte',
-      'Mantención técnica',
+      'Hosting y SSL',
+      'Respaldo semanal',
+      'Soporte técnico básico en horario hábil',
+      'Mantención técnica esencial',
       'Sin horas de cambios de contenido; se cotizan por separado',
       'Dominio conectado',
     ],
@@ -84,7 +84,7 @@ export const CRECE_PLAN: SubscriptionPlan = {
     'Hosting, SSL, soporte y mantención de la landing',
   ],
   footnote:
-    'La fecha de publicación y el primer ciclo mensual de $94.990 + IVA se acuerdan por escrito antes de contratar. La implementación no incluye un mes gratuito de contenido. El sitio y dominio son 100% tuyos: si más adelante decides pausar las redes sociales, puedes continuar solo con el hosting y soporte técnico base por $9.990 + IVA/mes.',
+      'La fecha de publicación y el primer ciclo mensual de $94.990 + IVA se acuerdan por escrito antes de contratar. La implementación no incluye un mes gratuito de contenido. El sitio y dominio son 100% tuyos: si más adelante decides pausar las redes sociales, puedes continuar con la operación web base por $5.990 + IVA/mes.',
   excludes: [
     'Pauta publicitaria',
     'eCommerce',

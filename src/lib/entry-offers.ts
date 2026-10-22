@@ -3,10 +3,10 @@
  */
 
 export const MONTHLY_MODEL_DISCLAIMER =
-  'El setup cubre la creación inicial de tu landing o sitio. El plan mensual cubre hosting, soporte básico, continuidad técnica y 1 modificación menor al mes. Nuevas secciones, rediseños, ecommerce, carga de productos, campañas o administración de contenido se cotizan aparte.'
+  'El setup cubre la creación inicial de tu landing o sitio. La operación web mensual incluye hosting, SSL, respaldo semanal, mantención técnica esencial y soporte básico en horario hábil. No incluye cambios de contenido, nuevas secciones, rediseños, ecommerce, campañas ni administración mensual de contenido.'
 
 export const LANDING_EXPRESS_WHATSAPP =
-  'Hola Artestudio, quiero la Landing Express ($74.990 setup + $9.990/mes). ¿Podemos hablar?'
+  'Hola Artestudio, quiero la Landing Express ($74.990 setup + $5.990 + IVA/mes por operación web). ¿Podemos hablar?'
 
 export const WEB_PRO_WHATSAPP =
   'Hola Artestudio, necesito una web más completa (pago único o plan personalizado). ¿Me orientan?'
@@ -20,7 +20,7 @@ export const ENTRY_OFFERS = [
     badge: 'Entrada rápida',
     emoji: '⚡',
     title: 'Landing Express',
-    priceLine: '$74.990 + IVA · luego $9.990 + IVA/mes',
+    priceLine: '$74.990 + IVA · luego $5.990 + IVA/mes',
     idealFor: [
       'Talleres y servicios locales',
       'Profesionales independientes',

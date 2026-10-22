@@ -518,13 +518,13 @@ export const PLANES_INTRO = {
 
 export const PRICING_UI = {
   setupLabel: 'Setup',
-  monthlyLabel: 'Hosting',
+  monthlyLabel: 'Operación web',
   monthlySuffix: ' mensual',
-  commitmentShort: 'Hosting, SSL, soporte y mantenimiento',
+  commitmentShort: 'Hosting, SSL, respaldo semanal y soporte técnico básico',
   includesLabel: 'Incluye',
   excludesLabel: 'No incluye',
   deliveryLabel: 'Tiempo de entrega',
-  footnote: 'Precios en CLP · Setup en pago único y hosting en suscripción mensual (2 pasos en MercadoPago).',
+  footnote: 'Precios en CLP + IVA · Setup en pago único y operación web en suscripción mensual (2 pasos en MercadoPago).',
 } as const
 
 export const GROWTH_PLANS = [
@@ -694,10 +694,10 @@ export const INDIVIDUAL_SERVICES = [
   },
   {
     icon: '🌐',
-    title: 'Hosting',
-    description: 'Infraestructura confiable para tu presencia digital.',
+    title: 'Operación web básica',
+    description: 'Hosting, SSL, respaldo semanal y mantención técnica esencial.',
     image: '/images/services/actualizaciones-web.png',
-    priceFrom: 'Desde $9.990/mes',
+    priceFrom: 'Desde $5.990 + IVA/mes',
     paymentLabel: 'Mensual',
     contactCta: { label: 'Cotizar', href: WA_LINKS.hosting },
   },
@@ -728,11 +728,11 @@ export const FAQ_ITEMS = [
   },
   {
     q: '¿Puedo empezar solo con una landing?',
-    a: 'Sí. Página web Express cuesta $74.990 + IVA por única vez e incluye diseño one-page, publicación y un dominio .cl durante el primer año. La operación técnica cuesta $9.990 + IVA al mes, con primer cobro 30 días después del pago aprobado de implementación y permanencia inicial de 3 meses. Los cambios de contenido se cotizan aparte.',
+    a: 'Sí. Página web Express cuesta $74.990 + IVA por única vez e incluye diseño one-page, publicación y un dominio .cl durante el primer año. La operación web cuesta $5.990 + IVA al mes e incluye hosting, SSL, respaldo semanal y soporte técnico básico; el primer cobro ocurre 30 días después del pago aprobado y tiene una permanencia inicial de 3 meses. Los cambios de contenido se cotizan aparte.',
   },
   {
     q: '¿Qué incluye el pago mensual de Página web Express?',
-    a: 'Hosting, SSL, soporte y mantención técnica para que tu página siga funcionando. El dominio .cl está incluido el primer año, sujeto a disponibilidad y registrado a nombre del cliente; su renovación posterior no está incluida.',
+    a: 'Hosting, SSL, respaldo semanal y soporte técnico básico para que tu página siga funcionando. No incluye cambios de contenido. El dominio .cl está incluido el primer año, sujeto a disponibilidad y registrado a nombre del cliente; su renovación posterior no está incluida.',
   },
   {
     q: '¿Trabajan con IA?',

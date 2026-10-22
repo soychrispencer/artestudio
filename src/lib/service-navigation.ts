@@ -51,7 +51,7 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
     slug: '_landing-express',
     title: 'Landing Express',
     shortDesc: 'Setup + mensual · 24–48 hrs',
-    from: '$74.990 + $9.990/mes',
+    from: '$74.990 + $5.990/mes',
     group: 'entrada',
   },
   {
@@ -65,7 +65,7 @@ export const SERVICE_CATALOG: ServiceNavItem[] = [
     slug: 'mantencion-web',
     title: 'Mantención Web',
     shortDesc: 'Soporte técnico y administración',
-    from: 'Desde $9.990/mes',
+    from: 'Desde $5.990/mes',
     group: 'web',
   },
   {

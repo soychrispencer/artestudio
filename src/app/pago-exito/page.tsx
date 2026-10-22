@@ -117,8 +117,8 @@ function PagoExitoContent() {
               Paso 2: Activar servicio mensual
             </h2>
             <p className="text-muted-light mb-6">
-              La operación web cuesta {formatPrice(withIVA(monthlyAmount))}/mes con IVA — hosting, SSL, soporte y
-              mantención técnica. El primer cobro se programa 30 días después del pago aprobado de implementación:
+              La operación web cuesta {formatPrice(withIVA(monthlyAmount))}/mes con IVA — hosting, SSL, respaldo semanal y
+              soporte técnico básico. No incluye cambios de contenido. El primer cobro se programa 30 días después del pago aprobado de implementación:
             </p>
 
             <button

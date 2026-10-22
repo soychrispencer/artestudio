@@ -69,7 +69,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
 export const CRECE_PLAN: SubscriptionPlan = {
   id: 'plan-landing-redes',
   name: 'Web + Redes sociales',
-  tagline: 'Landing Express + Redes Esencial, en un solo plan.',
+  tagline: 'Página web Express + Redes Esencial, en un solo plan.',
   idealFor: 'Negocios que necesitan página de entrada y contenido mensual desde el día uno.',
   category: 'social',
   setup: 74_990,
@@ -77,7 +77,7 @@ export const CRECE_PLAN: SubscriptionPlan = {
   delivery: 'Landing según briefing; primer calendario de redes en la primera semana.',
   badge: 'Pack',
   includes: [
-    'Landing Express (one-page, WhatsApp, formulario, SEO básico, publicación)',
+    'Página web Express (one-page, WhatsApp, formulario, SEO básico, publicación)',
     'Dominio .cl el primer año, sujeto a disponibilidad',
     'Plan Redes Esencial: 8 contenidos mensuales',
     'Calendario y línea visual del mes',

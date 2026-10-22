@@ -74,7 +74,7 @@ export function StudioHome() {
         <div className={s.container}>
           <div className={s.sectionHead}><div><p className={s.label}>02 / Lo que conectamos</p><h2 id="services-title">Tu siguiente<br /><em>movimiento.</em></h2></div><p>Desde una pieza puntual hasta un sistema completo.<br />Construimos lo que tu negocio necesita hoy.</p></div>
           <div className={s.serviceList}>{expertise.map((item, index) => <Link key={item.href} href={item.href} className={s.serviceRow}><span className={s.serviceNumber}>0{index + 1}</span><div><h3>{item.name}</h3><p>{item.description}</p><span className={s.serviceTags}>{item.tags}</span></div><span className={s.serviceArrow}><Arrow /></span></Link>)}</div>
-          <div className={s.servicesFoot}><p>¿Necesitas que todo trabaje junto?</p><Link href="/servicios/sistema-crecimiento">Conoce el Sistema de Crecimiento <Arrow /></Link></div>
+          <div className={s.servicesFoot}><p>¿Necesitas que todo trabaje junto?</p><Link href="/servicios/sistema-crecimiento">Conoce el Plan integral de crecimiento <Arrow /></Link></div>
         </div>
       </section>
 

@@ -20,8 +20,8 @@ export const WA_LINKS = {
   asesoria: waLink('Hola Artestudio, tengo dudas antes de contratar. Mi negocio es '),
   diagnostico: waLink('Hola Artestudio, quiero solicitar un diagnóstico de crecimiento. Mi negocio es de '),
   reunion: waLink('Hola Artestudio, quiero agendar una reunión para hablar de mi negocio. Mi negocio es de '),
-  planInicio: waLink('Hola Artestudio, quiero el plan Landing Express. Mi negocio es de '),
-  planCrecer: waLink('Hola Artestudio, quiero el Sistema de Crecimiento. Mi negocio es de '),
+  planInicio: waLink('Hola Artestudio, quiero el plan Página web Express. Mi negocio es de '),
+  planCrecer: waLink('Hola Artestudio, quiero el Plan integral de crecimiento. Mi negocio es de '),
   planPro: waLink('Hola Artestudio, quiero el plan Empresa. Mi negocio es de '),
   planCrece: waLink('Hola Artestudio, quiero el Plan Crece con landing page + redes sociales. Mi negocio es de '),
   redes: waLink('Hola Artestudio, quiero cotizar gestión de redes sociales. Mi negocio es de '),
@@ -81,7 +81,7 @@ export const FOOTER_SOLUTIONS = [
   { label: 'Edición de Reels', href: '/servicios/edicion-reels-8' },
   { label: 'Redes Sociales', href: '/servicios/redes-esencial' },
   { label: 'IA y automatización', href: '/servicios#ia' },
-  { label: 'Sistema de Crecimiento', href: '/servicios/sistema-crecimiento' },
+  { label: 'Plan integral de crecimiento', href: '/servicios/sistema-crecimiento' },
 ] as const
 
 /** Plataformas y herramientas (A→Z). */
@@ -313,9 +313,9 @@ export const HOME_DIAGNOSTICO = {
       sintoma:
         'Tienes el conocimiento o producto, pero la oferta no está validada, no hay precios claros ni flujo predecible de personas interesadas.',
       queConstruir:
-        'Una Landing Express con propuesta de valor clara, mensaje directo y botón a WhatsApp para validar tracción real en pocos días.',
+        'Una Página web Express con propuesta de valor clara, mensaje directo y botón a WhatsApp para validar tracción real en pocos días.',
       solucionLink: '/servicios/landing-express',
-      solucionLabel: 'Ver Landing Express ($74.990)',
+      solucionLabel: 'Ver Página web Express ($74.990)',
       waText:
         'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [A: Idea]. Me interesa validar mi oferta con una Landing.',
     },
@@ -343,11 +343,11 @@ export const HOME_DIAGNOSTICO = {
       sintoma:
         'El negocio factura y el servicio es bueno, pero el crecimiento está estancado porque tu web, tus anuncios y tus ventas no se comunican entre sí.',
       queConstruir:
-        'Un Sistema de Crecimiento integral: Landing de alta conversión + Campañas en Google/Meta Ads + CRM o WhatsApp estructurado + Medición.',
+        'Un Plan integral de crecimiento integral: Landing de alta conversión + Campañas en Google/Meta Ads + CRM o WhatsApp estructurado + Medición.',
       solucionLink: '/servicios/sistema-crecimiento',
-      solucionLabel: 'Ver Sistema de Crecimiento',
+      solucionLabel: 'Ver Plan integral de crecimiento',
       waText:
-        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [C: Construcción]. Me gustaría cotizar un Sistema de Crecimiento.',
+        'Hola Artestudio, hice el diagnóstico rápido en su web y mi empresa está en etapa [C: Construcción]. Me gustaría cotizar un Plan integral de crecimiento.',
     },
     {
       id: 'sistema',
@@ -436,7 +436,7 @@ export const HOME_PRUEBA = {
 } as const
 
 export const SOLUCION = {
-  title: 'Diseñamos un Sistema de Crecimiento para tu empresa.',
+  title: 'Diseñamos un Plan integral de crecimiento para tu empresa.',
   text: 'Conectamos publicidad, página web, analítica, automatizaciones e inteligencia artificial para que todo trabaje junto.',
   highlight: 'No implementamos herramientas.',
   highlightAccent: 'Diseñamos sistemas completos.',
@@ -530,7 +530,7 @@ export const PRICING_UI = {
 export const GROWTH_PLANS = [
   {
     id: 'plan-sistema-crecimiento',
-    name: 'Sistema de Crecimiento',
+    name: 'Plan integral de crecimiento',
     tagline: 'El sistema completo según tu negocio.',
     priceMain: 'Cotización',
     priceSub: 'Personalizada según alcance',
@@ -723,15 +723,15 @@ export const INDIVIDUAL_SERVICES = [
 
 export const FAQ_ITEMS = [
   {
-    q: '¿Qué es un Sistema de Crecimiento?',
+    q: '¿Qué es un Plan integral de crecimiento?',
     a: 'Es la combinación de publicidad, página web, analítica, automatizaciones e IA trabajando juntas para atraer, convertir y retener clientes de forma predecible. No vendemos herramientas sueltas: diseñamos el sistema completo.',
   },
   {
     q: '¿Puedo empezar solo con una landing?',
-    a: 'Sí. Landing Express cuesta $74.990 + IVA por única vez e incluye diseño one-page, publicación y un dominio .cl durante el primer año. Después mantienes hosting, SSL, soporte y mantención técnica por $9.990 + IVA al mes.',
+    a: 'Sí. Página web Express cuesta $74.990 + IVA por única vez e incluye diseño one-page, publicación y un dominio .cl durante el primer año. La operación técnica cuesta $9.990 + IVA al mes, con primer cobro 30 días después del pago aprobado de implementación y permanencia inicial de 3 meses. Los cambios de contenido se cotizan aparte.',
   },
   {
-    q: '¿Qué incluye el pago mensual de Landing Express?',
+    q: '¿Qué incluye el pago mensual de Página web Express?',
     a: 'Hosting, SSL, soporte y mantención técnica para que tu página siga funcionando. El dominio .cl está incluido el primer año, sujeto a disponibilidad y registrado a nombre del cliente; su renovación posterior no está incluida.',
   },
   {

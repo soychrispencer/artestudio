@@ -6,24 +6,27 @@ const formatPrice = (amount: number) => formatCLP(amount)
 
 const plans = [
   {
-    name: 'Base',
+    name: 'Hosting Esencial',
     amount: 5_990,
-    idealFor: 'Para una landing o web informativa que ya está lista y necesita seguir activa.',
-    contentChanges: 'No incluye',
+    idealFor: 'Para mantener una landing o web informativa alojada, respaldada y disponible.',
+    technicalCare: 'Hosting, SSL y respaldo semanal',
+    technicalAdjustments: 'No incluye horas de ajustes',
     responseTime: 'Hasta 2 días hábiles',
   },
   {
-    name: 'Activa',
-    amount: 49_990,
-    idealFor: 'Para mantener textos e imágenes actualizados cada mes.',
-    contentChanges: 'Hasta 2 horas al mes',
-    responseTime: 'Hasta 1 día hábil',
+    name: 'Mantención Técnica',
+    amount: 19_990,
+    idealFor: 'Para sitios que necesitan revisiones y cuidados técnicos periódicos.',
+    technicalCare: 'Revisión periódica y actualizaciones compatibles',
+    technicalAdjustments: 'Hasta 30 min de ajustes técnicos menores al mes',
+    responseTime: 'Hasta 2 días hábiles',
   },
   {
-    name: 'Tienda',
-    amount: 89_990,
-    idealFor: 'Para tiendas que requieren cambios frecuentes de contenido o catálogo.',
-    contentChanges: 'Hasta 4 horas totales al mes',
+    name: 'Soporte Prioritario',
+    amount: 29_990,
+    idealFor: 'Para sitios que requieren más acompañamiento y respuesta prioritaria.',
+    technicalCare: 'Revisión periódica y actualizaciones compatibles',
+    technicalAdjustments: 'Hasta 1 hora de ajustes técnicos menores al mes',
     responseTime: 'Hasta 1 día hábil',
   },
 ] as const
@@ -36,11 +39,11 @@ export function MaintenancePlans() {
           Planes mensuales
         </p>
         <h2 id="maintenance-plans-title" className="text-2xl md:text-3xl text-[var(--text)]">
-          Elige el plan que necesita tu web
+          Hosting y soporte según lo que necesita tu web
         </h2>
         <p className="text-sm text-muted leading-relaxed mt-3">
-          Todos los niveles cubren un sitio e incluyen hosting, SSL, respaldo semanal,
-          mantención técnica básica y soporte de lunes a viernes, de 9:00 a 18:00.
+          Todos los planes cubren un sitio e incluyen hosting, SSL, respaldo semanal,
+          revisión técnica básica y soporte de lunes a viernes, de 9:00 a 18:00.
         </p>
       </div>
 
@@ -72,10 +75,14 @@ export function MaintenancePlans() {
 
               <dl className="space-y-3 py-4 text-sm flex-1">
                 <div>
-                  <dt className="text-xs text-muted">Cambios de contenido</dt>
+                  <dt className="text-xs text-muted">Cobertura técnica</dt>
+                  <dd className="font-medium text-[var(--text)] mt-0.5">{plan.technicalCare}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted">Ajustes técnicos menores</dt>
                   <dd className="font-medium text-[var(--text)] mt-0.5">
-                    {plan.contentChanges}
-                    {plan.name !== 'Base' && <span className="text-xs text-muted"> · horas no acumulables</span>}
+                    {plan.technicalAdjustments}
+                    {plan.name !== 'Hosting Esencial' && <span className="text-xs text-muted"> · tiempo no acumulable</span>}
                   </dd>
                 </div>
                 <div>
@@ -99,7 +106,7 @@ export function MaintenancePlans() {
 
       <p className="text-xs text-muted leading-relaxed mt-4">
         El tiempo indicado es para la primera respuesta, no para resolver la solicitud. Los cambios adicionales
-        se cotizan antes de realizarlos.
+        se cotizan antes de realizarlos. La carga o actualización de productos, catálogo y contenido se cotiza aparte.
       </p>
     </section>
   )

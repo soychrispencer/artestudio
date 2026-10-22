@@ -326,21 +326,21 @@ const BASE_CATEGORIES: ServiceCategory[] = [
         href: serviceHref('mantencion-web'),
         categoryId: 'web',
         title: 'Soporte y mantención web',
-        description: 'Hosting, respaldos y mantención técnica; cambios de contenido según el nivel contratado.',
-        headline: 'Mantén tu web activa, segura y respaldada.',
-        problem: 'Sin mantención técnica el sitio envejece, se rompe, o pierdes horas intentando cambiar fotos y precios tú mismo.',
-        ...quoteFrom(5_990, 'Mensual · compara Base, Activa y Tienda más abajo'),
+        description: 'Hosting, respaldos, mantención técnica y soporte; productos, catálogo y contenido se cotizan aparte.',
+        headline: 'Mantén tu web disponible y recibe apoyo técnico cuando lo necesites.',
+        problem: 'Sin mantención técnica el sitio puede acumular errores, quedar desactualizado o volverse vulnerable.',
+        ...quoteFrom(5_990, 'Mensual · planes de hosting y soporte técnico más abajo'),
         includes: [
           'Hosting + certificado SSL',
           'Respaldo semanal y mantención técnica básica',
-          'Cambios de contenido solo en niveles Activa y Tienda, con horas definidas',
+          'Ajustes técnicos menores según el nivel contratado',
           'Soporte en horario hábil, según el nivel contratado',
         ],
         previewImage: {
           src: '/images/services/actualizaciones-web.png',
           alt: 'Mantención y soporte técnico web por Artestudio',
           tag: 'Continuidad Técnica & Hosting',
-          caption: 'Hosting con SSL, respaldos semanales y soporte técnico según el nivel contratado.',
+          caption: 'Hosting, respaldos semanales y soporte técnico según el nivel contratado.',
         },
         relatedSlugs: ['sitio-web', 'correo-corporativo'],
         cta: { kind: 'quote', href: WA_LINKS.hosting, label: 'Cotizar mantención' },
@@ -892,7 +892,7 @@ for (const category of SERVICE_CATEGORIES) {
     } : CUSTOM_CONDITIONS)
     if (item.cta.kind === 'quote') item.includes = item.conditions.scope
     if (item.cta.kind === 'quote') item.cta = { ...item.cta, href: 'https://wa.me/56938733230?text=' + encodeURIComponent('Hola Artestudio, quiero una propuesta para ' + item.title + '. Mi negocio es: ') }
-    if (item.slug === 'mantencion-web') { item.description = 'Hosting y operación técnica; cambios de contenido según nivel contratado.'; item.headline = 'Tres niveles de soporte con horas y cobertura definidas.' }
+    if (item.slug === 'mantencion-web') { item.description = 'Hosting, respaldos y mantención técnica; productos, catálogo y contenido se cotizan aparte.'; item.headline = 'Planes claros de hosting y soporte técnico para mantener tu web funcionando.' }
     if (item.slug === 'pack-lanzamiento') { item.description = 'Una página web y activación inicial de una campaña. Inversión publicitaria y gestión mensual aparte.'; item.headline = 'Tu web y la primera campaña, coordinadas desde el inicio.' }
     if (item.slug === 'pack-autoridad') { item.description = 'Identidad visual, web corporativa, presentación y configuración de correo, con alcance confirmado por propuesta.'; item.headline = 'Una identidad consistente para presentar tu empresa.' }
     if (item.slug === 'plan-medios') item.description = 'Gestión mensual de Google y Meta con alcance conjunto; inversión en anuncios aparte.'

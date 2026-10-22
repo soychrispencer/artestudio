@@ -87,7 +87,6 @@ export function StudioHome() {
   return (
     <div className={s.home}>
       <section id="inicio" className={s.hero} aria-labelledby="studio-title">
-        <div className={s.heroBackdrop} aria-hidden="true"><Image src="/logos/Artestudio-isotipo-acid.png" alt="" fill sizes="70vw" /></div>
         <div className={s.container}>
           <div className={s.heroEyebrow}><span><i /> Estudio creativo + tecnología</span></div>
           <div className={s.heroGrid}>
@@ -99,6 +98,10 @@ export function StudioHome() {
                 <a href="#trabajo" className={s.textLink}>Ver proyectos <span aria-hidden="true">↓</span></a>
               </div>
             </div>
+            <figure className={s.heroPortrait}>
+              <Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, director creativo de Artestudio" fill priority sizes="(max-width: 760px) 90vw, (max-width: 1100px) 42vw, 38vw" />
+              <figcaption><span>CHRIS SPENCER</span><span>DIRECCIÓN CREATIVA · ARTESTUDIO</span></figcaption>
+            </figure>
           </div>
           <div className={s.heroFoot}><span>Creatividad con intención. Tecnología con dirección.</span><a href="#servicios-home">Explora el estudio <span aria-hidden="true">↓</span></a></div>
         </div>
@@ -254,13 +257,18 @@ export function StudioHome() {
 
       <section id="estudio" className={s.approach} aria-labelledby="approach-title">
         <div className={s.container}>
-          <div className={s.studioIntro}>
-            <figure className={s.portrait}>
-              <div className={s.portraitTop}><span>El lado humano de lo digital.</span><span aria-hidden="true">↗</span></div>
-              <div className={s.portraitImage}><Image src="/images/brand/chris-spencer-studio-green.png" alt="Chris Spencer, fundador de Artestudio" fill sizes="(max-width: 760px) 90vw, 35vw" /></div>
-              <figcaption><span><strong>Chris Spencer</strong><small>Fundador & dirección creativa</small></span><Image className={s.portraitMark} src="/logos/Artestudio-isotipo-acid.png" alt="" width={40} height={40} /></figcaption>
-            </figure>
-            <div className={s.studioCopy}><p className={s.label}>03 / El estudio</p><h2 id="approach-title">Un estudio.<br /><em>Todas las piezas.</em></h2><p>La marca que muestras, la web que recibe y el marketing que atrae deberían hablar el mismo idioma. En Artestudio los pensamos juntos, con un trato directo y una ejecución cuidada.</p><p className={s.studioSignature}>Soy Chris Spencer. Conecto la estrategia, el diseño y la tecnología para llevar cada proyecto de la idea a la implementación.</p><a href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre tu proyecto <Arrow /></a><div className={s.founderLinks}><a href="https://www.linkedin.com/in/soychrispencer" target="_blank" rel="noopener noreferrer">LinkedIn <Arrow /></a><a href="https://www.instagram.com/soychrispencer" target="_blank" rel="noopener noreferrer">Instagram <Arrow /></a><Link href="/soychrispencer">Trayectoria y perfil <Arrow /></Link></div></div>
+          <div className={s.approachIntro}>
+            <p className={s.label}>03 / El estudio</p>
+            <div>
+              <h2 id="approach-title">Marca, marketing y tecnología <em>conectados.</em></h2>
+              <p>Artestudio combina estrategia, diseño y desarrollo para que tu marca se entienda, tus canales atraigan oportunidades y tu operación aproveche mejor la tecnología.</p>
+              <div className={s.studioPillars}>
+                <div><h3>Marca y experiencia</h3><p>Identidad visual, diseño web y contenido con una dirección reconocible.</p></div>
+                <div><h3>Marketing y crecimiento</h3><p>Redes sociales, campañas y posicionamiento conectados a tus objetivos.</p></div>
+                <div><h3>Tecnología e IA</h3><p>Plataformas, integraciones y automatizaciones para simplificar procesos.</p></div>
+              </div>
+              <a className={s.studioCta} href={WA_LINKS.reunion} target="_blank" rel="noopener noreferrer">Conversemos sobre lo que necesita tu negocio <Arrow /></a>
+            </div>
           </div>
           <div className={s.steps}>{[
             ['Entender', 'Primero, tu negocio.', 'Escuchamos, revisamos lo que tienes y definimos qué necesita avanzar.'],

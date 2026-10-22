@@ -107,8 +107,15 @@
 .bukmyArtworkFront{z-index:2;width:59%;aspect-ratio:1;left:11%;top:13%;border:6px solid #fff;transform:rotate(-4deg);transition:transform .5s}
 .bukmyArtworkBack>img,.bukmyArtworkFront>img,.terapiaArtworkBack>img,.terapiaArtworkFront>img,.simpleStory>img,.simplePost>img{object-fit:cover}
 .project:hover .bukmyArtworkFront{transform:rotate(-2deg) scale(1.025)}
-.restoVisual>img{object-fit:cover;object-position:40% center;transition:transform .7s}
-.project:hover .restoVisual>img{transform:scale(1.03)}
+.restoVisual{isolation:isolate;background:#161918}
+.restoAmbience{z-index:0;object-fit:cover;object-position:center 47%;transition:transform .7s}
+.restoVisual:after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#1015133d 0%,#10151328 48%,#101513e8 100%)}
+.restoScreen{position:absolute;z-index:2;top:9%;left:7%;width:86%;aspect-ratio:1.5;overflow:hidden;border:1px solid #ffffffa8;border-radius:5px;background:#1c2021;box-shadow:0 16px 46px #0008;transition:transform .5s}
+.restoScreen>img{object-fit:cover;object-position:center 54%}
+.restoBrand{position:absolute;z-index:3;left:20px;bottom:18px;display:flex;align-items:center;gap:11px;color:white;font-size:9px;font-weight:500;letter-spacing:.12em}
+.restoBrand>img,.simpleAgendaBrand>img,.simpleAutosBrand>img{object-fit:cover;border-radius:11px;box-shadow:0 5px 15px #0004}
+.project:hover .restoAmbience{transform:scale(1.035)}
+.project:hover .restoScreen{transform:translateY(-4px)}
 .terapiaVisual{background:radial-gradient(ellipse at 84% 11%,#e0d5fa 0,transparent 36%),#f5f1eb}
 .terapiaArtworkBack{z-index:1;height:69%;aspect-ratio:4/5;right:11%;top:18%;transform:rotate(5deg)}
 .terapiaArtworkFront{z-index:2;height:84%;aspect-ratio:4/5;left:12%;top:7%;transform:rotate(-3deg);transition:transform .5s}
@@ -117,6 +124,49 @@
 .simpleStory{z-index:1;height:86%;aspect-ratio:9/16;left:12%;top:7%;border:5px solid #fff;transform:rotate(-5deg)}
 .simplePost{z-index:2;height:76%;aspect-ratio:4/5;right:10%;bottom:6%;border:5px solid #fff;transform:rotate(4deg);transition:transform .5s}
 .project:hover .simplePost{transform:rotate(1deg) scale(1.025)}
+.simpleEcosystemVisual{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1.12;overflow:hidden;border:1px solid #ffffff13;border-radius:5px;padding:20px;background:radial-gradient(ellipse at 88% 2%,#c8ff0018 0,transparent 37%),linear-gradient(145deg,#1a1d19,#10110f 78%);color:var(--white)}
+.simpleEcosystemVisual:after{content:'';position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,#c8ff0080,transparent)}
+.simpleEcosystemHeader{display:flex;justify-content:space-between;gap:10px;padding-right:44px;color:#b9bdb2;font-size:8px;letter-spacing:.13em;text-transform:uppercase}
+.simpleEcosystemHeader>span:last-child{color:var(--acid);white-space:nowrap}
+.simpleEcosystemGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0}
+.simpleEcosystemTile{display:flex;min-width:0;min-height:70px;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid #ffffff13;border-radius:4px;background:#ffffff08}
+.simpleEcosystemTile>img{object-fit:cover;width:40px;height:40px;border-radius:11px}
+.simpleEcosystemFooter{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-top:12px;border-top:1px solid #ffffff21;font-size:clamp(20px,2.1vw,29px);font-weight:500;letter-spacing:-.06em;line-height:1.05}
+.simpleEcosystemFooter em{color:var(--acid);font-style:normal}
+.simpleEcosystemVisual .roundArrow{top:16px;right:16px;width:34px;height:34px}
+.simpleEcosystemVisual .roundArrow svg{width:16px;height:16px}
+.simpleAutosVisual,.simpleAgendaVisual,.serenatasVisual,.simpleTicketsVisual{position:relative;isolation:isolate;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#171817}
+.simpleAutosVisual>img,.simpleAgendaVisual>img,.simpleTicketsVisual>img{z-index:0;object-fit:cover;transition:transform .7s}
+.simpleAutosVisual>img{object-position:center 58%}
+.simpleAgendaVisual>img{object-position:center 42%}
+.simpleTicketsVisual>img{object-position:center 50%}
+.simpleAutosVisual:after,.simpleAgendaVisual:after,.simpleTicketsVisual:after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0e10113d,#0e101100 37%,#0e1011e8 100%)}
+.simpleAgendaVisual:after{background:linear-gradient(180deg,#0d171522,#0d171100 28%,#0d1711bb 100%)}
+.project:hover .simpleAutosVisual>img,.project:hover .simpleAgendaVisual>img,.project:hover .simpleTicketsVisual>img{transform:scale(1.035)}
+.simpleAutosBrand,.simpleAgendaBrand{position:absolute;z-index:3;top:18px;left:18px;display:flex;align-items:center;gap:10px;color:#fff;font-size:8px;font-weight:500;letter-spacing:.13em}
+.simpleAutosCopy{position:absolute;z-index:2;left:22px;bottom:22px;color:white;font-size:clamp(28px,3vw,42px);font-weight:500;letter-spacing:-.06em;line-height:.98}
+.simpleAutosCopy em,.simpleTicketsVisual em{font-family:var(--font-instrument),Georgia,serif;font-weight:400}
+.simpleAgendaBrand{top:17px;left:17px}
+.simpleAgendaDashboard{position:absolute;z-index:2;right:8%;bottom:8%;width:76%;aspect-ratio:480/340;overflow:hidden;border:5px solid #fff;border-radius:5px;background:#0a201e;box-shadow:0 18px 42px #0007;transform:rotate(-3deg);transition:transform .5s}
+.simpleAgendaDashboard>img{object-fit:contain}
+.project:hover .simpleAgendaDashboard{transform:rotate(-1deg) translateY(-4px)}
+.serenatasVisual{background:radial-gradient(ellipse at 83% 22%,#f37694 0,transparent 31%),radial-gradient(ellipse at 15% 88%,#9c234a 0,transparent 43%),linear-gradient(138deg,#351021,#160b16 74%)}
+.serenatasVisual:before,.serenatasVisual:after{content:'';position:absolute;z-index:0;border:1px solid #ffffff21;border-radius:50%;width:72%;aspect-ratio:1;right:-15%;top:-35%}
+.serenatasVisual:after{width:98%;right:-29%;top:-49%;border-color:#ffffff12}
+.serenatasOrb{position:absolute;inset:22% 16% auto auto;width:41%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff91a980,#d11e5044 43%,transparent 70%);filter:blur(6px)}
+.serenatasMark{position:absolute;z-index:2;top:20%;right:18%;display:grid;place-items:center;width:82px;height:82px;border:1px solid #ffffff70;border-radius:22px;background:#fff;box-shadow:0 14px 40px #0004;transform:rotate(7deg)}
+.serenatasMark>img{object-fit:contain;width:60px;height:60px}
+.serenatasCopy{position:absolute;z-index:2;left:22px;right:20px;bottom:22px;color:#fff}
+.serenatasCopy>span{font-size:8px;letter-spacing:.14em;opacity:.7}
+.serenatasCopy>p{margin:12px 0 0;font-size:clamp(29px,3vw,42px);font-weight:500;letter-spacing:-.065em;line-height:.98}
+.serenatasCopy em{color:#ff8aa7;font-family:var(--font-instrument),Georgia,serif;font-weight:400}
+.simpleTicketCard{position:absolute;z-index:2;right:12%;bottom:11%;display:flex;flex-direction:column;justify-content:space-between;width:39%;aspect-ratio:.78;padding:14px 12px;border-radius:5px;background:#f6f3eb;color:#151716;box-shadow:0 18px 45px #0007;transform:rotate(6deg);transition:transform .5s}
+.simpleTicketCard:after{content:'';position:absolute;top:68%;left:0;right:0;border-top:1px dashed #15171660}
+.simpleTicketCard>div{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.simpleTicketCard>div>img{object-fit:cover;width:33px;height:33px;border-radius:9px}
+.simpleTicketCard>div>span{font-size:8px;font-weight:600;letter-spacing:.08em;line-height:1.25}
+.simpleTicketCard>i{display:block;width:100%;height:16px;margin-top:7px;background:repeating-linear-gradient(90deg,#161817 0 2px,transparent 2px 4px,#161817 4px 5px,transparent 5px 8px);opacity:.76}
+.project:hover .simpleTicketCard{transform:rotate(2deg) translateY(-4px)}
 .roundArrow{position:absolute;right:20px;top:20px;z-index:2;display:grid;place-items:center;width:42px;height:42px;background:var(--white);color:var(--black);border-radius:50%;transition:background .2s,transform .2s}
 .project:hover .roundArrow{background:var(--acid);transform:rotate(45deg)}
 .roundArrow svg{width:18px;height:18px}

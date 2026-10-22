@@ -25,7 +25,7 @@ const digitalProducts = [
   { name: 'SimpleAgenda', type: 'Reservas y gestión', href: 'https://simpleagenda.app' },
   { name: 'SimpleSerenatas', type: 'Servicios y experiencias', href: 'https://simpleserenatas.app' },
   { name: 'SimpleResto', type: 'Producto en desarrollo', href: 'https://simpleresto.app' },
-  { name: 'SimpleTicket', type: 'Producto en desarrollo', href: 'https://simpleticket.app' },
+  { name: 'SimpleTickets', type: 'Producto en desarrollo', href: 'https://simpletickets.app' },
 ]
 
 const clientWebsites = [
@@ -161,6 +161,32 @@ export function StudioHome() {
               </div>
               <div className={s.projectCaption}><div><h3>Terapia Relacional</h3></div><span>Redes y contenido</span></div>
             </article>
+            <a hidden={!projectMatches('web')} className={s.project} href="https://simpleplataforma.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.simpleEcosystemVisual}>
+                <div className={s.simpleEcosystemHeader}><span>Simple / Ecosistema digital</span><span>6 verticales</span></div>
+                <div className={s.simpleEcosystemGrid}>
+                  {[
+                    ['SimpleAutos', 'simpleautos'],
+                    ['SimplePropiedades', 'simplepropiedades'],
+                    ['SimpleAgenda', 'simpleagenda'],
+                    ['SimpleSerenatas', 'simpleserenatas'],
+                    ['SimpleResto', 'simpleresto'],
+                    ['SimpleTickets', 'simpletickets'],
+                  ].map(([name, icon]) => <div className={s.simpleEcosystemTile} key={name}><Image src={`/images/casos/simple-verticals/ig-profile-${icon}.png`} alt={name} width={40} height={40} /></div>)}
+                </div>
+                <div className={s.simpleEcosystemFooter}><span>Una plataforma.<br /><em>Seis soluciones.</em></span><span className={s.roundArrow}><Arrow /></span></div>
+              </div>
+              <div className={s.projectCaption}><div><h3>Simple Plataforma</h3></div><span>Diseño y desarrollo de un ecosistema digital</span></div>
+            </a>
+            <a hidden={!projectMatches('web')} className={s.project} href="https://simpleautos.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.simpleAutosVisual}>
+                <Image src="/images/casos/simpleautos-discover.jpg" alt="Vehículo destacado en la plataforma SimpleAutos" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+                <div className={s.simpleAutosBrand}><Image src="/images/casos/simple-verticals/ig-profile-simpleautos.png" alt="" width={42} height={42} /><span>MARKETPLACE AUTOMOTOR</span></div>
+                <div className={s.simpleAutosCopy}>Encuentra tu<br /><em>próximo auto.</em></div>
+                <span className={s.roundArrow}><Arrow /></span>
+              </div>
+              <div className={s.projectCaption}><div><h3>SimpleAutos</h3></div><span>Marketplace automotor · Plataforma propia</span></div>
+            </a>
             <a hidden={!projectMatches('web', 'publicidad')} className={s.project} href="https://simplepropiedades.app" target="_blank" rel="noopener noreferrer">
               <div className={s.simpleVisual}>
                 <div className={s.simpleStory}><Image src="/images/casos/simplepropiedades-story-campana.png" alt="" fill sizes="(max-width: 760px) 38vw, 21vw" /></div>
@@ -169,9 +195,40 @@ export function StudioHome() {
               </div>
               <div className={s.projectCaption}><div><h3>SimplePropiedades</h3></div><span>Plataforma · Campaña digital</span></div>
             </a>
+            <a hidden={!projectMatches('web')} className={s.project} href="https://simpleagenda.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.simpleAgendaVisual}>
+                <Image src="/images/casos/simpleagenda-professional.webp" alt="Profesional preparando su agenda de reservas" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+                <div className={s.simpleAgendaDashboard}><Image src="/images/casos/simpleagenda-dashboard.svg" alt="Vista del panel de reservas de SimpleAgenda" fill sizes="(max-width: 760px) 74vw, 32vw" /></div>
+                <div className={s.simpleAgendaBrand}><Image src="/images/casos/simple-verticals/ig-profile-simpleagenda.png" alt="" width={38} height={38} /><span>RESERVAS Y GESTIÓN</span></div>
+                <span className={s.roundArrow}><Arrow /></span>
+              </div>
+              <div className={s.projectCaption}><div><h3>SimpleAgenda</h3></div><span>Reservas y gestión para profesionales</span></div>
+            </a>
+            <a hidden={!projectMatches('web')} className={s.project} href="https://simpleserenatas.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.serenatasVisual}>
+                <div className={s.serenatasOrb} aria-hidden="true" />
+                <div className={s.serenatasMark}><Image src="/images/casos/simpleserenatas-mark.png" alt="" width={82} height={82} /></div>
+                <div className={s.serenatasCopy}><span>MARKETPLACE MUSICAL</span><p>La música<br />que <em>conecta.</em></p></div>
+                <span className={s.roundArrow}><Arrow /></span>
+              </div>
+              <div className={s.projectCaption}><div><h3>SimpleSerenatas</h3></div><span>Marketplace de servicios musicales</span></div>
+            </a>
             <a hidden={!projectMatches('web', 'ia')} className={s.project} href="https://simpleresto.app" target="_blank" rel="noopener noreferrer">
-              <div className={s.restoVisual}><Image src="/images/casos/simpleresto-panel.webp" alt="Panel de operación de pedidos de SimpleResto, producto en desarrollo" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" /><span className={s.roundArrow}><Arrow /></span></div>
-              <div className={s.projectCaption}><div><h3>SimpleResto</h3></div><span>Producto en desarrollo · IA aplicada</span></div>
+              <div className={s.restoVisual}>
+                <Image className={s.restoAmbience} src="/images/casos/simpleresto-ambience.webp" alt="Equipo de un local gastronómico preparando pedidos" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+                <div className={s.restoScreen}><Image src="/images/casos/simpleresto-operations.webp" alt="Panel real de pedidos de SimpleResto" fill sizes="(max-width: 760px) 76vw, 30vw" /></div>
+                <div className={s.restoBrand}><Image src="/images/casos/simple-verticals/ig-profile-simpleresto.png" alt="" width={38} height={38} /><span>OPERACIÓN GASTRONÓMICA</span></div>
+                <span className={s.roundArrow}><Arrow /></span>
+              </div>
+              <div className={s.projectCaption}><div><h3>SimpleResto</h3></div><span>Plataforma gastronómica · En desarrollo</span></div>
+            </a>
+            <a hidden={!projectMatches('web')} className={s.project} href="https://simpletickets.app" target="_blank" rel="noopener noreferrer">
+              <div className={s.simpleTicketsVisual}>
+                <Image src="/images/casos/simpletickets-concert.webp" alt="Público en un concierto para la plataforma SimpleTickets" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+                <div className={s.simpleTicketCard}><div><Image src="/images/casos/simple-verticals/ig-profile-simpletickets.png" alt="" width={38} height={38} /><span>ENTRADAS<br />DIGITALES</span></div><i aria-hidden="true" /><b aria-hidden="true" /></div>
+                <span className={s.roundArrow}><Arrow /></span>
+              </div>
+              <div className={s.projectCaption}><div><h3>SimpleTickets</h3></div><span>Plataforma de eventos · En desarrollo</span></div>
             </a>
           </div>
           <div className={s.galleryControls}>

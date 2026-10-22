@@ -92,6 +92,11 @@ export function StudioHome() {
           <div className={s.sectionHead}><div><p className={s.label}>02 / Trabajo seleccionado</p><h2 id="work-title">Las ideas<br />toman <em>forma.</em></h2></div><p>Negocios distintos. Una misma intención:<br />diseño con carácter y tecnología que funciona.</p></div>
 
           <div className={s.projectGrid}>
+            <a className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
+              <div className={s.onVisual}><Image src="/images/casos/the-on-company-home.jpg" alt="Vista de la página de inicio de The ON Company, con sus líneas de eventos y diseño y construcción" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 48vw" /><span className={s.roundArrow}><Arrow /></span></div>
+              <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Proyecto propio · Identidad visual y web<br />Redes sociales en desarrollo</span></div>
+            </a>
+
           <a className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
             <div className={s.tradicionalVisual}>
               <div className={s.visualLabel}><span>Tradicional360</span><span>Web / Estrategia digital</span></div>

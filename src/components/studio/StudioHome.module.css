@@ -59,9 +59,12 @@
 .projectCaption h3{font-size:20px;font-weight:600;letter-spacing:-.045em;margin:0 0 5px}
 .projectCaption p{font-size:12px;line-height:1.6;color:#72736b;margin:0}
 .projectCaption>span{font-size:9px;letter-spacing:.015em;color:#73756b;max-width:180px;text-align:right;line-height:1.8;padding-top:4px}
-.projectGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:0}
+.projectGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 26px;margin-top:0}
 .projectGrid .projectCaption{flex-direction:column;gap:8px}
 .projectGrid .projectCaption>span{text-align:left;max-width:none}
+.onVisual{position:relative;aspect-ratio:1.12;overflow:hidden;border-radius:5px;background:#161613}
+.onVisual>img{object-fit:cover;object-position:center 45%;transition:transform .7s}
+.project:hover .onVisual>img{transform:scale(1.025)}
 .tradicionalVisual{position:relative;aspect-ratio:1.12;display:flex;flex-direction:column;justify-content:center;padding:22px;background:#e0e2da;border-radius:5px;overflow:hidden}
 .tradicionalVisual .visualLabel{position:absolute;inset:24px 72px auto 22px;padding:0}
 .tradicionalVisual .visualLabel>span:first-child{font-size:15px}

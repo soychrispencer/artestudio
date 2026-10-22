@@ -98,28 +98,29 @@ export function StudioHome() {
               <div className={s.browserFrame}><div className={s.browserBar}><span aria-hidden="true">● ● ●</span><span>tradicional360.cl</span><span aria-hidden="true">↗</span></div><div className={s.browserImage}><Image src="/images/casos/tradicional360-web.png" alt="Diseño de la web Tradicional360: propuesta comercial y radar de diagnóstico" fill sizes="(max-width: 760px) 95vw, 80vw" /></div></div>
               <span className={s.roundArrow}><Arrow /></span>
             </div>
-            <div className={s.projectCaption}><div><h3>Tradicional360</h3><p>Una nueva forma de presentar la consultoría comercial.</p></div><span>Diseño web · Desarrollo · Diagnóstico interactivo</span></div>
+            <div className={s.projectCaption}><div><h3>Tradicional360</h3></div><span>Web · Diagnóstico interactivo</span></div>
           </a>
 
             <a className={s.project} href="https://quiralproyectos.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.quiralVisual}><Image src="/images/casos/quiral.png" alt="Arquitectura y paisajismo de Quiral Proyectos" fill sizes="(max-width: 760px) 95vw, 45vw" /><div className={s.quiralOverlay}><span>Quiral Proyectos</span><p>Espacios para<br /><em>habitar mejor.</em></p></div><span className={s.roundArrow}><Arrow /></span></div>
-              <div className={s.projectCaption}><div><h3>Quiral Proyectos</h3><p>Arquitectura, paisaje y una presencia digital a su altura.</p></div><span>Diseño web / Desarrollo</span></div>
+              <div className={s.projectCaption}><div><h3>Quiral Proyectos</h3></div><span>Diseño y desarrollo web</span></div>
             </a>
             <a className={s.project} href="https://atriabogadas.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.atriaVisual}><div className={s.atriaBack} aria-hidden="true"><Image src="/images/casos/atria-olivo.svg" alt="" width={160} height={280} /></div><div className={s.atriaPaper}><Image src="/images/casos/atria-logo.svg" alt="Identidad visual de Atria Abogadas" width={280} height={360} /><span>Derecho de familia</span></div><span className={s.roundArrow}><Arrow /></span></div>
-              <div className={s.projectCaption}><div><h3>Atria Abogadas</h3><p>Una identidad que acompaña y transmite confianza.</p></div><span>Identidad visual / Web</span></div>
+              <div className={s.projectCaption}><div><h3>Atria Abogadas</h3></div><span>Identidad visual · Web</span></div>
             </a>
           </div>
           <p className={s.galleryHint}>Desliza para explorar los proyectos <span aria-hidden="true">↔</span></p>
-          <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Más del estudio en Behance <Arrow /></a>
-
-          <div className={s.experience} aria-label="Experiencia en proyectos digitales y de marca">
-            <div className={s.experienceIntro}><p className={s.label}>Más proyectos</p><p>Además de estos casos, he desarrollado productos digitales propios y colaborado con marcas de distintos rubros.</p></div>
-            <div className={s.credentialRows}>
-              <div className={s.credentialRow}><h3>Productos propios</h3><div className={s.inlineLinks}>{digitalProducts.map((product, index) => <span key={product.name}><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}{product.type === 'Producto en desarrollo' && <small>En desarrollo</small>}</a>{index < digitalProducts.length - 1 && <i aria-hidden="true">·</i>}</span>)}</div></div>
-              <div className={s.credentialRow}><h3>Web, identidad y contenido</h3><div className={s.credentialText}><span><b>Sitios:</b> {clientWebsites.map((client, index) => <span key={client.name}><a href={client.href} target="_blank" rel="noopener noreferrer">{client.name}</a>{index < clientWebsites.length - 1 && ', '}</span>)}</span><span><b>Marcas:</b> {visualIdentityProjects.map((project, index) => <span key={project.name}>{project.name}{index < visualIdentityProjects.length - 1 && ', '}</span>)}</span></div></div>
-            </div>
-            <details className={s.archivedWork}><summary><span>Proyectos históricos</span><span>Sitios que sus clientes dejaron de publicar.</span><b aria-hidden="true">+</b></summary><div className={s.archivedGrid}>{archivedProjects.map(project => <div key={project.name}><strong>{project.name}</strong><span>{project.type}</span></div>)}</div></details>
+          <div className={s.moreWork}>
+            <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Ver portafolio completo en Behance <Arrow /></a>
+            <details className={s.moreProjects}>
+              <summary><span>Otros proyectos y marcas</span><span>Plataformas, sitios e identidades.</span><b aria-hidden="true">+</b></summary>
+              <div className={s.moreProjectContent}>
+                <p><strong>Plataformas propias</strong><span>{digitalProducts.map((product, index) => <span key={product.name}><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}</a>{product.type === 'Producto en desarrollo' && <small>En desarrollo</small>}{index < digitalProducts.length - 1 && ', '}</span>)}</span></p>
+                <p><strong>Web, identidad y contenido</strong><span>{clientWebsites.map((client, index) => <span key={client.name}><a href={client.href} target="_blank" rel="noopener noreferrer">{client.name}</a>{index < clientWebsites.length - 1 && ', '}</span>)}; {visualIdentityProjects.map((project, index) => <span key={project.name}>{project.name}{index < visualIdentityProjects.length - 1 && ', '}</span>)}</span></p>
+                <p><strong>Proyectos históricos</strong><span>{archivedProjects.map((project, index) => <span key={project.name}>{project.name}{index < archivedProjects.length - 1 && ', '}</span>)}. Estos sitios ya no están publicados.</span></p>
+              </div>
+            </details>
           </div>
         </div>
       </section>

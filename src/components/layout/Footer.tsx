@@ -17,7 +17,7 @@ export function Footer() {
           <div><p className={s.footerLabel}>Explora</p><div className={s.footerLinks}>{FOOTER_SOLUTIONS.map(link => <Link key={link.label} href={link.href}>{link.label}</Link>)}</div></div>
           <div><p className={s.footerLabel}>Mantengamos el contacto</p><div className={s.footerLinks}><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><a href={WA_LINKS.general} target="_blank" rel="noopener noreferrer">{CONTACT.whatsapp} ↗</a><a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href={CONTACT.behance} target="_blank" rel="noopener noreferrer">Behance ↗</a></div></div>
         </div>
-        <div className={s.footerBottom}><span>© {new Date().getFullYear()} Artestudio. Desde Chile, en digital.</span><Link href="/condiciones-servicios">Condiciones de los servicios</Link><Link href="/construye">Conoce el Método Construye ↗</Link><a href="#contenido">Volver arriba ↑</a></div>
+        <div className={s.footerBottom}><span>© 2019–2026 Artestudio.</span><Link href="/condiciones-servicios">Condiciones de los servicios</Link><Link href="/construye">Conoce el Método Construye ↗</Link><a href="#contenido">Volver arriba ↑</a></div>
       </div>
     </footer>
   )

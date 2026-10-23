@@ -19,13 +19,13 @@ const expertise = [
 ]
 
 const digitalProducts = [
-  { name: 'SimplePlataforma', type: 'Ecosistema digital', href: 'https://simpleplataforma.app' },
-  { name: 'SimpleAutos', type: 'Automotor', href: 'https://simpleautos.app' },
-  { name: 'SimplePropiedades', type: 'Propiedades', href: 'https://simplepropiedades.app' },
-  { name: 'SimpleAgenda', type: 'Reservas y gestión', href: 'https://simpleagenda.app' },
-  { name: 'SimpleSerenatas', type: 'Servicios y experiencias', href: 'https://simpleserenatas.app' },
-  { name: 'SimpleResto', type: 'Producto en desarrollo', href: 'https://simpleresto.app' },
-  { name: 'SimpleTickets', type: 'Producto en desarrollo', href: 'https://simpletickets.app' },
+  { name: 'SimplePlataforma', href: 'https://simpleplataforma.app' },
+  { name: 'SimpleAutos', href: 'https://simpleautos.app' },
+  { name: 'SimplePropiedades', href: 'https://simplepropiedades.app' },
+  { name: 'SimpleAgenda', href: 'https://simpleagenda.app' },
+  { name: 'SimpleSerenatas', href: 'https://simpleserenatas.app' },
+  { name: 'SimpleResto', href: 'https://simpleresto.app' },
+  { name: 'SimpleTickets', href: 'https://simpletickets.app' },
 ]
 
 const clientWebsites = [
@@ -43,16 +43,6 @@ const visualIdentityProjects = [
   { name: 'ImacPro', work: 'Identidad y sitio web' },
   { name: 'El Bajonero', work: 'Identidad y redes sociales' },
   { name: 'Perú Pasión', work: 'Asesoría integral de marca' },
-]
-
-const archivedProjects = [
-  { name: 'Symmec', type: 'Identidad · Web · Redes sociales' },
-  { name: 'Bukmy', type: 'Identidad · Plataforma · Redes sociales' },
-  { name: 'William TRD', type: 'Identidad · Web · Redes sociales' },
-  { name: 'Gama Motors', type: 'Identidad · Web · Redes sociales' },
-  { name: 'Windhouse', type: 'Identidad · Web · Redes sociales' },
-  { name: 'Transportes Amsomar', type: 'Identidad · Web · Redes sociales' },
-  { name: 'Model3D', type: 'Diseño y desarrollo web' },
 ]
 
 type ProjectService = 'todos' | 'web' | 'marca' | 'contenido' | 'publicidad' | 'ia'
@@ -123,7 +113,7 @@ export function StudioHome() {
           <div id="project-gallery" ref={projectGridRef} className={s.projectGrid} data-motion-stagger role="region" aria-roledescription="carrusel" aria-label="Proyectos seleccionados" tabIndex={0}>
             <a hidden={!projectMatches('web', 'marca')} className={s.project} href="https://theoncompany.cl" target="_blank" rel="noopener noreferrer">
               <div className={s.onVisual}><Image src="/images/casos/the-on-company-home.jpg" alt="Vista de la página de inicio de The ON Company, con sus líneas de eventos y diseño y construcción" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 48vw" /><span className={s.roundArrow}><Arrow /></span></div>
-              <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Proyecto propio · Identidad visual y web<br />Redes sociales en desarrollo</span></div>
+              <div className={s.projectCaption}><div><h3>The ON Company</h3></div><span>Identidad visual · Diseño web</span></div>
             </a>
 
           <a hidden={!projectMatches('web')} className={s.project} href="https://tradicional360.cl" target="_blank" rel="noopener noreferrer">
@@ -216,19 +206,19 @@ export function StudioHome() {
             <a hidden={!projectMatches('web', 'ia')} className={s.project} href="https://simpleresto.app" target="_blank" rel="noopener noreferrer">
               <div className={s.restoVisual}>
                 <Image className={s.restoAmbience} src="/images/casos/simpleresto-ambience.webp" alt="Equipo de un local gastronómico preparando pedidos" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
-                <div className={s.restoScreen}><Image src="/images/casos/simpleresto-operations.webp" alt="Panel real de pedidos de SimpleResto" fill sizes="(max-width: 760px) 76vw, 30vw" /></div>
+                <div className={s.restoScreen}><Image src="/images/casos/simpleresto-operations.webp" alt="Panel de pedidos de SimpleResto" fill sizes="(max-width: 760px) 76vw, 30vw" /></div>
                 <div className={s.restoBrand}><Image src="/images/casos/simple-verticals/ig-profile-simpleresto.png" alt="" width={38} height={38} /><span>OPERACIÓN GASTRONÓMICA</span></div>
                 <span className={s.roundArrow}><Arrow /></span>
               </div>
-              <div className={s.projectCaption}><div><h3>SimpleResto</h3></div><span>Plataforma gastronómica · En desarrollo</span></div>
+              <div className={s.projectCaption}><div><h3>SimpleResto</h3></div><span>Gestión para negocios gastronómicos</span></div>
             </a>
             <a hidden={!projectMatches('web')} className={s.project} href="https://simpletickets.app" target="_blank" rel="noopener noreferrer">
               <div className={s.simpleTicketsVisual}>
-                <Image src="/images/casos/simpletickets-concert.webp" alt="Público en un concierto para la plataforma SimpleTickets" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
+                <Image src="/images/casos/simpletickets-concert.webp" alt="Público en un concierto para SimpleTickets" fill sizes="(max-width: 760px) 86vw, (max-width: 900px) 46vw, 32vw" />
                 <div className={s.simpleTicketCard}><div><Image src="/images/casos/simple-verticals/ig-profile-simpletickets.png" alt="" width={38} height={38} /><span>ENTRADAS<br />DIGITALES</span></div><i aria-hidden="true" /><b aria-hidden="true" /></div>
                 <span className={s.roundArrow}><Arrow /></span>
               </div>
-              <div className={s.projectCaption}><div><h3>SimpleTickets</h3></div><span>Plataforma de eventos · En desarrollo</span></div>
+              <div className={s.projectCaption}><div><h3>SimpleTickets</h3></div><span>Entradas digitales y eventos</span></div>
             </a>
           </div>
           <div className={s.galleryControls}>
@@ -241,11 +231,11 @@ export function StudioHome() {
           <div className={s.moreWork}>
             <a href={CONTACT.behance} target="_blank" rel="noopener noreferrer" className={s.portfolioLink}>Ver portafolio completo en Behance <Arrow /></a>
             <details className={s.moreProjects}>
-              <summary><span>Otros proyectos y marcas</span><span>Plataformas, sitios e identidades.</span><b aria-hidden="true">+</b></summary>
+              <summary><span>Otros proyectos</span><span>Web, marca y contenido.</span><b aria-hidden="true">+</b></summary>
               <div className={s.moreProjectContent}>
-                <p><strong>Plataformas propias</strong><span>{digitalProducts.map((product, index) => <span key={product.name}><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}</a>{product.type === 'Producto en desarrollo' && <small>En desarrollo</small>}{index < digitalProducts.length - 1 && ', '}</span>)}</span></p>
-                <p><strong>Web, identidad y contenido</strong><span>{clientWebsites.map((client, index) => <span key={client.name}><a href={client.href} target="_blank" rel="noopener noreferrer">{client.name}</a>{index < clientWebsites.length - 1 && ', '}</span>)}; {visualIdentityProjects.map((project, index) => <span key={project.name}>{project.name}{index < visualIdentityProjects.length - 1 && ', '}</span>)}</span></p>
-                <p><strong>Proyectos históricos</strong><span>{archivedProjects.map((project, index) => <span key={project.name}>{project.name}{index < archivedProjects.length - 1 && ', '}</span>)}. Estos sitios ya no están publicados.</span></p>
+                <p><strong>Plataformas digitales</strong><span>{digitalProducts.map((product, index) => <span key={product.name}><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}</a>{index < digitalProducts.length - 1 && ', '}</span>)}</span></p>
+                <p><strong>Sitios web</strong><span>{clientWebsites.map((client, index) => <span key={client.name}><a href={client.href} target="_blank" rel="noopener noreferrer">{client.name}</a>{index < clientWebsites.length - 1 && ', '}</span>)}</span></p>
+                <p><strong>Marca y contenido</strong><span>{visualIdentityProjects.map((project, index) => <span key={project.name}>{project.name}{index < visualIdentityProjects.length - 1 && ', '}</span>)}</span></p>
               </div>
             </details>
           </div>
